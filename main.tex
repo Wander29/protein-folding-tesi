@@ -1,0 +1,72 @@
+\documentclass[12pt]{report}
+\usepackage[top=2.5cm, bottom=2.5cm, left=3cm, right=2.5cm, centering]{geometry}
+
+% Interlinea
+\linespread{1.2}
+\usepackage[italian]{babel} % applicazione regole di scrittura
+\usepackage{float} % per il posizionamento delle immagini
+\usepackage{listings} % per il codice di programmazione
+\usepackage[utf8]{inputenc}
+\usepackage{graphicx}
+\usepackage[colorlinks=true,linkcolor=black,anchorcolor=black,citecolor=blue,filecolor=black,menucolor=black,runcolor=black,urlcolor=black]{hyperref}
+%\usepackage[backend=biber,style=anyt,sorting=nyt]{biblatex}
+\usepackage[backend=biber,style=authoryear,sorting=nyt]{biblatex}
+\addbibresource{bibliografia.bib}
+%\bibliographystyle{apalike}
+%\bibliographystyle{apalike}
+%\bibliography{bibliografia.bib}
+
+\begin{document}
+	
+\author{Ludovico Venturi}
+\title{Tesi Triennale in Informatica}
+	
+% Frontespizio
+\begin{titlepage}
+	\begin{figure}
+		\centering\includegraphics[scale=0.2] {images/UNIPI_Logo.png}
+	\end{figure}
+	
+	\begin{center}
+		{\LARGE{ Corso di Laurea in Informatica classe L-31 \\}}
+		\vspace{2cm}
+		{\Large { TESI DI LAUREA TRIENNALE }}\\
+		\vspace{2cm}
+		{\LARGE { \textbf{AlphaFold e le prospettive della bioinformatica} }}
+	\end{center}
+	
+	\vspace{2cm}
+	
+	\begin{minipage}[t]{0.6\textwidth}
+		{\large{\textbf{Relatore}\\ Paolo?? \textbf{Milazzo}}}
+		\vspace{0.5cm}
+		{\large{\\\textbf{Correlatore}\\ Mario \textbf{Pirchio}??}}
+	\end{minipage}\hfill\begin{minipage}[t]{0.47\textwidth}\raggedleft
+		{\large{\textbf{Candidato} \\ Ludovico \textbf{Venturi}\\ }}
+	\end{minipage}
+	
+	\vspace{25mm}
+	
+	\centering{\large{\bf ANNO ACCADEMICO 2020/2021 }}
+\end{titlepage}
+% Fine frontespizio
+
+\input{riassunto.tex} % Riassunto
+
+\tableofcontents
+%\addtocontents{toc}{\protect\thispagestyle{empty}}
+\clearpage
+
+\input{motivaione.tex}
+
+\input{intro.tex} % Introduzione
+\input{cap1.tex} % Informatica: tra 
+\input{cap2.tex} % Predizione della struttura delle proteine
+\input{cap3.tex} % Alphafold
+\input{cap4.tex} % Sperimentazione
+\input{conclusioni.tex} % Conclusioni
+
+% bibliography, glossary and index would go here.
+\printbibliography
+
+\end{document}
