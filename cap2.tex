@@ -5,9 +5,22 @@ L'analisi della struttura delle proteine è intrinsecamente complessa: "nessun'a
 
 Ci sono 3 tecniche sperimentali che possono essere usate per generare informazioni a risoluzione atomica sulla struttura delle proteine.
 
-
-\section{Background biologico}
 \section{CASP}
+CASP (\textit{Critical Assessment of Structure Predictions}) è una sfida biennale dove gruppi di ricerca si sfidano cercando di realizzare predizioni di strutture di proteine la cui sequenza amminoacidica è nota ma non la struttura determinata sperimentalmente, che verrà utilizzata per stabilire l'accuratezza dei metodi in gara. \\
+
+Nel 2020 gli organizzatori del CASP14 hanno rinosciuto AlphaFold come soluzione del \textit{protein–structure–prediction problem}. \\
+
+\subsection{Valutazione dell'accuratezza delle predizioni}
+
+Le tecniche di valutazione della predizione della struttura delle proteine richiede criteri ogettivi sulla similarità tra un modello computazionale e la struttura di riferimento determinata sperimentalmente.\\
+
+La misura di valutazione dell'accuratezza oggi è utilizzata è il lDDT (\textit{local Distance
+Difference Test}) \cite{mariani2013lddt}. \\
+
+Le misure precedenti si basavano su una superposizione globale di atomi di carbonio ed erano fortemente influenzate dai movimenti di dominio e non assicurano l'accuratezza di detagli atomici locali nel modello.
+
 \section{Prima di AlphaFold}
+
+\subsection{Machine Learning e biologia}
 
 \clearpage
