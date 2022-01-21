@@ -6,15 +6,13 @@
 \usepackage[italian]{babel} % applicazione regole di scrittura
 \usepackage{float} % per il posizionamento delle immagini
 \usepackage{listings} % per il codice di programmazione
-\usepackage[utf8]{inputenc}
+% \usepackage[utf]{inputenc}
+\usepackage{fontspec}
 \usepackage{graphicx}
 \usepackage[colorlinks=true,linkcolor=black,anchorcolor=black,citecolor=blue,filecolor=black,menucolor=black,runcolor=black,urlcolor=black]{hyperref}
-%\usepackage[backend=biber,style=anyt,sorting=nyt]{biblatex}
+
 \usepackage[backend=biber,style=ieee,sorting=none]{biblatex}
 \addbibresource{bibliografia.bib}
-%\bibliographystyle{apalike}
-%\bibliographystyle{apalike}
-%\bibliography{bibliografia.bib}
 
 \begin{document}
 	
@@ -65,7 +63,6 @@
 \input{cap5-alphafold.tex}
 \input{cap6-uso.tex}
 \input{cap7-conclusioni.tex}
-
 
 % bibliography, glossary and index would go here.
 \printbibliography
