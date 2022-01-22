@@ -86,7 +86,8 @@ Una cellula eucariote animale è formata innanzitutto dalla membrana cellulare, 
 	\item \textit{Evoluzione} \\
 			L'evoluzione rappresenta il tema centrale ed unificante della biologia, come si è già accennato sopra. Gli organismi sono sistemi aperti che interagiscono continuamente con l'ambiente, dotati di variabilità individuale e finalizzati alla competizione per la sopravvivenza. 
 	\item \textit{Diversità e unità} \\
-			Vi sono da 5 a 30 milioni di specie differenti eppure scendendo sempre di più nella struttura degli organismi si osserva una similitudine quasi sconcertante. Un esempio che ci riguarda è la somiglianza fra le ciglia di \textit{paramecium} e le ciglia di una cellula epiteliale delle vie aeree degli esseri umani: presentano la stessa sezione trasversale. Il codice genetico (le triplette) sono universali, gli amminoacidi si condificano nello stesso modo per tutti gli organismi. Diversità e unità della vita sulla Terra sono due facce della stessa medaglia. Il sequenziamento dei genomi e il loro confronto, basato su approcci informatici, ha rivelato una conservazione evoluzionistica, un'eredità comune: è possibile infatti scambiare geni omologhi codificanti proteine del ciclo di divisione cellulare fra uomini e lievito \supercite{alberts2018essential}: una cellula di lievito ha quindi tutto il macchinario molecolare necessario per leggere e interpretare il nostro codice genetico e utilizzarlo per la produzione di proteine umane funzionanti. Sono osservazioni simili che hanno guidato la direzione di alcune tecniche informatiche, anche per la predizione della struttura di proteine (come si vedrà successivamente).
+			Vi sono da 5 a 30 milioni di specie differenti eppure scendendo sempre di più nella struttura degli organismi si osserva una similitudine quasi sconcertante. Un esempio che ci riguarda è la somiglianza fra le ciglia di \textit{paramecium} e le ciglia di una cellula epiteliale delle vie aeree degli esseri umani: presentano la stessa sezione trasversale. Diversità e unità della vita sulla Terra sono due facce della stessa medaglia.
+			- somiglianza nel DNA e implicazioni per informatica - 
 			
 \end{itemize}
 
@@ -103,7 +104,7 @@ Nel 1958 il premio Nobel Francis Crick introdusse il \textit{dogma} centrale del
 
 Il dogma descrive il flusso di informazione genetica: essa è conservata negli acidi nucleici DNA (RNA per alcuni virus) che possono essere duplicati, il DNA viene poi trascritto sottoforma di RNA e se codificante questo è poi tradotto in proteine, concepite come la forma operativa e terminale delle informazioni contenute nel genoma \supercite{dogma-wiki}.
 
-\par Per avere una miglior panoramica del funzionamento di questo principio è importante approfondire la struttura del DNA (\textit{acido desossiribonucleico}). Il DNA è una molecola composta da due catene complementari che si avvolgono l'una intorno all'altra tramite legami idrogeno formando una doppia elica. Le catene sono chiamate filamenti e sono antiparalleli. Dal punto di vista chimico è un polimero di nucleotidi, dove ogni nucleotide è composto da una base azotata, uno zucchero pentoso (\textit{ribosio} nell'RNA e \textit{desossiribosio} nel DNA) e un gruppo fosfato (vedi figura \ref{fig:nucleotide}). Per ogni giro dell'elica vi sono 10 coppie di basi. La struttura a doppia elica consente un'agevole meccanismo di replicazione del DNA, coadiuvato dagli enzimi DNA polimerasi, primasi e DNA ligasi. Gli accoppiamenti seguono delle regole precise: GC, AT/AU, da una parte deve esserci una pirimidina (C, T) e dall'altra una purina (A,G):
+\par Per avere una miglior panoramica del funzionamento di questo principio è importante approfondire la struttura del DNA (\textit{acido desossiribonucleico}). Il DNA è una molecola composta da due catene complementari che si avvolgono l'una intorno all'altra tramite legami idrogeno formando una doppia elica. Le catene sono chiamate filamenti e sono antiparalleli. Dal punto di vista chimico è un polimero di nucleotidi, dove ogni nucleotide è composto da una base azotata, uno zucchero pentoso (\textit{ribosio} nell'RNA e \textit{desossiribosio} nel DNA) e un gruppo fosfato (vedi figura \ref{fig:nucleotide}). Per ogni giro dell'elica vi sono 10 coppie di basi. La struttura a doppia elica consente un'agevole meccanismo di replicazione del DNA, coadiuvato dagli enzimi DNA polimerasi, primasi e DNA ligasi. Gli accoppiamenti seguono delle regole precise: GC, AT/AU, da una parte deve esserci una pirimidina (C, T) e dall'altra una purina (A,G)
 
 \begin{figure}[!htb]
 	\minipage{0.6\textwidth}
@@ -127,8 +128,8 @@ Gli alleli di tutti i geni di un individuo determinano il suo \textit{genotipo}.
 	\item mRNA, messaggero, contiene l'informazione per la sintesi delle proteine
 	\item tRNA, di trasporto, necessario per la traduzione nei ribosomi
 	\item rRNA, ribosomiale, entra nella struttura dei ribosomi
-	\item RNA catalitico o ribozima, enzima ad RNA, è una molecola di RNA in grado di catalizzare una reazione chimica similmente agli enzimi
 	\item snRNA, hnRNA
+	\item RNA catalitico o ribozima, enzima ad RNA, è una molecola di RNA in grado di catalizzare una reazione chimica similmente agli enzimi
 \end{itemize}
 
 \begin{figure}[h]
@@ -138,27 +139,15 @@ Gli alleli di tutti i geni di un individuo determinano il suo \textit{genotipo}.
 	\label{fig:rna-dna-differenze}
 \end{figure}
 
-Il DNA dell'uomo contiene $3\time10^{9}$ coppie di nucleotidi: se il genoma umano venisse esteso in lunghezza sarebbe lungo 2,2 metri. Il batterio più semplice contiene 500 geni codificanti mentre il genoma di un'ameba è 100 volte più lungo di quello umano \supercite{alberts2018essential}, tanto per avere una visione quantitativa della diversità genetica tra gli organismi.
+
+\section{Dal gene alle proteine}
+
+Il codice genetico lavora a sequenze di codici di 3 lettere (es. GAA = Glutammato), questo perché si hanno a disposizione 4 lettere (le basi azotate) e si devono codificare i 20 diversi amminoacidi. Con 2 lettere avrei $4^{2}$ possibilità che non sono sufficienti a descrivere 20 informazioni differenti. Un amminoacido è quindi codifato da una tripletta, per questo si parla di \textit{codice a triplette}.
+
+\par Il primo passo consiste quindi nella \textit{trascrizione}. Un filamento di DNA fa da stampo per la creazione di mRNA. Le triplette nucleotidiche dell'mRNA sono dette \textit{codoni} e codificano un amminoacido. Devono essere letti in direzione 5' 
 
 
-\subsubsection{Dai geni alle proteine}
-
-Il codice genetico lavora a sequenze di codici di 3 lettere (es. "GAA" = Glutammato), questo perché si hanno a disposizione 4 lettere (le basi azotate) e si devono codificare i 20 diversi amminoacidi. Con 2 lettere avrei $4^{2}$ possibilità che non sono sufficienti a descrivere 20 informazioni diverse, si utilizzano pertanto 3 lettere anche se ciò causa ridondanza nei codici. Un amminoacido è quindi codificato da una tripletta: si parla di \textit{codice a triplette}. \\
-
-\par Il primo passo consiste nella \textit{trascrizione}. Un filamento di DNA fa da stampo per la creazione di mRNA, il tutto esclusivamente tramite \textit{complementarità di forma}. Il DNA non viene aperto come una zip ma l'apertura, la trascrizione, compiuta dall'RNA polimerasi (soggetta a errori anche frequenti), e la chiusura della doppia elica avvengono di pari passo. Vi è un terminatore nel DNA per indicare la fine del gene. 
-
-\par Le triplette nucleotidiche dell'mRNA sono dette \textit{codoni} e codificano un amminoacido. I codoni devono essere letti in direzione 5' -> 3'. La molecola di mRNA lascia il nucleo attraverso i pori nucleari. È importante osservare che non tutti i geni codificano proteine (lo stadio di trascrizione potrebbe risultare quello finale) e che il codice genetico è \textit{universale}, è condiviso dai batteri, piante, animali: per tutti la prolina si codifica in "CCG".
-
-\par Negli eucarioti è presente un passaggio intermedio: la \textit{maturazione}, o fase di processamento. È composto da due sottofasi:
-\begin{itemize}
-	\item incapsulamento, viene aggiunta una coda e un cappuccio alle due estremità al fine di proteggere l'mRNA dalla degradazione e per segnalare l'inizio ai ribosomi.
-	\item splicing, il DNA possiede lunghe sequenze nucleotidiche non codificanti, gli \textit{introni}. In questa fase vengono rimossi e gli \textit{esoni} (sequenze codificanti) vengono riunite insieme. È in questa fase che è possibile dare origini a sequenze primarie (delle proteine) diverse a partire da un unico gene.
-\end{itemize}
-
-\par L'ultimo passaggio è la \textit{traduzione}, attraverso la quale la cellula interpreta il messaggio genetico e polimerizza gli amminoacidi per costruire la relativa proteina. Il processo di traduzione è la transizione da un linguaggio a 4 lettere (basi azotate) ad un linguaggio a 20 lettere (amminoacidi). La traduzione viene realizzata dal tRNA, una sorta di adattatore da linguaggio \textit{genetico }a linguaggio \textit{amminoacidico}. Il tRNA è un acido nucleico a forma di L formato da 80 basi, da un'estremità vi è l'anticodone (interfaccia con il linguaggio genetico) e dall'altra vi è il sito di legame con un singolo amminoacido. Il tRNA trasporta ai ribosomi uno specifico amminoacido contenuto nel citoplasma. Ci sono di conseguenza più tRNA (circa 45).
-
---- terminare traduzione
-
+• amminoacidi
 \subsection{Proteine: le macromolecole più importanti della vita}
 
 \par Oltre agli enzimi ci sono altre proteine importanti, uno degli esempi più noti è l'emoglobina, proteina animale adibita a trasportare ossigeno dai polmoni agli organi e ai tessuti del corpo così come a riportare CO$_{2}$ ai polmoni. 
