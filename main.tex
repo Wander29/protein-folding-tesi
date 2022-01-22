@@ -11,6 +11,7 @@
 \usepackage{graphicx}
 \usepackage{subfig}
 \usepackage{float}
+\usepackage[font={footnotesize,it}]{caption}
 \usepackage[colorlinks=true,linkcolor=black,anchorcolor=black,citecolor=blue,filecolor=black,menucolor=black,runcolor=black,urlcolor=black]{hyperref}
 
 \usepackage[backend=biber,style=ieee,sorting=none]{biblatex}
@@ -67,6 +68,10 @@
 \input{cap7-conclusioni.tex}
 
 % bibliography, glossary and index would go here.
-\printbibliography
+\printbibheading[heading=bibintoc]
+\printbibliography[type=book,heading=subbibliography,title={Libri}]
+\printbibliography[type=article,heading=subbibliography,title={Articoli}]
+\printbibliography[type=online,heading=subbibliography,title={Online}]
+\printbibliography[nottype=online,nottype=article,nottype=book,heading=subbibliography,title={Altre fonti}] % debug
 
 \end{document}
