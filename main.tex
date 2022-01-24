@@ -1,6 +1,6 @@
 \documentclass[12pt]{report}
 \usepackage[top=2.5cm, bottom=2.5cm, left=3cm, right=2.5cm, centering]{geometry}
-
+\setcounter{secnumdepth}{4} % livello massimo di sezionamento numerato
 % Interlinea
 \linespread{1.2}
 \usepackage[italian]{babel} % applicazione regole di scrittura
@@ -13,6 +13,15 @@
 \usepackage{float}
 \usepackage[font={footnotesize,it}]{caption}
 \usepackage[colorlinks=true,linkcolor=black,anchorcolor=black,citecolor=blue,filecolor=black,menucolor=black,runcolor=black,urlcolor=black]{hyperref}
+\usepackage{enumitem}
+% \setlist{nosep} % or \setlist{noitemsep} to leave space around whole list
+\setlist{noitemsep}
+\usepackage[
+left = \flqq{},% 
+right = \frqq{},% 
+leftsub = \flq{},% 
+rightsub = \frq{} %
+]{dirtytalk} % quotes
 
 \usepackage[backend=biber,style=ieee,sorting=none]{biblatex}
 \addbibresource{bibliografia.bib}
@@ -41,7 +50,7 @@
 	\begin{minipage}[t]{0.6\textwidth}
 		{\large{\textbf{Relatore}\\ Prof. \textbf{Paolo Milazzo}}}
 		\vspace{0.5cm}
-	\end{minipage}\hfill\begin{minipage}[t]{0.4\textwidth}\raggedleft
+	\end{minipage}\hfill\begin{minipage}[t]{0.3\textwidth}\raggedleft
 		{\large{\textbf{Candidato} \\ Ludovico \textbf{Venturi}\\ }}
 	\end{minipage}
 	
@@ -71,7 +80,7 @@
 \printbibheading[heading=bibintoc]
 \printbibliography[type=book,heading=subbibliography,title={Libri}]
 \printbibliography[type=article,heading=subbibliography,title={Articoli}]
-\printbibliography[type=online,heading=subbibliography,title={Online}]
+\printbibliography[type=online,heading=subbibliography,title={Risorse Online}]
 \printbibliography[nottype=online,nottype=article,nottype=book,heading=subbibliography,title={Altre fonti}] % debug
 
 \end{document}

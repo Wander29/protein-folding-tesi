@@ -1,0 +1,10 @@
+\chapter{Protein Folding}
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[scale=0.47]{images/ami.png}
+	\caption{Codici a tripletta degli amminoacidi. Fonte: \cite{alberts2018essential}}
+	\label{fig:codici-amminoacidi}
+\end{figure}
+
+\clearpage

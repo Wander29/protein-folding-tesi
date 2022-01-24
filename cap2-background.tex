@@ -44,16 +44,23 @@ La cellula è la più piccola unità in grado di vivere. Per \textit{vivente} si
 
 \par È possibile dividere gli esseri viventi in due domini: \textit{procarioti} ed \textit{eucarioti}. Il primo include i due regni Bacteria e Archaea. Sono caratterizzati da cellule piccole, circa 1$\mu m$. Il secondo dominio include cinque regni: animali, piante, funghi, protisti e cromisti. Gli organismi eucarioti dispongono di cellule più grandi (circa 10-100 $\mu m$) dotate di compartimenti interni che dividono i processi cellulari.
 
-La struttura tipica di una cellula animale è mostrata nella seguente figura:
-
-\begin{figure}[!h]
+La strutture tipiche di una cellula animale e di un neurone sono mostrate nelle seguenti figure:
+\begin{figure}[!htb]
+	\minipage{0.5\textwidth}
 	\centering
-	\includegraphics[scale=0.17]{images/cellula-eucariotica2.png}
+	\includegraphics[scale=0.14]{images/cellula-eucariotica2.png}
 	\caption{Cellula animale. Fonte: \cite{eukaryoteBritannica}}
 	\label{fig:cellula-animale}
+	\endminipage\hfill
+	\minipage{0.5\textwidth}
+	\centering
+	\includegraphics[scale=0.155]{images/neurone.png}
+	\caption{Neurone. Fonte \cite{neuroneWiki}}
+	\label{fig:neurone}
+	\endminipage\hfill
 \end{figure}
 
-Una cellula eucariote animale è formata innanzitutto dalla membrana cellulare, un involucro costituito da un doppio strato fosfolipidico che permette alla cellula di avere il suo "spazio vitale" in quanto la separa dall'ambiente (spesso acquoso) circostante. È attraversata da piccoli pori che permettono lo scambio di sostanze con l'esterno. Tutto ciò che si trova all'interno della cellula è immerso nel citoplasma, gel acquoso contenente grandi e piccole molecole. Il citosol è la parte del citoplasma non contenuta all'interno delle membrane intracelullari. Il volume totale delle cellule è composto da acqua per il 70\% circa. Vi è poi il citoscheletro che dà forma strutturale e permette movimenti direzionati. 
+Una cellula eucariote animale è formata innanzitutto dalla membrana cellulare, un involucro costituito da un doppio strato fosfolipidico che permette alla cellula di avere il suo "spazio vitale" in quanto la separa dall'ambiente (spesso acquoso) circostante. È attraversata da piccoli pori che le permettono lo scambio di sostanze con l'esterno. Tutto ciò che si trova all'interno della cellula è immerso nel citoplasma, gel acquoso contenente grandi e piccole molecole. Il citosol è la parte del citoplasma non contenuta all'interno delle membrane intracelullari. Il volume totale delle cellule è composto da acqua per il 70\% circa. Vi è poi il citoscheletro che dà forma strutturale e permette movimenti direzionati. 
 
 \par Il primo organello di grande importanza è il reticolo endoplasmatico, formato da tubuli e cisterne e in comunicazione con l'involucro nucleare. È rugoso quando sono presenti ribosomi (sintetizzatori di proteine). È il componente della fabbrica cellulare che si occupa di attività e sintesi di molecole fondamentali per la sopravvivenza della cellula (sintesi di steroidi, metabolismo del glucosio, eliminazione di sostanze nocive). L'apparato del Golgi produce vescicole che si fondono poi con la membrana cellulare: è una centrale di smistamento per confezionare sostanze da esportare. I lisosomi sono il centro di degradazione e riciclo della cellula. Il mitocondrio è la centrale energetica della cellula, dove avviene la respirazione cellulare: utilizza ossigeno per bruciare molecole organiche come zuccheri e grassi al fine di produrre energia che verrà immagazzinata sottoforma di ATP. 
 
@@ -119,7 +126,8 @@ Il dogma descrive il flusso di informazione genetica: essa è conservata negli a
 \end{figure}
 
 Il \textit{genoma} indica il patrimonio complessivo del DNA di una cellula. Lo stesso gene nella stessa specie può esistere in varie forme, con leggere differenze nella sequenza nucleotidica: si sta parlando dei differenti \textit{alleli} del gene.
-Gli alleli di tutti i geni di un individuo determinano il suo \textit{genotipo}.  Il \textit{fenotipo} indica invece l'insieme delle caratteristiche morfologiche e funzionali di un organismo, quali risultano dall'espressione del suo genotipo e dalle influenze ambientali. Ricapitolando: l'informazione contenuta in ogni allele è determinata dalle sequenze delle quattro possibili basi azotate. \\
+Gli alleli di tutti i geni di un individuo determinano il suo \textit{genotipo}.  Il \textit{fenotipo} indica invece l'insieme delle caratteristiche morfologiche e funzionali di un organismo, quali risultano dall'espressione del suo genotipo e dalle influenze ambientali. In un organismo, nonostante tutte le cellule condividano gli stessi geni, cellule afferenti a organi o tessuti diversi esprimono geni differenti (\textit{espressione genica}).
+\\
 
 \par L'RNA (\textit{acido ribonucleico}) esiste in varie forme. Le differenze con il DNA sono mostrate nella figura \ref{fig:rna-dna-differenze}, si può notare che vi è un singolo filamento e che la base azotata timina è assente e al suo posto si trova la base uracile (U). Essendo ad un unico filamento può formare legami a idrogeno con sé stessa e assumere forme tridimensionali vantaggiose. Esistono vari tipi di RNA: 
 
@@ -138,7 +146,7 @@ Gli alleli di tutti i geni di un individuo determinano il suo \textit{genotipo}.
 	\label{fig:rna-dna-differenze}
 \end{figure}
 
-Il DNA dell'uomo contiene $3\time10^{9}$ coppie di nucleotidi: se il genoma umano venisse esteso in lunghezza sarebbe lungo 2,2 metri. Il batterio più semplice contiene 500 geni codificanti mentre il genoma di un'ameba è 100 volte più lungo di quello umano \supercite{alberts2018essential}, tanto per avere una visione quantitativa della diversità genetica tra gli organismi.
+Il DNA dell'uomo contiene $3\time10^{9}$ coppie di nucleotidi, contenente quasi $21000$ geni codificanti: se il genoma umano venisse esteso in lunghezza sarebbe lungo 2,2 metri. Il batterio più semplice contiene 500 geni codificanti mentre il genoma di un'ameba è 100 volte più lungo di quello umano \supercite{alberts2018essential}, tanto per avere una visione quantitativa della diversità genetica tra gli organismi.
 
 
 \subsubsection{Dai geni alle proteine}
@@ -151,30 +159,215 @@ Il codice genetico lavora a sequenze di codici di 3 lettere (es. "GAA" = Glutamm
 
 \par Negli eucarioti è presente un passaggio intermedio: la \textit{maturazione}, o fase di processamento. È composto da due sottofasi:
 \begin{itemize}
-	\item incapsulamento, viene aggiunta una coda e un cappuccio alle due estremità al fine di proteggere l'mRNA dalla degradazione e per segnalare l'inizio ai ribosomi.
-	\item splicing, il DNA possiede lunghe sequenze nucleotidiche non codificanti, gli \textit{introni}. In questa fase vengono rimossi e gli \textit{esoni} (sequenze codificanti) vengono riunite insieme. È in questa fase che è possibile dare origini a sequenze primarie (delle proteine) diverse a partire da un unico gene.
+	\item \textit{incapsulamento}, viene aggiunta una coda e un cappuccio alle due estremità al fine di proteggere l'mRNA dalla degradazione e per segnalare l'inizio ai ribosomi.
+	\item \textit{splicing}, il DNA possiede lunghe sequenze nucleotidiche non codificanti, gli \textit{introni}. In questa fase vengono rimossi e gli \textit{esoni} (sequenze codificanti) vengono riunite insieme. È in questa fase che è possibile dare origini a sequenze primarie (delle proteine) diverse a partire da un unico gene.
 \end{itemize}
 
-\par L'ultimo passaggio è la \textit{traduzione}, attraverso la quale la cellula interpreta il messaggio genetico e polimerizza gli amminoacidi per costruire la relativa proteina. Il processo di traduzione è la transizione da un linguaggio a 4 lettere (basi azotate) ad un linguaggio a 20 lettere (amminoacidi). La traduzione viene realizzata dal tRNA, una sorta di adattatore da linguaggio \textit{genetico }a linguaggio \textit{amminoacidico}. Il tRNA è un acido nucleico a forma di L formato da 80 basi, da un'estremità vi è l'anticodone (interfaccia con il linguaggio genetico) e dall'altra vi è il sito di legame con un singolo amminoacido. Il tRNA trasporta ai ribosomi uno specifico amminoacido contenuto nel citoplasma. Ci sono di conseguenza più tRNA (circa 45).
+\par L'ultimo passaggio è la \textit{traduzione}, attraverso la quale la cellula interpreta il messaggio genetico e polimerizza gli amminoacidi per costruire la relativa proteina. Il processo di traduzione è la transizione da un linguaggio a 4 lettere (basi azotate) ad un linguaggio a 20 lettere (amminoacidi). La traduzione viene realizzata dal tRNA, una sorta di adattatore da linguaggio \textit{genetico }a linguaggio \textit{amminoacidico}. Il tRNA è un acido nucleico a forma di L composto da 80 basi, da un'estremità vi è l'anticodone (interfaccia con il linguaggio genetico) e dall'altra vi è il sito di legame con un singolo amminoacido. Il tRNA trasporta ai ribosomi uno specifico amminoacido contenuto nel citoplasma.
 
---- terminare traduzione
+\begin{figure}[!htb]
+	\minipage{0.5\textwidth}
+	\centering
+	\includegraphics[scale=0.32]{images/tRNA.png}
+	\caption{tRNA. Fonte \cite{alberts2018essential}}
+	\label{fig:tRNA}
+	\endminipage\hfill
+	\minipage{0.5\textwidth}
+	\centering
+	\includegraphics[scale=0.45]{images/tRNA-legame-traduzione.png}
+	\caption{Traduzione: l'amminoacido triptofano (Trp) è codificato dal codone UGG nell'mRNA e si lega al tRNA tramite un legame energetico forte. Fonte: \cite{alberts2018essential}}
+	\label{fig:tRNA-legame}
+	\endminipage\hfill
+\end{figure}
+
+\par È interessante notare che il tRNA, proprio come le proteine, è caratterizzato dall'avere più strutture: quella primaria, costituita dalla sua sequenza nucleotidica, quella secondaria data dalla sua struttura a quadrifoglio e quella terziaria dovuta alla struttura tridimensionale a L. La differenza fra la struttura del tRNA e delle proteine sono gli elementi unitari: nel tRNA si tratta di nucleotidi mentre nelle proteine di amminoacidi.
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[scale=0.15]{images/traduzione.png}
+	\caption{Traduzione, sintesi peptidica. Fonte: \cite{tRNAwiki}}
+	\label{fig:traduzione}
+\end{figure}
+
+La traduzione comincia con il primo codone (AUG, che oltre a segnalare l'inizio codifica anche la metionina, vedi figura \ref{fig:codici-amminoacidi}) al quale si incastra nel ribosoma un tRNA avente il corrispondente amminoacido legato. Si formano legami idrogeno fra i nucleotidi. Arriva un secondo tRNA combaciante con il successivo codone. I due amminoacidi si trovano vicini e formano un legame peptidico. L'mRNA scorre così che si crei posto per nuovi tRNA, nel frattempo gli amminoacidi si legano fra loro e cominciano a formare la proteina. Il ripiegamento della proteina comincia già durante la sua biosintesi. Il processo termina quando si arriva ad un codone di stop (es. UAA). Per velocizzare il processo di sintesi ribosomiale questo viene parallelizzato: tanti \textit{poliribosomi} sono associati allo stesso mRNA attuando una rapida sintesi di copie multiple di un polipeptide a partire da un'unico mRNA.
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[scale=0.46]{images/codici-amminoacidi.png}
+	\caption{Codici a tripletta degli amminoacidi. Fonte: \cite{alberts2018essential}}
+	\label{fig:codici-amminoacidi}
+\end{figure}
 
 \subsection{Proteine: le macromolecole più importanti della vita}
 
-\par Oltre agli enzimi ci sono altre proteine importanti, uno degli esempi più noti è l'emoglobina, proteina animale adibita a trasportare ossigeno dai polmoni agli organi e ai tessuti del corpo così come a riportare CO$_{2}$ ai polmoni. 
+Le proteine sono formate dall'unione di strutture più semplici: gli amminoacidi. Un polimero amminoacidico composto da meno di 50 amminoacidi è chiamato \textit{peptide}, se supera tale soglia \textit{polipeptide}. Una proteina può essere quindi sia un semplice peptide \footnote{Esempi di "semplici" peptidi che svolgono funzioni biologiche sono i \textit{neuropeptidi} che agiscono da neurotrasmettitore (ad es. endorfine) e \textit{ormoni} quali l'insulina e il glucagone} che un singolo polipeptide o essere formata da più polipeptidi. La sequenza amminoacidica determina la struttura della proteina ed è proprio questo il collegamento fra il messaggio genetico nel DNA e la struttura tridimensionale che è associata alla sua funzione biologica. 
 
-Importante funzione degli enzimi è correlata alla digestione negli animali. Enzimi come le amilasi e le proteasi sono in grado di ridurre le macromolecole (nella fattispecie amido e proteine) in unità semplici (maltosio e amminoacidi), assorbibili dall'intestino
+\par Un amminoacido è una molecola organica formata da un atomo di carbonio centrale chiamato $C_{\alpha}$ circondato da 4 componenti (vedi fig. \ref{fig:amminoacido}):
+\begin{enumerate}
+	\item un atomo di idrogeno
+	\item un gruppo amminico ($\alpha-amino$), (-NH$_{2}$) in condizioni fisiologiche carico positivamente (-NH$_{3}^{+}$) 
+	\item un gruppo carbossilico ($\alpha-carboxyl$), (-COOH) carico negativamente (-COO$^{-}$)
+	\item un gruppo R, gruppo laterale chiamato anche \textit{residuo} che per sineddoche indica l'intero amminoacido una volta che questo si trova all'interno della catena proteica
+\end{enumerate}
 
-Tutti gli enzimi sono proteine, ma non tutti i catalizzatori biologici sono enzimi, dal momento che esistono anche catalizzatori costituiti di RNA, chiamati ribozimi
+Vi sono circa 20 amminoacidi proteinogenici diversi (come si può vedere nella figura \ref{fig:codici-amminoacidi} o \ref{fig:amminoacidi-tipi}). Il gruppo laterale non partecipa alla catena della \textit{backbone} (spina dorsale) della proteina, resa stabile dai legami peptidici: rimane infatti libero di legarsi. È questo il "trucco" che consente alla proteina sia di ripiegarsi su sé stessa che di legarsi ad altre molecole. Gli amminoacidi possono essere polari, non polari, carichi (vedi figura \ref{fig:amminoacidi-tipi}) e causano differenti ripiegamenti della proteina. Di conseguenza ne influenzano la funzione, si pensi infatti al caso dell'anemia falciforme causata da 1 solo amminoacido di differenza: valina al posto del glutammato. La prima non è polare mentre il secondo è polare carico, ciò causa legami differenti, quindi ripiegamento differente e funzione biologica compromessa. Gli amminoacidi esistono in 2 configurazioni: L e D. Essi sono infatti molecole \textit{chirali}: le due configurazioni sono l'immagine speculare l'una dell'altra ma non sono sovrapponibili. Nella grande maggioranza degli organismi viventi le proteine sono composte solo da amminoacidi della serie L.
 
-In un organismo, nonostante tutte le cellule condividano gli stessi geni, cellule afferenti a organi o tessuti diversi esprimono geni differenti (\textit{espressione genica}).
+\begin{figure}[!htb]
+	\minipage{0.45\textwidth}
+	\centering
+	\includegraphics[scale=0.15]{images/mioglobina.png}
+	\caption{Rappresentazione a nastro della struttura tridimensionale della mioglobina. È presente un gruppo hemo al quale è legata una molecola di ossigeno (rossa). Fonte: \cite{proteinWiki}}
+	\label{fig:mioglobina}
+	\endminipage\hfill
+	\minipage{0.5\textwidth}
+	\centering
+	\includegraphics[scale=0.3]{images/amminoacido.png}
+	\caption{Struttura principale degli amminoacidi. Fonte \cite{kessel_ben-tal_2018}}
+	\label{fig:amminoacido}
+	\endminipage\hfill
+\end{figure}
+
+\par Il legame peptidico è il legame che unisce tutti gli amminoacidi di una proteina: unisce il gruppo carbossilico di un amminoacido al gruppo amminico di un altro amminoacido. È un tipo di legame molto stabile, infatti l'emivita della backbone è di 400 anni a 25°C \supercite{alberts2018essential}. Il legame peptidico comporta l'eliminazione della carica degli ex gruppi \textit{amminico} e \textit{carbossilico}. 
+
+\begin{figure}[!htb]
+	\minipage{0.5\textwidth}
+	\centering
+	\includegraphics[scale=0.43]{images/protein-backbone.png}
+	\caption{Backbone delle proteine. Fonte: \cite{alberts2018essential}}
+	\label{fig:backbone}
+	\endminipage\hfill
+	\minipage{0.5\textwidth}
+	\centering
+	\includegraphics[scale=0.18]{images/peptide-bond.png}
+	\caption{Legame peptidico. Fonte \cite{peptideBondWiki}}
+	\label{fig:legame-peptidico}
+	\endminipage\hfill
+\end{figure}
+
+Gli unici due residui elettricamente carichi rimasti in una proteina sono quelli alle due estremità (C-terminus ed N-terminus, vedi fig. \ref{fig:backbone}). È presente però un fenomeno che permette ai residui di interagire elettrostaticamente: la \textit{risonanza elettronica}. Gli elettroni dei legami possono estendersi su più atomi e permettere al residuo di assumere diverse configurazioni. \\
+
+\par Le proteine sono una classe di macromolecole con funzioni biologiche vitali, consentono infatti il funzionamento di ogni sistema vivente. Riusciamo a pensare, parlare, a digerire il cibo, a muoverci grazie alle proteine. Sono la base della vita cellulare e molecolare. 
+
+\par Un tipo fondamantale di proteine sono gli enzimi, come accennato inizialmente. Una loro funzione importante è correlata alla digestione negli animali. Enzimi come le \textit{amilasi} e le \textit{proteasi }sono in grado di ridurre le macromolecole (nella fattispecie amido e proteine) in unità semplici (maltosio e amminoacidi), assorbibili dall'intestino.
+
+\par Oltre agli enzimi ci sono tante altre proteine importanti. Uno degli esempi più noti è l'emoglobina, proteina animale adibita a trasportare ossigeno dai polmoni agli organi e ai tessuti del corpo così come a riportare CO$_{2}$ ai polmoni. Una molecola di emoglobina è composta da 4 polipeptidi e contiene 4 atomi di ferro che le consentono di legare reversibilmente 4 molecole di ossigeno.
+
+\begin{figure}[!htb]
+	\minipage{0.45\textwidth}
+	\centering
+	\includegraphics[scale=0.38]{images/emoglobina-dimensioni.png}
+	\caption{Emoglobina in diverse scale. Rappresentazione a superficie. Un globulo rosso contiene circa 280 milioni di molecole di emoglobina, per cui può portare più di 1 miliardo di molecole di ossigeno per volta. Fonte: \cite{ProteinRCSB}}
+	\label{fig:emoglobina-dimensioni}
+	\endminipage\hfill
+	\minipage{0.5\textwidth}
+	\centering
+	\includegraphics[scale=0.11]{images/Alpha-amylase.png}
+	\caption{Enzima alpha Amilasi in turchese, rappresentazione di tipo space-filling. Si lega a catene di carboidrati (gialle) e le rompe in pezzi più piccoli di glucosio. Fonte \cite{ProteinRCSB}}
+	\label{fig:amilasi}
+	\endminipage\hfill
+\end{figure}
+
+
+Nelle cellule le proteine svolgono, fra le altre, funzioni di supporto strutturale, mobilità, protezione, regolazione, trasporto, catalisi, magazzino. Nel nostro corpo abbiamo un numero grandissimo di proteine: $10^{27}$. Per usare una metafora di Ken Dill \supercite{TalksDill2013Oct} potremmo dire che se si potesse ingrandire una proteina alla grandezza di un penny (diametro di 19mm) il numero di proteine che una persona ha nel corpo equivale al numero di penny che riempirebbero l'Oceano Pacifico.
+
+\par Per queste e altre ragioni queste macromolecole sono il target di grandi attività di ricerca e di applicazione biotecnologiche: dal combattere malattie infettive \supercite{batool2019structure} al contrastare l'inquinamento ambientale \supercite{knott2020characterization}.
 
 \section{Background informatico}
 
-Background informatico
-• bioinformatica
-• database bioinformatici
-• machine learning
-• reti neurali, deep learning
+\subsection{Bioinformatica}
+
+La \textit{bioinformatica} ha giocato un ruolo fondamentale durante l'epidemia di COVID-19, in particolare nella realizzazione di vaccini grazie agli avanzamenti nelle tecnologie NGS (Next Generation Sequencing). La bioinformatica è una disciplina dedicata alla risoluzione di problemi biologici a livello molecolare con metodi informatici, per questa ragione viene anche chiamata \textit{biologia computazionale}. Argomenti di interesse di questa disciplina sono:
+\begin{itemize}
+	\item allineamento di sequenze genetiche
+	\item predizione genica
+	\item predizione della struttura di proteine
+	\item espressione genica
+	\item interazione proteina-proteina
+	\item interpretazione di dati proveniente da esperimenti biochimici
+	\item organizzazione e archiviazione conoscenze su genomi e proteomi
+	\item modellizzazione di sistemi e reti biologiche
+\end{itemize}
+
+\par Come si può notare da questa lista una parte importante della bioinformatica si occupa dell'utilizzo di strumenti informatici finalizzati a manipolare, archiviare e confrontare stringhe e sequenze di caratteri. Tuttavia questa disciplina non si ferma all’analisi delle sequenze. Tra le più interessanti applicazioni bioinformatiche odierne vi sono quelle incentrate sull’analisi strutturale \supercite{baxevanis2020bioinformatics}. Difatti la bioinformatica pone le sue fondamenta nel campo della \textit{structural bioinformatics}: per portare un esempio il database PDB (\textit{Protein Data Bank}) nasce nel 1977 per archiviare coordinate atomiche e legami derivati dagli studi cristallografici sulle proteine \supercite{bernstein77}.
+
+\par Non va confusa la bioinformatica (o biologia computazionale) con la \textit{computazione bio-inspirata} (es. algoritmi genetici, reti neurali), con il \textit{biological computing} (ossia computer composti di parti biologiche come DNA, proteine o neuroni) o con la \textit{biological computation} (l'idea che gli organismi eseguano computazioni e che l'idea di informazione e computazione possa essere la chiave per comprendere la biologia)\supercite{Mitchell2010}.
+
+\par Il Machine Learning (ML) è uno dei paradigmi informatici che più sta influenzando il campo della bioinformatica (come la presente tesi può dimostrare). Questo è dovuto principalmente a due fattori evolutisi in parallelo negli ultimi anni: la crescita esponenziale di dataset biologici disponibili e i progressi informatici del ML. Gli strumenti di ML possono apprendere caratteristiche dei sistemi biologici inferendole direttamente dai dataset. Quando propriamente allenati questi sistemi possono fornire accurate predizioni di caratteristiche astratte, proprio come nel caso di AlphaFold per il problema della predizione della struttra di proteine.
+
+\subsection{Soft computing}
+Il \textit{soft computing} è un paradigma che si contrappone a quello dell'\textit{hard computing}, ovvero la risoluzione di un problema tramite l'esecuzione di un algoritmo ben definito e decidibile. Il soft computing accantona la precisione od ottimalità e innalza a obiettivo il guadagno nella comprensione del comportamento di un sistema. Il soft computing si basa su due principi: 
+\begin{enumerate}
+	\item l'apprendimento a partire dai dati
+	\item l'integrazione di conoscenza umana basata sull'esperienza, strutturata e preesistente, all'interno di modelli matematici computabili
+\end{enumerate}
+
+Il ML si avvale delle tecniche del soft computing \supercite{MLwiki} e vi entra pienamente: la stima di performance in ML è infatti l'accuratezza predittiva stimata dall'errore calcolato sul test set.
+
+\begin{figure}[!h]
+	\centering
+	\includegraphics[scale=0.4]{images/soft-computing.png}
+	\caption{Branche del soft computing. Fonte: \cite{softComputing}}
+	\label{fig:soft-computing}
+\end{figure}
+
+\subsubsection{Algoritmi genetici}
+
+\par Gli algoritmi genetici fanno parte del paradigma relativo alle tecniche informatiche \textit{bio-inspirate}, così come le reti neurali. Un algoritmo genetico è un algoritmo euristico utilizzato per tentare di risolvere problemi di ottimizzazione. L'aggettivo "genetico", ispirato al principio della selezione naturale ed evoluzione biologica, deriva dal fatto che, al pari del modello evolutivo darwiniano che trova spiegazioni nella genetica, gli algoritmi genetici attuano dei meccanismi concettualmente simili a quelli dei processi biochimici genetici, come il \textit{crossover}.
+
+\subsection{Intelligenza Artificiale}
+
+Definire cosa sia l'intelligenza non è un compito semplice. Una definizione ampia e utilizzata nel mondo dell'AI è quella data da Kurzweil:
+
+\say{\textit{L’arte di creare macchine che svolgono funzioni che richiedono intelligenza quando svolte da esseri umani}}\footnote{\fullcite{kurzweil1990age}} \\
+
+Una definizione di intelligenza proveniente da uno sfondo culturale del tutto diverso è la seguente:
+
+\say{\textit{The role of intelligence is to determine the positive and negative potential of an event or factor which could have both positive and negative results. It is the role of intelligence, with the full awareness that is provided by education, to judge and accordingly utilize the potential for one's own benefit or well-being}}\footnote{\fullcite{dalaiLama}} \\
+
+Nella sua accezione più semplice, l'Intelligenza Artificiale (AI) si riferisce a sistemi che imitano l'intelligenza umana per eseguire certe attività e che sono in grado di migliorarsi continuamente in base alle informazioni raccolte. L'IA si occupa della costruzione di macchine intelligenti, della comprensione mediante modelli computazionali dei comportamenti e della psicologia di uomini, animali e agenti artificiali e può avere applicazioni innumerevoli nella società. I fondamenti dell'IA sono sin dalla nascita interdisciplinari: filosofia, matematica, economia, neuroscienze, psicologia, informatica, linguistica, cibernetica, statistica, complessità, teoria del controllo, teoria dell'informazione, robotica.
+
+\begin{figure}[!h]
+	\centering
+	\includegraphics[scale=0.4]{images/artificial-intelligence.png}
+	\caption{Schema riassuntivo dei campi dell'IA. Fonte: \cite{ML_IBM}}
+	\label{fig:ai}
+\end{figure}
+
+\subsection{Machine Learning}
+
+Il Machine Learning (ML) è un sottoinsieme dell'AI che si occupa di creare sistemi che automaticamente migliorano con l'esperienza, basandosi su rigorosi fondamenti delle scienze computazionali. Utilizza metodi statistici per migliorare la performance di un algoritmo nell'identificare pattern nei dati. Domande fondamentali di questo campo sono del tipo: "come varia la performance di apprendimento al variare del numero di esempi di allenamento presentati?". 
+
+\par L'apprendimento è al cuore del problema dell'intelligenza sia bologica che artificiale ed è un principio universale comune a tutti gli organismi. Tom M. Mitchell definisce in questo modo l'apprendimento per una macchina:
+
+\say{\textit{Si dice che un programma apprende dall'esperienza E con riferimento ad alcune classi di compiti T e con misurazione della performance P, se le sue performance nel compito T, come misurato da P, migliorano con l'esperienza E.}}\footnote{\fullcite{mitchell1997machine}} \\
+
+Il ML si divide in:
+
+\begin{itemize}
+	\item \textit{Supervised Learning}, ad es. SVM (support vector machine), in cui al modello vengono forniti degli esempi nella forma di possibili input e i rispettivi output desiderati e l'obiettivo è quello di estrarre una regola generale che associ l'input all'output corretto; comuni sono i task di classificazione e regressione \\
+	
+	\item \textit{Unsupervised Learning}, in cui il modello ha lo scopo di trovare una struttura negli input forniti, come un raggruppamento naturale nei dati, senza che gli input vengano etichettati in alcun modo \\
+	
+	\item \textit{Reinforcement Learning}, il modello interagisce con un ambiente dinamico nel quale cerca di raggiungere un obiettivo (per esempio guidare un veicolo, o imparare a giocare contro un avversario), avendo un insegnante che gli dice solo se ha raggiunto l'obiettivo \\
+	
+	\item \textit{Deep Learning}, insieme di tecniche basate su reti neurali artificiali organizzate in diversi strati, dove ogni strato calcola i valori per quello successivo; si basa su diversi livelli di rappresentazione, corrispondenti a gerarchie di caratteristiche
+\end{itemize}
+
+Il ML è quindi sì uno strumento molto potente ma è importante comprenderne i limiti. È utile quando non esiste o è difficile da formalizzare la teoria attorno ad un problema, oppure quando i dati da analizzare sono incerti, rumorosi o incompleti.
+
+\subsection{Reti neurali artificiali (ANN)}
+
+Una rete neurale artificiale (\textit{Artificial Neural Network}) è un modello computazionale composto da neuroni artificiali bio-ispirato alla semplificazione di una rete neurale biologica. È importante notare che l'obiettivo della modellizzazione bio-ispirata non è una comprensione delle reti neurali biologiche ma tentare di risolvere problemi ingegneristici, dato che i modelli utilizzati sono eccessivamente semplici. Nonostante ciò le ANN riflettono tratti di comportamento del cervello umano e consentono di riconoscere pattern e risolvere problemi difficili.
+
+\begin{figure}[!h]
+	\centering
+	\includegraphics[scale=0.2]{images/ann.png}
+	\caption{Rete neurale artificiale. Fonte: \cite{neuralNetworksIBM}}
+	\label{fig:rete-neurale}
+\end{figure}
+
+\par Le ANN sono composte da almeno 3 strati di nodi: uno strato di input, uno o più nascosti e uno di output. Ogni nodo è un neurone artificiale, si connette agli altri nodi dello strato successivo e ha associato un peso e una soglia. Se l'output di un nodo è sopra la soglia allora il nodo è attivato, trasferendo informazioni al prossimo strato della rete. Con l'allenamento le ANN possono migliorare la loro accuratezza e rivelarsi potenti strumenti. Campi di utilizzo sono, fra gli altri, lo \textit{speech-recognition} e l'{image recognition}.
+
+\par La parola "deep" in \textit{deep learning} si riferisce alla profondità degli strati in una rete neurale. Una rete neurale che consiste di più di 3 strati (inclusi quello di input e output) può essere considerata un algoritmo di \textit{deep learning}\supercite{neuralNetworksIBM}. Una rete neurale con 2 o 3 strati è una rete neurale semplice.
 
 \clearpage

@@ -1,0 +1,260 @@
+@article{bernstein77, 
+	title={The protein data bank: A computer-based archival file for macromolecular structures},
+	volume={112},
+	number={3},
+	journal={Journal of Molecular Biology},
+	author={Bernstein, Frances C. and Koetzle, Thomas F. and Williams, Graheme J.B. and Meyer, Edgar F. and Brice, Michael D. and Rodgers, John R. and Kennard, Olga and Shimanouchi, Takehiko and Tasumi, Mitsuo},
+	year={1977}, 
+	pages={535-542}	
+}
+
+@book{baxevanis2020bioinformatics,
+	title={Bioinformatics},
+	author={Baxevanis, Andreas D and Bader, Gary D and Wishart, David S},
+	year={2020},
+	publisher={John Wiley \& Sons}
+}
+
+@online{TalksDill2013Oct,
+	author = {Ken Dill},
+	title = {{The protein folding problem: a major conundrum of science: Ken Dill at TEDxSBU}},
+	journaltitle = {YouTube},
+	date={2013-10-23},
+	urldate={2022-01-06},
+	url = {https://www.youtube.com/watch?v=zm-3kovWpNQ}
+}
+
+@article{varadi2021alphafold,
+	title={AlphaFold Protein Structure Database: Massively expanding the structural coverage of protein-sequence space with high-accuracy models},
+	author={Varadi, Mihaly and Anyango, Stephen and Deshpande, Mandar and Nair, Sreenath and Natassia, Cindy and Yordanova, Galabina and Yuan, David and Stroe, Oana and Wood, Gemma and Laydon, Agata and others},
+	journal={Nucleic acids research},
+	year={2021}
+}
+
+@article{batool2019structure,
+	title={A structure-based drug discovery paradigm},
+	author={Batool, Maria and Ahmad, Bilal and Choi, Sangdun},
+	journal={International journal of molecular sciences},
+	volume={20},
+	number={11},
+	pages={2783},
+	year={2019},
+	publisher={Multidisciplinary Digital Publishing Institute}
+}
+
+@article{knott2020characterization,
+	title={Characterization and engineering of a two-enzyme system for plastics depolymerization},
+	author={Knott, Brandon C and Erickson, Erika and Allen, Mark D and Gado, Japheth E and Graham, Rosie and Kearns, Fiona L and Pardo, Isabel and Topuzlu, Ece and Anderson, Jared J and Austin, Harry P and others},
+	journal={Proceedings of the National Academy of Sciences},
+	volume={117},
+	number={41},
+	pages={25476--25485},
+	year={2020},
+	publisher={National Acad Sciences}
+}
+
+@article{mariani2013lddt,
+	title={lDDT: a local superposition-free score for comparing protein structures and models using distance difference tests},
+	author={Mariani, Valerio and Biasini, Marco and Barbato, Alessandro and Schwede, Torsten},
+	journal={Bioinformatics},
+	volume={29},
+	number={21},
+	pages={2722--2728},
+	year={2013},
+	publisher={Oxford University Press}
+}
+
+@online{deepMindWiki,
+	title = {{DeepMind - Wikipedia}},
+	date={2022-01-12},
+	urldate={2022-01-12},
+	url = {https://en.wikipedia.org/wiki/DeepMind}
+}
+
+@online{hassabisWiki,
+	title = {{Demis Hassabis - Wikipedia}},
+	date={2022-01-14},
+	urldate={2022-01-22},
+	url = {https://en.wikipedia.org/wiki/Demis_Hassabis}
+}
+
+@article{Hassabis2007Jul,
+	author = {Hassabis, Demis and Maguire, Eleanor A.},
+	title = {{Deconstructing episodic memory with construction}},
+	journaltitle = {Trends in Cognitive Sciences},
+	shortjournal = {Trends in Cognitive Sciences},
+	volume = {11},
+	number = {7},
+	pages = {299--306},
+	year = {2007},
+	month = {Jul},
+	issn = {1364-6613},
+	publisher = {Elsevier},
+	doi = {10.1016/j.tics.2007.05.001}
+}
+
+@online{Guardian2014,
+	author = {Gibbs, Samuel},
+	title = {{Google buys UK artificial intelligence startup Deepmind for £400m}},
+	journaltitle = {the Guardian},
+	date={2014-01-27},
+	publisher = {The Guardian},
+	urldate={2022-01-12},
+	url = {https://www.theguardian.com/technology/2014/jan/27/google-acquires-uk-artificial-intelligence-startup-deepmind}
+}
+
+@online{partnershiponai,
+	title = {{Home - Partnership on AI}},
+	date={2022-01-22},
+	urldate={2022-01-22},
+	url = {https://partnershiponai.org}
+}
+
+@online{cnbc,
+	author = {Feiner, Lauren},
+	title = {{Larry Page steps down as CEO of Alphabet, Sundar Pichai to take over}},
+	date={2019-12-03},
+	publisher = {CNBC},
+	urldate={2021-01-12},
+	url = {https://www.cnbc.com/2019/12/03/larry-page-steps-down-as-ceo-of-alphabet.html}
+}
+
+@online{Alphabet,
+	title = {{Alphabet Inc. - Wikipedia}},
+	date={2022-01-12},
+	urldate={2022-01-12},
+	url = {https://en.wikipedia.org/wiki/Alphabet_Inc.}
+}
+
+@article{marquez2015soft,
+	title={Soft computing methods for the prediction of protein tertiary structures: A survey},
+	author={M{\'a}rquez-Chamorro, Alfonso E and Asencio-Cort{\'e}s, Gualberto and Santiesteban-Toca, Cosme E and Aguilar-Ruiz, Jes{\'u}s S},
+	journal={Applied Soft Computing},
+	volume={35},
+	pages={398--410},
+	year={2015},
+	publisher={Elsevier}
+}
+
+@article{wu1931studies,
+	title={Studies on denaturation of proteins. XL Effect of hydrogen ion concentration on rate of denaturation of egg albumin by urea. XII. Effect of denaturation and coagulation on titration curve of egg albumin. XIII. A theory of denaturation},
+	author={Wu, H and Yang, E},
+	journal={Chin J Physiol},
+	volume={5},
+	pages={301--344},
+	year={1931}
+}
+
+@online{adaloglou2021biology,
+	author = {Nikolas Adaloglou, Evangelos-Marios Nikolados, Sergios Karagiannakos},
+	title = {Deep learning on computational biology and bioinformatics tutorial: from DNA to protein folding and alphafold2},
+	journaltitle = {AI Summer},
+	date={2021-07-29},
+	urldate={2022-01-20},
+	url = {https://theaisummer.com/deep-learning-biology-alphafold}
+}
+
+@online{enzimaTreccani,
+	title = {enzima nell'Enciclopedia Treccani},
+	urldate={2022-01-21},
+	date={2022-01-13},
+	url = {https://www.treccani.it/enciclopedia/enzima}
+}
+
+@book{kessel_ben-tal_2018, 
+ 	title={Introduction to proteins: Structure, function and motion}, 
+ 	publisher={Chapman and Hall/CRC}, 
+ 	author={Kessel, Amit and Ben-Tal, Nir}, 
+ 	edition={2},
+ 	year={2018}
+ } 
+
+@book{alberts2018essential,
+	title={Essential cell biology},
+	author={Alberts, Bruce and Bray, Dennis and Hopkin, Karen and Johnson, Alexander D and Lewis, Julian and Raff, Martin and Roberts, Keith and Walter, Peter},
+	year={2019},
+	publisher={W. W. Norton and Company},
+	edition={5}
+}
+
+@online{eukaryoteBritannica,
+	title = {eukaryote. Definition, Structure, Facts},
+	date={2019-09-19},
+	journaltitle = {Encyclopedia Britannica},
+	urldate={2022-01-22},
+	url = {https://www.britannica.com/science/eukaryote}
+}
+
+@misc{EBN,
+	title = {Appunti del corso Elementi di Biologia e Neuroscienze, prof. Mario Pirchio, Unipi CdL Filosofia},
+	year={2021}	
+}
+
+@online{proteinaTreccani,
+	title = {{proteina in Vocabolario - Treccani}},
+	date={2022-01-13},
+	urldate = {2022-01-22},
+	url = {https://www.treccani.it/vocabolario/proteina}
+}
+
+@online{lievitoWiki,
+	title = {{Saccharomyces cerevisiae - Wikipedia}},
+	date={2021-09-25},
+	urldate = {2022-01-22},
+	url = {https://it.wikipedia.org/wiki/Saccharomyces_cerevisiae}
+}
+
+@online{introChimicaLibreTexts,
+	author={Sharon Bewick and Richard Parsons and Therese Forsythe and Shonna Robinson and Jean Dupon},
+	title = {Introductory Chemistry (CK-12)},
+	journaltitle = {Chemistry LibreTexts},
+	date={2021-06-01},
+	urldate = {2022-01-22},
+	publisher = {Libretexts},
+	url = {https://chem.libretexts.org/Bookshelves/Introductory_Chemistry/Book%3A_Introductory_Chemistry_(CK-12)}
+}
+
+@online{dna-rna-image,
+	title = {{File: Difference DNA RNA-EN.svg - Wikimedia Commons}},
+	date={2010-03-23},
+	urldate = {2022-01-22},
+	url = {https://commons.wikimedia.org/wiki/File:Difference_DNA_RNA-EN.svg}
+}
+
+@online{dogma-wiki,
+	title = {{Dogma centrale della biologia molecolare - Wikipedia}},
+	date={2021-09-16},
+	urldate = {2022-01-22},
+	url = {https://it.wikipedia.org/wiki/Dogma_centrale_della_biologia_molecolare}
+}
+
+@online{dna-image,
+	title = {{DNA Structure. BioNinja}},
+	date={2021-04-15},
+	urldate = {2022-01-22},
+	url = {https://ib.bioninja.com.au/standard-level/topic-2-molecular-biology/26-structure-of-dna-and-rna/dna-structure.html}
+}
+
+@online{tRNAwiki,
+	title = {{Transfer RNA - Wikipedia}},
+	date={2022-01-23},
+	urldate = {2022-01-23},
+	url = {https://en.wikipedia.org/wiki/Transfer_RNA}
+}
+
+@online{proteinWiki,
+	title = {{Protein - Wikipedia}},
+	date={2021-12-21},
+	urldate = {2022-01-23},
+	url = {https://en.wikipedia.org/wiki/Protein}
+}
+
+@online{BibEntry2021Apr,
+	title = {{Amino Acids {$\vert$} BioNinja}},
+	year = {2021},
+	month = {4},
+	urldate = {2022-01-23},
+	note = {[Online; accessed 23. Jan. 2022]},
+	url = {https://ib.bioninja.com.au/standard-level/topic-2-molecular-biology/24-proteins/amino-acids.html}
+}
+
