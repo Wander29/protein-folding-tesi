@@ -4,7 +4,17 @@
 
 La correlazione tra forma e funzione si rivela fondamentale nel caso delle proteine. Un canale ionico neuronale permette il passaggio di ioni grazie alla sua forma a canale; una ferritina cattura e immagazzina gli ioni ferro grazie alla sua forma a sfera cava. 
 
-\par Il ripiegamento delle proteine (\textit{protein folding}) è il processo di ripiegamento molecolare attraverso il quale a partire dalla sequenza lineare amminoacidica le proteine ottengono la loro struttura tridimensionale, chiamata forma \textit{nativa}, che permette loro di svolgere la relativa funzione biologica. Il ripiegamento nella forma tridimensionale avviene spontaneamente sia durante la sintesi proteica nei ribosomi sia al termine di questa. Una specifica proteina si ripiegherà nello stesso modo e avrà la stessa struttura finale\footnote{ciò non è vero nel 100\% dei casi, alcune proteine possono avere più di una conformazione stabile per adempiere funzioni diverse, vedi la sezione \ref{sec:fold-switching-proteins}}.
+\par Il ripiegamento delle proteine (\textit{protein folding}) è il processo di ripiegamento molecolare attraverso il quale a partire dalla sequenza lineare amminoacidica le proteine ottengono la loro struttura tridimensionale, chiamata forma \textit{nativa}, che permette loro di svolgere la relativa funzione biologica. 
+
+\begin{figure}[htp]
+	\centering
+	\includegraphics[scale=0.5]{images/protein-folding_med.jpeg}
+	\caption{Protein folding: dagli amminoacidi alla struttura tridimensionale. Fonte: \cite{proteinStrucBioNinja}}
+	\label{fig:protein-folding-bioninja}
+\end{figure}
+
+
+Il ripiegamento nella forma tridimensionale avviene spontaneamente sia durante la sintesi proteica nei ribosomi sia al termine di questa. Una specifica proteina si ripiegherà nello stesso modo e avrà la stessa struttura finale\footnote{ciò non è vero nel 100\% dei casi, alcune proteine possono avere più di una conformazione stabile per adempiere funzioni diverse (vedi la sezione \ref{sec:fold-switching-proteins}) e alcune proteine possono andare incontro a misfolding (vedi la sezione \ref{sec:assisted-folding})}.
 
 \par La prima teoria del ripiegamento proteico è stata proposta negli anni venti del 20° secolo da Hsien Wu\supercite{wu1931studies}, in relazione al processo di denaturazione (vedi sezione \ref{sec:denaturazione}). È però Anfinsen, premio Nobel per la chimica, negli anni '60 a compiere un fondamentale passo nella comprensione del processo del ripiegamento proteico\supercite{anfinsen1972formation}. 
 
@@ -50,7 +60,7 @@ I ponti disolfuro si riformano nella stessa posizione della proteina nativa nono
 	\minipage{0.5\textwidth}
 	\centering
 	\includegraphics[scale=0.2]{images/RibonucleaseA_SS_paleRib.png}
-	\caption{Ribonucleasi A, rappresentazione a nastro. In giallo i ponti disolfuro, rosa le $\alpha$-eliche, verde e azzurro i fogli-$\beta$. Fonte \cite{ribonucleasi-file}}
+	\caption{Ribonucleasi A, rappresentazione a nastro. In giallo i ponti disolfuro, rosa le $\alpha$-eliche, verde e azzurro i $\beta$-foglietti. Fonte \cite{ribonucleasi-file}}
 	\label{fig:ribonucleasi}
 	\endminipage\hfill
 \end{figure}
@@ -67,39 +77,151 @@ La denaturazione delle proteine è il fenomeno relativo all'alterazione della st
 
 \par La proprietà di certe sostanze chimiche (es. urea) di denaturare una molecola proteica si deve alla loro capacità di legare transientemente, attraverso legami deboli, come ad esempio legami idrogeno, i residui amminoacidici costituenti la proteina. Questi legami vengono termodinamicamente preferiti a quelli intramolecolari o intermolecolari con l'acqua. Ciò comporta l'impossibilità per la proteina di mantenere la propria struttura tridimensionale e quindi questa si denatura. 
 
-\par Applicazioni nella vita quotidiana di questo fenomeno sono la cottura dei cibi (basti pensare all'albumina nell'uovo) e la permanente ai capelli (denaturazione della cheratina, rompendo e riformando ponti disolfuro). 
+\par Applicazioni nella vita quotidiana di questo fenomeno sono la cottura dei cibi (basti pensare all'albumina nell'uovo) e la permanente ai capelli (denaturazione dell' $\alpha$-cheratina, rompendo e riformando ponti disolfuro). 
 
 
 \section{Struttura delle proteine}
-\subsection{Interazioni molecolari}
-\subsection{Struttura primaria}
-\subsection{Struttura secondaria}
-\subsection{Struttura terziaria}
-\subsection{Struttura quaternaria}
+Da un punto di vista chimico le proteine sono di gran lunga, tra quelle conosciute, le molecole strutturalmente più complesse e sofisticate funzionalmente. È possibile studiare la loro struttura individuando successivi livelli di organizzazione:
 
-• Domini, Residui, Motivi, Giri\\
-• interazioni (covalenti, polari, van der Waals, ponti disolfuro, ..)\\
+\begin{figure}[!htp]
+	\centering
+	\includegraphics[scale=0.4]{images/strutture-proteina.png}
+	\caption{Giri e Loop. Fonte: \cite{kessel_ben-tal_2018}}
+	\label{fig:strutture-proteine}
+\end{figure}
+
+\begin{itemize}
+	\item \textit{struttura primaria}: la sequenza ordinata degli amminoacidi
+	\item \textit{struttura secondaria}: regioni ripetitive locali stabilizzate da legami idrogeno tra atomi della backbone ($\alpha$-eliche e $\beta$-foglietti)
+	\item \textit{struttura supersecondaria}: combinazione di strutture secondarie e connessioni (motivi, domini, loop, giri ...)
+	\item \textit{struttura terziaria}: forma tridimensionale di una singola catena polipeptidica, risultante dalle interazioni dei residui
+	\item \textit{struttura quaternaria}: forma finale di proteine "assemblate" da 2 o più catene polipeptidiche già ripiegate
+\end{itemize}
+
+Prima di passare ad analizzare ogni livello della struttura delle proteine è utile un veloce sguardo alle interazioni molecolari.
+
+\subsection{Interazioni molecolari}
+
+\begin{itemize}
+	\item \textit{legame covalente}: prevede la compartecipazione di 2 elettroni di valenza fra più atomi ed è il tipo di legame più forte (kcal/mol). Due o più atomi tenuti insieme da legami covalenti formano una molecola
+		\begin{itemize}
+			\item \textit{elettronegatività}:
+		\end{itemize}
+		
+	\item \textit{legami non covalenti}
+		\begin{itemize}
+			\item \textit{legame ionico}: l'atomo più elettronegativo strappa completamente un elettrone al suo compagno, si formano due ioni (uno positivo, \textit{catione} e uno negativo, \textit{anione})
+			\item \textit{legame idrogeno}: un atomo di idrogeno si trova fra due atomi elettronegativi vicini; ad es. nell'acqua gli atomi di idrogeno (parzialmente positivi) si trovano fra due atomi di ossigeno (parzialmente negativi). L'idrogeno, legato a uno dei due atomi di ossigeno, permette all'altro di avvicinarsi e di stabilizzarsi
+			\item \textit{interazioni di van der Waals}: nelle molecole apolari gli elettroni si possono accumulare in modo asimmetrico, formando regioni momentaneamente polari che permettono così una temporanea stabilizzazione fra molecole a breve distanza
+		\end{itemize}
+	\item \textit{effetto idrofobico}: 
+	\item 
+\end{itemize}
+\begin{itemize}
+	\item \textit{ponte disolfuro}, lo zolfo di una cisteina si lega allo zolfo della seconda cisteina.
+\end{itemize}
+
 • una forza dominante o tante piccole forze?\\
 • Cambio di paradigma da metà anni ‘80\\
 
+\subsubsection{Struttura primaria}
+La struttura primaria delle proteine è la sequenza ordinata degli amminoacidi che ne determina la conformazione nativa. La posizione nella sequenza di specifici amminoacidi è un fattore fondamentale per la determinazione di quali porzioni della proteina andranno a legarsi formando globalmente la struttura finale. La nota importante, basata sul dogma di Anfinsen, è che la sequenza amminoacidica di ogni proteina contiene l'informazione che specifica sia la struttura nativa che la via per raggiungere quello stato. Questo comunque non vuol dire che strutture simili si ripieghino in modo simile.
+	
+\subsubsection{Struttura secondaria}
+
+La struttura secondaria riguarda le regioni ripetitive locali stabilizzate da legami idrogeno tra atomi della backbone: ($\alpha$-eliche e $\beta$-foglietti).
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[scale=0.4]{images/secondary.jpeg}
+	\caption{Struttura secondaria delle proteine, $\alpha$-eliche e $\beta$-foglietti. Fonte: \cite{proteinStrucBioNinja}}
+	\label{fig:struttura-secondaria}
+\end{figure}
+
+Questo livello di organizzazione è una conseguenza dei legami a idrogeno tra gli amminoacidi appartenenti a una stessa catena, o tra gli amminoacidi di catene diverse.  All'interno della backbone del polipeptide gli atomi di ossigeno hanno una parziale carica negativa e gli atomi di idrogeno attaccati all'azoto hanno una parziale carica positiva perciò possono formarsi legami idrogeno fra questi atomi. Individualmente sarebbero deboli legami ma poiché sono ripetuti molte volte su di una regione relativamente lunga di una catena polipeptidica possono fare da supporto per una particolare conformazione.
+
+\par Nella struttura ad $\alpha$-elica gli amminoacidi sono avvolti in una spirale tenuta insieme da legami idrogeno ogni 4 amminoacidi. Tra l’atomo di idrogeno legato all’azoto di ogni legame peptidico e l’ossigeno del gruppo carbossilico del legame peptidico sovrastante (che si trova appunto a distanza di quattro amminoacidi lungo la catena) si instaura un legame a idrogeno. Tuttavia se gli amminoacidi che si succedono lungo un tratto di catena proteica hanno gruppi R voluminosi, come avviene nella prolina, o gruppi R dotati della stessa carica elettrica, come avviene negli amminoacidi lisina e arginina, l’$\alpha$-elica non può formarsi, a causa delle forze di repulsione che si generano tra i residui. Alcune proteine fibrose, come l'$\alpha$-cheratina, la proteina strutturale dei capelli, la lana e le unghie hanno formazioni di $\alpha$-eliche sulla maggior parte della loro lunghezza.
 
 
--- strutture [ soft computing articolo]--
-pri-
-mary structure of proteins consist of linear sequences of twenty
-natural amino acids joined together by peptide bonds. The sec-
-ondary structure of a protein refers to the interactions due to
-a regular arrangement of hydrogen bonds between CO and NH
-groups (carboxyl and amino) of its amino acids, forming different
-motifs ( ̨-helix, ˇ-sheet, loops and turns). The tertiary structure is
-a description of the complex and irregular folding of the polypep-
-tide chain in three dimensions. These complex structures are held
-together by a combination of several molecular interactions (e.g.
-ionic, hydrophobic or hydrogen bonds) that involve the amino acids
-of the chain. The quaternary structure is the final dimensional struc-
-ture formed by all the polypeptide chains making up a protein [13].
+\begin{figure}[!htp]
+	\centering
+	\includegraphics[scale=0.4]{images/alpha-helix.png}
+	\caption{elica. Fonte: \cite{ProteinRCSB}}
+	\label{fig:alpha-helix}
+\end{figure}
 
-\section{Ripiegamento assistito}
+
+\begin{figure}[!htp]
+	\centering
+	\includegraphics[scale=0.4]{images/beta-sheet.png}
+	\caption{foglietto. Fonte: \cite{ProteinRCSB}}
+	\label{fig:beta-sheet}
+\end{figure}
+
+\begin{figure}[!htb]
+	\minipage{0.5\textwidth}
+	\includegraphics[scale=0.34]{images/eliche.png}
+	\caption{Regione di $\alpha$-elica. Fonte: \cite{campbell}}
+	\label{fig:eliche}
+	\endminipage\hfill
+	\minipage{0.5\textwidth}
+	\centering
+	\includegraphics[scale=0.31]{images/foglietti.png}
+	\caption{Una regione di $\beta$-foglietto composto da $\beta$-filamenti adiacenti, spesso mostrati come una freccia pieghettata o piatta puntata in direzione C-terminus. Fonte \cite{campbell}}
+	\label{fig:foglietti}
+	\endminipage\hfill
+\end{figure}
+
+Altre proteine fibrose sono invece dominate dai $\beta$-foglietti, come le proteine della seta ($\beta$-cheratina) e la tela prodotta dai ragni. In queste conformazioni due o più segmenti della catena polipeptidica giacenti lato su lato (chiamati $\beta$-filamenti) sono connessi da tre o più legami idrogeno. Si definisce $\beta$-filamento una sequenza peptidica di amminoacidi (tipicamente 5-10) che si dispone linearmente ed è in grado di formare legami idrogeno. Ciascuna delle catene è totalmente estesa e presenta una conformazione a zig-zag, dovuta alla geometria dei legami attorno a ciascun atomo di carbonio e di azoto nella catena. In questo caso, i legami a idrogeno si formano tra gli amminoacidi di due catene adiacenti. I gruppi amminici di uno scheletro peptidico formano legame con quelli carbossilici del filamento opposto. In ogni singolo filamento i residui si dispongono perpendicolarmente al piano del foglietto, puntando alternativamente verso l'alto e verso il basso.
+
+\par Nella vita quotidiana, se tiriamo per i due estremi una fibra di lana questa si allunga: si stanno rompendo i legami idrogeno e le eliche si allontanano sempre di più, ma lasciando la presa i legami idrogeno si riformano e le eliche ricompaiono nella struttura. Se invece tiriamo la seta si può osservare che non è elastica: i foglietti di cui è composta la sua struttura non sono smantellabili senza rompere anche i legami covalenti della backbone.
+
+
+\subsubsection{Struttura supersecondaria: Motivi, Domini, Loop, Giri ...}
+La struttura supersecondaria è riferita alle combinazioni spaziali di strutture secondarie in conformazioni più complesse e alle connessioni che li uniscono. Può essere considerata come esempio di struttura supersecondaria la triplice elica allungata del collagene.
+
+\par I \textit{motivi} (motifs) e \textit{domini} (domains) sono regioni tridimensionali della catena polipeptidica formate da differenti strutture secondarie adibite a svolgere una determinata funzione per la proteina di cui fanno parte. Tuttavia sono differenti in quanto i motivi non mantengono la loro forma se separati dalla proteina laddove i domini la mantengono. Questo perché i motivi e il resto della proteina sono più vicini e si vengono così a formare legami idrogeno che permettono ai motivi di mantenere la struttura. I domini sono sì legati alla backbone della proteina ma non abbastanza vicini alla restante parte della formazione proteica da stabilire legami, pertanto se vengono separati non perdono la loro struttura e possono mantenere la loro funzione.
+
+\par Più in generale un \textit{motivo strutturale} è una struttura tridimensionale comune che appare in una varietà di molecole differenti ed evoluzionisticamente scollegate.
+
+\begin{figure}[!htp]
+	\centering
+	\includegraphics[scale=1.1]{images/turn-loop.jpg}
+	\caption{Giri e Loop. Fonte: \cite{MURRAY2017477}}
+	\label{fig:turn-loops}
+\end{figure}
+
+
+\par \textit{Giri} e \textit{loop} causano cambi di direzione alla backbone della proteina
+Protein loops are patternless regions which connect two regular secondary structures. They are generally located on the protein's surface in solvent exposed areas and often play important roles, such as interacting with other biological objects. Despite the lack of patterns, loops are not completely random structures
+
+\par Nelle strutture secondarie e terziarie si trovano spesso bruschi cambiamenti di direzione nella struttura: i \textit{giri} (turns). Queste nette svolte sono possibili grazie agli amminoacidi prolina e glicina. Il gruppo R della prolina si ripiega verso il gruppo amminico, distorcendo la catena naturalmente. Si forma però uno stretto spazio a causa del giro: l'amminoacido con gruppo R meno voluminoso è ovviamente la glicina ed è per questo che si trovano insieme nei giri.
+
+\subsubsection{Struttura terziaria}
+La struttura terziaria è la struttura tridimensionale globale risultante dalle interazioni tra i residui successivamente alle conformazioni locali della struttura secondaria ed è quindi la descrizione del risultato del processo di ripiegamento proteico. Un tipo di interazione importante è quella idrofobica che induce i residui non polari (e quindi idrofobici) a raggrupparsi al centro della catena polipeptidica, formando un nucleo idrofobico. La forma della proteina può venire rinforzata dai ponti disolfuro, legami covalenti fra due cisteine.
+
+\begin{figure}[!htp]
+	\centering
+	\includegraphics[scale=0.35]{images/interazioni-proteine.png}
+	\caption{I diversi tipi di interazioni che possono contribuire alla struttura terziaria di una proteina. Fonte: \cite{campbell}}
+	\label{fig:interazioni-proteine}
+\end{figure}
+
+\subsubsection{Struttura quaternaria}
+La struttura quaternaria è la forma finale di proteine "assemblate" da 2 o più catene polipeptidiche già ripiegate. Il collagene ne è un esempio poiché è formata da 3 polipeptidi quasi interamente a spirale che si attorcigliano l'uno sull'altro formando un'elica tripla ancora più larga, dando alle lunghe fibre una grande forza. Un altro esempio è l'emoglobina, proteina globulare formata da 4 subunità polipeptidiche. Le strutture terziarie delle subunità non vengono alterate.
+
+\begin{figure}[!htb]
+	\centering
+	\includegraphics[scale=0.35]{images/quaternary-structure_med.jpeg}
+	\caption{Rappresentazione di una struttura quaternaria composta da più polipeptidi e alcuni gruppi prostetica. Fonte \cite{proteinStrucBioNinja}}
+	\label{fig:struttura-quaternaria}
+\end{figure}
+
+\subsection{Geometria dei legami?}
+
+• Domini, Residui, Motivi, Giri, Loops, Turns\\
+
+\section{Ripiegamento assistito} \label{sec:assisted-folding}
 All'interno delle cellule le proteine più piccole si ripiegano indipendentemente, mentre proteine più grandi sono assistite principalmente da complessi chiamati \textit{chaperoni molecolari}. È  importante notare che l'assistenza è cinetica in natura: non aggiunge nuove informazioni necessarie alla proteina per ripiegarsi, pertanto il dogma di Anfinsen non viene contraddetto. Ciò che fanno questi complessi è creare un ambiente nel quale le proteine possano ripiegarsi senza "distrazioni" dovute a interazioni con altre entità (ad esempio evitando l'aggregazione con altre proteine) e senza rimanere bloccate in conformazioni intermedie durante il loro percorso di ripiegamento. In poche parole sono misure di protezione della cellula. 
 
 \begin{figure}[h]
@@ -117,7 +239,7 @@ Più in dettaglio i chaperoni molecolari svolgono le seguenti funzioni:
 	\item partecipano nella parziale denaturazione durante il trasporto di proteine attraverso membrane di mitocondri o cloroplasti
 \end{enumerate}
 
-Tutti i compartimenti cellulari delle cellule eucariotiche (nucleo, citosol, reticolo endoplasmatico, mitocondri e cloroplasti) hanno il proprio set di chaperoni che assicura un corretto ripiegamento delle proteine. I chaperoni molecolari comprendono diverse famiglie di proteine altamente conservate, tra cui le Hsp (Heat shock protein), proteine espresse in grande quantità sotto condizioni di alto stress, per contrastare l'effetto denaturante del calore. Queste ultime sono state classificate in base al loro peso molecolare, ad es. Hsp60 dove "60" indica 60kDa. Le Hsp60 vengono chiamate anche \textit{chaperonine} e sono una famiglia di chaperoni molecolari a doppio anello che agiscono da "camera di isolamento" per il ripiegamento di altre proteine\supercite{ranson1998chaperonins}, famosa è la chaperonina procariotica GroEL (vedi fig.\ref{fig:groel}), che può essere assunta come modello di riferimento delle chaperonine. 
+Tutti i compartimenti cellulari delle cellule eucariotiche (nucleo, citosol, reticolo endoplasmatico, mitocondri e cloroplasti) hanno il proprio set di chaperoni che assicura un corretto ripiegamento delle proteine. I chaperoni molecolari comprendono diverse famiglie di proteine altamente conservate, tra cui le Hsp (Heat shock protein), proteine espresse in grande quantità sotto condizioni di alto stress, per contrastarne l'effetto denaturante. Queste ultime sono state classificate in base al loro peso molecolare, ad es. Hsp60 dove "60" indica 60kDa. Le Hsp60 vengono chiamate anche \textit{chaperonine} e sono una famiglia di chaperoni molecolari a doppio anello che agiscono da "camera di isolamento" per il ripiegamento di altre proteine\supercite{ranson1998chaperonins}, famosa è la chaperonina procariotica GroEL (vedi fig.\ref{fig:groel}), che può essere assunta come modello di riferimento delle chaperonine. 
 
 \begin{figure}[h]
 	
@@ -137,109 +259,55 @@ Tutti i compartimenti cellulari delle cellule eucariotiche (nucleo, citosol, ret
 	\endminipage\hfill
 \end{figure}
 
-Sebbene i mitocondri (e i clorplasti) abbiano il loro genoma e creino le loro proteine la maggior parte delle proteine usate in questi organelli sono codificate dai geni nel nucleo e importati dal citosol. Ogni proteina viene dispiegata per il trasporto. I chaperoni molecolari all'interno di questi organelli aiutano a tirare le proteine attraverso le due membrane e a ripiegarle una volta all'interno\supercite{alberts2018essential}.
+Sebbene i mitocondri (e i cloroplasti) abbiano il loro genoma e creino le loro proteine, la maggior parte delle proteine che questi organelli usano sono codificate dai geni nel nucleo e importati dal citosol. Ogni proteina viene quindi parzialmente denaturata per effettuare il trasporto. I chaperoni molecolari all'interno di questi organelli aiutano a tirare le proteine attraverso le due membrane e a ripiegarle una volta all'interno\supercite{alberts2018essential}.
 
 
 \subsection{Misfolding e malattie}
 
-Il \textit{misfolding} è il fenomeno dell'errato ripiegamento di una proteina, ovvero quando una proteina non può raggiungere il suo stato nativo. Ciò può accadere per mutazioni alla sua sequenza amminoacidica (come nel caso dell'anemia falciforme) o per fattori esterni.
-
-L'errato ripiegamento delle proteine è alla base di molte patologie umane, definite malattie da misfolding, che possiamo dividere in due gruppi:
+Il \textit{misfolding} è il fenomeno dell'errato ripiegamento di una proteina, ovvero quando una proteina non può raggiungere il suo stato nativo. Ciò può accadere per mutazioni alla sua sequenza amminoacidica, anche per un solo amminoacido differente (come nel caso dell'anemia falciforme) o per fattori esterni. Le proteine mal ripiegate tipicamente contengono $\beta$-foglietti organizzati in una struttura denominata cross-$\beta$, disposizione molto stabile e insolubile, generalmente resistente alla proteolisi. Il mal ripiegamento di alcune proteine può innescare ulteriori mal ripiegamenti e la conseguente accumulazione di proteine mal ripiegate in aggregati (od oligomeri) che possono guadagnare tossicità attraverso le interazioni intermolecolari. L'incremento dei livelli di proteine aggregate può portare alla formazione di \textit{amiloidi}, strutture fibrillari formate da deposizioni di materiale proteico insolubile. L'errato ripiegamento delle proteine è alla base quindi di molte patologie umane, definite malattie da misfolding, categorizzabili in due gruppi:
 
 \begin{itemize}
 	\item malattia causata dalla perdita o degradazione della proteina o dall'errato trasporto intracellulare
 	\item malattie causate dall'accumulo, intra od extra-cellulare, di proteine aggregate (ad esempio le malattie da prione)
 \end{itemize}
 
-Molti tipi di tumore diventano chemio-resistenti perché iper-esprimono alcune Hsp, come la Hsp70 e la Hsp90. Le Hsp sono presenti anche in quantità elevatissime nel cervello dei pazienti con malattia di Alzheimer e morbo di Parkinson. Tuttavia si crede che la loro aumentata espressione non sia lesiva di per sé, ma rappresenti piuttosto una risposta difensiva agli elevati livelli di stress che caratterizzano queste patologie. Ci sono molti morbi associati a mutazioni nei geni codificanti i chaperoni. Alterazioni genetiche delle chaperonine possono portare a patologie umane che in genere colpiscono molti organi ed apparati contemporaneamente \supercite{chaperoninaWiki}. \\
+Molti tipi di tumore diventano chemio-resistenti perché iper-esprimono alcune Hsp, come la Hsp70 e la Hsp90. Le Hsp sono presenti anche in quantità elevatissime nel cervello dei pazienti con malattia di Alzheimer e morbo di Parkinson. Tuttavia si crede che la loro aumentata espressione non sia lesiva di per sé ma rappresenti piuttosto una risposta difensiva agli elevati livelli di stress che caratterizzano queste patologie. Ci sono molti morbi associati a mutazioni nei geni codificanti i chaperoni. Alterazioni genetiche delle chaperonine possono portare a patologie umane che in genere colpiscono molti organi ed apparati contemporaneamente \supercite{chaperoninaWiki}. \\
 
+\par I \textit{prioni} (acronimo di "\textbf{pr}oteinaceous \textbf{i}nfective \textbf{on}ly particle") sono molecole di natura proteica con la capacità di trasmettere la propria forma mal ripiegata a varianti normali della stessa proteina. \footnote{I prioni sono stati studiati e denominati in questo modo dal premio Nobel per la medicina nel 1997 Stanley Prusiner\supercite{prusiner1998prion}} Il ruolo ipotizzato di una proteina come agente infettivo è in contrasto con tutti gli altri agenti infettivi conosciuti, come i viroidi, virus, batteri, funghi, parassiti: tutti contengono acidi nucleici (DNA, RNA o entrambi) mentre le proteine sono composte di soli amminoacidi.
 
-neurodegenrative diseases
-For example, prions are stable conformations of proteins which differ from the native folding state. In bovine spongiform encephalopathy, native proteins re-fold into a different stable conformation, which causes fatal amyloid buildup. Other amyloid diseases, including Alzheimer's disease and Parkinson's disease, are also exceptions to Anfinsen's dogma
+\par I prioni formano amiloidi che si accumulano nei tessuti e sono associati a danni di questi e alla morte cellulare. I prioni sono attualmente considerati i più probabili agenti delle encefalopatie spongiformi trasmissibili (TSE) dei mammiferi. Nel \textit{morbo della mucca pazza} (encefalopatia spongiforme bovina), malattia neurologica degenerativa e irreversibile, vi è il ruolo di un prione a causare mal ripiegamenti di alcune proteine native causando la formazione di strutture amiloidi fatali (al microscopio le dense placche fibrose appaiono come buchi, da qui il caratteristico aspetto "a spugna"). Tutte le malattie da prione sono attualmente inguaribili e letali, con un periodo di incubazione che dura generalmente vari anni.
 
--- misfolding [ soft computing articolo]--
-Sometimes, a protein can fold into a wrong shape. A single miss-
-ing or incorrect amino acid could cause such a misfold. As already
-stated, protein function is determined by its structure, which can
-be inferred from the sequence of amino acids, therefore a mis-
-fold implies that a protein can not fulfill its function correctly.
-Alzheimer’s disease, Cystic fibrosis and other neurodegenerative
-diseases, mad cow disease are now attributed to protein misfolding (are associated with an accumulation
-of misfolded proteins.). The knowledge
-of the misfolding factors and understanding the protein folding
-process, would help in developing cures for these diseases. There-
-fore, the knowledge of the structure of the protein provides a great
-advantage for the development of new drugs and the design of new
-proteins.
+\par Gli aggregati di prioni sono stabili e questa stabilità strutturale consente loro di essere immuni alla maggior parte dei trattamenti conosciuti. L'organismo infettato non ha modo di degradarli: a differenza di virus e batteri i prioni rimangono intatti anche in presenza di trattamenti come sterilizzazione, forti dosi di radiazioni ionizzanti, uso di formaldeide, varechina, acqua bollente e a differenza delle altre proteine sono resistenti alla maggior parte delle proteasi.
 
-- prioni
+\par La proteina di cui sono fatti i prioni, \textit{PrP} (protease-resistant-protein, Pr per \textbf{pr}ione, e P per \textbf{p}roteina), si trova in tutto il corpo, anche negli individui sani, ed è altamente conservata nei mammiferi. Tuttavia, la PrP trovata nel materiale infettante ha una struttura diversa. Nell'uomo la PrP$^{c}$(\textbf{c}ellulare, forma normale) è codificata da un solo gene, PRNP. La PrP$^{sc}$(\textbf{sc}rapie, forma patologica) differisce dalla proteina naturale PrP$^{c}$ per la conformazione tridimensionale: la PrP$^{c}$ ha una struttura più aperta contenente 3 segmenti ad $\alpha$-eliche e pochi $\beta$-foglietti; la PrP$^{sc}$ invece ha una struttura più compatta e stabile e presenta un aumento di $\beta$-foglietti.
+
+\begin{figure}[h]
+	\centering
+	\includegraphics{images/PrPc.jpg}
+	\caption{(A) Struttura della PrP$^{c}$. (B) Struttura della PrP$^{sc}$. Fonte: \cite{ruttkay2015prion}}
+	\label{fig:PrPc}
+\end{figure} 
+
 
 \subsection{Controllo qualità e proteasomi}
-------
-Exit from the ER Is Controlled to Ensure Protein Quality
 
- Some proteins made in the ER are destined to function there.
- Most proteins that enter the ER, however, are des-
-tined for other locations; they are packaged into transport vesicles that
-bud from the ER and fuse with the Golgi apparatus.
-Exit from the ER is highly selective. 
-Proteins that fail to fold correctly, and
-dimeric or multimeric proteins that do not assemble properly, are actively
-retained in the ER by binding to chaperone proteins that reside there. The
-chaperones hold these proteins in the ER until proper folding or assembly
-occurs. Chaperones prevent misfolded proteins from aggregating, which
-helps steer proteins along a path toward proper folding (see Figures 4−8
-and 4−9); if proper folding and assembly still fail, the proteins are exported
-to the cytosol, where they are degraded by the proteasome, attraverso reazioni di proteolisi.
+L'uscita delle proteine dal reticolo endoplasmatico (RE) è controllata per assicurare la qualità delle proteine. Sebbene alcune proteine siano appositamente create e destinate a funzionare nel RE la maggior parte delle proteine che entrano nel RE sono destinate ad altri luoghi. Queste vengono impacchettate nelle vescicole di trasporto e gemmano per fondersi con l'apparato del Golgi. Ma l'uscita dal RE è altamente selettiva: le proteine che falliscono a ripiegarsi nella forma nativa e quelle che non si assemblano correttamente sono attivamente conservate nel RE attraverso i legami con i chaperoni molecolari che risiedono lì. Questi trattengono le proteine nel RE finché non si verifica il corretto ripiegamento o assemblaggio. Se questo non si verifica o fallisce ancora le proteine sono esportate nel citosol dove sono degradate da un \textit{proteasoma}. Le proteine da degradare sono contraddistinte dal loro legame con l'ubiquitina\footnote{Per "la scoperta della degradazione delle proteine mediata da ubiquitina" è stato assegnato il Premio Nobel per la chimica del 2004 ad Aaron Ciechanover, Avram Hershko ed Irwin Rose.}.
 
-Le proteine da degradare sono contraddistinte dal loro legame con l'ubiquitina.
+\par Ad esempio molecole di anticorpi sono composte da 4 catene polipeptidiche che si assemblano in completi anticorpi nel RE. Gli anticorpi parzialmente assemblati sono conservati nel RE finché tutte e 4 le catene non sono pronte. Le molecole di anticorpi che falliscono ad assemblarsi vengono degradate.
 
-I proteasomi sono presenti nelle cellule di tutti gli eucarioti ed archea, nonché in alcuni batteri. La struttura e la funzione di questi complessi è altamente conservata, soprattutto tra le specie eucariotiche.
+\par Nonostante l'indubbia utilità di questo meccanismo di controllo a volte questo può rivelarsi dannoso per l'organismo. Ad esempio la mutazione predominante che causa la \textit{fibrosi cistica}, comune malattia genetica che comporta seri danni polmonari, produce una proteina di trasporto della membrana plasmatica leggermente mal ripiegata. Tuttavia questa potrebbe funzionare normalmente se raggiungesse la membrana plasmatica ma viene bloccata nel RE e successivamente degradata\supercite{alberts2018essential} (per usare una metafora si può immaginare la situazione di un condannato alla pena di morte innocente). Le conseguenze sono terribili. La nota da sottolineare è che in questa malattia la mutazione non causa un'inattivazione di una proteina importante ma la proteina attiva è scartata dalle cellule prima che questa possa avere l'opportunità di funzionare. \\
 
-Per "la scoperta della degradazione delle proteine mediata da ubiquitina" è stato assegnato il Premio Nobel per la chimica del 2004 ad Aaron Ciechanover, Avram Hershko ed Irwin Rose.
+\par I proteasomi sono complessi di \textit{proteasi} (enzima in grado di catalizzare la rottura del legame peptidico delle proteine) che degradano le proteine mal ripiegate attraverso reazioni di \textit{proteolisi}. Sono presenti nelle cellule di tutti gli eucarioti e procarioti. La struttura e la funzione di questi complessi è altamente conservata.
 
-A causa del ruolo dei proteasomi nella regolazione del ciclo cellulare e dell'apoptosi, sono oggi un bersaglio rilevante nelle terapie antitumorali. 
-
-Antibody molecules, for example, are composed of four polypep-
-tide chains (see Figure 4−33) that assemble into the complete antibody
-molecule in the ER. Partially assembled antibodies are retained in the ER
-until all four polypeptide chains have assembled; any antibody molecule
-that fails to assemble properly is degraded. In this way, the ER controls
-the quality of the proteins that it exports to the Golgi apparatus.
-
-Sometimes, however, this quality control mechanism can be detrimen-
-tal to the organism. For example, the predominant mutation that causes
-the common genetic disease cystic fibrosis, which leads to severe lung
-damage, produces a plasma membrane transport protein that is slightly
-misfolded; even though the mutant protein could function normally as a
-chloride channel if it reached the plasma membrane, it is retained in the
-ER and then degraded, with dire consequences. This devastating disease
-comes about not because the mutation inactivates an important protein
-but because the active protein is discarded by the cells before it is given
-an opportunity to function.
+\par A causa del ruolo dei proteasomi nella regolazione del ciclo cellulare e dell'apoptosi\footnote{Il termine \textit{apoptosi} indica una forma di morte cellulare programmata (un'auto-distruzione). Al contrario della necrosi, che è una forma di morte cellulare risultante da un acuto stress o trauma cellulare, l'apoptosi è portata avanti in modo ordinato e regolato, richiede consumo di energia (ATP) e generalmente porta a un vantaggio durante il ciclo vitale dell'organismo (è infatti chiamata da alcuni morte altruista o morte pulita). Durante il suo sviluppo, ad esempio, l'embrione umano presenta gli abbozzi di mani e piedi “palmati”: affinché le dita si differenzino, è necessario che le cellule che costituiscono le membrane interdigitali muoiano}, sono oggi un bersaglio rilevante nelle terapie antitumorali. Farmaci inibitori nella terapia antiretrovirale interferiscono con il ciclo replicativo del virus HIV proprio bloccando l'attività dell'enzima della proteasi.
 
 
 \subsection{Unfolded protein response}
-The Size of the ER Is Controlled by the Demand for Protein Folding
 
-Although chaperones help proteins in the ER fold properly and retain those
-that do not, this quality control system can become overwhelmed. When
-this happens, misfolded proteins accumulate in the ER. If the buildup is
-large enough, it triggers a complex program called the unfolded pro-
-tein response (UPR). This program prompts the cell to produce more ER,
-including more chaperones and other proteins concerned with quality
-control (Figure 15−25).
-The UPR allows a cell to adjust the size of its ER to properly handle the
-volume of proteins entering the secretory pathway. In some cases, how-
-ever, even an expanded ER cannot keep up with the demand, and the
-UPR directs the cell to self-destruct by undergoing apoptosis. Such a situ-
-ation may occur in adult-onset diabetes, where tissues gradually become
-resistant to the effects of insulin. To compensate for this resistance, the
-insulin-secreting cells in the pancreas produce more and more insulin.
-Eventually, their ER reaches a maximum capacity, at which point the UPR
-can trigger cell death. As more insulin-secreting cells are eliminated, the
-demand on the surviving cells increases, making it more likely that they
-will die as well, further exacerbating the disease.
+La dimensione del RE è controllato dalla "richiesta" per il ripiegamento delle proteine. Il meccanismo di controllo nel RE, eseguito dai chaperoni molecolari, può essere sopraffatto. Quando succede le proteine mal ripiegate si accumulano nel RE. 
+Se l'accumulo è abbastanza grande, questo innesca un complesso programma chiamato \textit{unfolded protein response} (UPR). Questo programma incita la cellula a produrre più RE, inclusi più chaperoni molecolari, e altre proteine riguardanti il controllo qualità. L'UPR permette alla cellula di regolare la dimensione del RE per gestire propriamente il volume delle proteine in entrata. In alcuni casi tuttavia anche un RE espanso non riesce a gestire la richiesta e l'UPR indirizza la cellula verso l'\textit{apoptosi}.
+
+\par Una situazione del genere può avvenire negli adulti in cui insorge il diabete. I tessuti diventano gradualmente resistenti all'effetto dell'insulina. Per compensare questa resistenza le cellule che secernono insulina nel pancreas ne producono ancora di più. Si arriva infine alla situazione in cui il loro RE arriva ad una capacità massima e viene innescato l'UPR e di conseguenza la morte cellulare. Col tempo sempre più cellule secernenti insulina sono eliminate e la richiesta per quelle sopravvissute aumenta rendendole sempre più vulnerabili a questo meccanismo, esacerbando ulteriormente la malattia\supercite{alberts2018essential}.
 
 \section{Eccezioni al postulato di Anfinsen}
 
@@ -274,6 +342,9 @@ Some proteins have multiple native structures, and change their fold based on so
 • le domande di principio del protein folding\\
 - paradosso di Levinthal
 
+Come accennato nella sezione \ref{sec:assisted-folding}, la malattia di Alzheimer, la fibrosi cistica e altre malattie neurodegenerative sono associateal mal ripiegamento delle proteine. La conoscenza dei fattori di mal ripiegamento e la comprensione dei processo di ripiegamento proteico potrebero aiutare nello sviluppo di cure per queste malattie. La conoscenza della struttura delle proteine fornisce un grande vantaggio per lo sviluppo di nuovi farmaci e il design di nuove proteine.
+
+
 \subsection{Limiti al ripiegamento}
 • Limiti al ripiegamento: angoli di tersione e piano di Ramachandran\\
 
@@ -300,11 +371,5 @@ not simple, for a single protein has thousands of atoms. The
 method most commonly used to determine the 3-D structure
 of a protein is X-ray crystallography
 
-\begin{figure}[h]
-	\centering
-	\includegraphics[scale=0.4]{images/aminoacid-tipi.jpeg}
-	\caption{I 20 amminoacidi universali. Fonte: \cite{aminoacidTipi}}
-	\label{fig:amminoacidi-tipi}
-\end{figure}
 
 \clearpage
