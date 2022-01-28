@@ -329,64 +329,40 @@ Le proteine \textit{globulari} assumono una struttura terziaria e a volte quater
 {
 	
 \subsubsection{Geometria del ripiegamento}
-Le tante conformazioni possibili della catena polipeptidica sono possibili grazie alla rotazione di essa attorno all'atomo $C_{\alpha}$.
+Le tante conformazioni possibili della catena polipeptidica sono possibili grazie alla rotazione di essa attorno all'atomo $C_{\alpha}$ di ogni amminoacido.
 
+\begin{figure}[!htb]
+	\centering
+	\includegraphics[scale=0.4]{images/angoli-torsione.png}
+	\caption{Angoli di torsione intorno all'atomo $C_{\alpha}$}
+	\label{fig:angoli-torsione}
+\end{figure}
 
-Considerando un singolo residuo AA, Cα funziona da perno unendo due
-piani ammidici adiacenti. L’angolo di rotazione Cα-C=O è indicato con Ψ
-(psi), quello Cα-NH con Φ (phi). Gli angoli sono calcolati rispetto ad un
-piano di riferimento che contiene entrambi i legami ammidici (Ψ e Φ =0°)
+I tre angoli di torsione principali di un polipeptide sono $\phi$, $\psi$ ed $\omega$; i legami N-$C_{\alpha}$ e $C_{\alpha}$-C sono relativamente liberi nella rotazione (angoli $\phi$ e $\psi$), mentre il legame N-C ($\omega$) è fisso dato il carattere di doppio legame parziale del legame peptidico alle temperature fisiologiche.
 
-conformazioni ideali (in cui non
-vi sono interazioni tra catene
-laterali)
+\par Data la relativa libertà dei due legami si ha la possibilità di isomeria: le due configurazioni possibili sono \textit{cis } e \textit{trans}. Delle due configurazioni possibili, la trans è quella favorita dal punto di vista
+energetico (minima repulsione sterica), infatti oltre il 99\% dei legami peptidici delle proteine naturali hanno configurazione trans.
 
-α-elica:
-Φ= -57°
-Ψ= -47°
+\begin{figure}[!htb]
+	\centering
+	\includegraphics[scale=0.4]{images/Ramachandran's_Diagram.jpg}
+	\caption{Grafico di Ramachandran. Fonte \cite{ramachandranDiag}}
+	\label{fig:ramachandran}
+\end{figure}
 
-β- parallelo:
-Φ= -119°
-Ψ= +113°
+Nel \textit{grafico di Ramachandran} sono riportati in ordinata i valori di Ψ ed in ascissa i valori di Φ. Ogni puntino (non presenti in figura) rappresenta la poszione di un residuo. Il grafico deriva da un modello in cui è simulata la variazione di struttura di piccoli polipeptidi e successivamente si cercano conformazioni stabili. Per ciascuna conformazione sono esaminati i contatti tra atomi, trattati come sfere solide di dimensioni determinate dai raggi di van der Waals. Le conformazioni non consentite sono quelle per le quali sono previste collisioni tra sfere. In figura \ref{fig:ramachandran} l'area giallina corrisponde a conformazioni instabili in cui atomi della catena sono ad una distanza inferiore alla somma dei raggi di van der Waals. Tali regioni sono stericamente non consentite per tutti gli aminoacidi, fatta eccezione per la glicina, priva di catena laterale. Le regioni blu indicano conformazioni consentite ($\beta$-foglietti e $\alpha$-eliche destrogire). Le aree azzurre mostrano le regioni consentite riformulando i calcoli con raggi di van der Waals più corti, ovvero consentendo una prossimità atomica maggiore.
 
-β-antiparallelo:
-Φ= -139°
-Ψ= +135°
+\par Conformazioni ideali (in cui non vi sono interazioni tra catene laterali):
+\begin{itemize}
+	\item $\alpha$-elica: Φ= -57°, Ψ= -47°
+	\item $\beta$-parallelo: Φ= -119°, Ψ= +113°
+	\item $\beta$-antiparallelo: Φ= -139°, Ψ= +135°
+\end{itemize}
 
-
-Il carattere di doppio legame parziale del legame peptidico impedisce,
-alle temperature fisiologiche, la rotazione del legame C-N, mentre è
-possibile la rotazione dei legami Cα1-C e Cα2-N. Data la NON possibilità di rotazione intorno al legame CO-N si ha
-possibilità di isomeria cis trans
-Delle due configurazioni possibili, la trans è quella favorita dal punto di vista
-energetico (minima repulsione sterica)
-Oltre il 99\% dei legami peptidici delle proteine naturali hanno configurazione
-trans
-Fanno eccezione alcuni legami amidici in cui è coinvolto l’N imidico della
-prolina
-
-
-In conformazioni diverse, c’è un limite al numero delle combinazioni
+\par In conformazioni diverse, c’è un limite al numero delle combinazioni
 possibili dei due angoli di rotazione, perché alcune hanno effetti
-destabilizzanti a causa delle forze di repulsione tra gli O.
-Vi sono quindi conformazioni più stabili di altre perché favorite da un
-punto di vista energetico.
-Conformazioni proibite sono anche quelle in cui si svilupperebbe una
-forte repulsione tra le catene laterali
-
-- Grafico di Ramachandran
-
-
-Torsion or dihedral angles (Φ, Ψ) represent the position of the
-atoms of an amino acid chain where Φ involves the N-C$\alpha$ bond
-and Ψ involves the C$\alpha$-C bond. These rotations determine each
-protein structure. A possible representation of the amino acids of
-a protein is [(Φ1 , Ψ1) . . . (Φn , Ψn )] where n reflects the residue
-length. The Ramachandran plot, allows to avoid
-the possible collisions among atoms.
-
-
-• Limiti al ripiegamento: angoli di tersione e piano di Ramachandran\\
+destabilizzanti a causa delle forze di repulsione tra gli O. Vi sono quindi conformazioni più stabili di altre perché favorite da un
+punto di vista energetico. Conformazioni proibite sono anche quelle in cui si svilupperebbe una forte repulsione tra le catene laterali.
 }
 
 \subsubsection{Energetica del ripiegamento}
@@ -569,7 +545,7 @@ Per queste ragioni si può affermare che le FS non sono IDP, piuttosto sono un s
 
 }
 \subsection{Considerazioni epistemologiche}
-La scoperta delle IDP e delle proteine FS ha creato una spaccatura nel dogma della struttura rigida delle proteine, secondo il quale la struttura deve essere fissa al fine di compiere la propria funzione biologica. È interessante ripercorrere velocemente la storia di questo paradigma attraverso un breve excursus storico per poterne mettere in luce le relazioni epistemologiche soggiacenti.
+La scoperta delle IDP e delle proteine FS ha creato una spaccatura nel paradigma della struttura rigida delle proteine, secondo il quale la struttura deve essere fissa al fine di compiere la propria funzione biologica. È interessante ripercorrere velocemente la storia di questo paradigma attraverso un breve excursus storico per poterne mettere in luce le relazioni epistemologiche soggiacenti.
 
 \par Nel 1894 Fischer ha proposto una metafora di \textit{chiave e serratura }per spiegare come fosse possibile un effetto chimico tra un enzima e un glucoside: \\
 \say{\textit{Per usare una metafora, vorrei dire che l'enzima e il glucoside devono adattarsi l'uno all'altro come una serratura e una chiave per esercitare un effetto chimico l'uno sull'altro}\supercite{fischer1894einfluss}\supercite{dunker2001intrinsically}}
@@ -583,10 +559,35 @@ Né Mirsky, né Pauling né Hsien Wu (probabilmente il primo a proporre il parad
 
 \par Fino al 2000\supercite{bracken2000disorder} queste idee non sono apparse nei libri di biochimica, nonostante in 50 anni fossero state pubblicate centinaia di paper sull'importanza della flessibilità e del disordine nelle strutture proteiche.
 
-\par 
+\par La parola proteina potrebbe non essere più la parola giusta per identificare il complesso mondo delle macromolecole più importanti della vita\supercite{parisi2021protein}. \\
 
-\par La parola proteina potrebbe non essere più la parola giusta per identificare il complesso mondo delle macromolecole più importanti della vita\supercite{parisi2021protein}.
+\par Può risultare interessante confrontare quanto accaduto con le analisi del microbiologo ed epistemologo Ludwik Fleck\supercite{fleck_1983}. Nel suo libro del 1935, \textit{Genesi e sviluppo di un fatto scientifico}, affronta il problema della conoscenza scientifica e analizza il caso dell'evoluzione del concetto della malattia sifilide, mostrando come questo si è modificato nel tempo. Senza entrare nel merito di quell'analisi, l'epistemologo ha provato a tracciare delle linee generali su come un fatto scientifico possa svilupparsi.
 
+\par Analizzando le epoche di un concetto, Fleck si esprime affermando:\\
+\say{\textit{Molte teorie, per esempio, hanno due epoche nella loro vita: esse attraversano prima un'epoca classica, in cui tutto si accorda in maniera impressionante, poi una seconda epoca, nel corso della quale si presentano solo delle eccezioni.}}
+
+Non è difficile trovare le somiglianze con il caso della struttura unica per la funzione di una proteina. Inizialmente le eccezioni sono passate inosservate, tutto si accordava perfettamente all'idea di Fischer, Pauling e poi di Anfinsen. Le eccezioni, come quella di Karush, si presentavano ma il paradigma dominante non ne subiva effetti.
+
+Secondo Fleck, per garantire la persistenza dei sistemi d'opinione quando si presentano eccezioni:\\
+\say{\textit{una contraddizione al sistema appare impensabile. Ciò che non si accorda con il sistema: non viene notato, oppure viene taciuto anche se noto, oppure si fa in modo di spiegarlo, con laboriosi sforzi, come non contraddittorio rispetto al sistema: si notano, si descrivono o persino si inventano fatti che corrispondono alla concezione dominante, che cioè ne costituiscono per così dire la realizzazione}}\\
+
+Uno dei concetti più importanti nell'opera di Fleck è il concetto di \textit{collettivo di pensiero} e \textit{stile di pensiero}:\\
+\say{\textit{Se definiamo il termine collettivo di pensiero come "la comunità degli uomini che hanno fra loro un contatto intellettuale e che si scambiano idee influenzandosi reciprocamente, noi veniamo in possesso, con questo concetto, di ciò che rappresenta lo sviluppo storico di un ambito del pensiero, di un determinato patrimonio di conoscenza e di cultura e quindi, di un determinato stile di pensiero.}}
+
+E secondo il microbiologo la condizione dell'individuo (scienziato) nei confronti dello stile di pensiero è di subordinazione inconsapevole:\\
+\say{\textit{Anche se il collettivo consiste di individui, esso non è la loro semplice somma. L'individuo non ha mai - o quasi mai - la coscienza dello stile di pensiero collettivo, che quasi sempre esercita una costrizione incondizionata sul suo pensiero e che è semplicemente impensabile poter contraddire.}} \\
+
+\say{\textit{Viene a anche a mettersi in luce che molte idee arrivano a manifestarsi prima che ne risaltino le basi razionali e, anzi, in modo completamente indipendente da queste ultime.}}
+L'idea di Fischer (poi di Pauling) potrebbe avere influenzato il collettivo di pensiero al punto tale che la determinazione delle prime strutture a risoluzione atomica non potesse che dare come risposta una conferma di quelle idee. Esperimento ed esperienza non vivono entrambe nel campo dell'oggettività:\\
+\say{\textit{se l'esperimento può essere interpretato come una pura e semplice domanda e risposta, l'esperienza deve essere invece intesa già come una condizione complessa, frutto di un processo di educazione che si fonda sull'interazione fra chi conosce, ciò che è conosciuto e ciò che deve essere conosciuto.}} 
+
+La mancata consapevolezza di far parte di un collettivo di pensiero può purtroppo causare l'illusione che esista un nesso logico fra prove e concezioni, ma Fleck ammonisce: \\
+\say{\textit{le prove si adattano alle concezioni altrettano spesso quanto le concezioni si conformano alle prove}}
+
+Secondo Fleck la conoscenza è sempre un processo sociale:\\
+\say{"\textit{questo libro è più voluminoso}" \textit{è incompleta. Sarebbe corretta se si aggiungesse }"\textit{di quel libro}"\textit{; [..] la frase }«\textit{qualcuno conosce qualcosa}» \textit{richiede un'aggiunta, ad es.} "\textit{sulla base di un deterimanto patrimonio di conoscenza}" \textit{o meglio }"\textit{come membro di un determinato ambiente culturale}" \textit{o ancora }"\textit{in un determinato collettivo di pensiero}"}
+
+Mettendo insieme le diverse constatazioni riportate si può fare un'analisi, senza alcuna presunzione di correttezza e come semplice esercizio, del dogma di Anfinsen. Secondo Fleck una formulazione corretta sulle sue scoperte potrebbe essere: "Anfinsen propose, in conformità con le opinioni del suo tempo sul ripiegamento, denaturazione e rinaturazione delle proteine, di vedere nella sequenza amminoacidica la base necessaria e sufficiente per la determinazione della sua struttura tridimensionale nativa. Propone inoltre, sempre sulla base del collettivo di pensiero in cui era immerso, di considerare la struttura nativa di una proteina come quella struttura unica, stabile e cineticamente accessibile avente minima energia libera". Da questo esercizio si può osservare, essendo noi immersi in un collettivo di pensiero differente, che lo stile di pensiero di Anfinsen era probabilmente ancorato alle idee di Pauling secondo il quale la conformazione stabile delle proteine era una e una soltanto.
 }
 
 \section{Il problema del Protein Folding} \label{protein-folding-problem}
