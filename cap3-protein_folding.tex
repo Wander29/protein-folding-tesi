@@ -4,8 +4,6 @@
 
 La correlazione tra forma e funzione si rivela fondamentale nel caso delle proteine. Un canale ionico neuronale permette il passaggio di ioni grazie alla sua forma a canale; una ferritina cattura e immagazzina gli ioni ferro grazie alla sua forma a sfera cava. 
 
-\par Il ripiegamento delle proteine (\textit{protein folding}) è il processo di ripiegamento molecolare attraverso il quale a partire dalla sequenza lineare amminoacidica le proteine ottengono la loro struttura tridimensionale, chiamata forma \textit{nativa}, che permette loro di svolgere la relativa funzione biologica. 
-
 \begin{figure}[htp]
 	\centering
 	\includegraphics[scale=0.5]{images/protein-folding_med.jpeg}
@@ -13,8 +11,9 @@ La correlazione tra forma e funzione si rivela fondamentale nel caso delle prote
 	\label{fig:protein-folding-bioninja}
 \end{figure}
 
+\par Il ripiegamento delle proteine (\textit{protein folding}) è il processo di ripiegamento molecolare attraverso il quale a partire dalla sequenza lineare amminoacidica le proteine ottengono la loro struttura tridimensionale, chiamata forma \textit{nativa}, che permette loro di svolgere la relativa funzione biologica\footnote{per una trattazione superficiale della mancanza di generalità di questo paradigma si veda la sezione \ref{sfide-dogma}. Per una scrittura e lettura più agevole della presente tesi si è preferito accettare la visione del paradigma}. 
 
-Il ripiegamento nella forma tridimensionale avviene spontaneamente sia durante la sintesi proteica nei ribosomi sia al termine di questa. Una specifica proteina si ripiegherà nello stesso modo e avrà la stessa struttura finale\footnote{ciò non è vero nel 100\% dei casi, alcune proteine possono avere più di una conformazione stabile per adempiere funzioni diverse (vedi la sezione \ref{sec:fold-switching-proteins}) e alcune proteine possono andare incontro a misfolding (vedi la sezione \ref{sec:assisted-folding})}.
+\par Il ripiegamento nella forma tridimensionale avviene spontaneamente sia durante la sintesi proteica nei ribosomi sia al termine di questa. Una specifica proteina si ripiegherà nello stesso modo e avrà la stessa struttura finale\footnote{ciò non è vero nel 100\% dei casi, alcune proteine possono avere più di una conformazione stabile per adempiere funzioni diverse (vedi la sezione \ref{sec:fold-switching-proteins}) e alcune proteine possono andare incontro a misfolding (vedi la sezione \ref{sec:assisted-folding})}.
 
 \par La prima teoria del ripiegamento proteico è stata proposta negli anni venti del 20° secolo da Hsien Wu\supercite{wu1931studies}, in relazione al processo di denaturazione (vedi sezione \ref{sec:denaturazione}). È però Anfinsen, premio Nobel per la chimica, negli anni '60 a compiere un fondamentale passo nella comprensione del processo del ripiegamento proteico\supercite{anfinsen1972formation}. 
 
@@ -26,7 +25,7 @@ Il postulato di Anfinsen (conosciuto anche come \textit{dogma} o \textit{ipotesi
 \begin{figure}[h]
 	\centering
 	\includegraphics[scale=0.3]{images/funnel-folding.png}
-	\caption{Un "panorama" idealizzato dell'energia libera a forma di imbuto. E=energia, S=entropia. Fonte: \cite{pal2019fundamentals}}
+	\caption{Un profilo energetico idealizzato dell'energia libera a forma di imbuto. E=energia, S=entropia. Fonte: \cite{pal2019fundamentals}}
 	\label{fig:funnel}
 \end{figure}
 
@@ -66,7 +65,15 @@ I ponti disolfuro si riformano nella stessa posizione della proteina nativa nono
 	\label{fig:ribonucleasi}
 	\endminipage\hfill
 \end{figure}
+
+Dai lavori di Anfinsen è possibile trarre due ulteriori importanti conclusioni\supercite{dill2008protein}:
+\begin{itemize}
+	\item ha dato via alla grande avventura della ricerca nel campo del protein folding \textit{in vitro}\footnote{La locuzione latina \textit{in vivo} significa \textit{nel vivente}. Se il fenomeno biologico viene riprodotto in una provetta si dice \textit{in vitro} mentre se lo si riproduce tramite una simulazione computazionale si dice \textit{in silico}.} piuttosto che all'interno di cellule. La struttura nativa non dipendeva quindi dal fatto che la proteina fosse sintetizzata biologicamente con l'aiuto di ribosomi (ed eventualmente chaperoni molecolari) o che si ripiegasse nuovamente come molecola isolata all'interno di una provetta
+	\item l'evoluzione può agire in modo da cambiare la sequenza amminoacidica ma l'equilibrio del ripiegamento e la cinetica di una data sequenza sono materia della fisica chimica.
+\end{itemize}}
+
 }
+
 \subsection{Denaturazione} \label{sec:denaturazione}
 {
 La denaturazione delle proteine è il fenomeno relativo all'alterazione della struttura nativa dovuto a variazioni di temperatura, pH o contatto con determinate sostanze chimiche. La denaturazione è un processo che porta alla perdita di ordine e quindi ad un aumento di entropia. La struttura primaria rimane invariata, data la stabilità dei legami peptidici. A causa della denaturazione le proteine perdono la loro funzione biologica e possono esporre e rendere reattivi alcuni gruppi funzionali che possono causare l'aggregazione di più proteine. Può avvenire che una volta rimosso l’agente denaturante la proteina ritorni allo stato di partenza (\textit{rinaturazione}) ma spesso il processo è irreversibile.
@@ -82,7 +89,7 @@ La denaturazione delle proteine è il fenomeno relativo all'alterazione della st
 
 \par Applicazioni nella vita quotidiana di questo fenomeno sono la cottura dei cibi (basti pensare all'albumina nell'uovo) e la permanente ai capelli (denaturazione dell' $\alpha$-cheratina, rompendo e riformando ponti disolfuro). 
 }
-}
+
 \section{Struttura delle proteine}
 {
 Da un punto di vista chimico le proteine sono di gran lunga, tra quelle conosciute, le molecole strutturalmente più complesse e sofisticate funzionalmente. È possibile studiare la loro struttura individuando successivi livelli di organizzazione:
@@ -156,11 +163,12 @@ Prima di passare ad analizzare ogni livello della struttura delle proteine è ut
 \end{itemize}
 }
 
-
+\subsection{Livelli strutturali}
 \subsubsection{Struttura primaria}
 La struttura primaria delle proteine è la sequenza ordinata degli amminoacidi che ne determina la conformazione nativa. La posizione nella sequenza di specifici amminoacidi è un fattore fondamentale per la determinazione di quali porzioni della proteina andranno a legarsi formando globalmente la struttura finale. La nota importante, basata sul dogma di Anfinsen, è che la sequenza amminoacidica di ogni proteina contiene l'informazione che specifica sia la struttura nativa che la via per raggiungere quello stato. Questo comunque non vuol dire che strutture simili si ripieghino in modo simile.
 	
 \subsubsection{Struttura secondaria}
+{
 La struttura secondaria riguarda le regioni ripetitive locali stabilizzate da legami idrogeno tra atomi della backbone: $\alpha$-eliche e $\beta$-foglietti.
 
 \begin{figure}[h]
@@ -172,7 +180,7 @@ La struttura secondaria riguarda le regioni ripetitive locali stabilizzate da le
 
 Questo livello di organizzazione è una conseguenza dei legami a idrogeno tra gli amminoacidi appartenenti a una stessa catena, o tra gli amminoacidi di catene diverse.  All'interno della backbone del polipeptide gli atomi di ossigeno hanno una parziale carica negativa e gli atomi di idrogeno attaccati all'azoto hanno una parziale carica positiva perciò possono formarsi legami idrogeno fra questi atomi. Individualmente sarebbero deboli legami ma poiché sono ripetuti molte volte su di una regione relativamente lunga di una catena polipeptidica possono fare da supporto per una particolare conformazione.
 
-\par Nella struttura ad $\alpha$-elica, la struttura secondaria più comune e teorizzata già negli anni '50 da Linus Pauling, gli amminoacidi sono avvolti in una spirale tenuta insieme da legami idrogeno ogni 4 amminoacidi. Tra l’atomo di idrogeno legato all’azoto di ogni legame peptidico e l’ossigeno del gruppo carbossilico del legame peptidico sovrastante (che si trova appunto a distanza di quattro amminoacidi lungo la catena) si instaura un legame a idrogeno. Tuttavia se gli amminoacidi che si succedono lungo un tratto di catena proteica hanno gruppi R voluminosi, come avviene nella prolina, o gruppi R dotati della stessa carica elettrica, come avviene negli amminoacidi lisina e arginina, l’$\alpha$-elica non può formarsi, a causa delle forze di repulsione che si generano tra i residui. Alcune proteine fibrose, come l'$\alpha$-cheratina, la proteina strutturale di capelli, lana e unghie hanno formazioni di $\alpha$-eliche sulla maggior parte della loro lunghezza.
+\par Nella struttura ad $\alpha$-elica, la struttura secondaria più comune e teorizzata già negli anni '50 da Linus Pauling, gli amminoacidi sono avvolti in una spirale tenuta insieme da legami idrogeno ogni 4 amminoacidi. Tra l’atomo di idrogeno legato all’azoto di ogni legame peptidico e l’ossigeno del gruppo carbossilico del legame peptidico sovrastante (che si trova a distanza di tre amminoacidi lungo la catena) si instaura un legame a idrogeno. Tuttavia se gli amminoacidi che si succedono lungo un tratto di catena proteica hanno gruppi R voluminosi, come avviene nella prolina, o gruppi R dotati della stessa carica elettrica, come avviene negli amminoacidi lisina e arginina, l’$\alpha$-elica non può formarsi, a causa delle forze di repulsione che si generano tra i residui. Alcune proteine fibrose, come l'$\alpha$-cheratina, la proteina strutturale di capelli, lana e unghie hanno formazioni di $\alpha$-eliche sulla maggior parte della loro lunghezza.
 
 \begin{figure}[!htb]
 	\minipage{0.5\textwidth}
@@ -193,8 +201,9 @@ Altre proteine fibrose sono invece dominate dai $\beta$-foglietti, come le prote
 
 \par Nella vita quotidiana, se tiriamo per i due estremi una fibra di lana questa si allunga: si stanno rompendo i legami idrogeno e le eliche si allontanano sempre di più, ma lasciando la presa i legami idrogeno si riformano e le eliche ricompaiono nella struttura. Se invece tiriamo la seta si può osservare che non è elastica: i foglietti di cui è composta la sua struttura non sono smantellabili senza rompere anche i legami covalenti della backbone.
 
-
+}
 \subsubsection{Struttura supersecondaria}
+{
 La struttura supersecondaria è riferita alle combinazioni spaziali di strutture secondarie in conformazioni più complesse e alle connessioni che li uniscono. Può essere considerata come esempio di struttura supersecondaria la triplice elica allungata del collagene.
 
 \begin{figure}[!htb]
@@ -235,15 +244,15 @@ La struttura supersecondaria è riferita alle combinazioni spaziali di strutture
 \par In figura \ref{fig:motivi-comuni} sono illustrati alcuni motivi comuni nelle strutture proteiche. 
 Il motivo \textit{elica-loop-elica} ad esempio consiste di due $\alpha$-eliche collegate da un giro invertito. Un motivo simile è l'\textit{elica-giro-elica} dove al posto di un loop si ha un giro che causa un cambio di direzione più netto. Questa particolare conformazione rende questo motivo in grado di legarsi alla scanalatura del DNA e infatti questo motivo si presenta in molte proteine che regolano l'espressione genica.
 
-\par Il motivo a \textit{simbolo greco} consiste di 4 $\beta$-filamenti antiparalleli in un $\beta$-foglietto dove l'ordine dei foglietti lungo la catena polipeptidica è 4,1,2,3\footnote{I numeri indicano l'ordine dei filamenti ovvero la loro posizione nel $\beta$-foglietto da destra a sinistra}. In figura \ref{fig:turn-loops} e \ref{fig:domain-folds} è illustrato il motivo $\beta$-barile composto da $\beta$-foglietti ripiegati circolarmente a formare una struttura somigliante ad un barile comune in molte proteine di membrana. 
-
-\par Al contrario di quanto si possa credere la maggior parte dei motivi non ha origini evolutive in comune. Motivi simili sono sorti indipendentemente e semplicemente convergono verso una struttura stabile comune. Il fatto che gli stessi motivi si presentino in centinaia di differenti strutture suggerisce che vi sono un numero limitato di possibili ripiegamenti nell'universo delle strutture proteiche\supercite{proteinMotifs}. I \textit{domain folds}, o ripiegamenti di dominio, sono grandi motivi che costituiscono il nucleo di un dominio.
+\par Il motivo a \textit{simbolo greco} consiste di 4 $\beta$-filamenti antiparalleli in un $\beta$-foglietto dove l'ordine dei foglietti lungo la catena polipeptidica è 4,1,2,3\footnote{I numeri indicano l'ordine dei filamenti ovvero la loro posizione nel $\beta$-foglietto da destra a sinistra}. In figura \ref{fig:turn-loops} e \ref{fig:domain-folds} è illustrato il motivo $\beta$-barile composto da $\beta$-foglietti ripiegati circolarmente a formare una struttura somigliante ad un barile comune in molte proteine di membrana. I \textit{domain folds}, o ripiegamenti di dominio, sono grandi motivi che costituiscono il nucleo di un dominio.
 
 \par \textit{Giri} e \textit{loop} causano cambi di direzione alla backbone della proteina. I loop sono regioni con una struttura tridimensionale fissa ma non regolare. Si trovano generalmente sulla superficie delle proteine. Non sono strutture casuali e non vanno confuse con regioni disordinate o dispiegate. Hanno principalmente lo scopo di connettere strutture secondarie tra loro. È stato ipotizzato che la posizione degli introni nel DNA possa correlare con la locazione dei loop codificati nella proteina\supercite{PSPwiki}.
 
 \par Nelle strutture secondarie e terziarie si trovano spesso bruschi cambiamenti di direzione nella struttura: i \textit{giri} (turns). Queste nette svolte sono possibili grazie agli amminoacidi prolina e glicina. Il gruppo R della prolina si ripiega verso il gruppo amminico, distorcendo la catena naturalmente. Si forma però uno stretto spazio a causa del giro: l'amminoacido con gruppo R meno voluminoso è ovviamente la glicina ed è per questo che si trovano insieme nei giri.
 
+}
 \subsubsection{Struttura terziaria}
+{
 La struttura terziaria è la struttura tridimensionale globale risultante dalle interazioni tra i residui successivamente alle conformazioni locali della struttura secondaria ed è quindi la descrizione del risultato del processo di ripiegamento proteico. Un tipo di interazione importante è quella idrofobica che induce i residui non polari (e quindi idrofobici) a raggrupparsi al centro della catena polipeptidica, formando un \textit{nucleo idrofobico}. La forma della proteina può venire rinforzata dai ponti disolfuro, legami covalenti possibili solamente fra due cisteine.
 
 \begin{figure}[!htp]
@@ -255,11 +264,18 @@ La struttura terziaria è la struttura tridimensionale globale risultante dalle 
 
 La glicina assume una speciale posizione tra gli amminoacidi dato che ha il gruppo R più piccolo, un solo atomo di idrogeno (vedi fig. \ref{fig:amminoacidi-tipi}): può aumentare la flessibilità locale nella struttura (come infatti accade nel caso dei \textit{giri} sopra accennati). 
 
-\par Prima degli anni '80 il protein folding code (bilancio termodinamico delle forze interatomiche, vedi sez. \ref{protein-folding-problem}) era visto come la somma di molte piccole interazioni (legami idrogeno, interazioni di van der Waals, attrazioni elettrostatiche ...) ma senza nessuna forza dominante\supercite{dill2008protein}. Negli anni '80, grazie alla modellazione basata sulla meccanica statistica, è emerso un nuovo paradigma: la componente dominante nel folding code è sono le forze idrofobiche, il folding code è distruibuito sia localmente che non localmente nella sequenza e che le strutture secondare di una proteina sono una conseguenza della struttura terziaria, tanto quanto una causa.
+\par Prima degli anni '80 il protein folding code (bilancio termodinamico delle forze interatomiche, vedi sez. \ref{protein-folding-problem}) era visto come la somma di molte piccole interazioni (legami idrogeno, interazioni di van der Waals, attrazioni elettrostatiche ...) ma senza nessuna forza dominante\supercite{dill2008protein}. Negli anni '80, grazie alla modellazione basata sulla meccanica statistica, è emerso un nuovo paradigma: la componente dominante nel folding code sono le forze idrofobiche, il folding code è distruibuito sia localmente che non localmente nella sequenza e le strutture secondare di una proteina sono una conseguenza della struttura terziaria, tanto quanto una causa. Poiché le strutture native sono solamente 5-10kcal/mol più stabili dei loro stati denaturati è chiaro che nessuna forza intermolecolare può essere ignorata, e per questo la questione su quale forza sia quella dominante non è né semplice né risolta. Tuttavia risulta evidente che solo pochi residui risultano carichi nelle proteine, pertanto le forze elettrostatiche difficilmente possono essere dominanti. 
 
+\begin{figure}[!htb]
+	\centering
+	\includegraphics[scale=0.6]{images/strutture-proteine-complesse.png}
+	\caption{Esempi di strutture terziarie in alcune proteine. (A) (classe: all-$\beta$) La struttura dell'enzima mostra un classico esempio di $\beta$-eliche, struttura abbastanza rara. (B) (classe: all-$\beta$) Struttura a $\beta$-barile con un'$\alpha$-elica centrale; i $\beta$-filamenti sono anti-paralleli. (C) (classe: all-$\alpha$)  Albumina del siero umano. Ha molti domini costituiti da $\alpha$-eliche a strati e helix bundle. Fonte \cite{moran2012principles}}
+	\label{fig:strutture-complesse}
+\end{figure}
+
+}
 \subsubsection{Struttura quaternaria}
-La struttura quaternaria è la forma finale di proteine "assemblate" da 2 o più catene polipeptidiche già ripiegate. Il collagene ne è un esempio poiché è formata da 3 polipeptidi quasi interamente a spirale che si attorcigliano l'uno sull'altro formando un'elica tripla ancora più larga, dando alle lunghe fibre una grande forza. Un altro esempio è l'emoglobina, proteina globulare formata da 4 subunità polipeptidiche. Le strutture terziarie delle subunità non vengono alterate.
-
+{
 \begin{figure}[!htb]
 	\centering
 	\includegraphics[scale=0.35]{images/quaternary-structure_med.jpeg}
@@ -267,27 +283,157 @@ La struttura quaternaria è la forma finale di proteine "assemblate" da 2 o più
 	\label{fig:struttura-quaternaria}
 \end{figure}
 
-La classificazione delle proteine può essere basata su somiglianze strutturali e/o di sequenza. 
+La struttura quaternaria è la forma finale di proteine "assemblate" da 2 o più catene polipeptidiche già ripiegate. Il collagene ne è un esempio poiché è formata da 3 polipeptidi quasi interamente a spirale che si attorcigliano l'uno sull'altro formando un'elica tripla ancora più larga, dando alle lunghe fibre una grande forza (vedi anche la cheratina nella sezione \ref{sec:classificazione}). Un altro esempio è l'emoglobina, proteina globulare formata da 4 subunità polipeptidiche. Le strutture terziarie delle subunità non vengono alterate.
 
-\subsection{Geometria dei legami}
+\begin{figure}[!htb]
+	\centering
+	\includegraphics[scale=0.5]{images/quate-deossi.png}
+	\caption{Struttura quaternaria della deossiemoglobina, ogni colore rappresenta una diversa subunità. (A) rappresentazione di tipo space-fill. (B) Rappresentazione a nastro. Fonte \cite{moran2012principles}}
+	\label{fig:quate-deossi}
+\end{figure}
+
+La struttura che ne risulta è spesso chiamata \textit{oligomero} e le catene polipeptidiche costitueni sono dette \textit{monomeri}, \textit{protomeri} o \textit{subunità}. Le subunità sono unite mediante legami idrogeno, ionici o forze idrofobiche. I rapporti spaziali tra le subunità sono fissi e la geometria della molecola globale è ben definita.
+L'unione delle subunità può far emergere proprietà non possedute dai singoli monomeri.
+}
+\subsection{Evoluzione e classificazione}
 {
+\subsubsection{Evoluzione e conservazione}
+L’evoluzione degli organismi è legata a mutazioni spontanee che avvengono nei loro geni. Le differenze nella struttura primaria sono la “memoria” dei cambiamenti avvenuti a livello genetico nel corso dell’evoluzione. In specie legate da notevole affinità le strutture primarie delle proteine comuni sono
+simili. Proteine con funzioni analoghe presentano sequenze simili, è molto probabile quindi che queste sequenze si siano evolute a partire da un progenitore comune. 
 
+\par Al contrario di quanto si possa credere la maggior parte dei motivi non ha origini evolutive in comune. Motivi simili sono sorti indipendentemente e semplicemente convergono verso una struttura stabile comune. Il fatto che gli stessi motivi si presentino in centinaia di differenti strutture suggerisce che l'esistenza di un numero limitato di possibili ripiegamenti nell'universo delle strutture proteiche\supercite{proteinMotifs}. 
+
+\subsubsection{Classificazione} \label{sec:classificazione}
+La classificazione delle proteine all'interno dei database può essere basata su somiglianze strutturali e/o di sequenza. A livello biologico, in base ai diversi livelli strutturali assunti, le proteine sono classificate in \textit{fibrose} e \textit{globulari}.
+
+\par Le proteine fibrose sono caratterizzate dalla prevalenza di strutture secondarie rispetto a livelli di organizzazione superiore. Sono costituite da lunghe catene disposti in lunghi fasci o foglietti. La struttura è estremamente ordinata. Svolgono funzioni di protezione e sostegno. Le proteine fibrose costituiscono prevalenemente: pelle, piume, capelli, corna, unghia, squame (con funzione di protezione) e cartilagine, tendini, ossa (con funzione di sostegno). Contengono per la maggior parte residui idrofobici pertanto le proteine fibrose risultano insolubili in acqua. Degli esempi di proteine fibrose sono: cheratina, collagene, elastina, fibroina. 
+
+\par In figura \ref{fig:capello} è mostrata la struttura di un capello. La proteina dei capelli è l'$\alpha$-cheratina, una struttura totalmente ad $\alpha$-eliche. Un paio di queste eliche si attorcigliano per formare una doppia elica. Queste si combinano poi in strutture di ordine superiore chiamate \textit{protofilamenti} e successivamente \textit{protofibrille}. Circa 4 fogli protofibrille ($4\times2^{3}=32$ eliche di $\alpha$-cheratina in tutto) si combinano per formare un filamento intermedio. Un capello è una schiera di filamenti intermedi di $\alpha$-cheratina.
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[scale=0.6]{images/capello-full.png}
+	\caption{Struttura di un capello. Fonte: \cite{nelson2017lehninger}}
+	\label{fig:capello}
+\end{figure}
+
+Le proteine \textit{globulari} assumono una struttura terziaria e a volte quaternaria. Sono macromolecole compatte di forma all'incirca sferica. Hanno una struttura meno ordinata rispetto a quelle fibrose. Svolgono funzioni di catalisi, trasporto e regolazione di processi cellulari. Categorei di proteine globulari sono: enzimi, trasportatori di ossigeno e lipidi, alcuni ormoni, recettori di membrana e anticorpi. La struttura è caratterizzata da brevi tratti di $\alpha$-elica e struttura $\beta$, collegate da tratti non organizzati in struttura secondaria. Sono proteine solubili nel citosol. 
+
+}
+}
+
+\section{Dinamica del ripiegamento} \label{sec:assisted-folding}
+{
+{	
+\subsection{Geometria ed energetica del ripiegamento}
+{
+	
+\subsubsection{Geometria del ripiegamento}
 Le tante conformazioni possibili della catena polipeptidica sono possibili grazie alla rotazione di essa attorno all'atomo $C_{\alpha}$.
 
 
+Considerando un singolo residuo AA, Cα funziona da perno unendo due
+piani ammidici adiacenti. L’angolo di rotazione Cα-C=O è indicato con Ψ
+(psi), quello Cα-NH con Φ (phi). Gli angoli sono calcolati rispetto ad un
+piano di riferimento che contiene entrambi i legami ammidici (Ψ e Φ =0°)
+
+conformazioni ideali (in cui non
+vi sono interazioni tra catene
+laterali)
+
+α-elica:
+Φ= -57°
+Ψ= -47°
+
+β- parallelo:
+Φ= -119°
+Ψ= +113°
+
+β-antiparallelo:
+Φ= -139°
+Ψ= +135°
+
+
+Il carattere di doppio legame parziale del legame peptidico impedisce,
+alle temperature fisiologiche, la rotazione del legame C-N, mentre è
+possibile la rotazione dei legami Cα1-C e Cα2-N. Data la NON possibilità di rotazione intorno al legame CO-N si ha
+possibilità di isomeria cis trans
+Delle due configurazioni possibili, la trans è quella favorita dal punto di vista
+energetico (minima repulsione sterica)
+Oltre il 99\% dei legami peptidici delle proteine naturali hanno configurazione
+trans
+Fanno eccezione alcuni legami amidici in cui è coinvolto l’N imidico della
+prolina
+
+
+In conformazioni diverse, c’è un limite al numero delle combinazioni
+possibili dei due angoli di rotazione, perché alcune hanno effetti
+destabilizzanti a causa delle forze di repulsione tra gli O.
+Vi sono quindi conformazioni più stabili di altre perché favorite da un
+punto di vista energetico.
+Conformazioni proibite sono anche quelle in cui si svilupperebbe una
+forte repulsione tra le catene laterali
+
+- Grafico di Ramachandran
+
+
+Torsion or dihedral angles (Φ, Ψ) represent the position of the
+atoms of an amino acid chain where Φ involves the N-C$\alpha$ bond
+and Ψ involves the C$\alpha$-C bond. These rotations determine each
+protein structure. A possible representation of the amino acids of
+a protein is [(Φ1 , Ψ1) . . . (Φn , Ψn )] where n reflects the residue
+length. The Ramachandran plot, allows to avoid
+the possible collisions among atoms.
+
+
 • Limiti al ripiegamento: angoli di tersione e piano di Ramachandran\\
-
-• Domini, Residui, Motivi, Giri, Loops, Turns\\
 }
 
-\subsection{Energetica del ripiegamento}
-• processo spontaneo: energia di Gibbs, entalpia, entropia\\
+\subsubsection{Energetica del ripiegamento}
+La termodinamica caratterizza gli stati in natura dalla dipendenza da temperatura, pressione, volume e concentrazione chimica. 
 
+\par L'entropia è la quantita di disordine di un sistema, in altri termini è il numero di possibili stati configurazionali del sistema ($\Omega$). 
 
+\[ S = K_{B}ln{\Omega} \]
+
+Nei sistemi molecolari cambiamenti di entropia ($\Delta S$) rappresentano cambiamenti nella libertà di moveimento di atomi appartenenti sia al soluto che al solvente.  L'entalpia è l'energia interna al sistema. Cambiamenti positivi di entalpia nelle macromolecole sono associate alla rottura di interazioni non covalenti favorevoli (si assume che i legami covalenti restino invariati). La formazione di legami covalenti diminuisce l'entalpia del sistema e rilascia calore verso l'ambiente. Formando legami si libera energia mentre per romperli si consuma energia.
+
+\[ \Delta H \simeq \Delta E \] 
+\[ E = U + K \]
+
+Dove H è l'entalpia, E l'energia interna al sistema, U l'energia potenziale (circa la somma di tutte le inteazioni covalenti e non covalenti, ma non quelle non polari) e K l'energia cinetica (associata ai movimenti atomici indotti termicamente).\\
+
+\par L'energia libera di Gibbs (G) è l'\textit{energia utile} sotto temperatura e pressione costante. I processi spontanei raggiungono l'equilibrio decrementando la G del sistema a un minimo.
+
+L'energia libera di Gibbs è associata all'entropia e all'entalpia dalla seguente relazione:
+
+\[ \Delta G = \Delta H - T \Delta S \]
+
+\par La seconda legge della termodinamica afferma che in un sistema isolato i processi spontanei raggiungono l'equilibrio incrementando l'entropia del sistema. 
+
+\par Il ripiegamento delle proteine è un processo spontaneo. Esibisce una grande varietà di percorsi, meccanismi e velocità che dipendono da parametri come la composizione della proteina e le condizioni di ripiegamento. A prescindere dall'esatto meccaniscmo, il processo di ripiegamento segue sempore la teoria del profilo energetico (\textit{energy landscape theory}), cioè il ripiegamento è sempre accompagnato da una decrescita del numero di conformazioni che possono essere testate dalla proteina, sfuggendo al paradosso di Levinthal.
+
+\par Una proteina che si ripiega deve procedere da uno stato ad alta energia ed alta entropia a uno stato caratterizzato da bassi valori di energia ed entropia;
+tale nesso è conosciuto come \textit{imbuto di ripiegamento} (folding funnel, vedi fig. \ref{fig:imbuto}). Le forze idrofobiche causano la creazione del nucleo idrofobico seppellendo i residui non polari nella struttura nativa, questo vuol dire che l'entropia del solvente acquoso subisce un aumento portando ad una sovracompensazione dell'entropia, ovvero l'entropia del sistema aumenta.
+
+\par Le proteine non cercano una conformazione fra tutte le possibili conformazioni fino a trovare quella giusta. Piuttosto si ripiegano in una maniera cooperativa in cui ogni step limita ulteriormente le possibilità di ripiegamento degli step seguenti. Il ripiegamento è completato quando la conformazione con più basso livello di energia libera associato alla proteina è trovata. La superficie rugosa del tunnel riflette il fatto che il processo di ripiegamento passa attraverso molti minimi locali separati da barriere da alta-energia.
+
+\begin{figure}[!htb]
+	\centering
+	\includegraphics[scale=0.6]{images/imbuto.png}
+	\caption{Profilo energetico a imbuto del ripiegamento. Fonte \cite{kessel_ben-tal_2018}}
+	\label{fig:imbuto}
+\end{figure}
+
+Non c'è un meccanismo di ripiegamento universale, ma una collezione di possibili meccanismi che possono essere usati. La preferenza di una proteina ad usarne uno piuttosto che un altro può dipendere da vari fattori, uno dei quali sembra essere la strttura secondaria. Ad esempio in proteine dominate da $\alpha$-eliche la struttura è spesso gerarchica. 
+
+\par La velocità di ripiegamento correla non solo con la dimensione della proteina ma anche con la sua topologia nativa. Le proteine \textit{fast-folding}, su scala temporale di nanosecondi, tendono ad avere grandi proporzioni di elementi secondari locali ($\alpha$-eliche e giri) laddove quelle \textit{slow-folding} tendono ad avere proporzioni più grandi di elementi globali ($\beta$-foglietti).
+
+\par I fattori termodinamici che danno luogo all’effetto idrofobico sono complessi e non del tutto conosciuti. L’effetto idrofobico è visto come una combinazione dell’effetto di idratazione (effetto entropico) e di interazioni di van der Waals tra molecole di soluto (effetto entalpico).
 
 }
-\section{Ripiegamento assistito} \label{sec:assisted-folding}
-{
+	
+\subsection{Ripiegamento assistito}
 All'interno delle cellule le proteine più piccole si ripiegano indipendentemente, mentre proteine più grandi sono assistite principalmente da complessi chiamati \textit{chaperoni molecolari}. È  importante notare che l'assistenza è cinetica in natura: non aggiunge nuove informazioni necessarie alla proteina per ripiegarsi, pertanto il dogma di Anfinsen non viene contraddetto. Ciò che fanno questi complessi è creare un ambiente nel quale le proteine possano ripiegarsi senza "distrazioni" dovute a interazioni con altre entità (ad esempio evitando l'aggregazione con altre proteine) e senza rimanere bloccate in conformazioni intermedie durante il loro percorso di ripiegamento. In poche parole sono misure di protezione della cellula. 
 
 \begin{figure}[h]
@@ -328,9 +474,14 @@ Tutti i compartimenti cellulari delle cellule eucariotiche (nucleo, citosol, ret
 Sebbene i mitocondri (e i cloroplasti) abbiano il loro genoma e creino le loro proteine, la maggior parte delle proteine che questi organelli usano sono codificate dai geni nel nucleo e importati dal citosol. Ogni proteina viene quindi parzialmente denaturata per effettuare il trasporto. I chaperoni molecolari all'interno di questi organelli aiutano a tirare le proteine attraverso le due membrane e a ripiegarle una volta all'interno\supercite{alberts2018essential}.
 
 
-\subsection{Misfolding e malattie}
+\subsection{Misfolding, prioni e malattie}
 {
-Il \textit{misfolding} è il fenomeno dell'errato ripiegamento di una proteina, ovvero quando una proteina non può raggiungere il suo stato nativo. Ciò può accadere per mutazioni alla sua sequenza amminoacidica, anche per un solo amminoacido differente (come nel caso dell'anemia falciforme) o per fattori esterni. Le proteine mal ripiegate tipicamente contengono $\beta$-foglietti organizzati in una struttura denominata cross-$\beta$, disposizione molto stabile e insolubile, generalmente resistente alla proteolisi. Il mal ripiegamento di alcune proteine può innescare ulteriori mal ripiegamenti e la conseguente accumulazione di proteine mal ripiegate in aggregati (od oligomeri) che possono guadagnare tossicità attraverso le interazioni intermolecolari. L'incremento dei livelli di proteine aggregate può portare alla formazione di \textit{amiloidi}, strutture fibrillari formate da deposizioni di materiale proteico insolubile. L'errato ripiegamento delle proteine è alla base quindi di molte patologie umane, definite malattie da misfolding, categorizzabili in due gruppi:
+	
+\subsubsection{Misfolding}
+Il \textit{misfolding} è il fenomeno dell'errato ripiegamento di una proteina, ovvero quando una proteina non può raggiungere il suo stato nativo. Ciò può accadere per mutazioni alla sua sequenza amminoacidica, anche per un solo amminoacido differente (come nel caso dell'anemia falciforme) o per fattori esterni. Le proteine mal ripiegate tipicamente contengono $\beta$-foglietti organizzati in una struttura denominata cross-$\beta$, disposizione molto stabile e insolubile, generalmente resistente alla proteolisi. Il mal ripiegamento di alcune proteine può innescare ulteriori mal ripiegamenti e la conseguente accumulazione di proteine mal ripiegate in aggregati (od oligomeri) che possono guadagnare tossicità attraverso le interazioni intermolecolari. L'incremento dei livelli di proteine aggregate può portare alla formazione di \textit{amiloidi}, strutture fibrillari formate da deposizioni di materiale proteico insolubile. 
+
+\subsubsection{Malattie}
+L'errato ripiegamento delle proteine è alla base quindi di molte patologie umane, definite malattie da misfolding, categorizzabili in due gruppi:
 
 \begin{itemize}
 	\item malattia causata dalla perdita o degradazione della proteina o dall'errato trasporto intracellulare
@@ -339,7 +490,9 @@ Il \textit{misfolding} è il fenomeno dell'errato ripiegamento di una proteina, 
 
 Molti tipi di tumore diventano chemio-resistenti perché iper-esprimono alcune Hsp, come la Hsp70 e la Hsp90. Le Hsp sono presenti anche in quantità elevatissime nel cervello dei pazienti con malattia di Alzheimer e morbo di Parkinson. Tuttavia si crede che la loro aumentata espressione non sia lesiva di per sé ma rappresenti piuttosto una risposta difensiva agli elevati livelli di stress che caratterizzano queste patologie. Ci sono molti morbi associati a mutazioni nei geni codificanti i chaperoni. Alterazioni genetiche delle chaperonine possono portare a patologie umane che in genere colpiscono molti organi ed apparati contemporaneamente \supercite{chaperoninaWiki}. \\
 
-\par I \textit{prioni} (acronimo di "\textbf{pr}oteinaceous \textbf{i}nfective \textbf{on}ly particle") sono molecole di natura proteica con la capacità di trasmettere la propria forma mal ripiegata a varianti normali della stessa proteina. \footnote{I prioni sono stati studiati e denominati in questo modo dal premio Nobel per la medicina nel 1997 Stanley Prusiner\supercite{prusiner1998prion}} Il ruolo ipotizzato di una proteina come agente infettivo è in contrasto con tutti gli altri agenti infettivi conosciuti, come i viroidi, virus, batteri, funghi, parassiti: tutti contengono acidi nucleici (DNA, RNA o entrambi) mentre le proteine sono composte di soli amminoacidi.
+
+\subsubsection{Prioni}
+\par I \textit{prioni} (acronimo di "\textbf{pr}oteinaceous \textbf{i}nfective \textbf{on}ly particle") sono molecole di natura proteica con la capacità di trasmettere la propria forma mal ripiegata a varianti normali della stessa proteina\footnote{I prioni sono stati studiati e denominati in questo modo dal premio Nobel per la medicina nel 1997 Stanley Prusiner\supercite{prusiner1998prion}}. Il ruolo ipotizzato di una proteina come agente infettivo è in contrasto con tutti gli altri agenti infettivi conosciuti, come i viroidi, virus, batteri, funghi, parassiti: tutti contengono acidi nucleici (DNA, RNA o entrambi) mentre le proteine sono composte di soli amminoacidi.
 
 \par I prioni formano amiloidi che si accumulano nei tessuti e sono associati a danni di questi e alla morte cellulare. I prioni sono attualmente considerati i più probabili agenti delle encefalopatie spongiformi trasmissibili (TSE) dei mammiferi. Nel \textit{morbo della mucca pazza} (encefalopatia spongiforme bovina), malattia neurologica degenerativa e irreversibile, vi è il ruolo di un prione a causare mal ripiegamenti di alcune proteine native causando la formazione di strutture amiloidi fatali (al microscopio le dense placche fibrose appaiono come buchi, da qui il caratteristico aspetto "a spugna"). Tutte le malattie da prione sono attualmente inguaribili e letali, con un periodo di incubazione che dura generalmente vari anni.
 
@@ -355,21 +508,23 @@ Molti tipi di tumore diventano chemio-resistenti perché iper-esprimono alcune H
 \end{figure} 
 
 }
-\subsection{Controllo qualità e proteasomi}
+\subsection{Controllo qualità e apoptosi}
 {
-
+\subsubsection{Controllo qualità}
 L'uscita delle proteine dal reticolo endoplasmatico (RE) è controllata per assicurare la qualità delle proteine. Sebbene alcune proteine siano appositamente create e destinate a funzionare nel RE la maggior parte delle proteine che entrano nel RE sono destinate ad altri luoghi. Queste vengono impacchettate nelle vescicole di trasporto e gemmano per fondersi con l'apparato del Golgi. Ma l'uscita dal RE è altamente selettiva: le proteine che falliscono a ripiegarsi nella forma nativa e quelle che non si assemblano correttamente sono attivamente conservate nel RE attraverso i legami con i chaperoni molecolari che risiedono lì. Questi trattengono le proteine nel RE finché non si verifica il corretto ripiegamento o assemblaggio. Se questo non si verifica o fallisce ancora le proteine sono esportate nel citosol dove sono degradate da un \textit{proteasoma}. Le proteine da degradare sono contraddistinte dal loro legame con l'ubiquitina\footnote{Per "la scoperta della degradazione delle proteine mediata da ubiquitina" è stato assegnato il Premio Nobel per la chimica del 2004 ad Aaron Ciechanover, Avram Hershko ed Irwin Rose.}.
 
 \par Ad esempio molecole di anticorpi sono composte da 4 catene polipeptidiche che si assemblano in completi anticorpi nel RE. Gli anticorpi parzialmente assemblati sono conservati nel RE finché tutte e 4 le catene non sono pronte. Le molecole di anticorpi che falliscono ad assemblarsi vengono degradate.
 
+
 \par Nonostante l'indubbia utilità di questo meccanismo di controllo a volte questo può rivelarsi dannoso per l'organismo. Ad esempio la mutazione predominante che causa la \textit{fibrosi cistica}, comune malattia genetica che comporta seri danni polmonari, produce una proteina di trasporto della membrana plasmatica leggermente mal ripiegata. Tuttavia questa potrebbe funzionare normalmente se raggiungesse la membrana plasmatica ma viene bloccata nel RE e successivamente degradata\supercite{alberts2018essential} (per usare una metafora si può immaginare la situazione di un condannato alla pena di morte innocente). Le conseguenze sono terribili. La nota da sottolineare è che in questa malattia la mutazione non causa un'inattivazione di una proteina importante ma la proteina attiva è scartata dalle cellule prima che questa possa avere l'opportunità di funzionare. \\
 
+\subsubsection{Proteasomi}
 \par I proteasomi sono complessi di \textit{proteasi} (enzima in grado di catalizzare la rottura del legame peptidico delle proteine) che degradano le proteine mal ripiegate attraverso reazioni di \textit{proteolisi}. Sono presenti nelle cellule di tutti gli eucarioti e procarioti. La struttura e la funzione di questi complessi è altamente conservata.
 
 \par A causa del ruolo dei proteasomi nella regolazione del ciclo cellulare e dell'apoptosi\footnote{Il termine \textit{apoptosi} indica una forma di morte cellulare programmata (un'auto-distruzione). Al contrario della necrosi, che è una forma di morte cellulare risultante da un acuto stress o trauma cellulare, l'apoptosi è portata avanti in modo ordinato e regolato, richiede consumo di energia (ATP) e generalmente porta a un vantaggio durante il ciclo vitale dell'organismo (è infatti chiamata da alcuni morte altruista o morte pulita). Durante il suo sviluppo, ad esempio, l'embrione umano presenta gli abbozzi di mani e piedi “palmati”: affinché le dita si differenzino, è necessario che le cellule che costituiscono le membrane interdigitali muoiano}, sono oggi un bersaglio rilevante nelle terapie antitumorali. Farmaci inibitori nella terapia antiretrovirale interferiscono con il ciclo replicativo del virus HIV proprio bloccando l'attività dell'enzima della proteasi.
 
 }
-\subsection{Unfolded protein response}
+\subsubsection{Unfolded protein response e Apoptosi}
 {
 
 La dimensione del RE è controllato dalla "richiesta" per il ripiegamento delle proteine. Il meccanismo di controllo nel RE, eseguito dai chaperoni molecolari, può essere sopraffatto. Quando succede le proteine mal ripiegate si accumulano nel RE. 
@@ -379,32 +534,59 @@ Se l'accumulo è abbastanza grande, questo innesca un complesso programma chiama
 }
 }
 
-\section{Eccezioni al postulato di Anfinsen}
+\section{Sfide al dogma di Anfinsen: IDP e fold switching} \label{sfide-dogma}
 {
 {
--- IDP [ soft computing articolo]---
-The structure of some proteins is difficult to determine
-for a simple reason: A growing body of biochemical research
-has revealed that a significant number of proteins, or regions
-of proteins, do not have a distinct 3-D structure until they
-interact with a target protein or other molecule. Their flexibil-
-ity and indefinite structure are important for their function,
-which may require binding with different targets at different
-times. These proteins, which may account for 20–30% of
-mammalian proteins, are called intrinsically disordered proteins
-and are the focus of current research.
+
+Il ripiegamento delle proteine in una cellula è un processo molto complesso che riguarda il trasporto di nuove proteine sintetizzate ad appropriati compartimenti cellulari attraverso targeting, misfolding, stati dispiegati temporanei, modifiche post-traduzione, controllo qualità, aggregazione in complessi, facilitazione dei chaperoni molecolari. Come già spiegato, l'aiuto dei chaperoni molecolari non sfida il dogma di Anfinsen, in quanto non influenza la struttura nativa della proteina.
+	
+\par La struttura di alcune proteine è difficile da determinare per una semplice ragione: un crescente numero di ricerche biochimiche ha rivelato che un numero significativo di proteine, o regioni di proteine, non hanno una distinta struttura 3D o non ce l'hanno finché non interagiscono con la molecola target oppure cambiano struttura nativa. La loro flessibilità e struttura indefinita è importante per la loro funzione, che potrebbe richiedere legami con differenti target in tempi diversi. Si stima che queste proteine possano contribuire per il 20-30\% al proteoma dei mammiferi.
+}
+\subsubsection{Intrinsically disordered proteins}
+Una proteina intrinsecamente disordinata (IDP) è una proteina, o una regione di essa, a cui manca una struttura terziaria fissa od ordinata. Le IDP sono comunemente riconosciute come regioni mancanti di densità elettronica in strutture di proteine determinate a cristallografia a raggi X. Molte IDP possono adottare una struttura tridimensionale stabile dopo essersi legate ad altre macromolecole, passando per transizioni disorinde-ordine e perciò risultare strutturate per un certo periodo di tempo e non strutturate per altro. Ci sono però anche IDP che svolgono la loro funzione senza assumere mai una forma ordinata attraverso la loro esistenza.
+Nonostante la loro mancanza di struttura stabile le IDP risultano essere una classe importante e grande di proteine.
+
+
+\subsubsection{Fold switching proteins} \label{sec:fold-switching-proteins}
+{
+Alcune proteine hanno multiple strutture native: possono cambiare la loro forma, rimodellando anche le loro strutture secondarie, in base a fattori esterni. Ad esempio il complesso proteico KaiB cambia ripiegamento durante la giornata agendo da orologio per i cianobatteri. Si possono immaginare le proteine \textit{fold switching} come una sorta di transformer\footnote{metafora di Lauren Porter\supercite{porterYT}, autrice di\supercite{porter2018extant}} dove in un caso la proteina è come un robot che fa una cosa e in un altro caso, in risposta a cambiamenti ambientali, diventa un'automobile e fa qualcos'altro. Il cambio tra strutture alternative è guidato da interazioni della proteina con piccoli ligandi o altre proteine, da modificazioni chimiche (es. fosforilazione) o da cambiamente nelle condizioni ambientali (temperatura, pH, potenziale di membrana). Ogni struttura alternativa può o corrispondere al minimo globale di energia libera della proteina in certe condizioni o essere cineticamente intrappolata in un alto minimo locale di energia libera\supercite{varela2019kinetic}.
+
+\par Le proteine \textit{fold switching} (FS) differiscono dalle IDP\supercite{porter2018extant}: 
+
+\begin{itemize}
+	\item le FS richiedono che entrambe le loro conformazioni siano determinate, le IDP sono regioni non determinate
+	\item le IDP sono caratterizzate da sequenze amminoacidiche caratteristiche mentre le FS sono libere da questo vincolo
+	\item le IDP, in isolamento, non si ripiegano cooperativamente mentre le FS si ripiegano, in isolamento, sia cooperativamente che indipendentemente
+\end{itemize}
+
+Per queste ragioni si può affermare che le FS non sono IDP, piuttosto sono un sottoinsieme delle proteine globulari le cui strutture stabili cambiano drasticamente in risposta al loro ambiente. I vantaggi di una proteina FS sono legati alla sua bifunzionalità:
+\begin{itemize}
+	\item può affrontare velocemente richieste biologiche ovviando al bisogno di risorse cellulari aggiuntive per trascrivere e tradurre un'altra proteina. Un esempio è RfaH: funziona sia da fattore di trascrizione che di traduzione
+	\item regolazione di inattività, può essere bloccata in uno stato di attività o inattività finché non viene innescato uno specifico segnale
+\end{itemize}
+
+È stato stimato che una percentuale tra lo 0.5 e il 4\% delle proteine nel PDB cambi ripiegamento\supercite{porter2018extant}.
 
 }
-\subsection{Intrinsically disordered proteins}
+\subsection{Considerazioni epistemologiche}
+La scoperta delle IDP e delle proteine FS ha creato una spaccatura nel dogma della struttura rigida delle proteine, secondo il quale la struttura deve essere fissa al fine di compiere la propria funzione biologica. È interessante ripercorrere velocemente la storia di questo paradigma attraverso un breve excursus storico per poterne mettere in luce le relazioni epistemologiche soggiacenti.
 
-\subsection{Fold switching proteins} \label{sec:fold-switching-proteins}
-Some proteins have multiple native structures, and change their fold based on some external factors. For example, the KaiB protein complex switches fold throughout the day, acting as a clock for cyanobacteria. It has been estimated that around 0.5–4\% of PDB proteins switch folds.[7] The switching between alternative structures is driven by interactions of the protein with small ligands or other proteins, by chemical modifications (such as phosphorylation) or by changed environmental conditions, such as temperature, pH or membrane potential. Each alternative structure may either correspond to the global minimum of free energy of the protein at the given conditions or be kinetically trapped in a higher local minimum of free energy.[8]
+\par Nel 1894 Fischer ha proposto una metafora di \textit{chiave e serratura }per spiegare come fosse possibile un effetto chimico tra un enzima e un glucoside: \\
+\say{\textit{Per usare una metafora, vorrei dire che l'enzima e il glucoside devono adattarsi l'uno all'altro come una serratura e una chiave per esercitare un effetto chimico l'uno sull'altro}\supercite{fischer1894einfluss}\supercite{dunker2001intrinsically}}
 
+\par Nel 1936 Mirsky e Pauling hanno raccolto una quantità di informazioni sufficiente per concludere:\\
+\say{\textit{attribuiamo le specifiche proprietà caratteristiche delle proteine native alle loro uniche e definite configurazioni. Consideriamo le proteine denaturate essere caratterizzate dall'assenza di un'unica definita configurazione\supercite{mirsky1936structure}}}.
 
---- porter, youtube ---
-“I study proteins and proteins have been thought to have one structure that has one function or fold. I'm studying this group of proteins called fold switching proteins. So, they can actually change their structures and their functions in response to changes in the cell. So, you can kind of imagine fold switching proteins are like a transformer where in one case the protein is like a robot that does one thing and then in another case, in response to changes in our bodies, it becomes a car and can do something else. And an advantage to this is it can respond really quickly to changes in our bodies
+Né Mirsky, né Pauling né Hsien Wu (probabilmente il primo a proporre il paradigma struttura unica-funzione) citarono il lavoro di Fischer ma la sua metafora avrebbe supportato pienamento le loro tesi. Perciò ancora prima dell'esperimento di Anfinsen e delle risoluzioni atomiche delle strutture, una specifica e ben ordinata forma tridimensionale era stata accettata come prerequisito essenziale per la funzione di una proteina.\supercite{dunker2001intrinsically}. Le prime strutture proteiche sono state determinate attraverso la cristallografia negli anni '50, dando ancora più credito all'ipotesi che una struttura fissa fosse necessaria per adempiere la funzone biologica. Queste pubblicazioni hanno contribuito a solidificare il dogma centrale della biologia molecolare. Nonostante questo già nel 1950 si parlava di molteplicità di strutture per una proteina, in particolare Karush\supercite{karush1950heterogeneity} sull'albumina del siero bovino, inferendo che le interazioni proteina-ligando stabilizzassero il membro più adatto da un insieme di strutture in equilibrio, chiamando questo fenomeno \textit{adattabilità configurazionale}. Successivamente si può ricordare il paradosso di Levinthal negli anni '60, per arrivare negli anni '70 al dogma di Anfinsen, il cui paradigma (sequenza amminoacidica -> struttura tridimensionale -> funzione) è messo in discussione da evidenze di mancanza di generalità. Tuttavia quel sistema di pensiero ha preso piede ed ha pervaso quasi tutti i lavori e teorie successive. Al tempo dell'esperimento di Anfinsen e delle prime risoluzioni atomiche della mioglobina e del lisozima il prerequisito di una forma tridimensionale necessario per la funzione della proteina era già accettato. La successiva valanga di migliaia di strutture determinate ha contribuito ad affossare paradigmi di pensiero alternativi.
 
-\subsection{box: Filosofia della scienza}
+\par La scoperta di segmenti intrinsecamente disordinati è stata compiuta nel 1978, quando ancora erano disponibili le strutture di sole 20 proteine. Alcuni segmenti di proteine non fornivano alcuna densità elettronica distinguibile nonostante fossero essenziali per il funzionamento. Una  ragione comune è che gli atomi di quel segmento sono disordinati, ovvero la loro posizione cambia. Con l'avvento del NMR, sempre nel 1978, si è arrivati a identificare intere proteine disordinate e dato che questo metodo è più preciso, la riscoperta di disordine nativo ha avuto un impatto significativo.
+
+\par Fino al 2000\supercite{bracken2000disorder} queste idee non sono apparse nei libri di biochimica, nonostante in 50 anni fossero state pubblicate centinaia di paper sull'importanza della flessibilità e del disordine nelle strutture proteiche.
+
+\par 
+
+\par La parola proteina potrebbe non essere più la parola giusta per identificare il complesso mondo delle macromolecole più importanti della vita\supercite{parisi2021protein}.
+
 }
 
 \section{Il problema del Protein Folding} \label{protein-folding-problem}
@@ -419,14 +601,9 @@ Il problema del protein folding è la questione di \textit{come} una sequenza am
 	
 \end{itemize}	
 
-Il problema del protein folding, come si può immaginare, è considerato uno dei problemi più imepgnativi degli ultimi 50 anni in biochimica. 
+Il problema del protein folding, come si può immaginare, è considerato uno dei problemi più imepgnativi degli ultimi 50 anni in biochimica. Un aspetto importante del problema è sottolineato dal paradosso di Levinthal. Nel 1968 Cyrus Levinthal si rese conto che, a causa dell'elevato numero di gradi di libertà di un polipeptide non ripiegato, tale molecola presenterebbe un numero astronomico di possibili conformazioni finali. Se la proteina raggiungesse la sua conformazione finale passando via via attraverso tutte queste configurazioni, sarebbe necessario un tempo ben superiore all'età attualmente stimata dell'universo per raggiungere la configurazione corretta. In realtà, molte piccole proteine si ripiegano spontaneamente in un tempo dell'ordine dei millisecondi o addirittura dei microsecondi. Il tempo di generazione di E. coli può essere di circa venti minuti: ciò significa che tutte le proteine essenziali per tale organismo (e presumibilmente di tutti gli altri) possono essere prodotte da zero in un tempo decisamente ristretto, al massimo nell'ordine dei minuti.
 
-• le domande di principio del protein folding\\
-- paradosso di Levinthal
-
- Despite their large conformational
-spaces, proteins often fold in the microsecond or
-millisecond time range. 
+\par Il processo di ripiegamento non è quindi una ricerca all'interno dell'enorme spazio degli stati configurazionali possibili. La differenza enorme che esiste tra il tempo del ripiegamento prevedibile in teoria e quello osservato in realtà è appunto chiamato paradosso di Levinthal.
 
 \par Come accennato nella sezione \ref{sec:assisted-folding}, la malattia di Alzheimer, la fibrosi cistica e altre malattie neurodegenerative sono associate al mal ripiegamento delle proteine. La conoscenza dei fattori di mal ripiegamento e la comprensione dei processo di ripiegamento proteico potrebero aiutare nello sviluppo di cure per queste malattie. Per queste ragioni è importante anche rispondere alle altre domande del problema e non fermarsi alla predizione della struttura finale, nonostante questa conoscenza fornisca un grande vantaggio per lo sviluppo di nuovi farmaci e il design di nuove proteine.
 }
