@@ -8,7 +8,7 @@ Il protein folding problem ha sia guidato che tratto beneficio dagli avanzamenti
 
 \par La determinazione sperimentale della struttura delle proteine, discussa sotto, ha vissuto dei progressi significativi col passare degli anni ed è di grande importanza per i metodi computazionali di PSP.
 
-\section{Determinazione sperimentale}
+\section{Determinazione sperimentale} \label{sec:experimentally-guided-prediction}
 
 I biochimici conoscono oggi la sequenza amminoacidica per più di 225 milioni di proteine\supercite{proteienDBentries} (UniProt), con circa 4.5-5 milioni aggiunte ogni mese. La struttura tridimensionale è conosciuta per quasi 200.000 proteine\supercite{proteienDBentries} (PDB)\footnote{al 25 Gennaio 2022 sono presenti 197.514 strutture di macromolecole quindi non solo proteine ma anche acidi nucleici e altre strutture complesse\supercite{pdbStats}} con più di 10.000 strutture aggiunte ogni anno. 
 
@@ -29,6 +29,11 @@ pal 6.2.5 p.138
 
 Anche quando gli scienziati hanno una proteina correttamente ripiegata fra le mani non è così semplice determinarne la sua esatta conformazione tridimensionale, considerando che si parla di strutture di migliaia di atomi.
 
+ Integrating experimental (i.e., lab) data with predictions [235]. Low-resolution
+methods for the determination of protein structures (e.g., electron microscopy) have
+recently been used for deriving geometric constraints, which can be applied along
+with computational methods to achieve better predictions.
+
 \section{Strumenti informatici}
 La piccola percentuale di strutture determinate e il gap che continua a crescere con le sequenze conosciute è una conseguenza della lentezza dei metodi sperimentali (e in parte dei progressi delle tecnologie di sequenziamento). I metodi computazionali, significativamente più veloci ed economici, potrebbero risolvere (almeno parzialmente) questo problema.
 
@@ -45,17 +50,13 @@ pal 6.4 p.146, ottima
 kessel p.174 (2.3 GRAPHIC REPRESENTATIONS OF PROTEINS)
 \subsection{CASP}
 
-\section{Workflow PSP, input, output, metriche}
+\section{Workflow PSP}
 - paper Soft computing
-\subsection{Proprietà dei dati di input}
-\subsection{Allineamento di sequenze}
-- protein sequence alignment (poi MSA)
-[Burkowski 6 p.167]
-baxevanis 8 p.227
+\subsection{Input, output, valutazione}
+\subsubsection{Proprietà dei dati di input}
 
-
-\subsection{Output: modelli, ... [..]}
-\subsection{Metriche di valutazione}
+\subsubsection{Output: modelli, ... [..]}
+\subsubsection{Metriche di valutazione}
 - Gu 16 p.655 GENERAL APPROACH TO STRUCTURE COMPARISON AND ALIGNMENT
 baxevanis 12 p.386
 
@@ -69,7 +70,7 @@ Gu 28-33 [serie di articoli messi insieme, sembra stra interessante]
 baxevanis 12 p.385 \\ \\
 
 
-I numerosi metodi computazionali per il PSP possono essere raggruppati in due categorie di approcci\footnote{La presente sezione sui paradigmi per approssimazione biologica segue e si basa sul capitolo 3.4 di \fullcite{kessel_ben-tal_2018}}:
+I numerosi metodi computazionali per il PSP possono essere suddivsi in base ai due diversi macro-approcci utilizzati\footnote{La presente sezione sui paradigmi per approssimazione biologica segue e si basa sul capitolo 3.4 di \fullcite{kessel_ben-tal_2018}}:
 \begin{itemize}
 	\item \textit{ab initio} (o \textit{de novo}), approccio fisico, nei quali la struttura è predetta da zero usando principi fisici
 	\item \textit{template-based}, dove vengono usate informazioni da strutture 3D note di proteine. Questo approccio è ulteriormente divisibile in:
@@ -79,12 +80,15 @@ I numerosi metodi computazionali per il PSP possono essere raggruppati in due ca
 	\end{itemize}
 \end{itemize}
 
-\subsection{Ab initio}
+\section{Approccio \textit{ab initio}}
+{
 Il metodo più lineare e a prima vista ovvio per predire la struttura nativa di proteine è seguire la natura, simulando accuratamente come le forze fisiche guidino la proteina a ripiegarsi e usare questa simulazione per riprodurre il processo di ripiegamento su proteine con strutture sconosciute. \textit{Ab initio}, termine latino, significa infatti "dall'inizio".
 
 \par Il primo problema che sorge è superare il paradosso di Levinthal. Per farlo si assume un profilo energetico a imbuto del ripiegamento, ovvero la premessa termodinamica che la forma nativa di una proteina sia lo stato in cui risulta avere più bassa energia libera, o più precisamente (richiamando la definizione di struttura nativa data nella sez. \ref{sec:energetica}) quella conformazione avente minore energia libera tale da mantenere il livello di dinamicità richiesto alla proteina per svolgere la sua funzione biologica.
 
-\par Le predizioni nell'approccio \textit{ab initio} sono pertanto \textit{energy-based}. In quanto tali usano solo informazioni sul tipo di atomi nel sistema, le loro posizioni relative nello spazio tridimensionale e le loro interazioni con gli altri atomi. Viene poi calcolato l'intero contenuto di energia del sistema e le forze agenti su ogni atomo. L'energia totale di un sistema (\textit{free energy}) può essere decomposta in varie componenti: cinetica, potenziale, termica, ecc. . È l'energia libera che determina la stabilità del sistema.
+\par Le predizioni nell'approccio \textit{ab initio} sono pertanto \textit{energy-based}. In quanto tali usano solo informazioni sul tipo di atomi nel sistema, le loro posizioni relative nello spazio tridimensionale e le loro interazioni con gli altri atomi. Viene poi calcolato l'intero contenuto di energia del sistema e le forze agenti su ogni atomo. 
+
+\par L'energia totale di un sistema (\textit{free energy}) può essere decomposta in varie componenti: cinetica, potenziale, termica ecc. È l'energia libera che determina la stabilità del sistema. Come si vedrà sotto, nell'approccio fisico non viene calcolata tutta l'energia libera ma solamente approssimata con una parte di essa per motivi di complessità.
 
 \par Sebbene vi siano differenti metodi in questo approccio, tutti condividono due caratteristiche di base:
 \begin{itemize}
@@ -92,7 +96,9 @@ Il metodo più lineare e a prima vista ovvio per predire la struttura nativa di 
 	\item campionano numerose configurazioni e ne trovano una con la minor energia libera
 \end{itemize}
 
-Per \textit{configurazione} si intende la disposizione complessiva di tutti gli atomi di tutti i componenti del sistema (proteina, solvente, ioni, membrana, ecc.) mentre la posizione collettiva dei soli atomi della proteina viene chiamata \textit{conformazione}.
+Per \textit{configurazione} si intende la disposizione complessiva di tutti gli atomi di tutti i componenti del sistema (proteina, solvente, ioni, membrana ecc.) mentre la posizione collettiva dei soli atomi della proteina viene chiamata \textit{conformazione}.
+
+\subsection{Molecular mechanics \& dynamics}
 
 \par Per descrivere in maniera affidabile tutte le forze fisiche operanti sul sistema tra i differenti atomi bisognerebbe descriverne la distribuzione di tutti gli elettroni, il che richiede però calcoli di meccanica quantistica (QM). Le forze, in un sistema molecolare, risultano dalla distribuzione spaziale degli elettroni attorno agli atomi. Sfortunatamente questi calcoli sono computazionalmente molto costosi e una rigorosa caratterizzazione di un sistema macromolecolare, con milioni di atomi, è al momento insostenibile. Calcoli di QM su una singola conformazione di una piccola proteina possono richiedere mesi, tempi troppo lunghi se si ha l'obiettivo di provare tante configurazioni per sceglierne una finale. 
 
@@ -100,14 +106,14 @@ Per \textit{configurazione} si intende la disposizione complessiva di tutti gli 
 
 \par Per le ragioni sopra elencate gli scienziati spesso investigano sistemi macromolecolari usando approssimazioni delle reali forze in essi. Il campo da cui i calcoli per le approssimazioni sono presi è chiamato \textit{molecular mechanics} (MM), poiché approssima sistemi molecolari usando espressioni prese dalla meccanica newtoniana classica:
 \begin{itemize}
+	\item il contenuto di energia è descritto usando un \textit{campo di forza} nel quale gli atomi e i legami covalenti sono trattati come palline e molle
 	\item le descrizioni che richiederebbero calcoli di QM vengono ignorate
 	\item le rappresentazioni sono \textit{esplicite}: prendono in considerazione tutti gli atomi (vedi fig. \ref{fig:descrizione-esplicita-mm})
-	\item il contenuto di energia è descritto usando un \textit{campo di forza} nel quale gli atomi e i legami covalenti sono trattati come palline e molle
 \end{itemize}
 
-Il campo di forza sopra accennato descrive l'energia potenziale del sistema. Da notare che l'energia potenziale (intesa come entalpia) è solo una delle due componenti dell'energia libera, l'altra è l'entropia, vedi sez. \ref{sec:energetica}).
+Il campo di forza sopra accennato descrive l'energia potenziale del sistema. Da notare che l'energia potenziale (intesa come entalpia) è solo una delle due componenti dell'energia libera, vedi sez. \ref{sec:energetica}).
 
-Il campo di forza è un'energia di posizione: l'energia di un oggetto in una specifica posizione all'interno di un campo (gravitazionale, elettrico, magnetico, ecc.). Nelle molecole l'energia potenziale è la somma di tutti gli effetti dei campi elettrici atomici\footnote{gli atomi possiedono, in base alla loro eventuale carica, campi elettrici che influenzano gli altri atomi} in una determinata posizione. Si può approssimare l'energia potenziale all'energia risultante da tutti i legami covalenti e le interazioni non covalenti, escluse quelle non polari \footnote{un esempio di interazione non polare è l'effetto idrofobico. Vengono escluse poiché coinvolgono principalmente cambiamenti di entropia nel solvente}, in una singola configurazione del sistema.
+\par Un campo di forza è un'energia di posizione: l'energia di un oggetto in una specifica posizione all'interno di un campo (gravitazionale, elettrico, magnetico ecc.). Nelle molecole l'energia potenziale è la somma di tutti gli effetti dei campi elettrici atomici\footnote{gli atomi possiedono, in base alla loro eventuale carica, campi elettrici che influenzano gli altri atomi} in una determinata posizione. Si può approssimare l'energia potenziale all'energia risultante da tutti i legami covalenti e le interazioni non covalenti, escluse quelle non polari \footnote{un esempio di interazione non polare è l'effetto idrofobico. Vengono escluse poiché coinvolgono principalmente cambiamenti di entropia nel solvente}, in una singola configurazione del sistema.
 
 \begin{figure}[!htb]
 	\centering
@@ -118,13 +124,13 @@ Il campo di forza è un'energia di posizione: l'energia di un oggetto in una spe
 
 \par La descrizione approssimata fornita dal campo di forza permette di calcolare l'energia potenziale di molti sistemi macromolecolari in meno di un secondo. \\
 
-\par Una variante del MM è la \textit{QM/MM} nella quale i calcoli di QM sono indirizzati solamente su una piccola parte della proteina che contiene residui funzionali importanti. Le altre regioni sono soggette invece a MM, con calcoli molto più veloci. Questo approccio è stato introdotto da Warshel, Levitt e Karplus.
+\par Una variante del MM è la \textit{QM/MM} nella quale i calcoli di QM sono indirizzati solamente su una piccola parte della proteina che contiene residui funzionali importanti. Le altre regioni sono soggette invece a MM, con calcoli molto più veloci \footnote{questo approccio è stato introdotto da Warshel, Levitt e Karplus}
 
 \subsubsection{Spazio configurazionale}
 
-\par Assumendo l'accuratezza del campo di forza, il calcolo dell'energia potenziale di un sistema consente di determinare la stabilità di una configurazione. L'idea iniziale potrebbe essere quella di considerare tutte le possibili locazioni atomiche del sistema, calcolare l'energia potenziale in ogni caso e scegliere quella con la minor energia. Come si può facilmente intuire ciò risulta essere un procedimento troppo oneroso, in quanto si devono considerare anche gli atomi del solvente (ed eventuali ligandi o cofattori). Anche solo il numero delle possibili configurazioni atomiche è difficile da calcolare.
+\par Assumendo l'accuratezza del campo di forza, il calcolo dell'energia potenziale di un sistema consente di determinare (parte del)la stabilità di una configurazione. L'idea iniziale potrebbe essere quella di considerare tutte le possibili locazioni atomiche del sistema, calcolare l'energia potenziale in ogni caso e scegliere quella con la minor energia. Come si può facilmente intuire ciò risulta essere un procedimento troppo oneroso, in quanto si devono considerare anche gli atomi del solvente (ed eventuali ligandi o cofattori). Anche il solo numero delle possibili configurazioni atomiche è difficile da calcolare.
 
-\par Per superare questo problema vengono usati metodi per ridurre lo spazio di ricerca nello spazio configurazionale. Ci sono vari metodi di ricerca nello spazio configurazionale, ad esempio: \textit{systematic search }(grid search basata su dettagli geometrici), \textit{model-building model }(usa frammenti molecolari), \textit{random approach }(movimenti random sul piano cartesiano da una configurazione iniziale), \textit{distance geometry} (usa una matrice di distanze atomiche), \textit{Monte Carlo method} (modifiche random e accettazione probabilistica di configurazioni a livelli energetici maggiori)\supercite{ROY2015151}.
+\par Per superare questo problema vengono usate tecniche per ridurre lo spazio di ricerca nello spazio configurazionale. Ci sono vari metodi di ricerca, ad esempio: \textit{systematic search }(grid search basata su dettagli geometrici), \textit{model-building model }(usa frammenti molecolari), \textit{random approach }(movimenti random sul piano cartesiano da una configurazione iniziale), \textit{distance geometry} (usa una matrice di distanze atomiche), \textit{Monte Carlo method} (modifiche random e accettazione probabilistica di configurazioni a livelli energetici maggiori)\supercite{ROY2015151}.
 
 \par Il metodo più semplice è chiamato \textit{energy minimization}:
 
@@ -148,11 +154,11 @@ Il metodo passa da una configurazione all'altra scendendo con il gradiente della
 
 \subsubsection{Molecular dynamics}
 
-È possibile spingere l'algoritmo di minimizzazione energetica fuori da punti di minimo locale fornendo energia extra, ad esempio innalzando la temperatura del sistema (ovvero aggiungendo calore virtuale). L'energia aggiunta consente agli atomi del sistema di incrementare i loro movimenti e nuove configurazioni fuori dalle barriere energetiche vengono create. Questo metodo è chiamato \textit{Molecular dynamics }(MD) e si focalizza sui movimenti dipendenti dal tempo degli atomi nel sistema. I calcoli sono realizzati in accordo alla meccanica classica. 
+È possibile spingere l'algoritmo di minimizzazione energetica fuori da punti di minimo locale fornendo energia extra, ad esempio innalzando la temperatura del sistema (ovvero aggiungendo calore virtuale). L'energia aggiunta consente agli atomi del sistema di incrementare i loro movimenti e nuove configurazioni fuori dalle barriere energetiche vengono create. Questo metodo è chiamato \textit{Molecular dynamics} (MD) e si focalizza sui movimenti dipendenti dal tempo degli atomi nel sistema. I calcoli sono realizzati in accordo alla meccanica classica. 
 
-\par Agli atomi viene assegnata una veloctià iniziale (proporzionale alla temperatura) e continuano a muoversi nello spazio secondo i corrispondenti cambiamenti nell'energia potenziale del sistema. Il movimento di ogni atomo nel sistema è calcolato in base alla sua energia in quel dato momento.
+\par Agli atomi viene assegnata una velocità iniziale (proporzionale alla temperatura) e continuano a muoversi nello spazio secondo i corrispondenti cambiamenti nell'energia potenziale del sistema. Il movimento di ogni atomo nel sistema è calcolato in base alla sua energia in quel dato momento.
 
-\par Le similuazione di MD sono eseguite in cicli ripetitivi di \textit{riscaldamento} e \textit{raffreddamento} (metodo conosciuto nel mondo informatico come \textit{simulated annealing}, in riferimento al processo di tempra dei metalli). Nella fase di riscaldamento vengono superate le barriere energetiche mentre la fase di raffreddamento (seguita dall'\textit{energy minimization}) consente al sistema di rilassarsi in configurazioni con minor energia.
+\par Le simulazione di MD sono eseguite in cicli ripetitivi di \textit{riscaldamento} e \textit{raffreddamento} (metodo conosciuto nel mondo informatico come \textit{simulated annealing}, in riferimento al processo di tempra dei metalli). Nella fase di riscaldamento vengono superate le barriere energetiche mentre la fase di raffreddamento (seguita dall'\textit{energy minimization}) consente al sistema di rilassarsi in configurazioni con minor energia.
 
 \par Un metodo comune per rendere la ricerca con MD più efficiente è di spezzarla in due fasi:
 \begin{itemize}
@@ -160,12 +166,60 @@ Il metodo passa da una configurazione all'altra scendendo con il gradiente della
 	\item ricerca ad alta risoluzione fra le strutture selezionate nel primo step
 \end{itemize}
 
-\subsubsection{Limiti dell'approccio fisico}
-I metodi di MM/MD trovano difficilmente impiego in processi biologici rilevanti come il protein folding. Un problema risiede nell'approssimazione dell'energia libera con un campo di forza, il quale fornisce sì l'energia potenziale ma non l'entropia. L'unico modo per stimare l'entropia e l'energia libera dai calcoli per l'energia potenziale è eseguire questi calcoli su tutte le possibili configurazioni del sistema e poi integrarli. Il problema risiede proprio nelle rappresentazioni esplicite nelle simulazioni in MD.
+\subsubsection{Limiti dell'approccio fisico e parziali soluzioni}
+I metodi di MM/MD trovano difficilmente impiego in processi biologici rilevanti come il protein folding.
+Alcuni problemi riguardano l'approssimazione in sé del campo di forza, la sua accuratezza e i possibili doppi conteggi delle forze in gioco (es. interazioni ioniche e legami idrogeno calcolate in due espressioni differenti). 
+
+\par Un altro problema, sempre nell'approssimazione dell'energia libera con campi di forza, è che forniscono sì l'energia potenziale ma non l'entropia. L'unico modo per stimare l'entropia e l'energia libera dai calcoli per l'energia potenziale è eseguire questi calcoli su tutte le possibili configurazioni del sistema e poi integrarli. Il problema risiede quindi nell'impossibilità di compiere la totalità di questi calcoli a causa delle rappresentazioni esplicite usate nelle simulazioni di MD. In particolare è difficile considerare tutte le configurazioni del solvente acquoso. Ciò che si sta calcolando non è l'energia libera ma un \textit{potenziale di forze medie} (PMF). In conclusione le simulazioni di MD non sono consigliate per descrivere gli effetti dei solventi.
+
+\subsection{Limiti e utilità}
+
+\subsubsection{Mean field approach}
+Per ovviare parzialmente al problema delle rappresentazioni esplicite è possibile descrivere \textit{implicitamente} parti del sistema che vengono descritte da una proprietà media, per questa ragione tale approccio è chiamato \textit{mean field}. Un esempio è la descrizione del solvente, la parte "meno" interessante in genere, come una massa omogenea descritta dalla sua \textit{dielettricità} \footnote{proprietà di un mezzo non conduttore di essere sede di un campo elettrostatico}, conosciuto anche come approccio \textit{continuum-solvent}, vedi fig. \ref{fig:mean-field}.
+
+\begin{figure}[!htb]
+	\centering
+	\includegraphics[scale=0.4]{images/mean-field.png}
+	\caption{Descrizione con approccio mean-field di un sistema, il solvente è descritto implicitamente mentre la proteina esplicitamente. $\epsilon$ indica la dielettricità. (A) proteina in un solvente acquoso altamente dielettrico. (B) proteina di membrana in un ambiente eterogeneo. Il solvente acquoso è altamente dielettrico mentre la lastra semi-trasparente gialla, che rappresenta la regione biologica di doppio strato lipidico, è poco dielettrica. Fonte\cite{kessel_ben-tal_2018}}
+	\label{fig:mean-field}
+\end{figure}
+
+Ovviamente, essendo una forte approssimazione, alcuni aspetti del sistema reale sono ignorati, come le interazioni fra gli atomi delle proteine e le molecole d'acqua. Tale problema si esacerba quando il solvente è una membrana. \\
+
+\par Un altro compromesso è l'approccio \textit{mixed force fields} che combina calcoli espliciti sulla proteina e calcoli impliciti sul solvente. Viene usata l'equazione di Poisson-Boltzman (PBE) per calcolare accuratamente l'energia libera elettrostatica, legando così l'effetto polarizzante delle cariche con il loro ambiente. Essendo però un calcolo oneroso viene in genere risolta l'equazione generalizzata di Born (GB). A partire da queste due equazioni, che calcolano la componente elettrostatica dell'energia libera, è possibile calcolare l'intera \textit{free energy}, in modo abbastanza accurato, con calcoli che si rifanno alla surface area (SA, vedi parte finale della sez. \ref{sec:termodinamica-forze-idrofobiche}). 
+
+\par Questi metodi sono chiamati \textit{PBSA} e \textit{GBSA} rispettivamente, e come si è visto permettono un calcolo più preciso dell'energia libera. Questi possono a loro volta essere combinati con la MM per rappresentare anche le interazioni del sistema (\textit{MM-PBSA, MM-GBSA}) e sono oggi largamente utilizzati.
+
+\par Un altro limite computazionale è il lasso temporale che si riesce a coprire. La maggior parte delle proteine si ripiega in microsecondi mentre le simulazioni riescono a coprire tempi che vanno dai pico ai nanosecondi. Grazie ad avanzamenti nelle risorse informatiche sono stati fatti dei passi avanti da questo punto di vista. Un caso interessante è \textit{Anton}, un supercomputer progettato specificatamente per ottimizzare simulazioni di MD capace di coprire 85$\mu s$ al giorno per un sistema molecolare di 23.000 atomi (180 volte più veloce di qualsiasi computer general-purpose). Altri progressi sono dovuti alla computazione parallela e alla computazione accelerata dalla GPU. Il calcolo distribuito (\textit{grid computing}), ovvero una larga rete di computer personali dedicati volontariamente al completamento di processi ha permesso alla rete \textit{Folding@Home} (170.000 computer) di simulare l'intero processo di ripiegamento della proteina di legame dell'acetil coenzima A, composta da 86 residui e che richiede 10 millisecondi per ripiegarsi. Un'altra rete distribuita di calcolo è Rosetta@Home, con 86000 computer e finalizzata al PSP. \\
+
+\par Un possibile metodo di azione è la \textit{frammentazione delle proteine}, nel quale i calcoli sono realizzati su piccoli frammenti della proteina e poi integrati. Un esempio è il software QUARK. L'approccio \textit{fragment-based} è usato nei metodi che combinano predizioni \textit{template-based} con assemblamenti \textit{ab initio}.
+
+\subsubsection{Conclusioni sull'approccio \textit{ab initio}}
+Gli approcci \textit{ab initio} non sono attualmente in grado di predire la struttura della maggior parte delle proteine sulla sola base della loro sequenza. Ma sono molto abili nel farlo quando il punto di partenza della predizione è una struttura vicino a quella nativa. Questi metodi sono infatti ampiamente usati per raffinare le strutture grezze ottenute dalle determinazioni sperimentali (vedi sez. \ref{sec:experimentally-guided-prediction}). Hanno anche fornito informazioni importanti sulla dinamica delle proteine e sono utilizzati anche nel \textit{protein engineering} e nel \textit{drug discovery}.
+
+}
+\section{Approccio \textit{template-based}}
+
+\subsection{Homology modeling}
+
+\subsection{Sequence alignment}
+- protein sequence alignment (poi MSA)
+[Burkowski 6 p.167]
+baxevanis 8 p.227
+
+\subsection{Fold recognition via threading}
 
 
-\subsection{Homolgy}
-\subsection{Threading}
+\begin{figure}[!htb]
+	\centering
+	\includegraphics[scale=0.5]{images/msa.jpeg}
+	\caption{Multiple sequence alignment schematica di una sequenza proteica di varie specie. Fonte\cite{msaBioNinja}}
+	\label{fig:msa}
+\end{figure}
+
+\section{Predizione della struttura secondaria}
+
+
 \subsection{Metodi integrativi [..]}
 \subsection{applicazioni specifiche [..]}
 \subsubsection{Loop modeling}
@@ -194,5 +248,12 @@ L'approccio \textit{ab initio} è emerso negli anni '60 a partire dal campo dell
 
 \subsection{anni '90, database, omologia, progetto genoma}
 \subsection{CASP e AlphaFold}
+
+
+
+Interestingly, in the first rounds of CASP, secondary structure prediction was a separate category. This
+category was cancelled after the organizers noticed that the winners in this category used a somewhat circular
+approach. They predicted the 3D structure and used their model structure to decipher the secondary structure
+elements.
 
 \clearpage

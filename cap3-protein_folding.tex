@@ -104,7 +104,7 @@ Da un punto di vista chimico le proteine sono di gran lunga, tra quelle conosciu
 \begin{itemize}
 	\item \textit{struttura primaria}: la sequenza ordinata degli amminoacidi
 	\item \textit{struttura secondaria}: regioni ripetitive locali stabilizzate da legami idrogeno tra atomi della backbone ($\alpha$-eliche e $\beta$-foglietti)
-	\item \textit{struttura supersecondaria}: combinazione di strutture secondarie e connessioni (motivi, domini, loop, giri ...)
+	\item \textit{struttura supersecondaria}: combinazione di strutture secondarie e connessioni (motivi, domini, loop, giri ecc.)
 	\item \textit{struttura terziaria}: forma tridimensionale di una singola catena polipeptidica, risultante dalle interazioni dei residui
 	\item \textit{struttura quaternaria}: forma finale di proteine "assemblate" da 2 o più catene polipeptidiche già ripiegate
 \end{itemize}
@@ -159,7 +159,7 @@ Prima di passare ad analizzare ogni livello della struttura delle proteine è ut
 				\label{fig:effetto-idrofobico}
 			\end{figure}
 		
-	Le sostanze \textit{idrofile} si dissolvono rapidamente nell'acqua poiché le loro molecole formano legami idrogeno con le circostanti molecole d'acqua (nel caso di sostanze polari) o perché queste sono attratte dalle cariche degli ioni (nel caso di sostanze ioniche, es. cloruro di sodio, con ioni $Na^{+}$ e $Cl^{-}$). Le sostanze \textit{idrofobiche} contengono perlopiù legami non polari e sono solitamente insolubili in acqua. Le molecole d'acqua in questo caso non sono attratte ma possono generarsi forze idrofobiche che raggruppano insieme tali sostanze (come nel nucleo idrofobico delle proteine).
+	Le sostanze \textit{idrofile} si dissolvono rapidamente nell'acqua poiché le loro molecole formano legami idrogeno con le circostanti molecole d'acqua (nel caso di sostanze polari) o perché queste sono attratte dalle cariche degli ioni (nel caso di sostanze ioniche, es. cloruro di sodio, con ioni $Na^{+}$ e $Cl^{-}$). Le sostanze \textit{idrofobiche} contengono perlopiù legami non polari e sono solitamente insolubili in acqua. Le molecole d'acqua in questo caso non sono attratte ma possono generarsi forze idrofobiche che raggruppano insieme tali sostanze (come nel nucleo idrofobico delle proteine). Per dettagli termodinamici riguardo l'idrofobicità vedi la parte finale della sez. \ref{sec:termodinamica-forze-idrofobiche}.
 \end{itemize}
 }
 
@@ -414,7 +414,17 @@ Non c'è un meccanismo di ripiegamento universale, ma una collezione di possibil
 
 \par La velocità di ripiegamento correla non solo con la dimensione della proteina ma anche con la sua topologia nativa. Le proteine \textit{fast-folding} (ripiegamento su scala temporale di nanosecondi) tendono ad avere grandi proporzioni di elementi secondari locali ($\alpha$-eliche e giri) laddove quelle \textit{slow-folding} tendono ad avere proporzioni più grandi di elementi globali ($\beta$-foglietti).
 
-\par I fattori termodinamici che danno luogo all’effetto idrofobico sono complessi e non del tutto conosciuti. L’effetto idrofobico è visto come una combinazione dell’effetto di idratazione (effetto entropico) e di interazioni di van der Waals tra molecole di soluto (effetto entalpico).
+\subsubsection{Termodinamica delle forze idrofobiche} \label{sec:termodinamica-forze-idrofobiche}
+
+\par I fattori termodinamici che danno luogo all’effetto idrofobico sono complessi e non del tutto conosciuti. L’effetto idrofobico è visto come una combinazione dell’effetto di idratazione (effetto entropico) e di interazioni di van der Waals tra molecole di soluto (effetto entalpico). Le forze idrofobiche non scaturiscono da classiche interazioni atomo-atomo ma sono un effetto indiretto risultante dalle proprietà del solvente. Per questa ragione è stato difficile conoscere la vastità delle interazioni non polari, sebbene queste siano correlate con la dimensione delle molecole interagenti\supercite{kessel_ben-tal_2018}:
+\begin{itemize}
+	\item per piccole molecole ($<20$) atomi di carbonio), l'energia libera delle interazioni non polari correla con il numero di atomi di carbonio 
+	\item per molecole più grandi come le proteine, l'energia libera correla l'area di superficie ($\Delta S$) della molecola:
+	\[ \Delta G_{np} \approx -0.025\Delta SA \]
+	ovvero per ogni $\angstrom^{2}$ della molecola interagente si ha un'energia libera di $\approx 25$ cal/mol.
+\end{itemize}}
+
+Questa relazione dimostra che ogni molecola con un'area di superficie può partecipare in interazioni non polari. Dato che molte molecole includono gruppi polari e hanno un'estesa area di superficie è il bilancio tra i due tipi di interazione (polare e non polare) che determina la tendenza complessiva della molecola ad essere \textit{idrofila} o \textit{idrofobica}.
 
 }
 	
@@ -517,7 +527,7 @@ Se l'accumulo è abbastanza grande, questo innesca un complesso programma chiama
 
 \par Una situazione del genere può avvenire negli adulti in cui insorge il diabete. I tessuti diventano gradualmente resistenti all'effetto dell'insulina. Per compensare questa resistenza le cellule che secernono insulina nel pancreas ne producono ancora di più. Si arriva infine alla situazione in cui il loro RE arriva ad una capacità massima e viene innescato l'UPR e di conseguenza la morte cellulare. Col tempo sempre più cellule secernenti insulina sono eliminate e la richiesta per quelle sopravvissute aumenta rendendole sempre più vulnerabili a questo meccanismo, esacerbando ulteriormente la malattia\supercite{alberts2018essential}.
 }
-}
+
 
 \section{Sfide al dogma di Anfinsen: IDP e fold switching} \label{sfide-dogma}
 {
