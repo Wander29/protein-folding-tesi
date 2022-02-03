@@ -6,11 +6,20 @@ Il protein folding problem ha sia guidato che tratto beneficio dagli avanzamenti
 
 \par La predizione della struttura di proteine è uno strumento fondamentale in medicina per la comprensione delle malattie da misfolding, nell'industria farmaceutica per risparmiare anni di laboriosi e costosi esperimenti correntemente richiesti per lo sviluppo di un singolo farmaco (\textit{drug design}), in biotecnologia per il design di nuovi enzimi e in generale per acquisire maggior conoscenza sul protein folding in tutti i suoi lati.
 
-\par La determinazione sperimentale della struttura delle proteine, discussa sotto, ha vissuto dei progressi significativi col passare degli anni ed è di grande importanza per i metodi computazionali di PSP.
+\par I biochimici conoscono oggi la sequenza amminoacidica per più di 225 milioni di proteine\supercite{proteienDBentries} (UniProt), con circa 4.5-5 milioni aggiunte ogni mese. La struttura tridimensionale è conosciuta per circa 160.000 proteine\supercite{proteienDBentries} (PDB)\footnote{Al 3 Febbraio 2022 sono presenti 162.913 strutture di proteine nella versione dell'RCSB. Nel PDB ci sono anche strutture di altre macromolecole (complessi di acidi proteici-nucleici, DNA e RNA) per un totale, incluse le proteine, di 186670\supercite{pdbStats}. Nel wwPDB (database globale) vi sono in totale 197961 strutture di macromolecole\supercite{wwpdbStats}.} con più di 10.000 strutture aggiunte ogni anno. 
+
+\begin{figure}[!htb]
+	\centering
+	\includegraphics[scale=0.3]{images/pdb-statistica.png}
+	\caption{Crescita complessiva del numero di strutture di proteine pubblicate nel PDB. Fonte\cite{pdbStats}}
+	\label{fig:pdb-statistica}
+\end{figure}
+
 
 \section{Determinazione sperimentale} \label{sec:experimentally-guided-prediction}
 
-I biochimici conoscono oggi la sequenza amminoacidica per più di 225 milioni di proteine\supercite{proteienDBentries} (UniProt), con circa 4.5-5 milioni aggiunte ogni mese. La struttura tridimensionale è conosciuta per quasi 200.000 proteine\supercite{proteienDBentries} (PDB)\footnote{al 25 Gennaio 2022 sono presenti 197.514 strutture di macromolecole quindi non solo proteine ma anche acidi nucleici e altre strutture complesse\supercite{pdbStats}} con più di 10.000 strutture aggiunte ogni anno. 
+La determinazione sperimentale della struttura delle proteine ha vissuto dei progressi significativi col passare degli anni ed è di grande importanza per i metodi computazionali di PSP.
+
 
 - come le proteine sono studiate [alberts, 4.4 p.158]
 - metodi sperimentali 
@@ -34,8 +43,30 @@ methods for the determination of protein structures (e.g., electron microscopy) 
 recently been used for deriving geometric constraints, which can be applied along
 with computational methods to achieve better predictions.
 
-\section{Strumenti informatici}
+\section{Strumenti e metodi informatici}
 La piccola percentuale di strutture determinate e il gap che continua a crescere con le sequenze conosciute è una conseguenza della lentezza dei metodi sperimentali (e in parte dei progressi delle tecnologie di sequenziamento). I metodi computazionali, significativamente più veloci ed economici, potrebbero risolvere (almeno parzialmente) questo problema.
+
+\subsection{Paradigmi per approssimazione biologica}
+kessel 3.4 [computational methods for structure prediction]
+pal 15.3.2 Computational structure prediction. Molto breve
+pal 18.1 [molecular dynamics]
+psp-wiki [abbastanza discorsivo]
+prot-eng-wiki[molto breve]
+Gu 28-33 [serie di articoli messi insieme, sembra stra interessante]
+baxevanis 12 p.385 \\ \\
+
+
+I numerosi metodi computazionali per il PSP possono essere suddivsi in base ai due diversi macro-approcci utilizzati\footnote{Le sezioni sui paradigmi per approssimazione biologica seguono e si basano sul capitolo 3.4 di \fullcite{kessel_ben-tal_2018}}:
+\begin{itemize}
+	\item \textit{ab initio} (o \textit{de novo}), approccio fisico, nei quali la struttura è predetta da zero usando principi fisici
+	\item \textit{template-based}, dove vengono usate informazioni da strutture 3D note di proteine. Questo approccio è ulteriormente divisibile in:
+	\begin{itemize}
+		\item \textit{homology modeling}, basato su confronti sequenza-sequenza tra la proteina da predire e il modello
+		\item \textit{fold recognition}, basato su altre similitudini fra modello e proteina da predire
+	\end{itemize}
+	\item ?? \textit{covariazione evolutiva}, ??
+\end{itemize}
+
 
 \subsection{Rappresentazione informazioni}
 pal 6.4.1 p.145
@@ -48,10 +79,13 @@ baxevanis 12 p.373, 1
 \subsection{Visualizzazione proteine}
 pal 6.4 p.146, ottima
 kessel p.174 (2.3 GRAPHIC REPRESENTATIONS OF PROTEINS)
+
 \subsection{CASP}
 
 \section{Workflow PSP}
 - paper Soft computing
+- wiki psp
+
 \subsection{Input, output, valutazione}
 \subsubsection{Proprietà dei dati di input}
 
@@ -60,25 +94,6 @@ kessel p.174 (2.3 GRAPHIC REPRESENTATIONS OF PROTEINS)
 - Gu 16 p.655 GENERAL APPROACH TO STRUCTURE COMPARISON AND ALIGNMENT
 baxevanis 12 p.386
 
-\section{Paradigmi per approssimazione biologica}
-kessel 3.4 [computational methods for structure prediction]
-pal 15.3.2 Computational structure prediction. Molto breve
-pal 18.1 [molecular dynamics]
-psp-wiki [abbastanza discorsivo]
-prot-eng-wiki[molto breve]
-Gu 28-33 [serie di articoli messi insieme, sembra stra interessante]
-baxevanis 12 p.385 \\ \\
-
-
-I numerosi metodi computazionali per il PSP possono essere suddivsi in base ai due diversi macro-approcci utilizzati\footnote{La presente sezione sui paradigmi per approssimazione biologica segue e si basa sul capitolo 3.4 di \fullcite{kessel_ben-tal_2018}}:
-\begin{itemize}
-	\item \textit{ab initio} (o \textit{de novo}), approccio fisico, nei quali la struttura è predetta da zero usando principi fisici
-	\item \textit{template-based}, dove vengono usate informazioni da strutture 3D note di proteine. Questo approccio è ulteriormente divisibile in:
-	\begin{itemize}
-		\item \textit{homology modeling}, basato su confronti sequenza-sequenza tra la proteina da predire e il modello
-	\item \textit{fold recognition}, basato su altre similitudini fra modello e proteina da predire
-	\end{itemize}
-\end{itemize}
 
 \section{Approccio \textit{ab initio}}
 {
@@ -190,25 +205,108 @@ Ovviamente, essendo una forte approssimazione, alcuni aspetti del sistema reale 
 
 \par Questi metodi sono chiamati \textit{PBSA} e \textit{GBSA} rispettivamente, e come si è visto permettono un calcolo più preciso dell'energia libera. Questi possono a loro volta essere combinati con la MM per rappresentare anche le interazioni del sistema (\textit{MM-PBSA, MM-GBSA}) e sono oggi largamente utilizzati.
 
-\par Un altro limite computazionale è il lasso temporale che si riesce a coprire. La maggior parte delle proteine si ripiega in microsecondi mentre le simulazioni riescono a coprire tempi che vanno dai pico ai nanosecondi. Grazie ad avanzamenti nelle risorse informatiche sono stati fatti dei passi avanti da questo punto di vista. Un caso interessante è \textit{Anton}, un supercomputer progettato specificatamente per ottimizzare simulazioni di MD capace di coprire 85$\mu s$ al giorno per un sistema molecolare di 23.000 atomi (180 volte più veloce di qualsiasi computer general-purpose). Altri progressi sono dovuti alla computazione parallela e alla computazione accelerata dalla GPU. Il calcolo distribuito (\textit{grid computing}), ovvero una larga rete di computer personali dedicati volontariamente al completamento di processi ha permesso alla rete \textit{Folding@Home} (170.000 computer) di simulare l'intero processo di ripiegamento della proteina di legame dell'acetil coenzima A, composta da 86 residui e che richiede 10 millisecondi per ripiegarsi. Un'altra rete distribuita di calcolo è Rosetta@Home, con 86000 computer e finalizzata al PSP. \\
+\par Un altro limite computazionale è il lasso temporale che si riesce a coprire. La maggior parte delle proteine si ripiega in microsecondi mentre le simulazioni riescono a coprire tempi che vanno dai pico ai nanosecondi. Grazie ad avanzamenti nelle risorse informatiche sono stati fatti dei passi avanti da questo punto di vista. Un caso interessante è \textit{Anton}, un supercomputer progettato specificatamente per ottimizzare simulazioni di MD capace di coprire 85$\mu s$ al giorno per un sistema molecolare di 23.000 atomi (180 volte più veloce di qualsiasi computer general-purpose). Altri progressi sono dovuti alla computazione parallela e alla computazione accelerata dalla GPU. Il calcolo distribuito (\textit{grid computing}), ovvero una larga rete di computer personali dedicati volontariamente al completamento di processi, ha permesso alla rete \textit{Folding@Home} (170.000 computer) di simulare l'intero processo di ripiegamento della proteina di legame dell'acetil coenzima A, composta da 86 residui e che richiede 10 millisecondi per ripiegarsi. Un'altra rete distribuita di calcolo è \textit{Rosetta@Home}, con 86.000 nodi e finalizzata al PSP. \\
 
-\par Un possibile metodo di azione è la \textit{frammentazione delle proteine}, nel quale i calcoli sono realizzati su piccoli frammenti della proteina e poi integrati. Un esempio è il software QUARK. L'approccio \textit{fragment-based} è usato nei metodi che combinano predizioni \textit{template-based} con assemblamenti \textit{ab initio}.
+\par Un possibile metodo di azione è la \textit{frammentazione delle proteine}, nel quale i calcoli sono realizzati su piccoli frammenti della proteina e poi integrati. Un esempio è il software QUARK. L'approccio \textit{fragment-based} è usato nei metodi che combinano predizioni \textit{template-based} con assemblaggi \textit{ab initio}.
 
 \subsubsection{Conclusioni sull'approccio \textit{ab initio}}
 Gli approcci \textit{ab initio} non sono attualmente in grado di predire la struttura della maggior parte delle proteine sulla sola base della loro sequenza. Ma sono molto abili nel farlo quando il punto di partenza della predizione è una struttura vicino a quella nativa. Questi metodi sono infatti ampiamente usati per raffinare le strutture grezze ottenute dalle determinazioni sperimentali (vedi sez. \ref{sec:experimentally-guided-prediction}). Hanno anche fornito informazioni importanti sulla dinamica delle proteine e sono utilizzati anche nel \textit{protein engineering} e nel \textit{drug discovery}.
 
 }
+
 \section{Approccio \textit{template-based}}
+Le proteine che esistono in natura oggi si sono sviluppate attraverso lunghi processi evoluzionistici, progredendo attraverso mutazioni casuali e selezione naturale. La rivoluzione genetica degli anni '50, consentendo la determinazione delle sequenze amminoacidiche, ha permesso il nascere di metodi di confronto delle sequenze. Si possono ricavare informazioni sulla struttura 3D delle proteine cercando altre proteine con proprietà nella sequenza simili e una struttura nota, ovvero dei \textit{template}. 
 
 \subsection{Homology modeling}
+Nella modellazione per omologia ci si affida a somiglianze nella sequenza tra la proteina target e i template. I metodi per omologia sono perciò basati sul paradigma: \\
+ \say{\textit{la sequenza codifica per la struttura}}.
 
-\subsection{Sequence alignment}
+\par Sono metodi basati anche sull'osservazione che la struttura terziaria è più conservata della sequenza amminoacidica. Di conseguenza ci si aspetta una significativa somiglianza nella struttura fra proteine che condividono una notevole somiglianza tra le sequenze, anche non totale.
+
+\par In altri termini, due sequenze amminoacidiche molto simili (\textit{omologhe}) , in due proteine differenti ma evoluzionisticamente collegate, dovrebbero acquisire la stessa struttura locale.
+
+\par La modellazione per omologia consiste tipicamente nei seguenti passi:
+\begin{enumerate}
+	\item ricerca e selezione del template
+	\item costruire un MSA (Multiple Sequence Alignment) che includa la proteina target e i template
+	\item assegnare le coordinate spaziali dei template alla sequenza della proteina target
+	\item raffinamento della struttura modello
+	\item valutazione e validazione della struttura risultante
+\end{enumerate}
+
+\begin{figure}[!htb]
+	\minipage{0.48\textwidth}
+	\includegraphics[scale=0.43]{images/homology1.png}
+	\caption{Diagramma di flusso della modellazione per omologia. Fonte: \cite{sliwoski2014computational}}
+	\label{fig:omologia-flusso}
+	\endminipage\hfill
+	\minipage{0.48\textwidth}
+	\centering
+	\includegraphics[scale=0.5]{images/homology2.jpg}
+	\caption{Schema esemplificativo di una modellazione per omologia. Fonte \cite{UNIL-homology}}
+	\label{fig:omologia-esempio}
+	\endminipage\hfill
+\end{figure}
+
+Nel 1° step si cerca una struttura modello, almeno una, tra le strutture conosciute avente un'alta somiglianza di sequenza. È più semplice se la struttura di un una proteina omologa molto simile è stata già risolta. Ci sono però altri gruppi di proteine, come le proteine di membrana, le cui strutture risolte sono scarse. Trovare i giusti template e caratterizzare la loro omologia è ciò che determina in genere il successo dell'intera predizione (una somiglianza minore del 30\% avrà risultati molto scarsi, mentre sopra al 50\% la predizione ha buona probabilità di essere di buon livello). È possibile in ogni caso che vi sia una somiglianza \textit{locale} anche quando la somiglianza globale è scarsa. Alcuni algoritmi noti per trovare template sono PSI-BLAST e HMM (Hidden Markov Models), quest'ultimo molto usato.
+
+\par Nel 2° step vengono sfruttate informazioni evoluzionistiche per migliorare l'allineamento tra le sequenze dei template e del target. È difficile stabilire allineamenti fra omologhi distanti, come nel caso di target \textit{e} e template \textit{procarioti}. Ci sono vari tool per creare MSA, ad esempio: Clustal$\Omega$, MAFFT, MUSCLE, T-Coffee. Possono venire utilizzati più MSA insieme per sopperire a problemi di disallineamento di piccole regioni. Il MSA viene illsutrato nella sezione \ref{sec:MSA}.
+
+\par Nel 3° step ad ogni segmento della sequenza target viene assegnato un insieme di coordinate spaziali in accordo ai risultati del MSA. Tool noti sono MODELLER, NEST e SWISS-Model. La struttura ottenuta potrebbe essere però deformata a causa dell'utilizzo di più template e numerosi inserzioni e cancellazioni. Possono essere presenti lunghezze e angoli dei legami non ottimali e atomi sovrapposti.
+
+\par Per ovviare a tali problemi nello step 4 si applica un processo di raffinamento, specialmente per quanto riguarda i loop (vedi sez. \ref{sec: loop-modeling}), regioni fodamentali per i siti di legame. Vengono applicati algoritmi che confrontano caratteristiche geometriche ed effettuano calcoli energetici che identificano configurazioni atomiche sfavorevoli. 
+
+\par Nel 5° step si valuta l'affidabilità della predizione in vari modi:
+\begin{itemize}
+	\item alcune qualità della struttura costruita possono essere confrontate con delle tendenze statistiche
+	\item se ci sono vari modelli predetti si calcola l'energia libera e si sceglie la struttura con minor energia libera
+	\item la conservazione evoluzionistica a livello amminoacidico può essere correlata con il loro stato "esposto" o "seppellito" (l'idea di partenza è che il nucleo della proteina rimanga inalterato e la superficie sia variabile)
+	\item se si hanno a disposizione dati sperimentali della struttura nativa della proteina si può validare il modello con la consistenza a essi.
+\end{itemize}
+
+\subsubsection{Efficienza e limiti}
+
+Con una somiglianza maggiore del 50\% si registra una r.m.s.d. che tra 1 e 2 \angstrom, ma è importante notare che non sempre proteine omologhe (vicine sequenzialmente) condividono la stessa funzione e struttura. Un esempio sono le proteine del lievito Gal1 e Gal3: 73\% di identità e 92\% di somiglianza. Queste due proteine hanno però sviluppato differenti funzioni, con Gal1 che è una galattochinasi mentre Gal3 è un induttore trascrizionale\supercite{platt2000insertion}.
+
+\par Non c'è quindi una soglia che assicuri una sicura predizione della struttura: molte proteine con una lontana somiglianza possono svolgere la stessa funzione mentre altre altamente simili possono svolgere funzioni diverse. Una regola empirica è considerare sequenze con più del 30-40\% di somiglianza come sequenze con una struttura o funzione simile.
+
+\begin{figure}[!htb]
+	\centering
+	\includegraphics[scale=1.2]{images/homology-grafico.jpg}
+	\caption{Risultati dei metodi per omologia alla variazione dell'identità nella sequenza. (A) Dimostrazione schematica dell'uso di confronti di sequenze per identificare omologie strutturali. 'X' indica un qualsiasi amminoacido. (i) identità > 70\%: semplici allineamenti di sequenza sono sufficienti per trovare il corretto ripiegamento. (ii) Tra il 20 e il 30\% non sempre è possibile trovare il corretto ripiegamento; è necessario effettuare ulteriori raffinamenti. (iii) a bassi livelli l'utilità di questo metodo è molto bassa. (B) Somiglianza strutturale (in GDT\_TS score) al variare dell'identità della sequenza. Anche al 30\% il livello di somiglianza è significativo. Fonte\cite{joseph2014local}}
+	\label{fig:omologia-grafico}
+\end{figure}
+
+\par Un'osservazione fondamentale risiede sulle basi in sé del metodo: dato l'affidamento pressoché totale nella modellazione comparativa, la struttura modello è condizionata necessariamente a essere più simile ai template che alla reale struttura nativa della sequenza target, nonostante i vari processi successivi di raffinamento che, data la loro natura approssimativa, non sono perfetti. 
+
+\par I problemi maggiori risultano nelle regioni con bassa somiglianza, come ci si può aspettare. Si sta parlando specialmente dei \textit{loop}, soggetti a mutazioni considerevoli durante l'evoluzione.
+
+\par Si incorrono in problemi con la modellazione per omologia quando si trattano proteine che non hanno omologhe tra le strutture conosciute, come le proteine di membrana, le quali sono difficili da da cristallizzare. \\
+
+\subsubsection{Conclusioni sull'approccio \textit{template-based}}
+
+\par Nonostante tutte le osservazioni fatte, \textit{la modellazione per omologia è correntemente il miglior metodo computazionale per predire la struttura delle proteine} e la sua applicabilità è destinata a crescere con l'aggiunta di nuove strutture determinate sperimentalmente da poter essere usate come template.
+
+\par La sfida principale che questi metodi hanno affrontato, e che AlphaFold ha "vinto", era raggiungere almeno una r.m.s.d. di 3\angstrom. Le sfide ancora da superare riguardano l'accuratezza su grandi proteine, su proteine con un contenuto significativo di strutture $\beta$ e la modellazione di proteine multi-dominio e di membrana.
+
+\par Oltre alla PSP i metodi per omologia sono anche usati nel drug design (per studiare le differenze strutturali fra le proteine bersagliate dallo stesso farmaco) e nello studio dei meccanismi catalitici.
+
+\subsection{Loop modeling} \label{sec: loop-modeling}
+- karami 2019
+- rosetta
+- wiki
+
+\subsection{Sequence alignment} \label{sec:MSA}
 - protein sequence alignment (poi MSA)
 [Burkowski 6 p.167]
 baxevanis 8 p.227
 
-\subsection{Fold recognition via threading}
 
+Certain software programs can display multiple sequences together to show the degree of similarity between them
+
+This is called a sequence alignment and is commonly used to show the degree of relatedness between sequences
+
+Le sequence di proteine in genere risultano avere un grado di somiglianza maggiore rispetto alle sequenze nucleotidiche, questo è dovuto alla degenerazione del codice genetico e al fatto che quasi per ogni amminoacido esistono vari codoni che lo codificano, perciò differenti sequenze nucleotidiche possono codificare esattamente la stessa sequenze di amminoacidi.
 
 \begin{figure}[!htb]
 	\centering
@@ -217,26 +315,69 @@ baxevanis 8 p.227
 	\label{fig:msa}
 \end{figure}
 
+\subsection{Fold recognition via threading}
+- praveen 2014
+- pal 
+
+Nei metodi per \textit{fold recognition} ci si basa su somiglianze nelle inclinazioni derivate dalla sequenza, come la formazione di strutture secondarie, o su tendenze statistiche.
+
+\begin{figure}[!htb]
+	\centering
+	\includegraphics[scale=0.53]{images/threading-mappa.png}
+	\caption{. Fonte\cite{joseph2014local}}
+	\label{fig:fold-recognition}
+\end{figure}
+
+\section{Approccio per \textit{covariazione evolutiva}}
+
+
+
+L'approccio per coevoluzione evolutiva può essere combinato con l'approccio \textit{template-based}, come dimostra AWSEM\supercite{jin2020protein} nella 13° edizione del CASP, il quale contiene anche metodi di ottimizzazione di energia e utilizzo di reti neurali.
+
+
 \section{Predizione della struttura secondaria}
 
 
-\subsection{Metodi integrativi [..]}
-\subsection{applicazioni specifiche [..]}
-\subsubsection{Loop modeling}
+\section{Metodi integrativi}
 
 - predictive methods
 baxevanis 7
+
+\subsection{Case study: \textit{TASSER}}
+
+\subsection{Case study: \textit{ROSETTA??}}
+
+\subsection{Macromolecular docking??}
+
+\section{Protein Function Prediction}
+- pfp wiki
+
+One should remember, though, that effi-
+cient protein structure prediction is just a means to an end; the real challenge of structural
+biology has always been (and still is) to deduce the functions of proteins on the basis of their
+sequences and/or structural data [190].
+
+Knowing the structure of a protein often allows functional prediction as well.
+
+There is no hard sequence-similarity threshold for "safe" function prediction; many proteins of barely
+detectable sequence similarity have the same function while others (such as Gal1 and Gal3) are highly
+similar but have evolved different functions. 
+
+For enzymes, predictions of specific functions are especially difficult, as they only need a few key residues
+in their active site, hence very different sequences can have very similar activities. By contrast, even with
+sequence identity of 70\% or greater, 10\% of any pair of enzymes have different substrates; and differences
+in the actual enzymatic reactions are not uncommon near 50\% sequence identity.
 
 \section{Paradigmi nel soft computing}
 \subsection{ANN, EC, SVM, .. [..]}
 \subsection{altri approcci [..]}
 
+
 \section{Storia della comprensione delle proteine}
 - alberts p.160
 - psp-wiki
-- levitt 2001, birth of structural biology
+- levitt 2001, birth of structural biology \\ \\
 
-\subsection{primi approcci}
 
 L'approccio \textit{ab initio} è emerso negli anni '60 a partire dal campo della chimica computazionale. Nel 2013 il premio Nobel per la chimica è stato assegnato proprio a quegli scienziati che hanno contribuito sin da quegli anni al campo della biofisica molecolare computazionale (Warshel, Levitt, Karplus).
 
@@ -247,7 +388,16 @@ L'approccio \textit{ab initio} è emerso negli anni '60 a partire dal campo dell
 
 
 \subsection{anni '90, database, omologia, progetto genoma}
+
+Around the beginning of the 1990s, a new field in biology called ‘bioin-
+formatics’ emerged, in which scientists sought to predict the characteristics of new pro-
+teins on the basis of properties of their sequences
+
 \subsection{CASP e AlphaFold}
+
+A test of homology modeling efficiency carried out in 2007 has
+shown that in single-domain proteins comprising 90 residues or fewer, the structures pre-
+dicted by this method differed from their corresponding native structures by 2 to 6 \supercite{dill2008protein}.
 
 
 
