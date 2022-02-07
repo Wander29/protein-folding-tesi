@@ -161,7 +161,7 @@ Geni che controllano un medesimo carattere (per esempio, il colore dei capelli) 
 
 L'RNA catalitico o \textit{ribozima}, enzima ad RNA, è una molecola di RNA in grado di catalizzare una reazione chimica similmente agli enzimi. \\
 
-\par Il DNA dell'uomo contiene $3\time10^{9}$ coppie di nucleotidi ($3.3Gbp$, \textit{gigabasepairs}), ha circa $21000$ geni codificanti e pesa $3.56pg$\footnote{In termini di massa è possibile convertire il numero di paia di basi azotate in \textit{picogrammi}, $1pg$=$0.978Gbp$, poiché una coppia di basi azotate pesa 650$Da$. Il peso del genoma umano è calcolabile come segue: $3.3\times10^{9}\times650\times1.66\times10^{-24}=3.56\times10^{-12}g$}: se il genoma umano venisse esteso in lunghezza sarebbe lungo 2,2 metri dato che ogni nucleotide è lungo $0.34nm$. Il batterio più semplice (\textit{Nasuia deltocephalinicola}) ha un genoma di 112Kb\supercite{nasuiaWiki} (circa $76\mu m$ in lunghezza) contenente 137 geni codificanti mentre il genoma maggiore ad oggi riportato è quello della pianta \textit{Paris Japonica} con 148.8Gbp\supercite{hidalgo2017there}, 50 volte quello dell'uomo (circa 100$m$ in lunghezza), tanto per avere una visione quantitativa della diversità genetica tra gli organismi.
+\par Il DNA dell'uomo contiene $3\time10^{9}$ coppie di nucleotidi ($3.3Gbp$, \textit{gigabasepairs}), ha circa $21000$ geni codificanti e pesa $3.56pg$\footnote{In termini di massa è possibile convertire il numero di paia di basi azotate in \textit{picogrammi}, $1pg$=$0.978Gbp$, poiché una coppia di basi azotate pesa 650$Da$. Il peso del genoma umano è calcolabile come segue: $3.3\times10^{9}\times650\times1.66\times10^{-24}=3.56\times10^{-12}g$.}: se il genoma umano venisse esteso in lunghezza sarebbe lungo 2,2 metri dato che ogni nucleotide è lungo $0.34nm$. Il batterio più semplice (\textit{Nasuia deltocephalinicola}) ha un genoma di 112Kb\supercite{nasuiaWiki} (circa $76\mu m$ in lunghezza) contenente 137 geni codificanti mentre il genoma maggiore ad oggi riportato è quello della pianta \textit{Paris Japonica} con 148.8Gbp\supercite{hidalgo2017there}, 50 volte quello dell'uomo (circa 100$m$ in lunghezza), tanto per avere una visione quantitativa della diversità genetica tra gli organismi.
 
 \begin{figure}[!htb]
 	\minipage{0.7\textwidth}
@@ -330,7 +330,7 @@ La \textit{bioinformatica} ha giocato un ruolo fondamentale durante l'epidemia d
 	\item modellizzazione di sistemi e reti biologiche
 \end{itemize}
 
-\par Come si può notare da questa lista una parte importante della bioinformatica si occupa dell'utilizzo di strumenti informatici finalizzati a manipolare, archiviare e confrontare stringhe e sequenze di caratteri. Tuttavia questa disciplina non si ferma all’analisi delle sequenze. Tra le più interessanti applicazioni bioinformatiche odierne vi sono quelle incentrate sull’analisi strutturale \supercite{baxevanis2020bioinformatics}. Difatti la bioinformatica pone le sue fondamenta nel campo della \textit{structural bioinformatics}: per portare un esempio il database PDB (\textit{Protein Data Bank}) nasce nel 1977 per archiviare coordinate atomiche e legami derivati dagli studi cristallografici sulle proteine \supercite{bernstein77}.
+\par Come si può notare da questa lista una parte importante della bioinformatica si occupa dell'utilizzo di strumenti informatici finalizzati a manipolare, archiviare e confrontare stringhe e sequenze di caratteri. Tuttavia questa disciplina non si ferma all’analisi delle sequenze. Tra le più interessanti applicazioni bioinformatiche odierne vi sono quelle incentrate sull’analisi strutturale \supercite{baxevanis2020bioinformatics}. Difatti la bioinformatica pone le sue fondamenta nel campo della \textit{structural bioinformatics}: per portare un esempio il database PDB (\textit{Protein Data Bank}) nasce negli anni '70 per archiviare le informazioni strutturali atomiche ricavate dagli studi cristallografici sulle proteine \supercite{bernstein77}.
 
 \par Non va confusa la bioinformatica (o biologia computazionale) con la \textit{computazione bio-ispirata} (es. algoritmi genetici, reti neurali), con il \textit{biological computing} (ossia computer composti di parti biologiche come DNA, proteine o neuroni) o con la \textit{biological computation} (l'idea che gli organismi eseguano computazioni e che le idee di informazione e computazione possano essere la chiave per comprendere la biologia)\supercite{Mitchell2010}.
 
@@ -352,7 +352,9 @@ Il ML si avvale delle tecniche del soft computing \supercite{MLwiki} e vi entra 
 	\label{fig:soft-computing}
 \end{figure}
 
-\subsubsection{Algoritmi genetici}
+\subsubsection{Evolutionary computation}
+
+La computazione evolutiva (EC) è una tecnica di ottimizzazione basata sui concetti darwiniani di evoluzione. I principali rappresentanti di questa tecnica sono gli algoritmi evolutivi (EA) e gli algoritmi genetici (GA).
 
 \par Gli algoritmi genetici fanno parte del paradigma relativo alle tecniche informatiche \textit{bio-ispirate}, così come le reti neurali. Un algoritmo genetico è un algoritmo euristico utilizzato per tentare di risolvere problemi di ottimizzazione. L'aggettivo "genetico", ispirato al principio della selezione naturale ed evoluzione biologica, deriva dal fatto che, al pari del modello evolutivo darwiniano che trova spiegazioni nella genetica, gli algoritmi genetici attuano dei meccanismi concettualmente simili a quelli dei processi biochimici genetici, come il \textit{crossing over}.
 
@@ -377,9 +379,9 @@ Nella sua accezione più semplice, l'Intelligenza Artificiale (AI) si riferisce 
 
 \subsection{Machine Learning}
 
-Il Machine Learning (ML) è un sottoinsieme dell'AI che si occupa di creare sistemi che automaticamente migliorano con l'esperienza, basandosi su rigorosi fondamenti delle scienze computazionali. Utilizza metodi statistici per migliorare la performance di un algoritmo nell'identificare pattern nei dati. Domande fondamentali di questo campo sono del tipo: "come varia la performance di apprendimento al variare del numero di esempi di allenamento presentati?". 
+Il Machine Learning (ML) è un sottoinsieme dell'AI che si occupa di creare sistemi che automaticamente migliorano con l'esperienza, basandosi su rigorosi fondamenti delle scienze computazionali. Utilizza metodi statistici per migliorare la performance di un algoritmo nell'identificare pattern nei dati. Domande fondamentali di questo campo sono del tipo: "come varia la performance di apprendimento al variare del numero di esempi di allenamento presentati?". Il ML è uno strumento molto potente ma è importante comprenderne i limiti. È utile quando non esiste o è difficile da formalizzare la teoria attorno ad un problema, oppure quando i dati da analizzare sono incerti, rumorosi o incompleti.
 
-\par L'apprendimento è al cuore del problema dell'intelligenza sia biologica che artificiale ed è un principio universale comune a tutti gli organismi. Tom M. Mitchell definisce in questo modo l'apprendimento per una macchina:
+\par L'apprendimento è al cuore del problema dell'intelligenza, sia biologica che artificiale, ed è un principio universale comune a tutti gli organismi. Tom M. Mitchell definisce in questo modo l'apprendimento per una macchina:
 
 \say{\textit{Si dice che un programma apprende dall'esperienza E con riferimento ad alcune classi di compiti T e con misurazione della performance P, se le sue performance nel compito T, come misurato da P, migliorano con l'esperienza E.}}\footnote{\fullcite{mitchell1997machine}} \\
 
@@ -395,9 +397,11 @@ Il ML si divide in:
 	\item \textit{Deep Learning}, insieme di tecniche basate su reti neurali artificiali organizzate in diversi strati, dove ogni strato calcola i valori per quello successivo; si basa su diversi livelli di rappresentazione, corrispondenti a gerarchie di caratteristiche
 \end{itemize}
 
-Il ML è quindi sì uno strumento molto potente ma è importante comprenderne i limiti. È utile quando non esiste o è difficile da formalizzare la teoria attorno ad un problema, oppure quando i dati da analizzare sono incerti, rumorosi o incompleti.
+Le tecniche SVM eseguono compiti di classificazione costruendo un iperpiano in uno spazio multidimensionale, e cercano di massimizzare il margine tra le diverse classi. La funzione che esegue la trasformazione dello spazio è chiamata funzione di \textit{kernel}.
 
-\subsection{Reti neurali artificiali (ANN)}
+\subsection{Deep Learning}
+
+\subsubsection{Reti neurali artificiali (ANN)}
 
 Una rete neurale artificiale (\textit{Artificial Neural Network}) è un modello computazionale composto da neuroni artificiali bio-ispirato alla semplificazione di una rete neurale biologica. È importante notare che l'obiettivo della modellizzazione bio-ispirata non è una comprensione delle reti neurali biologiche, data la semplicità dei modelli utilizzati, ma il tentativo di risolvere problemi ingegneristici sfruttando idee derivanti da queste. Nonostante ciò le ANN riflettono tratti di comportamento del cervello umano e consentono di riconoscere pattern e risolvere problemi difficili.
 
@@ -408,8 +412,79 @@ Una rete neurale artificiale (\textit{Artificial Neural Network}) è un modello 
 	\label{fig:rete-neurale}
 \end{figure}
 
-\par Le ANN sono composte da strati di nodi: uno strato di input, uno o più nascosti e uno di output. Ogni nodo è un neurone artificiale, si connette a tutti i nodi dello strato successivo e ha associato un peso e una soglia. Se l'output di un nodo è sopra la soglia allora il neurone è attivato, trasferendo informazioni al prossimo strato della rete. Con l'allenamento le ANN possono migliorare la loro accuratezza e rivelarsi potenti strumenti. Campi di utilizzo sono, fra gli altri, lo \textit{speech-recognition} e l'\textit{image recognition}.
+\par Le ANN sono composte da strati di nodi: uno strato di input, uno o più nascosti e uno di output. Ogni nodo è un neurone artificiale, si connette a tutti i nodi dello strato successivo e ha associato un peso e una soglia. Se l'output di un nodo è sopra la soglia allora il neurone è attivato, trasferendo informazioni al prossimo strato della rete. Con l'allenamento le ANN possono migliorare la loro accuratezza e rivelarsi potenti strumenti. Campi di utilizzo sono, fra gli altri, lo \textit{speech-recognition} e l'\textit{image recognition}\footnote{La sezione seguente su alcuni aspetti del DL utili per l'argomento della tesi è basata sull'articolo \fullcite{torrisi2020deep}.}.
 
-\par La parola "deep" in \textit{deep learning} si riferisce alla profondità degli strati in una rete neurale. Una rete neurale artificiale che consiste in almeno 4 strati (inclusi quello di input e output) può essere considerata un algoritmo di \textit{deep learning}\supercite{neuralNetworksIBM}. Una rete neurale con 2 o 3 strati è una rete neurale semplice.
+\subsubsection{Feed Forward Neural Network (FFNN)}
+
+Una Feed Forward Neural Network (FFNN) è una rete neurale artificiale che non contiene cicli. In particolare le FFNN a strati sono FFNN i cui nodi possono essere partizionati in gruppi (strati) che sono ordinati e in cui gli output del livello $i$ sono input solo ed unicamente per il livello $i+1$. Il primo livello è noto come livello di input, l'ultimo come Il livello di output e qualsiasi livello intermedio è un livello nascosto le cui unità formano una rappresentazione intermedia di un'istanza. 
+
+\par Le FFNN a strati possono essere addestrate con esempi usando l'algoritmo di \textit{back-propagation} e hanno dimostrato di avere proprietà di approssimazione universale. 
+
+\subsubsection{Deep Learning}
+
+La parola "deep" in \textit{deep learning} si riferisce alla profondità degli strati in una rete neurale. Una rete neurale artificiale che consiste in almeno 4 strati (inclusi quello di input e output) può essere considerata un algoritmo di \textit{deep learning}\supercite{neuralNetworksIBM}. Una rete neurale con 2 o 3 strati è una rete neurale semplice.
+
+Il Deep Learning è un sottocampo del Machine Learning basato su reti neurali artificiali, che enfatizza l'uso di più livelli connessi per trasformare gli input in funzionalità suscettibili di prevedere gli output corrispondenti. Dato un set di dati sufficientemente ampio di coppie input-output, è possibile utilizzare un algoritmo di addestramento per apprendere automaticamente la mappatura dagli input agli output regolando un insieme di parametri a ogni livello della rete. Sebbene in molti casi gli elementi costitutivi elementari di un sistema di Deep Learning siano FFNN o unità elementari simili, questi vengono combinati in stack profondi utilizzando vari modelli di connettività. 
+
+\par Questa flessibilità architettonica consente di personalizzare i modelli di Deep Learning per qualsiasi particolare tipo di dati. I modelli di deep learning possono generalmente essere addestrati su esempi mediante \textit{back-propagation}, che porta a rappresentazioni interne efficienti dei dati appresi per un'attività. Questo apprendimento automatico delle funzionalità elimina in gran parte la necessità di eseguirne l'ingegneria manuale. Tuttavia, i modelli di Deep Learning contengono un gran numero di parametri interni che per essere ben regolati hanno bisogno di molti dati; si dice quindi i modelli di DL siano \textit{data-greedy}: le applicazioni di maggior successo del Deep Learning fino ad oggi sono state in campi in cui è disponibile un numero molto elevato di esempi.
+
+\subsubsection{Convolutional Neural Networks (CNN)}
+
+Le reti neurali convoluzionali (CNN) sono un'architettura progettata per elaborare dati organizzati con una dipendenza spaziale regolare (come i token in una sequenza o i pixel in un'immagine). Uno strato in una CNN sfrutta questa regolarità applicando lo stesso insieme di filtri convoluzionali locali tra le posizioni nei dati, acquisendo due vantaggi: 
+\begin{itemize}
+	\item evita il problema dell'overfitting avendo un numero molto piccolo di pesi da regolare rispetto allo strato di input e alla dimensionalità dello strato successivo
+	\item è invariante alla traslazione
+\end{itemize}
+
+Un modulo CNN è solitamente composto da più livelli CNN consecutivi in modo che i nodi ai livelli successivi abbiano campi ricettivi più ampi e possano codificare caratteristiche più complesse. Va notato che l'FFNN "a finestra" può essere considerata come una versione particolare e superficiale della CNN.
+
+\subsubsection{Recurrent Neural Networks (RNN)}
+
+Le reti neurali ricorrenti (RNN) sono progettate per apprendere caratteristiche globali dai dati sequenziali. Durante l'elaborazione di una sequenza di ingresso, un modulo RNN utilizza un vettore di stato interno per riassumere le informazioni dagli elementi elaborati della sequenza: dispone di un sottomodulo parametrizzato che prende in ingresso il vettore di stato interno precedente e l'elemento di ingresso corrente della sequenza, per produrre il vettore di stato interno corrente. Il vettore dello stato finale riassumerà l'intera sequenza di input.
+
+\par Poiché la stessa funzione viene applicata ripetutamente agli elementi di una sequenza, i moduli RNN soffrono facilmente del problema della scomparsa del gradiente o dell'esplosione del gradiente quando si applica l'algoritmo di propagazione all'indietro per addestrarli. \\
+
+\begin{figure}[!htb]
+	\centering
+	\includegraphics[scale=0.3]{images/rnn.png}
+	\caption{Confronto di RNN (sulla sinistra) e FFNN (sulla destra). Fonte\cite{rnnIBM}}
+	\label{fig:rnn}
+\end{figure}
+
+\par I moduli di rete neurale ricorrenti \textit{gated }come \textit{Long Short Term Memory }(LSTM) o \textit{Gated Recurrent Unit }(GRU) sono progettati per alleviare questi problemi. Sono possibili anche versioni bidirezionali di RNN (BRNN), particolarmente appropriate nelle previsioni delle \textit{annotazioni} nei metodi per la predizione della struttura delle proteine (vedi la sez. \ref{sec:workflow-psp}), dove le istanze di dati non sono sequenze nel tempo ma nello spazio ed è desiderabile la propagazione delle informazioni contestuali in entrambe le direzioni.
+
+\subsubsection{Residual Neural Network (ResNet)}
+
+Anche se la profondità di un modello di Deep Learning ne aumenta l'espressività, l'aumento della profondità rende anche più difficile ottimizzare i pesi della rete a causa della scomparsa o dell'esplosione dei gradienti. Sono state proposte le Residual Network (ResNet) per risolvere questi problemi. Aggiungendo una connessione che "salta"(\textit{skip}) da uno strato ad uno successivo, una ResNet viene inizializzata per essere vicina alla funzione di identità, evitando così grandi interazioni moltiplicative nel flusso del gradiente. Inoltre, le connessioni skip fungono da "scorciatoie", fornendo percorsi input-output più brevi affinché il gradiente scorra in reti altrimenti profonde.
+
+\par I modelli ResNet tipici sono implementati con skip a doppio o triplo strato che contengono non linearità (ReLU). Una matrice di pesi aggiuntiva può essere utilizzata per apprendere i pesi di salto (HighwayNets). I modelli con diversi salti paralleli sono indicati come DenseNets. 
+
+\begin{figure}[!htb]
+	\minipage{0.47\textwidth}
+	\centering
+	\includegraphics[scale=0.45]{images/resnet1.png}
+	\caption{Schema della forma canonica di una ResNet. Uno strato è saltato da una connessione "skip". Fonte: \cite{resnetWiki}}
+	\label{fig:resnet-skip}
+	\endminipage\hfill
+	\minipage{0.5\textwidth}
+	\centering
+	\includegraphics[scale=0.25]{images/resnet2.png}
+	\caption{Ricostruzione di un neurone piramidale. Soma e dendriti sono etichettati in rosso, gli assoni in blu. (1) Soma, (2) dendrite basale, (3) dendrite apicale, (4) assone, (5) assone collaterale. Fonte \cite{resnetWiki}}
+	\label{fig:resnet-neurone}
+	\endminipage\hfill
+\end{figure}
+
+\par L'idea della ResNet si basa su costrutti noti dalle cellule piramidali nella corteccia cerebrale. Il cervello ha strutture simili alle reti residue, poiché i neuroni dello strato corticale VI ricevono input dallo strato I, saltando gli strati intermedi. Nella figura \ref{fig:resnet-neurone} si può comparare la connessione di skip al fatto che i segnali del dendrite apicale saltino gli strati, mentre (semplificando) il dendrite basale raccoglie i segnali dello strato precedente e/o dello stesso. 
+
+\par Non è chiaro quanti strati nella corteccia cerebrale siano paragonabili agli strati in una rete neurale artificiale, né se ogni area della corteccia cerebrale mostri la stessa struttura, ma su vaste aree sembrano simili. Non ci sono prove che qualcosa come la \textit{back-propagation} abbia luogo nel cervello e non è supportata da prove neurofisiologiche nel cervello animale né l'esistenza di un "segnale di insegnamento" globale né l'ottimizzazione iterativa.
 
 \clearpage
+
+
+
+
+
+
+
+
+

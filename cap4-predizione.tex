@@ -1,23 +1,18 @@
-\chapter{Predizione della struttura di proteine (PSP)}
+\chapter{Predizione della struttura di proteine}
 
-Il protein folding problem ha sia guidato che tratto beneficio dagli avanzamenti nei metodi sperimentali e computazionali\supercite{dill2008protein}. Uno dei maggiori obiettivi della biologia computazionale è proprio il PSP (Protein Structure Prediction), ovvero la predizione della struttura nativa tridimensionale di una proteina a partire dalla sua sequenza amminoacidica. Il PSP è il problema opposto al \textit{protein design} (la progettazione di nuove sequenze proteiche aventi delle specifiche attività).
+Il protein folding problem ha sia guidato che tratto beneficio dagli avanzamenti nei metodi sperimentali e computazionali\supercite{dill2008protein}. Uno dei maggiori obiettivi della biologia computazionale è proprio il Protein Structure Prediction (PSP), ovvero la predizione della struttura nativa tridimensionale di una proteina a partire dalla sua sequenza amminoacidica. Il PSP è il problema opposto al \textit{protein design} (la progettazione di nuove sequenze proteiche aventi delle specifiche attività).
 
-\par Grazie al CASP\footnote{Critical Assessment of Structure Predictions, vedi la sezione \ref{sec:CASP}.}, alla crescita del PDB, ai metodi per omologia e di allineamento di sequenze, i metodi computazionali hanno registrato incredibili progressi, come dimostra il livello raggiunto da AlphaFold. 
+\par Grazie al CASP\footnote{Critical Assessment of Structure Predictions, vedi la sezione \ref{sec:CASP}.}, alla crescita dei database sulle proteine, allo sviluppo dei metodi per omologia e di allineamento di sequenze e all'utilizzo del Deep Learning, i metodi computazionali hanno registrato incredibili progressi, come il livello raggiunto da AlphaFold può dimostrare. 
 
 \par La predizione della struttura di proteine è uno strumento fondamentale: in medicina per la comprensione delle malattie da misfolding, nell'industria farmaceutica per risparmiare anni di laboriosi e costosi esperimenti correntemente richiesti per lo sviluppo di un singolo farmaco (\textit{drug design}), in biotecnologia per il design di nuovi enzimi e in generale per acquisire maggior conoscenza sul protein folding in tutti i suoi lati.
 
 \section{Metodi e strumenti informatici}
+
 La piccola percentuale di strutture determinate e il gap che continua a crescere con le sequenze conosciute (vedi sotto la sezione \ref{sec:database}) è una conseguenza della lentezza e della dispendiosità dei metodi sperimentali (e in parte anche dei progressi delle tecnologie di sequenziamento). I metodi computazionali, significativamente più veloci ed economici, potrebbero fornire una possibile soluzione a questo problema.
 
-\subsection{Workflow e classificazione dei metodi per il PSP}
-%kessel 3.4 [computational methods for structure prediction]
-%pal 15.3.2 Computational structure prediction. Molto breve
-%pal 18.1 [molecular dynamics]
-%psp-wiki [abbastanza discorsivo]
-%prot-eng-wiki[molto breve]
-%Gu 28-33 [serie di articoli messi insieme, sembra stra interessante]
-%baxevanis 12 p.385 \\ \\
-
+\subsection{Workflow e classificazione dei metodi per il PSP} \label{sec:workflow-psp}
+{
+	
 Quando si parla di metodi per la predizione della struttura di proteine esistono due \textit{paradigmi fondamentali} per affrontare il problema:
 \begin{itemize}
 	\item paradigma \textit{ab initio}
@@ -26,19 +21,37 @@ Quando si parla di metodi per la predizione della struttura di proteine esistono
 
 Il paradigma \textit{ab initio} (o \textit{de novo}) si basa su un approccio puramente fisico, nel quale la struttura è predetta da zero simulando principi fisici.
 
-\par Nel paradigma \textit{data-based} invece si fa uso di informazioni estratte da database di sequenze o strutture di proteine. I metodi basati su questo paradigma sono dominanti nei metodi odierni. Tale maggioranza è legata alla crescita notevole della quantità di dati disponibili. È importante notare che i \textit{paradigmi} fanno riferimento al modo in cui si affronta il problema, alla direzione dalla quale si prova a risolverlo.
+\par Nel paradigma \textit{data-based} invece si fa uso di informazioni estratte da database di sequenze o strutture di proteine. 
 
-\par Le proteine che esistono in natura oggi si sono sviluppate attraverso lunghi processi evoluzionistici, progredendo attraverso mutazioni casuali e selezione naturale. La rivoluzione genetica degli anni '50, consentendo la determinazione delle sequenze amminoacidiche, ha permesso il nascere di metodi di confronto delle sequenze. È per questo che si possono ricavare informazioni sulla struttura 3D di una sequenza amminoacidica cercando altre proteine con proprietà nella sequenza simili e una struttura nota. Se si trova una similitudine globale si parlerà di \textit{template}. È da qui che nasce la famosa distinzione fra \textit{template-based modeling} (TBM) e \textit{template-free modeling} (FM). 
+\par Le proteine che esistono in natura oggi si sono sviluppate attraverso lunghi processi evolutivi, progredendo attraverso mutazioni casuali e selezione naturale. La rivoluzione genetica degli anni '50, consentendo la determinazione delle sequenze amminoacidiche, ha permesso il nascere di metodi di confronto delle sequenze. È per questo che si possono ricavare informazioni sulla struttura 3D di una sequenza amminoacidica cercando altre proteine con proprietà nella sequenza simili e una struttura nota.\\
 
-\par Come già accennato, nel panorama attuale quasi tutti gli approcci oggi utilizzati per il PSP sono prevalentemente \textit{data-based}: i metodi puri \textit{ab initio} vengono raramente utilizzati per la predizione della struttura di proteine (per ragioni che verranno spiegate in dettaglio nella sezione \ref{sec:ab-initio}). Tuttavia, nella pratica, alcune intuizioni del paradigma \textit{ab initio} vengono usate in metodi \textit{data-based}, ad esempio la funzione euristica di valutazione che simula il campo di forza per calcolare l'energia potenziale.
+\par È bene chiarire sin dall'inizio che metodi basati totalmente sul primo paradigma non sono computazionalmente trattabili. Per questa ragione, i metodi odierni per la PSP di sequenze senza struttura nota, sono sempre in qualche misura \textit{data-based}. Possono essere quasi totalmente basati sui dati come nel caso della modellazione per \textit{omologia} e \textit{fold recognition} oppure parzialmente basati sui dati negli altri casi.
 
-\par È possibile dividere i metodi \textit{data-based} sviluppati in due grandi categorie, a seconda della loro funzione:
+\par L'utilizzo, anche parziale, di tecniche \textit{data-based} è necessario per guidare la ricerca nello spazio conformazionale tramite rappresentazioni più grossolane, in modo da superare il paradosso di Levinthal.
+
+\par Varie osservazioni evolutive e strutturali supportano questo approccio. Si è visto che la struttura è più conservata della sequenza: un'identità anche solo del 50\% può implicare un'identità di ripiegamento ed è possibile ricavare informazioni da mutazioni coevolute.
+
+\par L'approccio \textit{data-based} è anche supportato dall'osservazione che, sebbene il numero di famiglie di proteine multi-dominio cresca rapidamente, la scoperta di nuovi domini singoli sembra stabilizzarsi. Ciò suggerisce che la maggioranza delle proteine possa ripiegarsi in un numero limitato di domini strutturali, forse non più di 10.000-20.000. Per molte famiglie a singolo dominio la struttura di almeno un membro è conosciuta: si stima che ciò permetta di avere informazioni su più di 3/4 delle sequenze nei database\supercite{alberts2018essential}. \\
+
+\par Una \textit{pipeline} standard per la previsione della struttura delle proteine è basata su fasi di previsione intermedie, nelle quali vengono dedotte delle astrazioni che, risultando più semplici della struttura 3D completa, rivelano delle informazioni importanti per guidare le successive ricerche e modellazioni. Queste informazioni possono essere chiamate "annotazioni della struttura delle proteine" (Protein structure annotations, PSA). Le annotazioni sono divise in 2 categorie a seconda delle informazioni che forniscono:
 \begin{itemize}
-	\item manipolazione della sequenza di input
-	\item modellazione della struttura della proteina target
+	\item \textit{Annotazioni 1D}: informazioni sulla backbone, caratteristiche strutturali locali (es. formazione di strutture secondarie, accessibilità al solvente)
+	\item \textit{Annotazioni 2D}: vincoli spaziali (es. contact map)
 \end{itemize}
 
-Nella prima categoria vi sono i metodi di MSA (\textit{Multiple Sequence Alignment}), \textit{fold recognition} e \textit{contact prediction}. Nella seconda categoria invece si trovano i metodi di \textit{homology modeling}, \textit{threading}, \textit{fragment-based} e i metodi di modellazione di regioni non allineate (\textit{loop-modeling} e \textit{side-chain modeling}).
+\begin{figure}[!htb]
+	\centering
+	\includegraphics[scale=1]{images/psa.jpg}
+	\caption{Pipeline generica per la predizione della struttura 3D di una proteina. Questo schema vuole mettere in risalto gli step intermedi relativi alle annotazioni. Fonte\cite{torrisi2020deep}}
+	\label{fig:psa}
+\end{figure}
+
+Ci sono due possibili situazioni in cui ci si può trovare quando si vuole modellare una proteina: si riesce a trovare almeno una proteina omologa (o con caratteristiche simili) oppure no. Nel primo caso la struttura trovata verrà chiamata \textit{template} e si affronterà una predizione di tipo \textit{template-based modeling} (TBM), più semplice, mentre nell'altro caso si affronterà una predizione \textit{template-free modeling} (FM).\\
+
+
+\par Come già accennato, nel panorama attuale molti degli gli approcci oggi utilizzati per il PSP sono prevalentemente \textit{data-based}: i metodi puri \textit{ab initio} vengono raramente utilizzati per la predizione della struttura di proteine (per ragioni che verranno spiegate in dettaglio nella sezione \ref{sec:ab-initio}). Tuttavia, nella pratica, alcune intuizioni del paradigma \textit{ab initio} vengono usate in metodi prevalentemente \textit{data-based}, ad esempio la funzione euristica di valutazione che simula il campo di forza per calcolare l'energia potenziale. Le varie tecniche vengono utilizzate in combinazione: non vi è una singola tecnica principale e i metodi migliori sono proprio quelli che riescono ad integrare vari approcci. \\
+
+\par  Quando si ha di fronte una sequenza di una proteina senza struttura nota e si vuole predire la sua forma tridimensionale, un metodo per il PSP attuale agirebbe nel seguente modo (vedi fig. \ref{fig:fm-tbm})\footnote{Ogni argomento o metodo citato verrà spiegato nel dettaglio successivamente, in questa sezione l'obiettivo è di fornire una visione globale degli argomenti.}:
 
 \begin{figure}[!htb]
 	\centering
@@ -47,52 +60,147 @@ Nella prima categoria vi sono i metodi di MSA (\textit{Multiple Sequence Alignme
 	\label{fig:fm-tbm}
 \end{figure}
 
-\par  Quando si ha di fronte una sequenza di una proteina senza struttura nota e si vuole predire la sua forma tridimensionale, un metodo per il PSP attuale agirebbe nel seguente modo (vedi fig. \ref{fig:fm-tbm})\footnote{Tutto ciò che viene citato verrà spiegato nel dettaglio successivamente, viene ora riportato con l'obiettivo di fornire una visione globale degli argomenti.}:
 \begin{enumerate}
-	\item viene generata una MSA per identificare sequenze omologhe a partire dalla sequenza della proteina
-	\item l'MSA viene poi convertita e profilata; vengono predette caratteristiche strutturali (come strutture secondarie o esposizione al solvente) e i contatti fra i residui
+	\item viene generata una MSA per ottenere informazioni evolutive ed	identificare sequenze omologhe
+	\item viene profilata la sequenza, sfruttando anche i risultati dell'MSA, e viene usata per dedurre le annotazioni 1D e 2D
 	\item viene scelto il tipo di modellazione adeguato
 	\item vengono assemblati i frammenti o i template
 	\item viene scelto il modello fra vari candidati, che sarà poi raffinato a livello atomico
 \end{enumerate}
 
-\par Nel 1° passo l'obiettivo è identificare sequenze omologhe. Se si riesce a trovarne almeno una allora è possibile procedere alla \textit{modellazione per omologia} (\textit{homology modeling}). \\
+\par Nel 1° passo l'obiettivo è ottenere informazioni evolutive che serviranno sia per identificare sequenze omologhe che per dedurre le annotazioni. Se si riesce a trovare almeno una proteina omologa allora sarà possibile procedere alla \textit{modellazione per omologia} (\textit{homology modeling}). \\
 
-\par Nel 2° passo si applicano dei protocolli di \textit{fold recognition} al fine di ricavare informazioni strutturali per due scopi:
+\par Nel 2° passo si applicano delle deduzioni sulla sequenza target al fine di ricavare delle annotazioni sulla struttura, per due scopi:
 \begin{itemize}
-	\item identificare altri template globali al fine di applicare protocolli di \textit{threading} 
-	\item se non se ne trovano, tali informazioni verranno utilizzate per valutare i frammenti nella ricerca all'interno di una \textit{fragment library}
+	\item impostare dei vincoli spaziali e strutturali per guidare la modellazione
+	\item nel caso in cui non siano state trovate proteine omologhe: per identificare template globali al fine di applicare protocolli di \textit{fold recognition}; se non se ne trovano, tali informazioni verranno utilizzate per valutare i frammenti nella ricerca all'interno di una \textit{fragment library}
 \end{itemize}
 
-Vengono anche predetti i contatti fra residui sulla base di informazioni co-evolutive (\textit{correlated mutation}), generando o una \textit{contact map}, o un \textit{distrogramma} o una \textit{distance map} attraverso una \textit{deep residual neural network} (\textit{ResNet}). Il fine è ricavare restrizioni spaziali come contatti inter-residuo a lunga distanza, distanze specifiche, legami idrogeno e angoli di torsione. \\
-
-\par Si rientrerà nel caso del TBM sia che venga eseguita una modellazione per \textit{omologia} che una modellazione basata sul \textit{threading}.
+\par Si rientrerà nel caso del TBM sia che venga eseguita una modellazione per \textit{omologia} che una modellazione basata sul \textit{fold recognition}.
 Si rientra invece nel caso del MF quando non si riescono a trovare dei template globali. In questo caso vengono principalmente utilizzate tecniche di modellazione \textit{fragment-based}, ovvero basate su frammenti di proteine che verranno poi integrati. Nel 3° passo, a seconda che ci si trovi nel caso TBM o MF vengono attuate le rispettive modellazioni.\\ 
 
-\par Nel 4° passo l'assemblaggio è eseguito sotto la guida di una funzione euristica del campo di forza, che può essere \textit{energy-based} e/o \textit{knowledge-based}, combinata con una rete neurale profonda per la predizione di determinate caratteristiche. Nel caso di una modellazione TBM si hanno delle restrizioni spaziali sul modello. Vengono utilizzate tecniche specifiche per regioni non allineate, come i loop (\textit{loop modeling}). \\
+\par Nel 4° passo l'assemblaggio è eseguito sotto la guida di una funzione euristica del campo di forza, che può essere \textit{energy-based} e/o \textit{knowledge-based}, combinata con una rete neurale profonda per la predizione di determinate caratteristiche. Nel caso di una modellazione TBM si hanno anche delle restrizioni spaziali sul modello. Vengono utilizzate tecniche specifiche per regioni non allineate, come i loop (\textit{loop modeling}). \\
 
-\par Nel 5° passo vengono valutati i modelli, viene eseguita una valutazione della qualità (\textit{quality assessment, QA}) stimando l'accuratezza del modello (\textit{estimation of model accuracy}, \textit{EMA}) e infine viene eseguito il raffinamento. Tipicamente viene scelto il modello con minore energia. \\
-
-\par Come si può notare, l'approccio maggiormente usato in questo \textit{workflow} è quello \textit{data-based}. Vengono utilizzate in combinazione varie tecniche: non vi è una singola tecnica principale.
+\par Nel 5° passo vengono valutati i modelli, viene eseguita una valutazione della qualità (\textit{quality assessment, QA}) stimando l'accuratezza del modello (\textit{estimation of model accuracy}, \textit{EMA}) e infine viene eseguito il raffinamento. Tipicamente viene scelto il modello con minore energia.
 
 \subsubsection{Nota sulla classificazione dei metodi}
 
-La predizione della struttura di proteine è stato ed è tutt'ora un campo in evoluzione. Per tale ragione risulta difficile classificare e raggruppare i metodi in nette categorie. Il CASP divide i metodi in due classi principali: TBM  e FM\supercite{abbass2020enhancing}, in base all'utilizzo o meno di informazioni prese da template (proteine con struttura 3D nota). 
+La predizione della struttura di proteine è stata ed è tutt'ora un campo in evoluzione. Per tale ragione risulta difficile classificare e raggruppare i metodi in nette categorie. Agli albori i metodi erano divisi in \textit{ab initio} e \textit{comparative modeling}. Oggi il confine non è più così marcato (come si è potuto vedere dalla panoramica nella sezione precedente). Il CASP divide la modellazione in due classi principali in base alla difficoltà: TBM ed FM\supercite{kryshtafovych2021critical}, in base all'utilizzo o meno di informazioni ricavate da template (proteine con struttura 3D nota). 
 
-\par Nonostante questa divisione possa risultare efficace, in questo lavoro si è ritenuto opportuno non seguire una classificazione standard e provare a delineare invece le idee alla base degli approcci e raggrupparli in più livelli secondo questo principio. La motivazione risiede nel fatto che nessun metodo preso singolarmente può dare risultati soddisfacenti: negli anni si è assistito infatti ad un utilizzo combinato dei tanti metodi trovati (come la figura \ref{fig:fm-tbm} e la sezione sopra può mostrare) sfocando sempre più i margini fra le categorie. Tutto questo ha creato confusione ed un utilizzo improprio dei termini. Come si vedrà, \textit{ab initio} indica il "puro" approccio fisico, mentre con la divisione operata dal CASP si tende spesso ad utilizzare come sinonimi \textit{ab initio} e \textit{template-free} methods, cosa che, in fase di stesura della tesi, è stata reputata equivoca e forse erronea. Allo stesso tempo i metodi si sono evoluti negli ultimi anni, specialmente con l'avvento del Deep Learning, e le vecchie classificazioni \footnote{Compresa quella di \fullcite{kessel_ben-tal_2018}. Nonostante ciò il presente capitolo si basa in parte sul capitolo 3.4 del libro appena citato.} non rispecchiano più l'attuale struttura dei metodi usati. Si è deciso di focalizzare l'attenzione sulla struttura dei metodi per il PSP odierni e da qui provare ad astrarre verso l'alto per classificare i vari approcci possibili in 2 categorie funzionali e infine in due grandi paradigmi. Il quadro di riferimento è il \textit{workflow} della figura \ref{fig:fm-tbm}, che delinea la struttura tipica degli approcci TBM ed FM attuali. 
+\par Nonostante questa divisione possa risultare efficace, in questo lavoro si è ritenuto opportuno seguire una classificazione diversa, che provasse a delineare invece le idee alla base degli approcci odierni e raggrupparli in più livelli secondo questo principio. La motivazione risiede nel fatto che nessun metodo preso singolarmente può dare risultati soddisfacenti: negli anni si è assistito infatti ad un utilizzo combinato dei tanti metodi trovati sfocando sempre più i margini fra le categorie. Tutto questo ha creato confusione ed un utilizzo improprio dei termini. Come si vedrà, \textit{ab initio} indica il "puro" approccio fisico, mentre con la divisione operata dal CASP si tende ad utilizzare come sinonimi \textit{ab initio} e \textit{template-free modeling}\footnote{Un esempio è in \fullcite{torrisi2020deep}. Nonostante ciò è proprio da tale lavoro che si è preso spunto per l'idea delle annotazioni.}, cosa che, in fase di stesura della tesi, è stata reputata equivoca e forse addirittura erronea. Allo stesso tempo i metodi si sono evoluti negli ultimi anni, specialmente con l'avvento del Deep Learning, e le vecchie classificazioni \footnote{Compresa quella di \fullcite{kessel_ben-tal_2018}, su cui il presente capitolo si basa in parte, precisamente sul capitolo 3.4.} non rispecchiano più l'attuale struttura dei metodi usati. Si è deciso di focalizzare l'attenzione sulla struttura dei metodi per il PSP odierni e da qui provare ad astrarre verso l'alto. Si è scelto per tale ragione di dividere la fase di annotazione da quella di modellazione e di rimarcare la differenza basilare tra i due grandi paradigmi per il PSP. Il quadro di riferimento è il \textit{workflow} della figura \ref{fig:fm-tbm}, che delinea la struttura tipica di un metodo attuale (tralasciando i metodi end-to-end come AlphaFold2). 
 
-\subsection{L'arrivo del Deep Learning}
+}
 
-avanzamenti nel PSP grazie al DL:
-advances in MSA generation, contact map prediction, protein
-residue–distance prediction, potentials to guide iterative fragment assembly, models, or
-quality assessment (QA), advances in overall protein prediction pipelines, and advances
-in Cryo-EM based protein structure determination and the future outlook for the protein
-structure prediction field.
+\subsection{Soft computing e Deep Learning}
 
+Nel corso degli anni il PSP è stato affrontato anche con approcci di \textit{soft computing}. Si sta parlando di approcci perlopiù \textit{data-based}. I principali metodi di \textit{soft computing }utilizzati fanno capo a queste tecniche\supercite{marquez2015soft}:
 
-\subsubsection{Paradigmi nel soft computing}
-% \subsubsection{ANN, EC, SVM, .. [..]}
+\begin{itemize}
+	\item Machine Learning:
+	\begin{itemize}
+		\item ANN (Artificial neural network)
+		\item SVM (Support vector machines), es. SVM-SEQ 
+		\item k-Nearest Neighbors
+		\item linear regression
+		\item HMM (Hidden Markov Models)
+		\item Support vector regression
+	\end{itemize}
+	
+	\item EC (Evolutionary computing), es. MECoMaP
+	\item approcci \textit{statistici}, basati principalmente sull'omologia e sul fold recognition
+	\item modelli \textit{matematici}, come un adattamento della programmazione lineare intera
+\end{itemize}
+
+I limiti della computazione evolutiva sono: la difficoltà di trovare un criterio di arresto e la possibilità di convergere verso un massimo locale come risultato di una configurazione sfavorevole dei parametri. Utilizzando questa tecnica è necessario tenere conto di una corretta scelta della rappresentazione del problema, della funzione fitness, della dimensione della popolazione e del tasso degli operatori genetici. Ad esempio, una piccola dimensione della popolazione può far sì che l'EA non possa esplorare lo spazio sufficiente per trovare una soluzione corretta.
+
+\par Come limiti della tecnica SVM invece si può parlare del fatto che i modelli del kernel overfittino il criterio di selezione del modello, della difficoltà nella selezione dei parametri ottimali della funzione del kernel e della complessità algoritmica e gli ampi requisiti di memoria nei compiti su larga scala.
+
+\par Le reti neurali invece offrono un elevato grado di flessibilità. Oltre ai vettori di input codificanti di coppie di amminoacidi, è possibile includere neuroni con informazioni aggiuntive, ad es. lunghezza della sequenza, valori di idrofobicità dell'ambiente o informazioni evolutive, nonostante la codifica dei dati di input necessariamente restringa le possibili informazioni codificabili. Le reti neurali presentano comunque delle limitazioni di cui tenere conto, ad esempio l'uso di parametri appropriati e l'overfitting.
+
+\subsubsection{L'arrivo del Deep Learning}
+{
+Il campo del PSP ha assistito a numerosi avanzamenti grazie ad approcci basati sul Deep-Learning (DL) come evidenziato dal successo di AlphaFold nell'ultimo CASP. Il DL sta diventando una delle tecnologie principali per vari domini scientifici: computer vision, natural language processing, speech recognition, guida autonoma, ecc. 
+
+Anche se le reti neurali di tipo FFNN sono state usate per prevedere annotazioni 1D sin dagli anni '80\supercite{torrisi2020deep}\footnote{Queste reti erano tipicamente utilizzate nella loro cosiddetta versione "a finestra", in cui ogni segmento, composto da un numero fisso di amminoacidi in una sequenza, veniva trattato come input per un esempio separato. L'obiettivo del segmento era l'annotazione di interesse per uno degli amminoacidi in esso (solitamente quello centrale).}, è però solo negli ultimi 10 anni (specialmente negli ultimi 2 CASP) che si sta assistendo a vari avanzamenti nel PSP grazie al DL, in particolare nei seguenti campi\supercite{pakhrin2021deep}:
+
+\begin{itemize}
+	\item generazione di MSA (es. DeepMSA)
+	\item predizione di contatti (contact map, es. TripletRes)
+	\item predizione di distogrammi (es. RaptorX)
+	\item predizione della distanza fra i residui (es. PDNET)
+	\item guidare l'assemblaggio iterativo di frammenti
+	\item valutazione dei modelli e raffinamento (es. QDeep)
+	\item pipeline generale del PSP (es. trRosetta o AlphaFold1)
+	\item approcci DL-based end-to-end (es. AlphaFold2)
+	\item pulizia dei dati nel cryo-EM (es. PIXER)
+	\item predizione guidata sperimentalmente dalla cryo-EM (es. DeepTracer)
+	\item predizione di strutture multidominio (es. FUpred)
+\end{itemize}
+
+Tra i modelli di Deep Learning maggiormente utilizzati nei metodi odierni vi sono le ResNet\supercite{pakhrin2021deep}.
+}
+\subsection{Output e misure di valutazione}
+
+\subsubsection{Modelli di output}
+I modelli dei dati di output hanno lo scopo di rappresentare la struttura terziaria predetta di una proteina. I principali modelli sono\supercite{marquez2015soft}:
+
+\begin{itemize}
+	\item \textit{modello ad angolo di torsione}. Gli angoli di torsione ($\phi, \psi$) sono legati alle possibilità della catena polipeptidica di assumere determinate conformazioni e data una conformazioni ogni angolo di torsione è ben definito. Per tale ragione una possibile rappresentazione è
+	\[ [(\phi_{1}, \psi_{1}), ..., (\phi_{n}, \psi_{n})] \]
+	dove $n$ è il numero dei residui. Il grafico di Ramachandran consente di evitare le possibili collisioni fra gli atomi. \\
+	
+	\item \textit{modello reticolare}, nel quale ogni amminoacido può essere rappresentato come una coppia (x,y) dove $x$ e $y$ sono le coordinate in un reticolo 2D. Considerando i possibili movimenti un'altra rappresentazione potrebbe essere tramite vettori di direzione:
+	
+	\[ (L_{1}, L_{2}, ..., L_{n}) \]
+	
+	dove $L_{i} \in \{UP,DOWN,LEFT,RIGHT\}$.\\
+	
+	\item \textit{binary contact map}, nel quale vengono rappresentati i contatti fra i residui tramite una matrice $L\times L$ dove $L$ rappresenta il numero dei residui. Un elemento $(i,j)$ nella matrice rappresenta una coppia di amminoacidi che possono essere in contatto (1) o no (0). Si definisce contatto una distanza tra i residui inferiore ad una determinata soglia, tipicamente 8\angstrom. Gli atomi di riferimento per tale calcolo sono in genere $C_{\alpha}$ o $C_{\beta}$.
+	
+	\par Data una \textit{contact map} è possibile ricostruire il modello 3D di una proteina risolvendo il Molecular Distance Geomtry Problem (MDGP). Quando usate come modello di rappresentazione delle proteine, le mappe di contatto sono	utili anche per confrontare le strutture. \\
+	
+	\item \textit{distance matrix}, simile alla mappa dei contatti ma rappresenta le distance a valori reali invece del contatto binario\\
+	\item \textit{hydrophobic-polar} (HP), nel quale una sequenza è rappresentata come una stringa $s\in (H,P)^{+}$, dove $H$ rappresenta un amminoacido idrofobico e $P$ un amminoacido idrofilo.
+	
+\end{itemize}
+
+\subsubsection{Metriche di valutazione}
+Le misure di qualità valutano l'affidabilità dei modelli 3D rispetto alla struttura della proteina determinata sperimentalmente, le principali sono\supercite{marquez2015soft}:
+
+\begin{itemize}
+	\item RMSD (Root mean square deviation, indica la deviazione standard) rappresenta la deviazione assoluta (in \angstrom) dei singoli atomi $C_{\alpha}$ tra il modello e la struttura conosciuta:
+	
+	\[  RMSD = \sqrt{\frac{1}{N} \sum_{i=1}^{N} \left|r_{i}^{model}-r_{i}^{real}\right|^{2}}  \]
+	
+	dove $r_{i}^{model}$ indica la posizione dell'i-esimo atomo $C_{\alpha}$ nel modello. È stata la metrica di riferimento dal CASP1 al CASP4. È stato abbandonato poiché:
+	
+	\begin{itemize}
+		\item il punteggio è dominato da valori anomali in regioni scarsamente previste mentre allo stesso tempo è insensibile alle parti mancanti 
+		\item dipende fortemente dalla sovrapposizione del modello con la struttura di riferimento
+	\end{itemize}
+	
+	\item GDT\_TS (Global distance test\_total score), è usato come maggior criterio di valutazione nel CASP e descrive le percentuali di residui ben modellati nel modello rispetto al target:
+	
+	\[ GDT\_TS = 100 \times \frac{\sum_{d_{i}} \frac{GDT_{i}}{NT}} {4} \]
+	
+	dove $GDT_{i}$ è il numero di atomi $C_{\alpha}$ di una predizione che non deviano più di una soglia stabilita $d_{i}$ (in \angstrom) dai $C_{\alpha}$ della struttura conosciuta, dopo sovrapposizione ottima. $NT$ è il numero degli amminoacidi della proteina e $d_{i} \in \{1,2,4,8\}$. Essendo un criterio basato su sovrapposizione globale degli atomi $C_{\alpha}$ anch'esso soffre di limitazioni quando applicato a proteine flessibili e/o multi-dominio e non considera l'accuratezza nelle differenze fra atomi che non siano $C_{\alpha}$.\\
+	
+	\item lDDT (local Distance difference test), è una metrica di valutazione non basata su sovrapposizione globale che valuta differenze di distanze locali di tutti gli atomi in un modello, includendo la validazione di plausibilità stereochimica\supercite{mariani2013lddt}. lDDT misura quanto sia stato riprodotto l'ambiente di una struttura di riferimento in un modello di una proteina. È calcolato su tutti gli atomi. La struttura di riferimento può essere una singola struttura o un insieme di strutture equivalenti. 
+	
+	\par Valutando tutti gli atomi è in grado di catturare l'accuratezza, ad esempio, della geometria locale di un sito di legame o il corretto ripiegamento del nucleo di una proteina. È stato introdotto nel CASP9. \\
+	
+	\item TM\_score (Template modeling score), misura la somiglianza globale tra la struttura modello e quella conosciuta in base alla distanza tra ogni paio di residui. Il punteggio è compreso tra $(0, 1]$, dove 1 indica una corrispondenza perfetta tra due strutture. Generalmente punteggi inferiori a 0,20 corrispondono a proteine non correlate mentre le strutture con un punteggio superiore a 0,5 si pensa abbiano all'incirca lo stesso ripiegamento.\\
+	
+	\item per la valutazione delle \textit{contact map} vengono usate 3 misure:
+	\begin{itemize}
+		\item \textit{accuracy}, che rappresenta il numero di contatti correttamente predetti
+		\item \textit{coverage}, che riflette la proporzione di contatti predetti diviso i contatti reali
+		\item $X_{d}$, distribuzione dell'accuratezza della predizione dei contatti
+		
+					\[ accuracy=\frac{C}{C_{p}}; \quad coverage=\frac{C}{C_{t}}; \quad X_{d}=\sum_{i=1}^{15} \frac{P_{i}-P_{a}}{i} \]
+		dove $C_{t}$ rappresenta il numero dei contatti reali, $C$ il numero di predizioni corrette, $C_{p}$ il numero totale dei contatti predetti, $P_{i}$ riflette il numero di coppie stimate la cui distanza è nel range $(4(i-1), 4i)$ e $P_{a}$ rappresenta il numero di coppie reali la cui distanza è nello stesso range.
+	\end{itemize}
+\end{itemize}
 
 
 \subsection{Database e rappresentazione delle informazioni} \label{sec:database}
@@ -107,7 +215,6 @@ Come si è già visto è possibile descrivere una proteina attraverso la sua seq
 \subsubsection{Database di proteine}
 
 
-
 --PDB--
 The Protein Data Bank (PDB) is an archive of experimentally determined three-dimensional
 structures of biological macromolecules that serves a global community of researchers, educators,
@@ -118,7 +225,7 @@ database references, where appropriate, and ligand and biological assembly infor
 about data collection and structure solution, and bibliographic citations.
 
 
-\par La predizione della struttura è importante per un semplice motivo: i biochimici conoscono oggi la sequenza amminoacidica per più di 225 milioni di proteine\supercite{proteienDBentries} (UniProt, con circa 4.5-5 milioni aggiunte ogni mese) ma sono state determinate solamente circa 160.000 strutture tridimensionali di proteine\supercite{proteienDBentries} (PDB\footnote{Al 3 Febbraio 2022 sono presenti 162.913 strutture di proteine nella versione dell'RCSB. Nel PDB ci sono anche strutture di altre macromolecole (complessi di acidi proteici-nucleici, DNA e RNA) per un totale, incluse le proteine, di 186670\supercite{pdbStats}. Nel wwPDB (database globale) vi sono in totale 197961 strutture di macromolecole\supercite{wwpdbStats}.}, con poco più di 10.000 strutture aggiunte ogni anno). 
+\par La predizione della struttura è importante per un semplice motivo: i biochimici conoscono oggi la sequenza amminoacidica per più di 225 milioni di proteine\supercite{proteienDBentries} (UniProt, con circa 4.5-5 milioni aggiunte ogni mese) ma sono state determinate solamente circa 160.000 strutture tridimensionali di proteine\supercite{proteienDBentries} (PDB\footnote{Al 3 Febbraio 2022 sono presenti 162.913 strutture di proteine nella versione dell'RCSB. Nel PDB ci sono anche strutture di altre macromolecole (complessi di acidi proteici-nucleici, DNA e RNA) per un totale, incluse le proteine, di 186.670\supercite{pdbStats}. Nel wwPDB (database globale) vi sono in totale 197.961 strutture di macromolecole\supercite{wwpdbStats}.}, con poco più di 10.000 strutture aggiunte ogni anno). 
 
 \begin{figure}[!htb]
 	\centering
@@ -132,15 +239,15 @@ about data collection and structure solution, and bibliographic citations.
 
 
 
-
-
 \subsection{Rappresentazione grafica}
 %pal 6.4 p.146, ottima
 %kessel p.174 (2.3 GRAPHIC REPRESENTATIONS OF PROTEINS)
 
-\subsection{CASP}
-%-abbass 2020
-Dal 1994 il campo del PSP è stato stimolato, monitorato e quantitativamente valutato dalla competizione biennale CASP (\textit{Critical Assessment of Structure Predictions}). CASP è una sfida nella quale gruppi di ricerca si sfidano cercando di realizzare predizioni di strutture di proteine. È nota la sequenza amminoacidica di queste proteine target ma non la struttura sperimentale. Queste sequenze di proteine provengono da laboratori sperimentali congiunti: è pianificata la determinazione delle loro strutture native in vitro, che verrà infine utilizzata per stabilire l'accuratezza dei metodi in gara.
+QuteMol -> cignoni!
+
+\subsection{CASP} \label{sec:CASP}
+{
+Dal 1994 il campo del PSP è stato stimolato, monitorato e quantitativamente valutato dalla competizione biennale CASP (\textit{Critical Assessment of Structure Predictions}). CASP è una sfida nella quale gruppi di ricerca si sfidano cercando di realizzare predizioni di strutture di proteine. È nota la sequenza amminoacidica di queste proteine target ma non la struttura sperimentale. Queste sequenze di proteine provengono da laboratori  congiunti: è pianificata la determinazione delle loro strutture native in vitro, che verrà infine utilizzata per stabilire l'accuratezza dei metodi in gara.
 
 \par Questi esperimenti a livello di comunità sono cresciuti significativamente nel corso delle edizioni: dai 33 target e i 100 modelli sottomessi nel 1994 (CASP1) agli 82 target e più di 55.000 modelli sottomessi nel 2018 (CASP13)\supercite{abbass2020enhancing}.
 
@@ -156,209 +263,84 @@ Dal 1994 il campo del PSP è stato stimolato, monitorato e quantitativamente val
 
 \par Nel 2020 gli organizzatori del CASP14 hanno riconosciuto AlphaFold come soluzione del \textit{protein–structure–prediction problem} ???. \\
 
-
-%\subsection{Input, output, valutazione}
-%\subsubsection{Proprietà dei dati di input}
-
-\subsubsection{Output: modelli, ... [..]}
-\subsubsection{Metriche di valutazione}
-%- Gu 16 p.655 GENERAL APPROACH TO STRUCTURE COMPARISON AND ALIGNMENT
-%baxevanis 12 p.386
-
-
-
-\section{Paradigma \textit{ab initio}} \label{sec:ab-initio}
-{
-Il metodo più lineare e a prima vista ovvio per predire la struttura nativa di proteine è seguire la natura, simulando accuratamente come le forze fisiche guidino la proteina a ripiegarsi e usare questa simulazione per riprodurre il processo di ripiegamento su proteine con strutture sconosciute. \textit{Ab initio}, termine latino, significa infatti "dall'inizio". Questo approccio si basa sul postulato di Anfinsen.
-
-\par Il primo problema che sorge è superare il paradosso di Levinthal. Per farlo si assume un profilo energetico a imbuto del ripiegamento, ovvero la premessa termodinamica che la forma nativa di una proteina sia lo stato in cui risulta avere più bassa energia libera, o più precisamente (richiamando la definizione di struttura nativa data nella sez. \ref{sec:energetica}) quella conformazione avente minore energia libera tale da mantenere il livello di dinamicità richiesto alla proteina per svolgere la sua funzione biologica.
-
-\par Le predizioni nell'approccio \textit{ab initio} sono pertanto \textit{energy-based}, ovvero guidate dall'idea di minimizzare l'energia. Si può vedere il PSP secondo l'approccio \textit{ab initio} come un problema di ottimizzazione dove una funzione di energia gioca il ruolo di \textit{euristica} cercando di raggiungere il minimo globale di energia all'interno dello spazio di ricerca. In quanto \textit{energy-based} usano solo informazioni sul tipo di atomi nel sistema, le loro posizioni relative nello spazio tridimensionale e le loro interazioni con gli altri atomi. Viene poi calcolato l'intero contenuto di energia del sistema e le forze agenti su ogni atomo. 
-
-\par L'energia totale di un sistema (\textit{free energy}) può essere decomposta in varie componenti: cinetica, potenziale, termica ecc. È l'energia libera che determina la stabilità del sistema. Come si vedrà sotto, nell'approccio fisico non viene calcolata tutta l'energia libera ma viene approssimata con una sua parte per motivi di complessità.
-
-\par Sebbene vi siano differenti metodi in questo approccio, tutti condividono due caratteristiche di base:
-\begin{itemize}
-	\item calcolano il contenuto di energia del sistema in una singola configurazione
-	\item campionano numerose configurazioni e ne trovano una con la minor energia libera
-\end{itemize}
-
-Per \textit{configurazione} si intende la disposizione complessiva di tutti gli atomi di tutti i componenti del sistema (proteina, solvente, ioni, membrana ecc.) mentre la posizione collettiva dei soli atomi della proteina viene chiamata \textit{conformazione}.
-
-\subsubsection{Molecular mechanics \& dynamics}
-
-\par Per descrivere in maniera affidabile tutte le forze fisiche operanti sul sistema tra i differenti atomi bisognerebbe descriverne la distribuzione di tutti gli elettroni, il che richiede però calcoli di meccanica quantistica (QM). Le forze, in un sistema molecolare, risultano dalla distribuzione spaziale degli elettroni attorno agli atomi. Sfortunatamente questi calcoli sono computazionalmente molto costosi e una rigorosa caratterizzazione di un sistema macromolecolare, con milioni di atomi, è al momento insostenibile. Calcoli di QM su una singola conformazione di una piccola proteina possono richiedere mesi, tempi troppo lunghi se si ha l'obiettivo di provare tante configurazioni per sceglierne una finale. 
-
-\subsubsection{Molecular mechanics}
-
-\par Per le ragioni sopra elencate gli scienziati spesso investigano sistemi macromolecolari usando approssimazioni delle reali forze in essi. Il campo da cui i calcoli per le approssimazioni sono presi è chiamato \textit{molecular mechanics} (MM), poiché approssima sistemi molecolari usando espressioni prese dalla meccanica newtoniana classica:
-\begin{itemize}
-	\item il contenuto di energia è descritto usando un \textit{campo di forza} nel quale gli atomi e i legami covalenti sono trattati come palline e molle
-	\item le descrizioni che richiederebbero calcoli di QM vengono ignorate
-	\item le rappresentazioni sono \textit{esplicite}: prendono in considerazione tutti gli atomi (vedi fig. \ref{fig:descrizione-esplicita-mm})
-\end{itemize}
-
-Il campo di forza sopra accennato descrive l'energia potenziale del sistema. Da notare che l'energia potenziale (intesa come entalpia) è solo una delle due componenti dell'energia libera, vedi sez. \ref{sec:energetica}).
-
-\par Un campo di forza è un'energia di posizione: l'energia di un oggetto in una specifica posizione all'interno di un campo (gravitazionale, elettrico, magnetico ecc.). Nelle molecole l'energia potenziale è la somma di tutti gli effetti dei campi elettrici atomici\footnote{gli atomi possiedono, in base alla loro eventuale carica, campi elettrici che influenzano gli altri atomi} in una determinata posizione. Si può approssimare l'energia potenziale all'energia risultante da tutti i legami covalenti e le interazioni non covalenti, escluse quelle non polari \footnote{Un esempio di interazione non polare è l'effetto idrofobico. Vengono escluse poiché coinvolgono principalmente cambiamenti di entropia nel solvente.}, in una singola configurazione del sistema. In genere i campi di forza non sono una singola funzione ma una somma di più termini, ognuno corrispondente a un differente tipo di legame chimico o interazione, un esempio:
-
-\[ U_{tot}=U_{cov}+U_{elst}+U_{vdw} \]
-
-dove per $U_{tot}$ si intende l'energia potenziale totale, per $U_{cov}$ l'energia potenziale dei legami covalenti, per $U_{elst}$ quella delle interazioni elettrostatiche e per $U_{vdw}$ quella delle interazioni di van der Waals.
-
-\par L'energia potenziale delle interazioni elettrostatiche può essere calcolata con la legge di Coulomb, mentre quella delle interazioni di van der Waals tramite l'equazione di Lennard-Jones. Nelle simulazioni di sistemi biologici vengono usati: CHARMM, AMBER, GROMACS, ecc.
-
-\begin{figure}[!htb]
-	\centering
-	\includegraphics[scale=0.4]{images/esplicita-mm.png}
-	\caption{Descrizioni esplicite nei calcoli di MM. (A) una piccola proteina immersa in un solvente composto da molecole d'acqua e ioni (Na$^{+}$, Cl$^{-}$). La proteina è rappresentata come sfere di atomi, l'acqua come bastoncini e gli ioni come piccole sfere magenta e gialle. (B) una proteina trasportatrice in un doppio strato lipidico, circondato da ambiente acquoso. La proteina e le teste dei lipidi sono rappresentate in modo space-fill, mentre l'acqua e le code dei lipidi con rappresentazione wire-frame. Fonte \cite{kessel_ben-tal_2018}}
-	\label{fig:descrizione-esplicita-mm}
-\end{figure}
-
-\par La descrizione approssimata fornita dal campo di forza permette di calcolare l'energia potenziale di molti sistemi macromolecolari in meno di un secondo. \\
-
-\par Una variante del MM è la \textit{QM/MM} nella quale i calcoli di QM sono indirizzati solamente su una piccola parte della proteina che contiene residui funzionali importanti. Le altre regioni sono soggette invece a MM, con calcoli molto più veloci \footnote{questo approccio è stato introdotto da Warshel, Levitt e Karplus}
-
-\subsubsection{Spazio configurazionale}
-
-\par Assumendo l'accuratezza del campo di forza, il calcolo dell'energia potenziale di un sistema consente di determinare (parte del)la stabilità di una configurazione. L'idea iniziale potrebbe essere quella di considerare tutte le possibili locazioni atomiche del sistema, calcolare l'energia potenziale in ogni caso e scegliere quella con la minor energia. Come si può facilmente intuire ciò risulta essere un procedimento troppo oneroso, in quanto si devono considerare anche gli atomi del solvente (ed eventuali ligandi o cofattori). Anche il solo numero delle possibili configurazioni atomiche è difficile da calcolare.
-
-\par Per superare questo problema vengono usate tecniche per ridurre lo spazio di ricerca nello spazio configurazionale. Ci sono vari metodi di ricerca, ad esempio: \textit{systematic search }(grid search basata su dettagli geometrici), \textit{model-building model }(usa frammenti molecolari), \textit{random approach }(movimenti random sul piano cartesiano da una configurazione iniziale), \textit{distance geometry} (usa una matrice di distanze atomiche), \textit{Monte Carlo method} (modifiche random e accettazione probabilistica di configurazioni a livelli energetici maggiori)\supercite{ROY2015151}.
-
-\par Il metodo più semplice è chiamato \textit{energy minimization}:
-
-\begin{enumerate}
-	\item si parte da una configurazione arbitraria
-	\item si calcola l'energia potenziale. Viene derivato questo valore su differenti posizioni nel sistema in modo da calcolare le forze agenti su ogni atomo dalla rimanente parte del sistema
-	\item un piccolo cambiamento è introdotto nella posizione di ogni atomo, in risposta alle forze applicate su ognuno di essi dal resto del sistema (in accordo a quanto calcolato nel precedente step)
-	\item se la nuova configurazione ha un'energia minore viene adottata
-	\item altrimenti questa viene scartata e viene creata una nuova configurazione
-	\item si ritorna allo step 3 finché non si trovano più configurazioni con minor energia
-\end{enumerate}
-
-Il metodo passa da una configurazione all'altra scendendo con il gradiente della superficie dell'energia potenziale finché non converge in un \textit{punto di minimo locale}. Tutte le procedure di \textit{energy minimization }tendono a rimanere bloccate in un minimo locale di energia non riuscendo spesso a raggiungere il minimo globale a causa di \textit{barriere energetiche} da scavalcare per raggiungere una configurazione con energia minore (vedi fig. \ref{fig:energy-minimization} e \ref{fig:imbuto}).
-
-\begin{figure}[!htb]
-	\centering
-	\includegraphics[scale=1]{images/energy-minimzation.jpg}
-	\caption{Differenti fasi energetiche di una molecola durante la sua minimizzazione energetica. Fonte\cite{ROY2015151}}
-	\label{fig:energy-minimization}
-\end{figure}
-
-\subsubsection{Molecular dynamics}
-
-È possibile spingere l'algoritmo di minimizzazione energetica fuori da punti di minimo locale fornendo energia extra, ad esempio innalzando la temperatura del sistema (ovvero aggiungendo calore virtuale). L'energia aggiunta consente agli atomi del sistema di incrementare i loro movimenti e nuove configurazioni fuori dalle barriere energetiche vengono create. Questo metodo è chiamato \textit{Molecular dynamics} (MD) e si focalizza sui movimenti dipendenti dal tempo degli atomi nel sistema. I calcoli sono realizzati in accordo alla meccanica classica. 
-
-\par Agli atomi viene assegnata una velocità iniziale (proporzionale alla temperatura) e continuano a muoversi nello spazio secondo i corrispondenti cambiamenti nell'energia potenziale del sistema. Il movimento di ogni atomo nel sistema è calcolato in base alla sua energia in quel dato momento.
-
-\par Le simulazione di MD sono eseguite in cicli ripetitivi di \textit{riscaldamento} e \textit{raffreddamento} (metodo conosciuto nel mondo informatico come \textit{simulated annealing}, in riferimento al processo di tempra dei metalli). Nella fase di riscaldamento vengono superate le barriere energetiche mentre la fase di raffreddamento (seguita dall'\textit{energy minimization}) consente al sistema di rilassarsi in configurazioni con minor energia.
-
-\par Un metodo comune per rendere la ricerca con MD più efficiente è di spezzarla in due fasi:
-\begin{itemize}
-	\item ricerca a bassa risoluzione per trovare una collezione di strutture con interazioni non polari (basato sulla nozione che il nucleo delle proteine globulari sia idrofobico)
-	\item ricerca ad alta risoluzione fra le strutture selezionate nel primo step
-\end{itemize}
-
-\subsubsection{Limiti dell'approccio fisico e parziali soluzioni}
-Sebbene simulare il ripiegamento proteico seguendo la meccanica classica possa apparire un approccio attraente, questo è pratico solo per piccole proteine e usando alte risorse computazionali: lo spazio di ricerca è enorme e il problema è computazionalmente intrattabile in modo deterministico (è NP-hard)\supercite{abbass2020enhancing}.
-
-\par I metodi di MM/MD trovano difficilmente impiego in processi biologici rilevanti come il protein folding. Alcuni problemi riguardano l'approssimazione in sé del campo di forza, la sua accuratezza e i possibili doppi conteggi delle forze in gioco (es. interazioni ioniche e legami idrogeno calcolate in due espressioni differenti). 
-
-\par Un altro problema, sempre nell'approssimazione dell'energia libera con campi di forza, è che forniscono sì l'energia potenziale ma non l'entropia. L'unico modo per stimare l'entropia e l'energia libera dai calcoli per l'energia potenziale è eseguire questi calcoli su tutte le possibili configurazioni del sistema e poi integrarli. Il problema risiede quindi nell'impossibilità di compiere la totalità di questi calcoli a causa delle rappresentazioni esplicite usate nelle simulazioni di MD. In particolare è difficile considerare tutte le configurazioni del solvente acquoso. Ciò che si sta calcolando non è l'energia libera ma un \textit{potenziale di forze medie} (PMF). In conclusione le simulazioni di MD non sono consigliate per descrivere gli effetti dei solventi.
-
-\subsubsection{Mean field approach}
-Per ovviare parzialmente al problema delle rappresentazioni esplicite è possibile descrivere \textit{implicitamente} parti del sistema che vengono descritte da una proprietà media, per questa ragione tale approccio è chiamato \textit{mean field}. Un esempio è la descrizione del solvente, la parte "meno" interessante in genere, come una massa omogenea descritta dalla sua \textit{dielettricità} \footnote{proprietà di un mezzo non conduttore di essere sede di un campo elettrostatico}, conosciuto anche come approccio \textit{continuum-solvent}, vedi fig. \ref{fig:mean-field}.
-
-\begin{figure}[!htb]
-	\centering
-	\includegraphics[scale=0.4]{images/mean-field.png}
-	\caption{Descrizione con approccio mean-field di un sistema, il solvente è descritto implicitamente mentre la proteina esplicitamente. $\epsilon$ indica la dielettricità. (A) proteina in un solvente acquoso altamente dielettrico. (B) proteina di membrana in un ambiente eterogeneo. Il solvente acquoso è altamente dielettrico mentre la lastra semi-trasparente gialla, che rappresenta la regione biologica di doppio strato lipidico, è poco dielettrica. Fonte\cite{kessel_ben-tal_2018}}
-	\label{fig:mean-field}
-\end{figure}
-
-Ovviamente, essendo una forte approssimazione, alcuni aspetti del sistema reale sono ignorati, come le interazioni fra gli atomi delle proteine e le molecole d'acqua. Tale problema si esacerba quando il solvente è una membrana. \\
-
-\par Un altro compromesso è l'approccio \textit{mixed force fields} che combina calcoli espliciti sulla proteina e calcoli impliciti sul solvente. Viene usata l'equazione di Poisson-Boltzman (PBE) per calcolare accuratamente l'energia libera elettrostatica, legando così l'effetto polarizzante delle cariche con il loro ambiente. Essendo però un calcolo oneroso viene in genere risolta l'equazione generalizzata di Born (GB). A partire da queste due equazioni, che calcolano la componente elettrostatica dell'energia libera, è possibile calcolare l'intera \textit{free energy}, in modo abbastanza accurato, con calcoli che si rifanno alla surface area (SA, vedi parte finale della sez. \ref{sec:termodinamica-forze-idrofobiche}). 
-
-\par Questi metodi sono chiamati \textit{PBSA} e \textit{GBSA} rispettivamente, e come si è visto permettono un calcolo più preciso dell'energia libera. Questi possono a loro volta essere combinati con la MM per rappresentare anche le interazioni del sistema (\textit{MM-PBSA, MM-GBSA}) e sono oggi largamente utilizzati.
-
-\par Un altro limite computazionale è il lasso temporale che si riesce a coprire. La maggior parte delle proteine si ripiega in microsecondi mentre le simulazioni riescono a coprire tempi che vanno dai pico ai nanosecondi. Grazie ad avanzamenti nelle risorse informatiche sono stati fatti dei passi avanti da questo punto di vista. Un caso interessante è \textit{Anton}, un supercomputer progettato specificatamente per ottimizzare simulazioni di MD capace di coprire 85$\mu s$ al giorno per un sistema molecolare di 23.000 atomi (180 volte più veloce di qualsiasi computer general-purpose). Altri progressi sono dovuti alla computazione parallela e alla computazione accelerata dalla GPU. Il calcolo distribuito (\textit{grid computing}), ovvero una larga rete di computer personali dedicati volontariamente al completamento di processi, ha permesso alla rete \textit{Folding@Home} (170.000 computer) di simulare l'intero processo di ripiegamento della proteina di legame dell'acetil coenzima A, composta da 86 residui e che richiede 10 millisecondi per ripiegarsi. Un'altra rete distribuita di calcolo è \textit{Rosetta@Home}, con 86.000 nodi e finalizzata al PSP. \\
-
-\subsubsection{Conclusioni sull'approccio \textit{ab initio}}
-I metodi \textit{ab initio} non sono attualmente in grado di predire la struttura della maggior parte delle proteine sulla sola base della loro sequenza. Ma sono molto abili nel farlo quando il punto di partenza della predizione è una struttura vicino a quella nativa. Questi metodi sono infatti ampiamente usati per raffinare le strutture grezze ottenute dalle determinazioni sperimentali (vedi sez. \ref{sec:experimentally-guided-prediction}). 
-
-\par Il loro successo dipende ampiamente dall'accuratezza della funzione di energia, dall'efficienza dell'algoritmo di ricerca nello spazio conformazionale e dall'abilità di discernere strutture native da "esche" energeticamente intrappolate.
-Nonostante le loro limitazioni i metodi \textit{ab initio} sono di grande interesse perché sono gli unici, in principio, derivare la vera struttura nativa delle proteine e possono quindi fornire intuizioni importanti per il protein folding problem. Hanno infatti fornito informazioni importanti sulla dinamica delle proteine e sono utilizzati anche nel \textit{protein engineering} e nel \textit{drug discovery}. 
-
 }
 
+\section{Annotazioni 1D sulla struttura} \label{sec:predizione-structural-features}
+%- praveen 2014
+%- pal 
 
-\subsubsection{Valutazione \textit{knowledge-based}}
-È anche possibile rimpiazzare il campo di forza con una funzione di valutazione \textit{knowledge-based}. Spesso queste funzioni sono composte di espressioni relative alla tendenza statistica di gruppi chimici, amminoacidi o atomi di interagire fra di loro. L'affidabilità della funzione di valutazione dipende dal database su cui si basa. 
+Le "annotazioni monodimensionali sulla struttura delle proteine" (1D PSA) sono astrazioni che descrivono la disposizione della backbone proteica.
 
+Le proprietà delle sequenze possono essere raggruppate in due tipi:
+\begin{itemize}
+	\item proprietà esplicitamente correlate con la struttura degli amminoacidi
+	\item proprietà statistiche
+\end{itemize}
 
-\section{Manipolazione della sequenza di input}
+Proprietà del 1° tipo sono collegate a: formazioni di determinate strutture secondarie, esposizione al solvente circostante (\textit{solvent accessibility}), determinati angoli di torsione, interazioni con alcuni amminoacidi, ecc. (es. GenTHREADER, SPARKS-X).
 
-\subsection{\textit{sequence alignment}} \label{sec:MSA}
-- protein sequence alignment (poi MSA)
-[Burkowski 6 p.167]
-baxevanis 8 p.227
+\par Le proprietà statistiche vengono invece identificate tramite le frequenze degli amminoacidi in vari MSA. Un modo di rappresentare queste tendenze è tramite \textit{profili}, i quali denotano amminoacidi che frequentemente appaiono in certe posizioni dell'allineamento. Un profilo del genere è più informativo di una semplice sequenza amminoacidica: contiene informazioni evolutive (es. livelli di conservazione di specifiche posizioni nella sequenza). È questa l'utilità dell'utilizzo di profili. Il profilo della proteina target è poi confrontato con i profili corrispondenti di tutte le proteine con ripeigamenti conosciuti (\textit{profile-profile alignemnt}) e le proteine sufficientemente simili alla proteina target possono essere usate come template globali. Un esempio di procedura profile-matching è HHPred, basata su confronti a coppie di profili HMM tra target e template.
 
+\subsection{Allineamento di sequenze} \label{sec:MSA}
+{
+	Un allineamento di sequenze multiple (MSA) è una disposizione di più di due sequenze di amminoacidi o nucleotidi allineate in modo da posizionare i residui delle diverse sequenze in colonne verticali in una maniera appropriata. I metodi di MSA sono utilizzati in una grande varietà di analisi e pipeline nell'analisi del proteoma e del genoma e sono un passo iniziale essenziale nella maggior parte dei confronti filogenetici. Sono ampiamente utilizzati per aiutare a ricercare caratteristiche comuni nelle sequenze e possono essere usati per aiutare a prevedere le strutture bi e tridimensionali di proteine e acidi nucleici. Un MSA mostra il grado di similarità tra le sequenze.
+	
+	\par Di solito, si dovrebbe solo tentare di allineare sequenze filogeneticamente correlate e, quindi, omologhe. In questo caso, l'allineamento ideale avrà residui omologhi allineati nelle colonne.
+	
+	\begin{figure}[!htb]
+		\centering
+		\includegraphics[scale=0.5]{images/msa.jpeg}
+		\caption{Multiple sequence alignment schematica di una sequenza proteica di varie specie. Fonte\cite{msaBioNinja}}
+		\label{fig:msa}
+	\end{figure}
+	
+	\par Le sequenze di proteine in genere risultano avere un grado di somiglianza maggiore rispetto alle sequenze nucleotidiche. Ciò è dovuto alla degenerazione del codice genetico e al fatto che quasi per ogni amminoacido esistano vari codoni che lo codificano, perciò differenti sequenze nucleotidiche possono codificare esattamente la stessa sequenze di amminoacidi.
+	
+	\par Un allineamento di sequenze multiple (MSA) può essere utilizzato per tracciare l'entità della divergenza evolutiva tra sequenze correlate. Rispetto a una singola sequenza, l'MSA fornisce informazioni sulle tendenze evolutive degli amminoacidi in ciascuna posizione della sequenza, il che caratterizza un "profilo" della sequenza.
+	
+}
 
-Certain software programs can display multiple sequences together to show the degree of similarity between them
+\subsection{Predizione della struttura secondaria}
+%-wiki
+%-sejonwski 1989
+%-deOliveira 2021
 
-This is called a sequence alignment and is commonly used to show the degree of relatedness between sequences
+\section{Annotazioni 2D sulla struttura}
 
-Le sequenze di proteine in genere risultano avere un grado di somiglianza maggiore rispetto alle sequenze nucleotidiche, questo è dovuto alla degenerazione del codice genetico e al fatto che quasi per ogni amminoacido esistono vari codoni che lo codificano, perciò differenti sequenze nucleotidiche possono codificare esattamente la stessa sequenze di amminoacidi.
+Le annotazioni riguardano predizioni dei contatti fra residui sulla base di informazioni co-evolutive (\textit{correlated mutation}), generando o una \textit{contact map}, o un \textit{distogramma} o una \textit{distance map} attraverso una \textit{deep residual neural network} (\textit{ResNet}). Il fine è ricavare restrizioni spaziali come contatti inter-residuo a lunga distanza, distanze specifiche, legami idrogeno e angoli di torsione.
 
-\begin{figure}[!htb]
-	\centering
-	\includegraphics[scale=0.5]{images/msa.jpeg}
-	\caption{Multiple sequence alignment schematica di una sequenza proteica di varie specie. Fonte\cite{msaBioNinja}}
-	\label{fig:msa}
-\end{figure}
-
-\subsection{\textit{fold recognition}}
-- praveen 2014
-- pal 
-
-Come si è già detto la struttura delle proteine è maggiormente conservata rispetto alle sequenze. Questo significa che proteine con differenti sequenze possono ancora formare strutture simili grazie a certe proprietà condivise codificate nelle loro sequenze. Se queste proprietà o ricorrenze statistiche potessero essere identificare, sarebbe possibile predire la struttura di una nuova proteina basandosi su un template che condivide le stesse proprietà, anche se loro sequenze sono diverse. Questa è l'idea su cui si basano i metodi di fold recognition. 
-In altri termini, in questo approccio si cerca una proteina con struttura conosciuta (nel PDB) che abbia alcune proprietà nella sequenza o tendenze condivise con la proteina target: le due probabilmente hanno un ripiegamento simile o motivi strutturali simili.
-
-\subsection{protein secondary structure prediction (PSSP)}
--wiki
--sejonwski 1989
--deOliveira 2021
-
-\begin{figure}[!htb]
-	\centering
-	\includegraphics[scale=0.53]{images/threading-mappa.png}
-	\caption{. Fonte\cite{joseph2014local}}
-	\label{fig:fold-recognition}
-\end{figure}
-
-\subsection{\textit{contact prediction}}
-
-\subsection{correlated mutation}
-
-L'apparizione di mutazioni nelle sequenze delle proteine durante la loro evoluzione dipende da aspetti sia strutturali che funzionali. È interessante notare come l'analisi delle sequenze di famiglie di proteine mostri che certe posizioni tendono a \textit{coevolvere}. In altre parole l'apparizione di una mutazione in una posizione è accompagnata da una mutazione in un'altra posizione. 
-
-\par È stato suggerito che un tale collegamento possa avvenire in posizioni vicine nello spazio tridimensionale e che i residui considerati interagiscano fra loro. Se una mutazione in una posizione porta a una distruzione della sua interazione con la posizione adiacente, una mutazione compensatoria di quest'ultima potrebbe rimediare al problema.
-
-\par Ad esempio, se due posizioni erano originariamente polari e coinvolte in un'interazione elettrostatica favorevole, la mutazione di una posizione da polare a non polare distruggerebbe l'interazione. Se però la posizione adiacente muta anch'essa da polare a non polare, l'interazione originale può tramutarsi in un'altra interazione favorevole, stavolta non polare.
-
-\par Ciò suggerisce che sia possibile inferire posizioni a contatto nella struttura ripiegata di una proteina analizzandone le variazioni nella sequenza attraverso la sua evoluzione e osservando quali posizioni sono \textit{coevolute}. Gli accoppiamenti evoluzionisticamente inferiti possono essere usati come vincoli durante la modellazione.
+Le "annotazioni monodimensionali sulla struttura delle proteine" (1D PSA) sono astrazioni che descrivono la disposizione della backbone proteica.
 
 \begin{figure}[!htb]
 	\centering
-	\includegraphics[scale=0.65]{images/correlated-mutation.jpg}
-	\caption{In alto, sequenza della proteina da predire, in cui ogni amminoacido è un cerchio. Sotto, un MSA con le sequenze di una famiglia correlata, tutte con lo stesso ripiegamento. A destra l'inferenza del contatto delle posizioni coevolute. Fonte\cite{marks2011protein}}
-	\label{fig:correlated-mutation}
+	\includegraphics[scale=0.6]{images/FM-template.png}
+	\caption{Schema generale di un workflow FM. Il DL è un passo fondamentale nel predizione di vincoli spaziali. Fonte\cite{pakhrin2021deep}}
+	\label{fig:fm-template-dl}
 \end{figure}
 
-\par Ci sono 3 principali ostacoli a questo approccio: rumore statistico (molte correlazioni sono solo frutto di rumore e quindi insignificanti), correlazioni fra residui distanti e numero insufficiente di posizioni correlate. Il metodo non risulta applicabile quando ci sono poche sequenze omologhe. Nonostante l'idea non sia nuova, solo nell'ultimo decennio tali metodi sono divenuti abbastanza accurati da poter essere usati nel PSP; metodi noti sono EVfol, Rosetta-GREMLIN, FILM3, MetaPSICOV, ecc.
 
+Data la natura "black-box" dei metodi di DL è stata ad esempio proposta InterPretContactMap che fa riferimento al campo della xAI (explainable AI); combina reti neurali profonde con meccanismi di attenzione per aumentare la comprensibilità della predizione dei contatti.
 
+\subsection{\textit{correlated mutation}}
+{
+	L'apparizione di mutazioni nelle sequenze delle proteine durante la loro evoluzione dipende da aspetti sia strutturali che funzionali. È interessante notare come l'analisi delle sequenze di famiglie di proteine mostri che certe posizioni tendono a \textit{coevolvere}. In altre parole l'apparizione di una mutazione in una posizione è accompagnata da una mutazione in un'altra posizione. 
+	
+	\par È stato suggerito che un tale collegamento possa avvenire in posizioni vicine nello spazio tridimensionale e che i residui considerati interagiscano fra loro. Se una mutazione in una posizione porta a una distruzione della sua interazione con la posizione adiacente, una mutazione compensatoria di quest'ultima potrebbe rimediare al problema.
+	
+	\par Ad esempio, se due posizioni erano originariamente polari e coinvolte in un'interazione elettrostatica favorevole, la mutazione di una posizione da polare a non polare distruggerebbe l'interazione. Se però la posizione adiacente muta anch'essa da polare a non polare, l'interazione originale può tramutarsi in un'altra interazione favorevole, stavolta non polare.
+	
+	\par Ciò suggerisce che sia possibile inferire posizioni a contatto nella struttura ripiegata di una proteina analizzandone le variazioni nella sequenza attraverso la sua evoluzione e osservando quali posizioni sono \textit{coevolute}. Gli accoppiamenti evoluzionisticamente inferiti possono essere usati come vincoli durante la modellazione.
+	
+	\begin{figure}[!htb]
+		\centering
+		\includegraphics[scale=0.65]{images/correlated-mutation.jpg}
+		\caption{In alto, sequenza della proteina da predire, in cui ogni amminoacido è un cerchio. Sotto, un MSA con le sequenze di una famiglia correlata, tutte con lo stesso ripiegamento. A destra l'inferenza del contatto delle posizioni coevolute. Fonte\cite{marks2011protein}}
+		\label{fig:correlated-mutation}
+	\end{figure}
+	
+	\par Ci sono 3 principali ostacoli a questo approccio: rumore statistico (molte correlazioni sono solo frutto di rumore e quindi insignificanti), correlazioni fra residui distanti e numero insufficiente di posizioni correlate. Il metodo non risulta applicabile quando ci sono poche sequenze omologhe. Nonostante l'idea non sia nuova, solo nell'ultimo decennio tali metodi sono divenuti abbastanza accurati da poter essere usati nel PSP; metodi noti sono EVfol, Rosetta-GREMLIN, FILM3, MetaPSICOV, ecc.
+	
+}
 
 The hypothesis behind the approach was that if
 mutations that occur at two positions in an MSA are
@@ -394,11 +376,11 @@ direct coupling analysis (DCA) was more successfully
 able to distinguish between these direct and indirect
 interactions [23,24]. 
 
-Many DCA techniques fit a Markov random field (MRF),
-or more specifically a Potts model, to an MSA. An MRF is
+
+\subsection{Distogrammi}
 
 
-\section{Modellazione \textit{data-based} della struttura}
+\section{Predizione della struttura 3D}
 
 \subsection{\textit{homology modeling}}
 {
@@ -484,14 +466,168 @@ or more specifically a Potts model, to an MSA. An MRF is
 	
 }
 
-\subsection{\textit{threading modeling}}
+\subsection{\textit{fold recognition via threading}}
+{
 
-\subsection{\textit{fragment-based modeling}}
--abbass 
+Il \textit{threading} consiste nell'allineare la sequenza della proteina target con la struttura di proteine template, che possono essere trovate sulla base di proprietà condivise (vedi sez \ref{sec:predizione-structural-features} sulla predizione di caratteristiche strutturalI a partire dalla sequenza).
+
+\begin{figure}[!htb]
+	\centering
+	\includegraphics[scale=0.53]{images/threading-mappa.png}
+	\caption{. Fonte\cite{joseph2014local}}
+	\label{fig:fold-recognition}
+\end{figure}
+
+an align-
+ment between the sequence and the template structure
+(threading).
+
+Identifying templates, i.e., proteins of known structure whose fold should be similar to
+that of the target protein. This can be done by threading, i.e., by aligning the sequence
+of the target protein with the structure of each fold in the PDB on the basis of shared
+sequence properties, and then choosing the best match. The sequence properties can
+be grouped into two types:
+
+Come si è già detto la struttura delle proteine è maggiormente conservata rispetto alle sequenze. Questo significa che proteine con differenti sequenze possono ancora formare strutture simili grazie a certe proprietà condivise codificate nelle loro sequenze. Se queste proprietà o ricorrenze statistiche potessero essere identificare, sarebbe possibile predire la struttura di una nuova proteina basandosi su un template che condivide le stesse proprietà, anche se loro sequenze sono diverse. Questa è l'idea su cui si basano i metodi di \textit{fold recognition}. 
+In altri termini, in questo approccio si cerca una proteina con struttura conosciuta (nel PDB) che abbia alcune proprietà nella sequenza o tendenze condivise con la proteina target: le due probabilmente hanno un ripiegamento simile o motivi strutturali simili.
+}
+
+\subsection{\textit{ab initio}} \label{sec:ab-initio}
+{
+Il metodo più lineare e a prima vista ovvio per predire la struttura nativa di proteine è seguire la natura, simulando accuratamente come le forze fisiche guidino la proteina a ripiegarsi e usare questa simulazione per riprodurre il processo di ripiegamento su proteine con strutture sconosciute. \textit{Ab initio}, termine latino, significa infatti "dall'inizio". Questo approccio si basa sul postulato di Anfinsen.
+
+\par Il primo problema che sorge è superare il paradosso di Levinthal. Per farlo si assume un profilo energetico a imbuto del ripiegamento, ovvero la premessa termodinamica che la forma nativa di una proteina sia lo stato in cui risulta avere più bassa energia libera, o più precisamente (richiamando la definizione di struttura nativa data nella sez. \ref{sec:energetica}) quella conformazione avente minore energia libera tale da mantenere il livello di dinamicità richiesto alla proteina per svolgere la sua funzione biologica.
+
+\par Le predizioni nell'approccio \textit{ab initio} sono pertanto \textit{energy-based}, ovvero guidate dall'idea di minimizzare l'energia. Si può vedere il PSP secondo l'approccio \textit{ab initio} come un problema di ottimizzazione dove una funzione di energia gioca il ruolo di \textit{euristica} cercando di raggiungere il minimo globale di energia all'interno dello spazio di ricerca. In quanto \textit{energy-based} usano solo informazioni sul tipo di atomi nel sistema, le loro posizioni relative nello spazio tridimensionale e le loro interazioni con gli altri atomi. Viene poi calcolato l'intero contenuto di energia del sistema e le forze agenti su ogni atomo. 
+
+\par L'energia totale di un sistema (\textit{free energy}) può essere decomposta in varie componenti: cinetica, potenziale, termica ecc. È l'energia libera che determina la stabilità del sistema. Come si vedrà sotto, nell'approccio fisico non viene calcolata tutta l'energia libera ma viene approssimata con una sua parte per motivi di complessità.
+
+\par Sebbene vi siano differenti metodi in questo approccio, tutti condividono due caratteristiche di base:
+\begin{itemize}
+	\item calcolano il contenuto di energia del sistema in una singola configurazione
+	\item campionano numerose configurazioni e ne trovano una con la minor energia libera
+\end{itemize}
+
+Per \textit{configurazione} si intende la disposizione complessiva di tutti gli atomi di tutti i componenti del sistema (proteina, solvente, ioni, membrana ecc.) mentre la posizione collettiva dei soli atomi della proteina viene chiamata \textit{conformazione}.
+
+\subsubsection{Molecular mechanics \& dynamics}
+
+\par Per descrivere in maniera affidabile tutte le forze fisiche operanti sul sistema tra i differenti atomi bisognerebbe descriverne la distribuzione di tutti gli elettroni, il che richiede però calcoli di meccanica quantistica (QM). Le forze, in un sistema molecolare, risultano dalla distribuzione spaziale degli elettroni attorno agli atomi. Sfortunatamente questi calcoli sono computazionalmente molto costosi e una rigorosa caratterizzazione di un sistema macromolecolare, con milioni di atomi, è al momento insostenibile. Calcoli di QM su una singola conformazione di una piccola proteina possono richiedere mesi, tempi troppo lunghi se si ha l'obiettivo di provare tante configurazioni per sceglierne una finale. 
+
+\subsubsection{Molecular mechanics}
+
+\par Per le ragioni sopra elencate gli scienziati spesso investigano sistemi macromolecolari usando approssimazioni delle reali forze in essi. Il campo da cui i calcoli per le approssimazioni sono presi è chiamato \textit{molecular mechanics} (MM), poiché approssima sistemi molecolari usando espressioni prese dalla meccanica newtoniana classica:
+\begin{itemize}
+	\item il contenuto di energia è descritto usando un \textit{campo di forza} nel quale gli atomi e i legami covalenti sono trattati come palline e molle
+	\item le descrizioni che richiederebbero calcoli di QM vengono ignorate
+	\item le rappresentazioni sono \textit{esplicite}: prendono in considerazione tutti gli atomi (vedi fig. \ref{fig:descrizione-esplicita-mm})
+\end{itemize}
+
+Il campo di forza sopra accennato descrive l'energia potenziale del sistema. Da notare che l'energia potenziale (intesa come entalpia) è solo una delle due componenti dell'energia libera, vedi sez. \ref{sec:energetica}).
+
+\par Un campo di forza è un'energia di posizione: l'energia di un oggetto in una specifica posizione all'interno di un campo (gravitazionale, elettrico, magnetico ecc.). Nelle molecole l'energia potenziale è la somma di tutti gli effetti dei campi elettrici atomici\footnote{Gli atomi possiedono, in base alla loro eventuale carica, campi elettrici che influenzano gli altri atomi.} in una determinata posizione. Si può approssimare l'energia potenziale all'energia risultante da tutti i legami covalenti e le interazioni non covalenti, escluse quelle non polari \footnote{Un esempio di interazione non polare è l'effetto idrofobico. Vengono escluse poiché coinvolgono principalmente cambiamenti di entropia nel solvente.}, in una singola configurazione del sistema. In genere i campi di forza non sono una singola funzione ma una somma di più termini, ognuno corrispondente a un differente tipo di legame chimico o interazione, un esempio:
+
+\[ U_{tot}=U_{cov}+U_{elst}+U_{vdw} \]
+
+dove per $U_{tot}$ si intende l'energia potenziale totale, per $U_{cov}$ l'energia potenziale dei legami covalenti, per $U_{elst}$ quella delle interazioni elettrostatiche e per $U_{vdw}$ quella delle interazioni di van der Waals.
+
+\par L'energia potenziale delle interazioni elettrostatiche può essere calcolata con la legge di Coulomb, mentre quella delle interazioni di van der Waals tramite l'equazione di Lennard-Jones. Nelle simulazioni di sistemi biologici vengono usati: CHARMM, AMBER, GROMACS, ecc.
+
+\begin{figure}[!htb]
+	\centering
+	\includegraphics[scale=0.4]{images/esplicita-mm.png}
+	\caption{Descrizioni esplicite nei calcoli di MM. (A) una piccola proteina immersa in un solvente composto da molecole d'acqua e ioni (Na$^{+}$, Cl$^{-}$). La proteina è rappresentata come sfere di atomi, l'acqua come bastoncini e gli ioni come piccole sfere magenta e gialle. (B) una proteina trasportatrice in un doppio strato lipidico, circondato da ambiente acquoso. La proteina e le teste dei lipidi sono rappresentate in modo space-fill, mentre l'acqua e le code dei lipidi con rappresentazione wire-frame. Fonte \cite{kessel_ben-tal_2018}}
+	\label{fig:descrizione-esplicita-mm}
+\end{figure}
+
+\par La descrizione approssimata fornita dal campo di forza permette di calcolare l'energia potenziale di molti sistemi macromolecolari in meno di un secondo. \\
+
+\par Una variante del MM è la \textit{QM/MM} nella quale i calcoli di QM sono indirizzati solamente su una piccola parte della proteina che contiene residui funzionali importanti. Le altre regioni sono soggette invece a MM, con calcoli molto più veloci \footnote{Questo approccio è stato introdotto da Warshel, Levitt e Karplus.}
+
+\subsubsection{Spazio configurazionale}
+
+\par Assumendo l'accuratezza del campo di forza, il calcolo dell'energia potenziale di un sistema consente di determinare (parte del)la stabilità di una configurazione. L'idea iniziale potrebbe essere quella di considerare tutte le possibili locazioni atomiche del sistema, calcolare l'energia potenziale in ogni caso e scegliere quella con la minor energia. Come si può facilmente intuire ciò risulta essere un procedimento troppo oneroso, in quanto si devono considerare anche gli atomi del solvente (ed eventuali ligandi o cofattori). Anche il solo numero delle possibili configurazioni atomiche è difficile da calcolare.
+
+\par Per superare questo problema vengono usate tecniche per ridurre lo spazio di ricerca nello spazio configurazionale. Ci sono vari metodi di ricerca, ad esempio: \textit{systematic search }(grid search basata su dettagli geometrici), \textit{model-building model }(usa frammenti molecolari), \textit{random approach }(movimenti random sul piano cartesiano da una configurazione iniziale), \textit{distance geometry} (usa una matrice di distanze atomiche), \textit{Monte Carlo method} (modifiche random e accettazione probabilistica di configurazioni a livelli energetici maggiori)\supercite{ROY2015151}.
+
+\par Il metodo più semplice è chiamato \textit{energy minimization}:
+
+\begin{enumerate}
+	\item si parte da una configurazione arbitraria
+	\item si calcola l'energia potenziale. Viene derivato questo valore su differenti posizioni nel sistema in modo da calcolare le forze agenti su ogni atomo dalla rimanente parte del sistema
+	\item un piccolo cambiamento è introdotto nella posizione di ogni atomo, in risposta alle forze applicate su ognuno di essi dal resto del sistema (in accordo a quanto calcolato nel precedente step)
+	\item se la nuova configurazione ha un'energia minore viene adottata
+	\item altrimenti questa viene scartata e viene creata una nuova configurazione
+	\item si ritorna allo step 3 finché non si trovano più configurazioni con minor energia
+\end{enumerate}
+
+Il metodo passa da una configurazione all'altra scendendo con il gradiente della superficie dell'energia potenziale finché non converge in un \textit{punto di minimo locale}. Tutte le procedure di \textit{energy minimization }tendono a rimanere bloccate in un minimo locale di energia non riuscendo spesso a raggiungere il minimo globale a causa di \textit{barriere energetiche} da scavalcare per raggiungere una configurazione con energia minore (vedi fig. \ref{fig:energy-minimization} e \ref{fig:imbuto}).
+
+\begin{figure}[!htb]
+	\centering
+	\includegraphics[scale=1]{images/energy-minimzation.jpg}
+	\caption{Differenti fasi energetiche di una molecola durante la sua minimizzazione energetica. Fonte\cite{ROY2015151}}
+	\label{fig:energy-minimization}
+\end{figure}
+
+\subsubsection{Molecular dynamics}
+
+È possibile spingere l'algoritmo di minimizzazione energetica fuori da punti di minimo locale fornendo energia extra, ad esempio innalzando la temperatura del sistema (ovvero aggiungendo calore virtuale). L'energia aggiunta consente agli atomi del sistema di incrementare i loro movimenti e nuove configurazioni fuori dalle barriere energetiche vengono create. Questo metodo è chiamato \textit{Molecular dynamics} (MD) e si focalizza sui movimenti dipendenti dal tempo degli atomi nel sistema. I calcoli sono realizzati in accordo alla meccanica classica. 
+
+\par Agli atomi viene assegnata una velocità iniziale (proporzionale alla temperatura) e continuano a muoversi nello spazio secondo i corrispondenti cambiamenti nell'energia potenziale del sistema. Il movimento di ogni atomo nel sistema è calcolato in base alla sua energia in quel dato momento.
+
+\par Le simulazione di MD sono eseguite in cicli ripetitivi di \textit{riscaldamento} e \textit{raffreddamento} (metodo conosciuto nel mondo informatico come \textit{simulated annealing}, in riferimento al processo di tempra dei metalli). Nella fase di riscaldamento vengono superate le barriere energetiche mentre la fase di raffreddamento (seguita dall'\textit{energy minimization}) consente al sistema di rilassarsi in configurazioni con minor energia.
+
+\par Un metodo comune per rendere la ricerca con MD più efficiente è di spezzarla in due fasi:
+\begin{itemize}
+	\item ricerca a bassa risoluzione per trovare una collezione di strutture con interazioni non polari (basato sulla nozione che il nucleo delle proteine globulari sia idrofobico)
+	\item ricerca ad alta risoluzione fra le strutture selezionate nel primo step
+\end{itemize}
+
+\subsubsection{Limiti dell'approccio fisico e parziali soluzioni}
+Sebbene simulare il ripiegamento proteico seguendo la meccanica classica possa apparire un approccio attraente, questo è pratico solo per piccole proteine e usando alte risorse computazionali: lo spazio di ricerca è enorme e il problema è computazionalmente intrattabile in modo deterministico (è NP-hard)\supercite{abbass2020enhancing}.
+
+\par I metodi di MM/MD trovano difficilmente impiego in processi biologici rilevanti come il protein folding. Alcuni problemi riguardano l'approssimazione in sé del campo di forza, la sua accuratezza e i possibili doppi conteggi delle forze in gioco (es. interazioni ioniche e legami idrogeno calcolate in due espressioni differenti). 
+
+\par Un altro problema, sempre nell'approssimazione dell'energia libera con campi di forza, è che forniscono sì l'energia potenziale ma non l'entropia. L'unico modo per stimare l'entropia e l'energia libera dai calcoli per l'energia potenziale è eseguire questi calcoli su tutte le possibili configurazioni del sistema e poi integrarli. Il problema risiede quindi nell'impossibilità di compiere la totalità di questi calcoli a causa delle rappresentazioni esplicite usate nelle simulazioni di MD. In particolare è difficile considerare tutte le configurazioni del solvente acquoso. Ciò che si sta calcolando non è l'energia libera ma un \textit{potenziale di forze medie} (PMF). In conclusione le simulazioni di MD non sono consigliate per descrivere gli effetti dei solventi.
+
+\subsubsection{Mean field approach}
+Per ovviare parzialmente al problema delle rappresentazioni esplicite è possibile descrivere \textit{implicitamente} parti del sistema che vengono descritte da una proprietà media, per questa ragione tale approccio è chiamato \textit{mean field}. Un esempio è la descrizione del solvente, la parte "meno" interessante in genere, come una massa omogenea descritta dalla sua \textit{dielettricità} \footnote{Proprietà di un mezzo non conduttore di essere sede di un campo elettrostatico.}, conosciuto anche come approccio \textit{continuum-solvent}, vedi fig. \ref{fig:mean-field}.
+
+\begin{figure}[!htb]
+	\centering
+	\includegraphics[scale=0.4]{images/mean-field.png}
+	\caption{Descrizione con approccio mean-field di un sistema, il solvente è descritto implicitamente mentre la proteina esplicitamente. $\epsilon$ indica la dielettricità. (A) proteina in un solvente acquoso altamente dielettrico. (B) proteina di membrana in un ambiente eterogeneo. Il solvente acquoso è altamente dielettrico mentre la lastra semi-trasparente gialla, che rappresenta la regione biologica di doppio strato lipidico, è poco dielettrica. Fonte\cite{kessel_ben-tal_2018}}
+	\label{fig:mean-field}
+\end{figure}
+
+Ovviamente, essendo una forte approssimazione, alcuni aspetti del sistema reale sono ignorati, come le interazioni fra gli atomi delle proteine e le molecole d'acqua. Tale problema si esacerba quando il solvente è una membrana. \\
+
+\par Un altro compromesso è l'approccio \textit{mixed force fields} che combina calcoli espliciti sulla proteina e calcoli impliciti sul solvente. Viene usata l'equazione di Poisson-Boltzman (PBE) per calcolare accuratamente l'energia libera elettrostatica, legando così l'effetto polarizzante delle cariche con il loro ambiente. Essendo però un calcolo oneroso viene in genere risolta l'equazione generalizzata di Born (GB). A partire da queste due equazioni, che calcolano la componente elettrostatica dell'energia libera, è possibile calcolare l'intera \textit{free energy}, in modo abbastanza accurato, con calcoli che si rifanno alla surface area (SA, vedi parte finale della sez. \ref{sec:termodinamica-forze-idrofobiche}). 
+
+\par Questi metodi sono chiamati \textit{PBSA} e \textit{GBSA} rispettivamente, e come si è visto permettono un calcolo più preciso dell'energia libera. Questi possono a loro volta essere combinati con la MM per rappresentare anche le interazioni del sistema (\textit{MM-PBSA, MM-GBSA}) e sono oggi largamente utilizzati.
+
+\par Un altro limite computazionale è il lasso temporale che si riesce a coprire. La maggior parte delle proteine si ripiega in microsecondi mentre le simulazioni riescono a coprire tempi che vanno dai pico ai nanosecondi. Grazie ad avanzamenti nelle risorse informatiche sono stati fatti dei passi avanti da questo punto di vista. Un caso interessante è \textit{Anton}, un supercomputer progettato specificatamente per ottimizzare simulazioni di MD capace di coprire 85$\mu s$ al giorno per un sistema molecolare di 23.000 atomi (180 volte più veloce di qualsiasi computer general-purpose). Altri progressi sono dovuti alla computazione parallela e alla computazione accelerata dalla GPU. Il calcolo distribuito (\textit{grid computing}), ovvero una larga rete di computer personali dedicati volontariamente al completamento di processi, ha permesso alla rete \textit{Folding@Home} (170.000 computer) di simulare l'intero processo di ripiegamento della proteina di legame dell'acetil coenzima A, composta da 86 residui e che richiede 10 millisecondi per ripiegarsi. Un'altra rete distribuita di calcolo è \textit{Rosetta@Home}, con 86.000 nodi e finalizzata al PSP. \\
+
+\subsubsection{Conclusioni sull'approccio \textit{ab initio}}
+I metodi \textit{ab initio} non sono attualmente in grado di predire la struttura della maggior parte delle proteine sulla sola base della loro sequenza. Ma sono molto abili nel farlo quando il punto di partenza della predizione è una struttura vicino a quella nativa. Questi metodi sono infatti ampiamente usati per raffinare le strutture grezze ottenute dalle determinazioni sperimentali (vedi sez. \ref{sec:experimentally-guided-prediction}). 
+
+\par Il loro successo dipende ampiamente dall'accuratezza della funzione di energia, dall'efficienza dell'algoritmo di ricerca nello spazio conformazionale e dall'abilità di discernere strutture native da "esche" energeticamente intrappolate.
+Nonostante le loro limitazioni i metodi \textit{ab initio} sono di grande interesse perché sono gli unici, in principio, derivare la vera struttura nativa delle proteine e possono quindi fornire intuizioni importanti per il protein folding problem. Hanno infatti fornito informazioni importanti sulla dinamica delle proteine e sono utilizzati anche nel \textit{protein engineering} e nel \textit{drug discovery}. 
+
+}
+
+\subsubsection{Valutazione \textit{knowledge-based}}
+È anche possibile rimpiazzare il campo di forza con una funzione di valutazione \textit{knowledge-based}. Spesso queste funzioni sono composte di espressioni relative alla tendenza statistica di gruppi chimici, amminoacidi o atomi di interagire fra di loro. L'affidabilità della funzione di valutazione dipende dal database su cui si basa. 
+
+
+
+\subsection{\textit{fragment-based}}
+%-abbass 
 
 \par Un possibile metodo di azione è la \textit{frammentazione delle proteine}, nel quale i calcoli sono realizzati su piccoli frammenti della proteina e poi integrati. Un esempio è il software QUARK. L'approccio \textit{fragment-based} è usato nei metodi che combinano predizioni \textit{template-based} con assemblaggi \textit{ab initio}.
 
--- parla dell'assemblaggio dei frammenti. È ab initio?
+%-- parla dell'assemblaggio dei frammenti. È ab initio?
 
 \subsection{\textit{loop modeling}} \label{sec: loop-modeling}
 {
@@ -583,24 +719,132 @@ Nell'ultimo step sono utilizzate 2 misure per valutare i modelli e vengono ritor
 -pearce 2021
 
 
-\section{Determinazione sperimentale delle strutture} \label{sec:experimentally-guided-prediction}
+\section{Studio sperimentale delle proteine} \label{sec:experimentally-guided-prediction}
+{
 
-La determinazione sperimentale della struttura delle proteine ha vissuto dei progressi significativi col passare degli anni ed è di grande importanza per i metodi computazionali di PSP.
+\subsubsection{Come vengono studiate le proteine}
+Comprendere come una particolare proteina funzioni richiede dettagli strutturali e analisi biochimiche: entrambe hanno bisogno di una grande quantità di proteine pure. Isolare però un singolo tipo di proteina dalle migliaia presenti in una cellula non è un compito semplice. Per molti anni le proteine sono state purificate direttamente dai tessuti nei quali esse erano abbondanti. Ciò comporta, oltre alla necessità fisica di procurarsi i tessuti, dover riconoscere le proteine da studiare. Queste procedure richiedono settimane e forniscono solamente pochi milligrammi di proteina pura. Oggi le proteine sono generalmente isolate da cellule coltivate in laboratorio e spesso queste sono modificate geneticamente al fine di produrre grandi quantità di una data proteina. \\
 
-
-- come le proteine sono studiate [alberts, 4.4 p.158]
-- metodi sperimentali 
-alberts p.168
-pal 6 p.126 ma è molto tecnico
-wiki-protein folding, 
-baxevanis 12 p.363
-
-• storia dei metodi sperimentali (Pal) \\
-• cristallografia a raggi-x \\
-• NMR, risonanza magnetica nucleare \\
-• Cryo-EM (electron microscopy) \\
+\par Il primo step in una procedura di purificazione consiste nel rompere i tessuti e le cellule in modo da far loro rilasciare il contenuto (\textit{omogenizzazione}), chiamato \textit{estratto} (o omogenato cellulare). Ci sono vari meccanismi, come mostrato in fig. \ref{fig:break-cells}. 
 
 
+\begin{figure}[!htb]
+	\centering
+	\includegraphics[scale=0.5]{images/break-cells.png}
+	\caption{Omogenizzazione attraverso 4 diversi meccanismi, ognuno dei quali finalizzato a rompere le membrane plasmatiche. Fonte\cite{alberts2018essential}}
+	\label{fig:break-cells}
+\end{figure}
+
+Segue poi una procedura di frazionamento iniziale, tipicamente per \textit{centrifugazione}, per separare l'omogenato in differenti parti. Per raggruppare poi le classi di molecole di interesse si possono usare tecniche di \textit{cromatografia} o \textit{elettroforesi}. Una forma efficiente di cromatografia è quella per \textit{affinità} nella quale vengono utilizzati degli anticorpi specifici per la proteina di interesse. Nel secondo metodo un insieme di proteine viene immerso in un gel e soggetto ad un campo elettrico: le proteine migreranno nel gel a differenti velocità, a seconda del loro peso molecolare e della loro carica. Proteine simili migreranno a velocità simili, pertanto potranno essere visualizzate bande o punti di aggregazione di proteine. \\
+
+\par Una volta separate le proteine di interesse è possibile studiarne la struttura. Per quanto riguarda la struttura primaria, la prima proteina sequenziata è stata l'\textit{insulina} nel 1955, attraverso una procedura chimica diretta. La proteina veniva prima scomposta da una determinata proteasi e successivamente ogni amminoacido, in ogni frammento, veniva determinato sperimentalmente. Un metodo molto più veloce è la \textit{spettrometria di massa}, almeno per organismi di cui sia stato completamente sequenziato il genoma. Questa tecnica determina l'esatta massa di ogni frammento in una proteina purificata, consentendo l'identificazione della proteina nei database di sequenze genomiche.
+
+\par Per eseguire la \textit{spettrometria di massa} la proteina viene "digerita" dall'enzima \textit{tripsina} e frammentata in peptidi o singoli amminoacidi. Questi vengono scaldati con un laser, il che li renderà carichi e li farà evaporare. Viene poi usato un potente campo elettrico per far volare gli ioni peptidici verso un misuratore: il tempo che impiegano per arrivare è legato alla loro massa e carica (più massa = più lenti, più carichi = più veloci). L'insieme delle precise masse dei frammenti serve come "impronta digitale" (\textit{peptide mass fingerprinting}, PMF) che verrà usata per identificare la proteina codificata dall'organismo (e i suoi geni corrispondenti) dai database il cui profilo (massa teorica) corrisponde a questa impronta peptidica.
+
+\subsubsection{Determinazione sperimentale delle strutture}
+
+\par La determinazione sperimentale della struttura delle proteine ha vissuto dei progressi significativi col passare degli anni ed è di grande importanza per i metodi computazionali di PSP, consentendo ai metodi \textit{data-based} di affinare le loro predizioni.
+
+\begin{figure}[!htb]
+	\centering
+	\includegraphics[scale=0.42]{images/metodi-sper2.png}
+	\caption{Differenti livelli di informazione ottenuta lungo il percorso della determinazione della struttura di macromolecole. AFM: atomic force microscopy; Cryo-ET: cryo-electron tomography; EM: electron microscopy; FRET: fluorescence resonance energy-transfer; NMR: nuclear magnetic resonance; SAXS: small-angle X-ray scattering; SPR: surface plasmon resonance. Fonte\cite{sharon2011far}}
+	\label{fig:metodi-sper2}
+\end{figure}
+
+I metodi per la determinazione sperimentale della struttura delle proteine possono essere divisi in due gruppi:
+\begin{itemize}
+	\item metodi \textit{indiretti}, ovvero l'osservazione della proteina è possibile solo dopo sofisticate manipolazioni dei dati ottenuti:
+	\begin{itemize}
+		\item metodi per \textit{diffrazione}, che si basano sulla diffrazione o sulla dispersione di particelle subatomiche o onde elettromagnetiche da parte della proteina
+		\item metodi per \textit{spettroscopia}, i quali si affidano all'eccitazione e susseguente rilassamento degli atomi della proteina in risposta alla radiazione elettromagnetica
+	\end{itemize}
+	\item metodi \textit{diretti}, in cui l'osservazione della proteina è diretta; al momento è possibile con la microscopia crioelettronica (Cryo-EM)
+\end{itemize}
+
+Vengono utilizzate principalmente 3 tecniche per generare informazioni strutturali sulle proteine a risoluzione atomica: \textit{X-ray crystallography, nuclear magnetic resonance (NMR) spectroscopy} ed \textit{electron microscopy}\footnote{La traduzione italiana sarebbe: cristallografia a raggi-X, spettroscopia a risonanza magnetica nucleare e microscopia elettronica.}. Una volta ottenute proteine pure, queste devono essere o cristallizzate (cristallografia a raggi X), o piazzate in speciali solventi (spettroscopia NMR) o congelate (microscopia elettronica). \\
+
+\par Il metodo di diffrazione più comune, e più anziano, è la \textit{cristallografia a raggi X}. Produce strutture tridimensionali con la più alta risoluzione ma presenta alcune gravi carenze, la più significativa è la necessità di cristallizzare la proteina studiata. La cristallizzazione è un processo lungo e difficile e produce anche strutture di proteine al di fuori del loro ambiente. Queste strutture sono prive di qualsiasi proprietà dinamica e (raramente) possono risultare deformate. Pertanto non tutte le parti di una proteina (ad es. le parti più mobili) possono essere viste con strutture a raggi-X e di conseguenza queste regioni possono essere ignorate o aperte a interpretazioni.
+
+\begin{figure}[!htb]
+	\centering
+	\includegraphics[scale=0.4]{images/cristallografia.png}
+	\caption{Processo di determinazione della struttura dell'enzima RuBisCO tramite cristallografia a raggi-X. Fonte\cite{alberts2018essential}}
+	\label{fig:cristallografia}
+\end{figure}
+
+\par I piccoli cristalli di proteine misurano meno di 1mm e sono esposti ad un'intensa esposizione ai raggi-X (i quali hanno una lunghezza d'onda pari a quella di un atomo, $1-2\angstrom$). I raggi X sono dispersi o diffratti dagli atomi proteici nel cristallo. Il modello di diffrazione che ne deriva appare tipicamente come decine di migliaia di minuscoli punti disposti in complessi schemi circolari. Questi modelli di diffrazione sono registrati su una fotocamera a raggi X digitale. La posizione dei punti di diffrazione (insieme ad altre informazioni), sono effettivamente sufficienti per compiere una computazione della mappa della densità elettronica di tutti gli atomi pesanti (carbonio, azoto, ossigeno, zolfo) nella proteina di diffrazione. Da questa mappa, i cristallografi determinano le coordinate x,y,z di tutti gli atomi usando la sequenza nota della proteina. Si noti che, nella cristallografia a raggi X, anche se il pattern di diffrazione deriva da milioni di proteine contenute nel cristallo, il risultato è una struttura per una singola proteina "media".
+
+\par La prima struttura determinata con questa tecnica risale al 1958; risolvere una struttura negli anni '70 richiedeva anche 6-7 anni mentre oggi è a volte possibile in soli 6-7 giorni. Il 90\% delle strutture oggi determinate deriva dalla cristallografia a raggi-X\supercite{baxevanis2020bioinformatics}. \\
+
+\par Altri metodi per diffrazione sono:  \textit{small-angle X-ray scattering }(SAXS), \textit{neutron scattering},  \textit{electron crystallography}. Il metodo SAXS produce strutture a risoluzione inferiore rispetto alla cristallografia a raggi X. Tuttavia, le strutture SAXS sono molto utili nell'impostare vincoli posizionali per complessi proteici di grandi dimensioni, grazie ai quali è possibile "modellare" strutture a raggi X ad alta risoluzione.
+
+\begin{figure}[!htb]
+	\centering
+	\includegraphics[scale=0.5]{images/metodi-sperimentali.png}
+	\caption{Diagramma di flusso dei principali step usati la preparazione e soluzione sperimentale della struttura 3D delle proteine. Fonte\cite{baxevanis2020bioinformatics}}
+	\label{fig:metodi-sper1}
+\end{figure}
+
+\par Il principale metodo spettroscopico utilizzato per la determinazione della struttura proteica è l'NMR. Questo metodo si basa sull'eccitazione dei nuclei atomici sotto un forte campo magnetico e sul loro successivo rilassamento. Viene misurato come i nuclei atomici (ad es. dell'idrogeno o dell'isotopo carbonio o azoto) assorbano la radiazioni; ciò permette di determinare quanto magnetismo nucleare è trasferito da un atomo all'altro. Questo approccio consente agli scienziati di trattare la proteina nel suo ambiente naturale (soluzione, membrana) e fornisce importanti informazioni sulla sua dinamica. L'NMR è un metodo più recente della cristallografia a raggi-X: la prima struttura determinata risale al 1983. Tuttavia questo metodo ha un limite superiore alla dimensioni di molecole studiabili (40kDa) e non può studiare proteine di membrana. L'EPR, un metodo simile, si basa sull'eccitazione e sul rilassamento degli elettroni attorno agli atomi della proteina e richiede la marcatura dei residui proteici con etichette paramagnetiche. \\
+
+\subsubsection{Cryo-EM}
+
+\par La microscopia crioelettronica (cryo-EM) è un metodo diretto: è possibile osservare direttamente macromolecole. È una versione avanzata di microscopio elettronico, il quale fu inventato negli anni '30. Questi microscopi usano raggi di elettroni piuttosto che di luce (la lunghezza d'onda degli elettroni è molto più corta di quella della luce). Durante la metà degli anni '70 è nata la cryo-EM: l'idea è stata quella di congelare i campioni per preservarne la struttura naturale e ridurre i danni causati dai raggi di elettroni.
+
+\begin{figure}[!htb]
+	\minipage{0.5\textwidth}
+	\centering
+	\includegraphics[scale=1.1]{images/cryo-em.jpg}
+	\caption{Funzionamento schematico di un microscopio crio-elettronico. Fonte\cite{cryoEMbasics}}
+	\label{fig:cryo-em-basics}
+	\endminipage\hfill
+	\minipage{0.5\textwidth}
+	\centering
+	\includegraphics[scale=0.136]{images/cryo-em-classi.png}
+	\caption{(A) Micrografia rappresentativa del campione di streptavidina ottenuta tramite cryo-EM. La barra di scala rappresenta 20nm (B) Classi medie 2D rappresentative delle immagini della proteina. La barra di scala rappresenta 5nm. Fonte \cite{fan2019single}}
+	\label{fig:cryo-em-classi}
+	\endminipage\hfill
+\end{figure}
+
+Nella cryo-EM una goccia di acqua contenente pure proteine è inserita in una piccola griglia per EM immersa in una vasca di etano liquido a -180°C. I campioni di proteine vengono congelati velocemente (creando ghiaccio vitreo): questo assicura che le circostanti molecole d'acqua non abbiano tempo per formare cristalli di ghiaccio (che deformerebbero la forma della proteina). I campioni sono esaminati (ancora ghiacciati) da un microscopio a trasmissione elettronica (TEM) e sottoposti quindi a forti raggi di elettroni. Un rilevatore di elettroni cattura le "immagini" proiettate delle molecole e, data l'automazione odierna di simili meccanismi, vengono effettuate migliaia di micrografie per catturare più dettagli possibile delle molecole. Ogni micrografia conterrà centinaia di migliaia di molecole singole, ognuna orientata casualmente. 
+\par Successivamente vi è lo step di image processing: le immagini proiettate vengono categorizzate in gruppi e allineate per poi essere sovrapposte in moda da calcolare un'immagine media per ogni gruppo. \\
+
+\par La preparazione è quindi molto più semplice rispetto alla cristallografia a raggi-X e le strutture somigliano maggiormente a quelle viste nel normale ambiente acquoso della cellula. La cryo-EM è limitata nelle dimensioni: c'è un limite inferiore che di anno in anno si abbassa (ad. es 39kDa nel 2019\supercite{fan2019single}). Non sono un problema invece grandi proteine (anche maggiori di 100kDa). Oggi la cryo-EM può generare immagini 3D a risoluzione quasi atomica di virus e complesse macromolecole, come i ribosomi. È possibile utilizzare la cryo-EM anche per le proteine di membrana. 
+
+\begin{figure}[!htb]
+	\minipage{0.5\textwidth}
+	\centering
+	\includegraphics[scale=1.5]{images/cryo-ribosoma.jpg}
+	\caption{Complesso di controllo qualità dei ribosomi, basato su dati di cryo-EM. Fonte: \cite{cryoRevolutionUCSF}}
+	\label{fig:cryo-ribosoma}
+	\endminipage\hfill
+	\minipage{0.5\textwidth}
+	\centering
+	\includegraphics[scale=1.5]{images/cryo-zika.jpeg}
+	\caption{La struttura del virus Zika ottenuta tramite cryo-EM. La macromolecola ha un peso di 190kDa ed è composta da 11.000 atomi. Risoluzione di 3.8\angstrom. Fonte \cite{cryoZika}}
+	\label{fig:cryo-zika}
+	\endminipage\hfill
+\end{figure}
+
+ È solo da pochi anni che il metodo ha fatto un grande passo in avanti, grazie ad avanzamenti nel rivelatore e nei software di \textit{image processing}. Nel 2017 è stato assegnato il premio Nobel per la chimica per aver contribuito a sviluppare tale metodologia\footnote{A Richard Henderson, Jacques Dubochet e Joachim Frank, "for developing cryo-electron microscopy for the high-resolution structure determination of biomolecules in solution".}.
+Si sta considerando l'adozione della microscopia elettronica come di una rivoluzione nel campo della biologia strutturale\supercite{callaway2020revolutionary, bai2015cryo}. La crescita nel numero di strutture determinate è stata lenta inizialmente a causa della scarsa adozione del metodo, ma da quando si è vista la possibilità di produrre mappe dettagliate per macromolecole come i ribosomi la situazione è cambiata (vedi le figure \ref{fig:cryo-em-grafico} e \ref{fig:cryo-em-resolution}). Circa l'1\% delle strutture è stata determinata con questa tecnica ma i rapidi avanzamenti degli strumenti sia hardware che software potrebbero favorire la rivoluzione di cui si parla. 
+
+\begin{figure}[!htb]
+	\minipage{0.6\textwidth}
+	\centering
+	\includegraphics[scale=0.65]{images/cryo-em-grafico.png}
+	\caption{Crescita delle mappe elettroniche rilasciate nell'EMDB. Fonte\cite{pakhrin2021deep}}
+	\label{fig:cryo-em-grafico}
+	\endminipage\hfill
+	\minipage{0.4\textwidth}
+	\centering
+	\includegraphics[scale=0.35]{images/cryo-em-resolution.png}
+	\caption{Grafico della risoluzione di strutture risolte tramite cryo-EM. Fonte \cite{callaway2020revolutionary}}
+	\label{fig:cryo-em-resolution}
+	\endminipage\hfill
+\end{figure}
+}
 
 \section{Storia della comprensione delle proteine}
 - alberts p.160
