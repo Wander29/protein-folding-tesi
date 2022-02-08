@@ -1,4 +1,8 @@
 \chapter{AlphaFold}
+
+	\par La sfida principale che questi metodi hanno affrontato, e che AlphaFold ha "vinto", era raggiungere almeno una RMSD di 3\angstrom. Le sfide ancora da superare riguardano l'accuratezza su grandi proteine, su proteine con un contenuto significativo di strutture $\beta$ e la modellazione di proteine multi-dominio e di membrana.
+	
+
 -pearce 2021 confronto con AF1, ottimo in generale
 
 --- wei2019protein
@@ -24,5 +28,7 @@ AF1
 
 AlphaFold  [12] is a protein structure  prediction  method  developed  by  DeepMind, diction  accuracy  of RaptorX  using  the distance  matrix  was quite better than  that using which  had  one  of  the  best  performances  in  CASP13.  AlphaFold  is  the  other  approach contact matrix on a set of CASP targets. Along with AlphaFold, this approach  helped that championed the idea of using distogram for protein structure prediction. Essentially, the distogram prediction component of AlphaFold uses a convolutional neural network (CNN) that is trained on PDB structures to predict the Cβ–Cβ distances between any pair of residues. Using the amino acid representation of the query sequence and features generated from MSA, the CNN network predicts a discrete probability distribution for every pair. This distribution is found to be similar to the true distances. Then, the predicted backbone torsion angles and pair-wise distance between residues are combined to form \supercite{pakhrin2021deep}
 
+\subsection{PAE}
+% - alphafold db varaldi, anche pLDDT
 
 \clearpage

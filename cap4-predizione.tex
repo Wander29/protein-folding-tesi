@@ -2,7 +2,7 @@
 
 Il protein folding problem ha sia guidato che tratto beneficio dagli avanzamenti nei metodi sperimentali e computazionali\supercite{dill2008protein}. Uno dei maggiori obiettivi della biologia computazionale è proprio il Protein Structure Prediction (PSP), ovvero la predizione della struttura nativa tridimensionale di una proteina a partire dalla sua sequenza amminoacidica. Il PSP è il problema opposto al \textit{protein design} (la progettazione di nuove sequenze proteiche aventi delle specifiche attività).
 
-\par Grazie al CASP\footnote{Critical Assessment of Structure Predictions, vedi la sezione \ref{sec:CASP}.}, alla crescita dei database sulle proteine, allo sviluppo dei metodi per omologia e di allineamento di sequenze e all'utilizzo del Deep Learning, i metodi computazionali hanno registrato incredibili progressi, come il livello raggiunto da AlphaFold può dimostrare. 
+\par Grazie al CASP\footnote{Critical Assessment of Structure Predictions, vedi la sezione \ref{sec:CASP}.}, alla crescita dei database sulle proteine, allo sviluppo dei metodi per omologia, di allineamento di sequenze e all'utilizzo del Deep Learning, i metodi computazionali hanno registrato incredibili progressi, come il livello raggiunto da AlphaFold può dimostrare. 
 
 \par La predizione della struttura di proteine è uno strumento fondamentale: in medicina per la comprensione delle malattie da misfolding, nell'industria farmaceutica per risparmiare anni di laboriosi e costosi esperimenti correntemente richiesti per lo sviluppo di un singolo farmaco (\textit{drug design}), in biotecnologia per il design di nuovi enzimi e in generale per acquisire maggior conoscenza sul protein folding in tutti i suoi lati.
 
@@ -91,7 +91,7 @@ La predizione della struttura di proteine è stata ed è tutt'ora un campo in ev
 
 }
 
-\subsection{Soft computing e Deep Learning}
+\subsection{Soft computing e deep learning}
 
 Nel corso degli anni il PSP è stato affrontato anche con approcci di \textit{soft computing}. Si sta parlando di approcci perlopiù \textit{data-based}. I principali metodi di \textit{soft computing }utilizzati fanno capo a queste tecniche\supercite{marquez2015soft}:
 
@@ -139,7 +139,7 @@ Anche se le reti neurali di tipo FFNN sono state usate per prevedere annotazioni
 
 Tra i modelli di Deep Learning maggiormente utilizzati nei metodi odierni vi sono le ResNet\supercite{pakhrin2021deep}.
 }
-\subsection{Output e misure di valutazione}
+\subsection{Output e misure di valutazione} \label{sec:modelli-output}
 
 \subsubsection{Modelli di output}
 I modelli dei dati di output hanno lo scopo di rappresentare la struttura terziaria predetta di una proteina. I principali modelli sono\supercite{marquez2015soft}:
@@ -157,7 +157,7 @@ I modelli dei dati di output hanno lo scopo di rappresentare la struttura terzia
 	
 	\item \textit{binary contact map}, nel quale vengono rappresentati i contatti fra i residui tramite una matrice $L\times L$ dove $L$ rappresenta il numero dei residui. Un elemento $(i,j)$ nella matrice rappresenta una coppia di amminoacidi che possono essere in contatto (1) o no (0). Si definisce contatto una distanza tra i residui inferiore ad una determinata soglia, tipicamente 8\angstrom. Gli atomi di riferimento per tale calcolo sono in genere $C_{\alpha}$ o $C_{\beta}$.
 	
-	\par Data una \textit{contact map} è possibile ricostruire il modello 3D di una proteina risolvendo il Molecular Distance Geomtry Problem (MDGP). Quando usate come modello di rappresentazione delle proteine, le mappe di contatto sono	utili anche per confrontare le strutture. \\
+	\par Data una \textit{contact map} è possibile ricostruire il modello 3D di una proteina risolvendo il Molecular Distance Geometry Problem (MDGP). Quando usate come modello di rappresentazione delle proteine, le mappe di contatto sono	utili anche per confrontare le strutture. \\
 	
 	\item \textit{distance matrix}, simile alla mappa dei contatti ma rappresenta le distance a valori reali invece del contatto binario\\
 	\item \textit{hydrophobic-polar} (HP), nel quale una sequenza è rappresentata come una stringa $s\in (H,P)^{+}$, dove $H$ rappresenta un amminoacido idrofobico e $P$ un amminoacido idrofilo.
@@ -187,7 +187,7 @@ Le misure di qualità valutano l'affidabilità dei modelli 3D rispetto alla stru
 	
 	\item lDDT (local Distance difference test), è una metrica di valutazione non basata su sovrapposizione globale che valuta differenze di distanze locali di tutti gli atomi in un modello, includendo la validazione di plausibilità stereochimica\supercite{mariani2013lddt}. lDDT misura quanto sia stato riprodotto l'ambiente di una struttura di riferimento in un modello di una proteina. È calcolato su tutti gli atomi. La struttura di riferimento può essere una singola struttura o un insieme di strutture equivalenti. 
 	
-	\par Valutando tutti gli atomi è in grado di catturare l'accuratezza, ad esempio, della geometria locale di un sito di legame o il corretto ripiegamento del nucleo di una proteina. È stato introdotto nel CASP9. \\
+	\par Valutando tutti gli atomi è in grado di catturare l'accuratezza, ad esempio, della geometria locale di un sito di legame o il corretto ripiegamento del nucleo di una proteina. È stato introdotto nel CASP9. Assegna punteggi elevati a regioni ben previste anche se la previsione globale non è ben allineata alla struttura reale. Ciò risulta particolarmente utile nelle strutture multi-dominio, in cui i singoli domini possono essere molto accurati mentre la loro posizione relativa non lo è.
 	
 	\item TM\_score (Template modeling score), misura la somiglianza globale tra la struttura modello e quella conosciuta in base alla distanza tra ogni paio di residui. Il punteggio è compreso tra $(0, 1]$, dove 1 indica una corrispondenza perfetta tra due strutture. Generalmente punteggi inferiori a 0,20 corrispondono a proteine non correlate mentre le strutture con un punteggio superiore a 0,5 si pensa abbiano all'incirca lo stesso ripiegamento.\\
 	
@@ -203,29 +203,45 @@ Le misure di qualità valutano l'affidabilità dei modelli 3D rispetto alla stru
 \end{itemize}
 
 
-\subsection{Database e rappresentazione delle informazioni} \label{sec:database}
-% pal 6.4.1 p.145
-% Gu 10-13 p.468
-% baxevanis 12 p.367
+\subsection{Database e formati} \label{sec:database}
 
 Come si è già visto è possibile descrivere una proteina attraverso la sua sequenza amminoacidica. Il risultato è una stringa di lettere alfabetiche, poiché ogni amminoacido corrisponde ad una determinata lettera (vedi fig. \ref{fig:codici-amminoacidi}). Si ricorda anche che ad un amminoacido può corrispondere uno o più codoni (3 paia di basi azotate nel DNA). \\
 
-\par Per quanto riguarda la struttura delle proteine, il formato standard è il PDB (Protein Data Bank).
+\par Per quanto riguarda la struttura delle proteine, il formato standard è il PDB (Protein Data Bank), un esempio è quello mostrato in figura \ref{fig:pdb-format}.
+
+\begin{figure}[!htb]
+	\centering
+	\includegraphics[scale=0.65]{images/pdbFile.jpg}
+	\caption{Formato PDB. Fonte\cite{pdbFormat}}
+	\label{fig:pdb-format}
+\end{figure}
+
+Un file PDB è essenzialmente un contenitore di coordinate X, Y, Z per ogni atomo di una struttura molecolare. I programmi di visualizzazione molecolare traducono queste coordinate X, Y, Z in immagini tridimensionali interattive. La maggior parte dei file PDB inizia con informazioni scritte sulla struttura, il laboratorio che l'ha determinata e le tecniche utilizzate nel laboratorio. Eventuali commenti come questi iniziano sempre con la parola "REMARK" e verranno ignorati dai software di visualizzazione. Esiste anche una versione XML del formato PDB chiamata PDBML.
+
+\par Il formato originale (PDB) è però limitato dalla larghezza delle schede perforate per computer a 80 caratteri per riga. Intorno al 1996, il formato mmCIF (macromolecular Crystallographic Information file), un'estensione del formato CIF, è stato gradualmente introdotto. mmCIF è diventato il formato standard per l'archivio PDB nel 2014 e nel 2019, il wwPDB ha annunciato che le deposizioni per i metodi cristallografici sarebbero state accettate solo in formato mmCIF.
 
 \subsubsection{Database di proteine}
 
+Il \textit{Protein Data Bank }(PDB) è un archivio di strutture tridimensionali di macromolecole biologiche determinate sperimentalmente. È il deposito principale dei centri biologici di struttura. I dati contenuti nell'archivio includono coordinate atomiche, fattori di struttura cristallografici e dati sperimentali NMR. Oltre alle coordinate, ogni deposizione include anche i nomi delle molecole, le informazioni sulla struttura primaria e secondaria, i riferimenti al database di sequenze, ove appropriato, e le informazioni sull'assemblaggio biologico e sul ligando, i dettagli sulla raccolta dei dati e sulla soluzione della struttura e le citazioni bibliografiche. 
 
---PDB--
-The Protein Data Bank (PDB) is an archive of experimentally determined three-dimensional
-structures of biological macromolecules that serves a global community of researchers, educators,
-and students. The data contained in the archive include atomic coordinates, crystallographic
-structure factors and NMR experimental data. Aside from coordinates, each deposition also
-includes the names of molecules, primary and secondary structure information, sequence
-database references, where appropriate, and ligand and biological assembly information, details
-about data collection and structure solution, and bibliographic citations.
+\par Quando il PDB fu fondato, nel 1971, conteneva appena 7 strutture proteiche ed era frutto di una congiunzione fra il Cambridge Crystallographic Data Centre (UK)e il Brookhaven National Laboratory (USA), e da allora si è reso protagonista di una crescita pressoché esponenziale nel numero di strutture, che non mostra alcun segno di rallentamento. Nel 1998 il PDB è stato trasferito al Research Collaboratory for Structural Bioinformatics (RCSB). Nel 2003, con la formazione del \textit{wwPDB}, il PDB è diventato un'organizzazione internazionale.  I membri fondatori sono PDBe (Europa), RCSB (USA) e PDBj (Giappone). Il BMRB (Biological Magnetic Resonance Data Bank) si è unito nel 2006. Ciascuno dei quattro membri di wwPDB può fungere da centro di deposito, elaborazione dati e distribuzione dei dati PDB.  Il trattamento dei dati si riferisce al fatto che il personale del wwPDB esamina e annota ogni voce presentata. I dati vengono quindi automaticamente verificati per verificarne la plausibilità.\\
 
+\par \textit{UniProt} (Universal Protein Resource) è il più grande database bioinformatico per le sequenze proteiche di tutti gli organismi viventi e dei virus. Molte informazioni derivano da progetti di sequenziamento del genoma. I database UniProt sono UniProt Knowledgebase (UniProtKB), UniProt Reference Cluster (UniRef) e UniProt Archive (UniParc). Il consorzio UniProt e le istituzioni ospitanti EMBL-EBI, SIB (Swiss Institute of Bioinformatics) e PIR (Protein Information Resource) sono impegnati nella conservazione a lungo termine dei database UniProt.
 
-\par La predizione della struttura è importante per un semplice motivo: i biochimici conoscono oggi la sequenza amminoacidica per più di 225 milioni di proteine\supercite{proteienDBentries} (UniProt, con circa 4.5-5 milioni aggiunte ogni mese) ma sono state determinate solamente circa 160.000 strutture tridimensionali di proteine\supercite{proteienDBentries} (PDB\footnote{Al 3 Febbraio 2022 sono presenti 162.913 strutture di proteine nella versione dell'RCSB. Nel PDB ci sono anche strutture di altre macromolecole (complessi di acidi proteici-nucleici, DNA e RNA) per un totale, incluse le proteine, di 186.670\supercite{pdbStats}. Nel wwPDB (database globale) vi sono in totale 197.961 strutture di macromolecole\supercite{wwpdbStats}.}, con poco più di 10.000 strutture aggiunte ogni anno). 
+\begin{figure}[!htb]
+	\centering
+	\includegraphics[scale=0.5]{images/uniprot.png}
+	\caption{Struttura di UniProt. Fonte\cite{uniProt}}
+	\label{fig:uniprot}
+\end{figure}
+
+EMBL-EBI e SIB insieme mantenevano Swiss-Prot e TrEMBL, mentre PIR produceva il Protein Sequence Database (PIR-PSD). Questi due set di dati coesistevano con diverse priorità di copertura e annotazione della sequenza proteica.  TrEMBL (Translated EMBL Nucleotide Sequence Data Library) è stato originariamente creato perché i dati di sequenza venivano generati a un ritmo che superava la capacità di Swiss-Prot di tenere il passo.  Nel frattempo, PIR ha mantenuto il PIR-PSD e i relativi database, incluso iProClass, un database di sequenze proteiche e famiglie curate.  Nel 2002 i tre istituti hanno deciso di unire le proprie risorse e competenze e hanno costituito il consorzio UniProt.\\
+
+\par EMBL (European Molecular Biology Laboratory) è un'organizzazione di ricerca intergovernativa finanziata da oltre 20 Stati membri, potenziali e associati. L'istituto europeo di bioinformatica, EMBL-EBI (EMBL-European Bioinformatics Institute) si trova a Cambridge e gestisce, insieme all'NCBI (National Center for Biotechnology Information, USA), i maggiori database di sequenze nucleotidiche e proteiche. Uno dei ruoli dell'EMBL-EBI è quello di indicizzare e mantenere i dati biologici in una serie di database, inclusi Ensembl (che ospita i dati della sequenza di interi genomi), UniProt e PDB. Fornisce anche una varietà di servizi e strumenti online, come BLAST o lo strumento di allineamento di sequenze Clustal$\Omega$.\\
+
+\par EMDB (Electron Microscopy Data Bank) è una banca dati di microscopia elettronica (EMDB). È un archivio pubblico per mappe volumetriche di crio-microscopia elettronica e tomografia di complessi macromolecolari e strutture subcellulari. Copre una varietà di tecniche, tra cui l'analisi di singole particelle, la tomografia elettronica e la cristallografia elettronica. È stato fondato nel 2002 dall'EMBL-EBI e nel gennaio 2021 è divenuto un archivio gestito dalla wwPDB. \\
+
+\par La predizione della struttura è importante per un semplice motivo: i biochimici conoscono oggi la sequenza amminoacidica per più di 225 milioni di proteine\supercite{proteienDBentries} (UniProt, con circa 4.5-5 milioni aggiunte ogni mese) ma sono state determinate solamente circa 160.000 strutture tridimensionali di proteine\supercite{proteienDBentries} (PDB\footnote{In particolare è da notare che spesso sono presenti più strutture per una data proteina, sono state determinate strutture distinte di circa 55.000 proteine. Al 3 Febbraio 2022 sono presenti 162.913 strutture di proteine nella versione dell'RCSB. Nel PDB ci sono anche strutture di altre macromolecole (complessi di acidi proteici-nucleici, DNA e RNA) per un totale, incluse le proteine, di 186.670\supercite{pdbStats}. Nel wwPDB (database globale) vi sono in totale 197.961 strutture di macromolecole\supercite{wwpdbStats}.}, con poco più di 10.000 strutture aggiunte ogni anno). 
 
 \begin{figure}[!htb]
 	\centering
@@ -235,18 +251,78 @@ about data collection and structure solution, and bibliographic citations.
 \end{figure}
 
 
-%baxevanis 12 p.373, 1
+\par Sono disponibili anche database di modelli 3D di strutture proteiche, come ModBase. Proprio un database di questo tipo è stato fondato dall'EMBL-EBI in congiunzione con DeepMind grazie al successo di AlphaFold: \textit{AlphaFold DB}.
+
+\par AlphaFold DB è un database apertamente accessibile di previsioni ad alta precisione della struttura proteica. Basato su AlphaFold v2.0, ha consentito un'espansione senza precedenti della copertura strutturale dello spazio noto della sequenza proteica. AlphaFold DB fornisce l'accesso programmatico e la visualizzazione interattiva delle coordinate atomiche previste di una proteina, e le relative misure di confidenza stimate. La versione iniziale di AlphaFold DB contiene oltre 360.000 strutture predette in 21 proteomi di organismi modello. Il database sarà presto ampliato per coprire la maggior parte delle sequenze rappresentative del set di dati UniRef90 (oltre 100 milioni)\supercite{varadi2021alphafold}.
+
+\par Nella prima versione di AlphaFold DB si è tentato di prevedere la maggior parte delle sequenze nel proteoma di riferimento UniProt nell'intervallo di lunghezza di 16-2700 amminoacidi (oltre a frammenti di 1400 residui per coprire proteine umane più lunghe) per gli organismi attualmente coperti. Sono state escluse le sequenze che contengono amminoacidi non standard. Non vengono fornite isoforme multiple.
+
+\par AlphaFold DB archivia e fornisce accesso alle coordinate atomiche nei formati PDB e mmCIF, mentre fornisce il PAE (Predicted Aligned Error) in JSON.
 
 
 
 \subsection{Rappresentazione grafica}
-%pal 6.4 p.146, ottima
-%kessel p.174 (2.3 GRAPHIC REPRESENTATIONS OF PROTEINS)
 
-QuteMol -> cignoni!
+I file di struttura possono essere visualizzati tramite una rappresentazione grafica tridimensionale utilizzando uno dei numerosi software disponibili\footnote{Una lista più completa di software grafici per macromolecole è consultabile al seguente link (RCSB): https://www.rcsb.org/docs/additional-resources/molecular-graphics-software.}, inclusi:
 
-\subsection{CASP} \label{sec:CASP}
-{
+\begin{figure}[!htb]
+	\centering
+	\includegraphics[scale=0.7]{images/molstar.png}
+	\caption{Interfaccia utente di Mol* utilizzata nel sito del PDB. Fonte\cite{pdbStats}}
+	\label{fig:ui-molstar}
+\end{figure}
+
+\begin{itemize}
+	\item Mol*, frutto di una collaborazione aperta avviata da PDBe e RCSB PDB per fornire uno stack tecnologico di strumenti di analisi di macromolecole; è usato sul sito del PDB ed è possibile anche caricare i propri file
+	\item Jmol, software open-source scritto in Java 
+	\item PyMOL
+	\item QuteMol, sviluppato anche da Paolo Cignoni (ISTI-CNR)
+	\item Chimera
+	\item RasMol
+\end{itemize}
+
+\subsubsection{Tipi di rappresentazioni grafiche}
+
+I principali tipi di rappresentazione grafica sono: 
+
+\begin{figure}[!htb]
+	\centering
+	\includegraphics[scale=0.6]{images/rappresentazioni.jpg}
+	\caption{Da sinistra a destra, rappresentazioni: wire-frame, space-fill, ribbon. Fonte\cite{pdbStats}}
+	\label{fig:rappresentaizoni}
+\end{figure}
+
+\begin{itemize}
+	\item \textit{ribbon}, viene mostrata solo la backbone della proteina, rappresentata come un nastro che contiene tutti gli atomi (in realtà spesso solamente gli atomi $C_{\alpha}$). Mette in luce sia il ripiegamento che le strutture secondarie della proteina; è una delle rappresentazioni più utilizzate\\
+	
+	\item \textit{wire-frame}, vengono rappresentati solo i legami covalenti tra gli atomi, tracciando una linea per ciascuno dei legami. In molti casi viene utilizzata la rappresentazione \textit{ball-and-stick} (asta e sfera) per rendere più facile la comprensione della forma tridimensionale. Rivela la connettività degli atomi nella proteina ma può sommergere il ricercato con una quantità eccessiva di dettagli\\
+
+	\item \textit{space-fill}, gli atomi vengono mostrati come sfere, la cui grandezza è spesso relativa al loro raggio di van der Waals. La rappresentazione è chiara e colorata, fornisce la forma generale della proteina ma non fornisce altre informazioni aggiuntive, perciò viene raramente usata nel contesto scientifico\\
+
+	\item \textit{surface}, utile per interpretare l'interazione della proteina con l'ambiente esterno
+\end{itemize}
+
+Ogni approccio mette in risalto informazioni differenti, e una rappresentazione combinata può risultare spesso la scelta vincente per mostrare più dettagli in una singola immagine.
+
+\par È possibile anche colorare la rappresentazione sulla base di determinate caratteristiche, come il potenziale elettrostatico, la conservazione evolutiva, il grado di flessibilità della catena o l'appartenenza a una delle possibili catene polipeptidiche. Ad esempio la rappresentazione della superficie colorata in base al potenziale elettrostatico è di aiuto ai ricercatori nella scoperta di siti di legame della proteina.
+
+\begin{figure}[!htb]
+	\minipage{0.6\textwidth}
+	\centering
+	\includegraphics[scale=2]{images/combinata-ecc.jpg}
+	\caption{(A) rappresentazione combinata; è presente sia la rappresentazione della superficie che ribbon che ball-and-stick. (B) rappresentazione della superficie colorata in base al potenziale elettrostatico (i potenziali negativi sono rossi, quelli potenziali positivi blu e i potenziali neutri bianchi). Fonte: \cite{castaldo2013soluble}}
+	\label{fig:rappresentazione-combinata}
+	\endminipage\hfill
+	\minipage{0.38\textwidth}
+	\centering
+	\includegraphics[scale=0.35]{images/conservazione.png}
+	\caption{Rappresentazione space-fill colorata in base alla conservazione evolutiva. Fonte \cite{kessel_ben-tal_2018}}
+	\label{fig:rappresentazione-evolutiva}
+	\endminipage\hfill
+\end{figure}
+
+\subsection{CASP ed excursus storico}  \label{sec:CASP}
+
 Dal 1994 il campo del PSP è stato stimolato, monitorato e quantitativamente valutato dalla competizione biennale CASP (\textit{Critical Assessment of Structure Predictions}). CASP è una sfida nella quale gruppi di ricerca si sfidano cercando di realizzare predizioni di strutture di proteine. È nota la sequenza amminoacidica di queste proteine target ma non la struttura sperimentale. Queste sequenze di proteine provengono da laboratori  congiunti: è pianificata la determinazione delle loro strutture native in vitro, che verrà infine utilizzata per stabilire l'accuratezza dei metodi in gara.
 
 \par Questi esperimenti a livello di comunità sono cresciuti significativamente nel corso delle edizioni: dai 33 target e i 100 modelli sottomessi nel 1994 (CASP1) agli 82 target e più di 55.000 modelli sottomessi nel 2018 (CASP13)\supercite{abbass2020enhancing}.
@@ -255,37 +331,85 @@ Dal 1994 il campo del PSP è stato stimolato, monitorato e quantitativamente val
 
 \par Nei primi 6 round (CASP1-6), i target erano classificati in 3 categorie: \textit{comparative modeling}, \textit{fold recognition} e \textit{ab initio}. Da allora i target sono stati classificati solo in 2 classi: le famose \textit{template-based modeling} e \textit{template-free modeling}. I target nella categoria TBM sono considerati "facili" mentre quelli in FM sono considerati difficili. È presenta anche la divisione fra metodi completamente automatici e previsioni ottenute usando intervento umano.
 
+\par È interessante notare che nei primi round del CASP, la previsione della struttura secondaria era una categoria separata. Questa categoria è stata cancellata dopo che gli organizzatori hanno notato che i vincitori di tale categoria utilizzavano un approccio circolare: prevedevano la struttura 3D e utilizzavano la struttura del modello per decifrare gli elementi della struttura secondaria.
+
 \par I risultati sono valutati sulla base di vari criteri, come il numero di residui la cui posizione è stata predetta con un certo livello di accuratezza, identificazione di strutture secondarie, limiti dei domini, contatti fra residui, regioni disordinate, ecc.
 
 \par Analizzando i risultati del CASP negli anni si può notare che i metodi basati su un approccio fisico, nonostante l'aumento della potenza computazionale, hanno subito solo lievi miglioramenti.
 
 \par L'importanza del CASP per la biologia strutturale è alta anche per il contributo che ha dato alla creazione dei metodi automatici, accessibili anche ai non esperti.
 
-\par Nel 2020 gli organizzatori del CASP14 hanno riconosciuto AlphaFold come soluzione del \textit{protein–structure–prediction problem} ???. \\
 
-}
+\subsubsection{Excursus storico}
+
+Dal punto di vista biologico e sperimentale sulle proteine, tra i punti di riferimento più importanti ci sono\supercite{alberts2018essential}:
+\begin{itemize}
+	\item nel 1838 è stato proposto il nome \textit{proteina}
+	\item durante il XIX secolo vengono scoperti la maggior parte dei 20 amminoacidi 
+	\item nel 1864 è stata cristallizzata e denominata l'emoglobina
+	\item nel 1894, come già citato, Fischer ha proposto l'analogia chiave-lucchetto per le interazioni fra enzimi e substrato
+	\item nel 1897 vengono gettate le basi per l'enzimologia
+	\item nel 1926 viene dimostrato che le proteine possono essere enzimi e viene sviluppata l'ultracentrifugazione, usata per stimare il peso molecolare dell'emoglobina
+	\item negli anni '30 vengono proposte le prime teorie sulla denaturazione delle proteine
+	\item nel 1933 viene introdotta l'elettroforesi
+	\item nel 1934 viene mostrata la prima diffrazione a raggi-X di una proteina
+	\item nel 1942 viene sviluppata la cromatografia
+	\item nel 1951 vengono proposte le strutture secondarie $\alpha$-eliche e foglietti-$\beta$
+	\item nel 1955 viene sequenziata la prima proteina (insulina)
+	\item nel 1956 viene prodotta la prima "impronta digitale" di una proteina, mostrando la causa dell'anemia falciforme
+	\item nel 1960 viene descritta la prima struttura tridimensionale tramite cristallografia a raggi-X a risoluzione di 2 \angstrom
+	\item nel 1966 viene descritta la struttura tridimensionale del lisozima, il primo enzima ad essere analizzato a risoluzione atomica
+	\item nel 1975 Henderson e Unwin determinano la prima struttura 3D di una proteina di membrana usando una ricostruzione al computer da micrografie elettroniche
+	\item nel 1983 viene usato la spettroscopia NMR per determinare la struttura 3D di una proteina
+	\item nel 1988 vengono sviluppati metodi per l'uso della spettrometria di massa nell'analisi di proteine e altre macromolecole
+	\item nel 2003 è stato completato il progetta genoma umano
+	\item tra il 1996-2013 vengono rifiniti i metodi nell'uso della spettrometria di massa per identificare proteine in miscugli complessi
+	\item tra il 1975-2013 Henderson e altri rifiniscono i metodi nell'utilizzo della cryo-EM per la determinazione della struttura di larghi complessi proteici a risoluzione atomica
+\end{itemize}
+
+I primi passi della \textit{bioinformatica }risiedono nei primi anni '60, quando ancora i desktop computer erano solo un'ipotesi e il DNA non poteva essere sequenziato. Questi passi andavano in direzione di metodi computazionali per l'analisi della sequenza delle proteine. Margaret Dayhoff è considerata la madre della bioinformatica: ha infatti sviluppato il primo software bioinformatico (COMPROTEIN) e il primo database per le sequenze biologiche (\textit{Atlas of Protein Sequence and Structure}, conteneva 65 sequenze di proteine). Il codice a una lettera per gli amminoacidi si deve sempre alla Dayhoff\supercite{gauthier2019brief}. 
+
+\par È in questi anni che è stato sviluppato il primo modello di sostituzione degli amminoacidi per la filogenetica. Anche l'approccio \textit{ab initio} (non per le proteine) è emerso negli anni '60 a partire dal campo della chimica computazionale, grazie principalmente a Warshel, Levitt, Karplus\footnote{Nel 2013 il premio Nobel per la chimica è stato assegnato proprio a questi scienziati che hanno contribuito sin da quegli anni al campo della biofisica molecolare computazionale.}. Il primo programma per calcolare l'energia potenziale nelle proteine è stato sviluppato nel 1969 da Lifson e Levitt\supercite{levitt1969refinement}.
+
+\par Le predizioni di strutture basate sui metodi \textit{ab initio} sono emerse nella metà degli anni '80, prima per piccoli peptidi e poi per polipeptidi. La prima simulazione di MD su una proteina è stata realizzata nel 1977 da McCammon, Gelin e Karplus\supercite{mccammon1977dynamics}, studiando la dinamica di ripiegamento di una proteina di 58 amminoacidi rappresentata esplicitamente ma simulata nel vuoto. Questo studio seguì il lavoro pionieristico di Levitt e Warshel del 1975 (\textit{Computer simulation of protein folding}\supercite{levitt1975computer}) sulla stessa proteina che era però rappresentata in modo più semplicistico: ogni amminoacido era rappresentato da due sfere. 
+
+\par Intorno all'inizio degli anni '90 è emerso dalla biologia il campo della bioinformatica, sulla base dall'analisi delle proteine, come dimostra anche l'instaurazione del CASP.
+
+\par Nel 2007 si è raggiunta un'accuratezza nella predizione della struttura di proteine (a singolo dominio con massimo 90 residui) tra i 2 e i 6 \angstrom (modellazione per omologia)\supercite{dill2008protein}.
+
+\par Nel 2020 AlphaFold è stato reputato vincitore del CASP riuscendo praticamente a risolvere il problema del PSP (per determinate categorie di proteine). 
+
 
 \section{Annotazioni 1D sulla struttura} \label{sec:predizione-structural-features}
 %- praveen 2014
 %- pal 
 
-Le "annotazioni monodimensionali sulla struttura delle proteine" (1D PSA) sono astrazioni che descrivono la disposizione della backbone proteica.
+Le "annotazioni monodimensionali sulla struttura delle proteine" (1D PSA) sono astrazioni che descrivono la disposizione della backbone proteica. 
 
-Le proprietà delle sequenze possono essere raggruppate in due tipi:
+\begin{figure}[!htb]
+	\centering
+	\includegraphics[scale=1.5]{images/1dpsa.png}
+	\caption{Annotazioni 1D nella pipeline generica di un metodo odierno per il PSP. Fonte\cite{pearce2021deep}}
+	\label{fig:1dpsa}
+\end{figure}
+
+Le annotazioni monodimensionali delle sequenze possono essere legate a due tipi di proprietà:
 \begin{itemize}
 	\item proprietà esplicitamente correlate con la struttura degli amminoacidi
 	\item proprietà statistiche
 \end{itemize}
 
-Proprietà del 1° tipo sono collegate a: formazioni di determinate strutture secondarie, esposizione al solvente circostante (\textit{solvent accessibility}), determinati angoli di torsione, interazioni con alcuni amminoacidi, ecc. (es. GenTHREADER, SPARKS-X).
+Annotazioni del 1° tipo sono collegate a: formazione di determinate strutture secondarie, esposizione al solvente circostante (\textit{solvent accessibility}), determinati angoli di torsione, interazioni con alcuni amminoacidi, ecc. (es. GenTHREADER, SPARKS-X).
 
-\par Le proprietà statistiche vengono invece identificate tramite le frequenze degli amminoacidi in vari MSA. Un modo di rappresentare queste tendenze è tramite \textit{profili}, i quali denotano amminoacidi che frequentemente appaiono in certe posizioni dell'allineamento. Un profilo del genere è più informativo di una semplice sequenza amminoacidica: contiene informazioni evolutive (es. livelli di conservazione di specifiche posizioni nella sequenza). È questa l'utilità dell'utilizzo di profili. Il profilo della proteina target è poi confrontato con i profili corrispondenti di tutte le proteine con ripeigamenti conosciuti (\textit{profile-profile alignemnt}) e le proteine sufficientemente simili alla proteina target possono essere usate come template globali. Un esempio di procedura profile-matching è HHPred, basata su confronti a coppie di profili HMM tra target e template.
+\par Le proprietà statistiche vengono invece identificate tramite le frequenze degli amminoacidi in vari MSA. Un modo di rappresentare queste tendenze è tramite \textit{profili}, i quali denotano amminoacidi che frequentemente appaiono in certe posizioni dell'allineamento. Un profilo del genere è più informativo di una semplice sequenza amminoacidica: contiene informazioni evolutive (es. livelli di conservazione di specifiche posizioni nella sequenza). Il profilamento della sequenza avviene tipicamente tramite HMM (Hidden Markov Model) o PSSM (Position-specific score matrix).
+
+\par Dato che tutti gli step successivi, in ogni caso (compresi metodi end-to-end), dipendono dalla qualità dell'MSA, la generazione di allineamenti di alta qualità è di incredibile importanza per il PSP. A prescindere dall'approccio e dall'utilizzo o meno del DL, sfruttare le informazioni evolutive è risultato essere lo step più importante.
 
 \subsection{Allineamento di sequenze} \label{sec:MSA}
 {
-	Un allineamento di sequenze multiple (MSA) è una disposizione di più di due sequenze di amminoacidi o nucleotidi allineate in modo da posizionare i residui delle diverse sequenze in colonne verticali in una maniera appropriata. I metodi di MSA sono utilizzati in una grande varietà di analisi e pipeline nell'analisi del proteoma e del genoma e sono un passo iniziale essenziale nella maggior parte dei confronti filogenetici. Sono ampiamente utilizzati per aiutare a ricercare caratteristiche comuni nelle sequenze e possono essere usati per aiutare a prevedere le strutture bi e tridimensionali di proteine e acidi nucleici. Un MSA mostra il grado di similarità tra le sequenze.
+	Un allineamento di sequenze multiple (MSA) è una disposizione di più di due sequenze di amminoacidi o nucleotidi allineate in modo da posizionare i residui delle diverse sequenze in colonne verticali in una maniera appropriata. I metodi di MSA sono utilizzati per l'analisi del proteoma e del genoma; sono il passo iniziale essenziale nella maggior parte dei confronti filogenetici. Sono ampiamente utilizzati per aiutare a ricercare caratteristiche comuni nelle sequenze e possono essere usati per aiutare a prevedere le strutture bi e tridimensionali di proteine e acidi nucleici. Un MSA, in essenza, mostra il grado di similarità evolutiva tra le sequenze. 
 	
-	\par Di solito, si dovrebbe solo tentare di allineare sequenze filogeneticamente correlate e, quindi, omologhe. In questo caso, l'allineamento ideale avrà residui omologhi allineati nelle colonne.
+	\par In genere si assume che le sequenze che si vuole allineare siano filogeneticamente correlate e, quindi, omologhe. In questo caso, l'allineamento ideale avrà residui omologhi allineati nelle colonne.
 	
 	\begin{figure}[!htb]
 		\centering
@@ -296,20 +420,23 @@ Proprietà del 1° tipo sono collegate a: formazioni di determinate strutture se
 	
 	\par Le sequenze di proteine in genere risultano avere un grado di somiglianza maggiore rispetto alle sequenze nucleotidiche. Ciò è dovuto alla degenerazione del codice genetico e al fatto che quasi per ogni amminoacido esistano vari codoni che lo codificano, perciò differenti sequenze nucleotidiche possono codificare esattamente la stessa sequenze di amminoacidi.
 	
-	\par Un allineamento di sequenze multiple (MSA) può essere utilizzato per tracciare l'entità della divergenza evolutiva tra sequenze correlate. Rispetto a una singola sequenza, l'MSA fornisce informazioni sulle tendenze evolutive degli amminoacidi in ciascuna posizione della sequenza, il che caratterizza un "profilo" della sequenza.
+	\par Un allineamento di sequenze multiple (MSA) può essere utilizzato per tracciare l'entità della divergenza evolutiva tra sequenze correlate. Rispetto a una singola sequenza, l'MSA fornisce informazioni sulle tendenze evolutive degli amminoacidi in ciascuna posizione della sequenza, il che aiuta a caratterizzare un "profilo" della sequenza.
 	
+	\par Un modo per generare un MSA è cercare grandi data set di sequenze proteiche e allinearli alla sequenza target. All'interno di un metodo per generare un MSA vengono utilizzati vari metodi per massimizzare i punteggi e la correttezza degli allineamenti.  Ogni metodo utilizza un'euristica che cerca di replicare il processo evolutivo e ottenere un allineamento realistico.	Ci sono vari tool per creare MSA, ad esempio: Clustal$\Omega$, MAFFT, MUSCLE, T-Coffee.
 }
-
-\subsection{Predizione della struttura secondaria}
-%-wiki
-%-sejonwski 1989
-%-deOliveira 2021
 
 \section{Annotazioni 2D sulla struttura}
 
-Le annotazioni riguardano predizioni dei contatti fra residui sulla base di informazioni co-evolutive (\textit{correlated mutation}), generando o una \textit{contact map}, o un \textit{distogramma} o una \textit{distance map} attraverso una \textit{deep residual neural network} (\textit{ResNet}). Il fine è ricavare restrizioni spaziali come contatti inter-residuo a lunga distanza, distanze specifiche, legami idrogeno e angoli di torsione.
+Le annotazioni bidimensionali sulla struttura delle proteine (2D PSA) permettono di ricavare restrizioni spaziali come contatti inter-residuo a lunga distanza, distanze specifiche o legami idrogeno. 
 
-Le "annotazioni monodimensionali sulla struttura delle proteine" (1D PSA) sono astrazioni che descrivono la disposizione della backbone proteica.
+\begin{figure}[!htb]
+	\centering
+	\includegraphics[scale=1.5]{images/2dpsa.png}
+	\caption{Annotazioni 2D nella pipeline generica di un metodo odierno per il PSP. Fonte\cite{pearce2021deep}}
+	\label{fig:2dpsa}
+\end{figure}
+
+Le annotazioni si basano sulla predizione dei contatti fra i residui sulla base, ad esempio, di informazioni co-evolutive (\textit{correlated mutation}), generando o una \textit{contact map}, o un \textit{distogramma} o una \textit{distance map}. 
 
 \begin{figure}[!htb]
 	\centering
@@ -318,8 +445,27 @@ Le "annotazioni monodimensionali sulla struttura delle proteine" (1D PSA) sono a
 	\label{fig:fm-template-dl}
 \end{figure}
 
+\par I progressi nella previsione dei contatti sono rimasti stagnanti per qualche tempo. Tuttavia, si è verificato un balzo nell'accuratezza della previsione dei contatti quando gli algoritmi hanno iniziato a utilizzare approcci di previsione globale. I primi metodi prevedevano principalmente i contatti tra le coppie di residui uno alla volta utilizzando tecniche come l'informazione reciproca, ignorando così le interazioni con altre coppie di residui e il contesto globale in cui si verificavano le interazioni; questo è in gran parte il motivo per cui era difficile per questi metodi locali distinguere tra interazioni dirette e indirette. L'introduzione di modelli statistici globali determinati attraverso l'uso dell'analisi di accoppiamento diretto (DCA) è stata in grado di distinguere con maggiore successo tra queste interazioni dirette e indirette. Il DL ha successivamente rivoluzionato il campo della predizione dei contatti sin dal suo debutto nel CASP10, facendo progredire negli ultimi questo campo dalla predizione binaria dei contatti alla predizione della distanza a valori reali o probabilistica (distogrammi); spesso vengono utilizzate delle \textit{deep residual neural network} (\textit{ResNet}).  
 
-Data la natura "black-box" dei metodi di DL è stata ad esempio proposta InterPretContactMap che fa riferimento al campo della xAI (explainable AI); combina reti neurali profonde con meccanismi di attenzione per aumentare la comprensibilità della predizione dei contatti.
+\par Data la natura "black-box" dei metodi di DL è stata ad esempio proposta InterPretContactMap che fa riferimento al campo della xAI (explainable AI); combina reti neurali profonde con meccanismi di attenzione per aumentare la comprensibilità della predizione dei contatti. \\
+
+È dal CASP11 che la predizione di una \textit{contact map} è diventata una chiave fondamentale della pipeline dei metodi per il PSP. La predizione dei contatti può essere classificata in due categorie:
+
+\begin{itemize}
+	\item correlated-mutation-based
+	\item ML-based
+\end{itemize}
+
+Le \textit{contact map} (descritte nella sez. \ref{sec:modelli-output}) possono essere divise in 4 categorie a seconda di quanto siano lontani fra loro i residui nella sequenza:
+
+\begin{enumerate}
+	\item local, <6 residui
+	\item short-range, 6-11 residui
+	\item medium-range, 12-23 residui
+	\item long-range, >24 residui
+\end{enumerate}
+
+I contatti locali descrivono in realtà le strutture secondarie, pertanto i contatti che risultano essere più utili sono quelli a medio e lungo raggio.
 
 \subsection{\textit{correlated mutation}}
 {
@@ -338,47 +484,36 @@ Data la natura "black-box" dei metodi di DL è stata ad esempio proposta InterPr
 		\label{fig:correlated-mutation}
 	\end{figure}
 	
-	\par Ci sono 3 principali ostacoli a questo approccio: rumore statistico (molte correlazioni sono solo frutto di rumore e quindi insignificanti), correlazioni fra residui distanti e numero insufficiente di posizioni correlate. Il metodo non risulta applicabile quando ci sono poche sequenze omologhe. Nonostante l'idea non sia nuova, solo nell'ultimo decennio tali metodi sono divenuti abbastanza accurati da poter essere usati nel PSP; metodi noti sono EVfol, Rosetta-GREMLIN, FILM3, MetaPSICOV, ecc.
+	\par Ci sono 3 principali ostacoli a questo approccio: rumore statistico (molte correlazioni sono solo frutto di rumore e quindi insignificanti), correlazioni fra residui distanti e numero insufficiente di posizioni correlate. Il metodo non risulta applicabile quando ci sono poche sequenze omologhe. Nonostante l'idea non sia nuova, solo nell'ultimo decennio tali metodi sono divenuti abbastanza accurati da poter essere usati nel PSP; metodi noti sono EVfold, Rosetta-GREMLIN, FILM3, MetaPSICOV, ecc.
 	
 }
 
-The hypothesis behind the approach was that if
-mutations that occur at two positions in an MSA are
-correlated, these positions are more likely to form a
-contact in 3D space. This is because there is evolutionary
-pressure to conserve the structures of proteins and a
-mutation at one position may be rescued by a correspond-
-ing mutation at a nearby residue. The accuracy of co-
-evolution-based contact map prediction remained low for
-many years due to the inability to distinguish between
-direct and indirect interactions, where indirect interac-
-tions occur when residues appear to co-evolve but do not
-actually form contacts. For example, if Residues A and B
-are both in contact with Residue C, A and B often appear
-as if they co-evolve even when there is no physical
-contact between them. There is evidence showing that
-such co-evolution may have a functional cause [22] rather
-than a structural one, which resulted in the failure of
-structure-based contact derivation.\supercite{pearce2021deep}
+\subsection{\textit{contact prediction ML-based}}
 
-Progress in contact prediction remained stagnant for some
-time. However, a leap in contact prediction accuracy took
-place when algorithms started utilizing global prediction
-approaches. Early methods mainly predicted contacts
-between residue pairs one-at-a-time using techniques
-such as mutual information, thus ignoring the interactions
-with other residue pairs and the global context in which
-the interactions took place; this is largely why it was
-difficult for these local methods to distinguish between
-direct and indirect interactions. The introduction of
-global statistical models determined through the use of
-direct coupling analysis (DCA) was more successfully
-able to distinguish between these direct and indirect
-interactions [23,24]. 
+La predizione di contatti tra i residui è stata ampiamente utilizzata per oltre un decennio nel campo del PSP. Tuttavia, recentemente, il paradigma si è spostato verso la previsione della probabilità di intervalli di distanza, noti anche come \textit{distogrammi} (distanza + istogramma). 
 
+\par Per una sequenza di lunghezza $L$, un distogramma è una matrice $L \times L$, che mostra l'istogramma delle distanze tra coppie. I distogrammi sono matrici simmetriche rispetto alla diagonale. Ogni "pixel" sulla mappa rappresenta una distanza tra una coppia di residui nella sequenza. Le distanze in un distogramma sono relative, il che significa che le distanze tra i residui sono invarianti rispetto alle rotazioni e alle traslazioni 3D.
 
-\subsection{Distogrammi}
+\par Le distanze sono "binned"\footnote{Ciò vuol dire che i valori dei dati originali che rientrano in un dato piccolo intervallo, un \textit{bin}, sono sostituiti da un valore rappresentativo di quell'intervallo, spesso il valore centrale.  È una forma di quantizzazione.}, pertanto il distogramma può avere tanti canali quanti sono i \textit{bin}, ovvero $L\times L \times bins$ tensori\footnote{In matematica, la nozione di tensore generalizza tutte le strutture definite usualmente in algebra lineare a partire da un singolo spazio vettoriale.}.  \\
 
+\par La previsione della distanza tra i residui proteici è la previsione di una matrice (2D) di distanze tra coppie a partire da una sequenza proteica (1D). Tale problema può essere confrontato con quello della stima della profondità monoculare in \textit{computer vision} (vedi fig. \ref{fig:distogramma-cane}).
+
+\par Nell'\textit{image depth prediction}, viene fornita una matrice dell'immagine come input e viene prevista come output una matrice di profondità in cui ogni pixel ha una profondità prevista (distanza dalla fotocamera all'oggetto). Similmente al problema della previsione della profondità, la previsione della distanza nel PSP prende in input un volume tridimensionale (altezza × larghezza × canali, tensore 3D) e genera una mappa della distanza con la stessa dimensione dell'input (altezza × larghezza) ma con un singolo canale. 
+
+\par Tuttavia, i canali di input nei problemi di visione artificiale vanno da uno a tre (i canali RGB o HSV), ma possono arrivare alle centinaia di canali nel PSP, a seconda delle caratteristiche di input.
+
+\begin{figure}[!htb]
+	\centering
+	\includegraphics[scale=0.1]{images/distogramma.png}
+	\caption{Confronto fra "image depth prediction" e "distance prediction". Fonte\cite{pakhrin2021deep}}
+	\label{fig:distogramma-cane}
+\end{figure}
+
+\par Fino al CASP13 i tentativi di predire dei distogrammi erano stati poco efficaci, è solo con il metodo di Xu, trRosetta e AlphaFold1 che tale tecnica è maturata. La tecnica di DL principalmente utilizzata è l'uso di ResNet.
+
+\par Il metodo di Xu, implementato in Raptor X, discretizza le distanze di interazione $C_{\beta}$-$C_{\beta}$ in 25 intervalli (da $< 4.5 \angstrom$ a $< 16 \angstrom$). È possibile ottenere una \textit{contact map} da questa \textit{distance map} sommando tutti valori di probabilità previsti corrispondenti a distanze $\leq 8$ $\angstrom$\supercite{pakhrin2021deep}. \\
+
+\par La predizione delle distanze a valori reali è un task ancora più difficile. Consiste nel predire le esatte distanze fisiche sull'intera \textit{distance map} accuratamente. I metodi odierni utilizzano ResNet o GAN o meccanismi di attenzione; degli esempi sono PDNET e RealDist.
 
 \section{Predizione della struttura 3D}
 
@@ -386,10 +521,11 @@ interactions [23,24].
 {
 	Nella modellazione per omologia ci si affida a somiglianze nella sequenza tra la proteina target e i template. I metodi per omologia sono perciò basati sul paradigma: \\
 	\say{\textit{la sequenza codifica per la struttura}}.
+	Due proteine si definiscono \textit{omologhe} quando hanno un progenitore comune nella loro storia evolutiva; una notevole somiglianza fra due sequenze è una forte evidenza che le queste siano correlate evolutivamente.
 	
-	\par Sono metodi basati anche sull'osservazione che la struttura terziaria è più conservata della sequenza amminoacidica. Di conseguenza ci si aspetta una significativa somiglianza nella struttura fra proteine che condividono una notevole somiglianza tra le sequenze, anche non totale.
+	\par Sono metodi basati anche sull'osservazione che la struttura terziaria è più conservata della sequenza amminoacidica. Di conseguenza ci si aspetta una significativa similarità nella struttura fra proteine che condividono una notevole somiglianza tra le sequenze.
 	
-	\par In altri termini, due sequenze amminoacidiche molto simili (\textit{omologhe}) , in due proteine differenti ma evoluzionisticamente collegate, dovrebbero acquisire la stessa struttura locale.
+	\par In altri termini, due sequenze amminoacidiche molto simili (\textit{omologhe}) , in due proteine differenti ma evolutivamente collegate, dovrebbero acquisire la stessa struttura locale.
 	
 	\par Un approccio che utilizzi la modellazione per omologia consiste tipicamente nei seguenti passi:
 	\begin{enumerate}
@@ -414,27 +550,22 @@ interactions [23,24].
 		\endminipage\hfill
 	\end{figure}
 	
-	Nel 1° step si cerca una struttura modello, almeno una, tra le strutture conosciute avente un'alta somiglianza di sequenza. È più semplice se la struttura di un una proteina omologa molto simile è stata già risolta. Ci sono però altri gruppi di proteine, come le proteine di membrana, le cui strutture risolte sono scarse. Trovare i giusti template e caratterizzare la loro omologia è ciò che determina in genere il successo dell'intera predizione (una somiglianza minore del 30\% avrà risultati molto scarsi, mentre sopra al 50\% la predizione ha buona probabilità di essere di buon livello). È possibile in ogni caso che vi sia una somiglianza \textit{locale} anche quando la somiglianza globale è scarsa. Le principali tecniche si dividono nelle seguenti categorie:
-	\begin{itemize}
-		\item pattern recognition e ricerche euristiche, ad esempio BLAST (Basic Local Alignment Search Tool) e FastA
-		\item profile and iterative alignment methods, come PSI-BLAST e HMM (Hidden Markov Models), quest'ultimo molto usato
-		\item structure based threading, come THREADER e FUGUE
-	\end{itemize}
+	Nel 1° step si cerca (almeno) una struttura modello tra le strutture conosciute, avente un'alta somiglianza di sequenza. È più semplice se la struttura di una proteina omologa molto simile è stata già risolta. Ci sono però alcuni gruppi di proteine, come le proteine di membrana, le cui strutture risolte sono scarse. Trovare i giusti template e caratterizzare la loro omologia è ciò che determina in genere il successo dell'intera predizione (una somiglianza minore del 30\% avrà risultati molto scarsi, mentre sopra al 50\% la predizione ha buona probabilità di essere di buon livello). È possibile in ogni caso che vi sia una somiglianza \textit{locale} anche quando la somiglianza globale è scarsa. 
 	
-	\par Nel 2° step vengono sfruttate informazioni evoluzionistiche per migliorare l'allineamento tra le sequenze dei template e del target. È difficile stabilire allineamenti fra omologhi distanti, come nel caso di target \textit{eucarioti} e template \textit{procarioti}. La tecnica più usata oggi è l'MSA, altre tecniche usate sono: programmazione dinamica, MSA, threading, HMM ecc. Ci sono vari tool per creare MSA, ad esempio: Clustal$\Omega$, MAFFT, MUSCLE, T-Coffee. Possono venire utilizzati più MSA insieme per sopperire a problemi di disallineamento di piccole regioni. Il MSA viene illsutrato dopo la sezione \ref{sec:MSA}.
+	\par Nel 2° step vengono sfruttate informazioni evoluzionistiche per migliorare l'allineamento tra le sequenze dei template e del target. È difficile stabilire allineamenti fra omologhi distanti, come nel caso di target \textit{eucarioti} e template \textit{procarioti}. Altre tecniche usate oltre l'MSA sono: programmazione dinamica, threading, HMM ecc. Possono venire utilizzati più MSA insieme per sopperire a problemi di disallineamento di piccole regioni.
 	
 	\par Nel 3° step ad ogni segmento della sequenza target viene assegnato un insieme di coordinate spaziali in accordo ai risultati del MSA. Tool noti sono MODELLER (soddisfazione di vincoli spaziali), NEST, COMPOSER e SWISS-Model. La struttura ottenuta potrebbe essere però deformata a causa dell'utilizzo di più template e numerosi inserzioni e cancellazioni. Possono essere presenti lunghezze e angoli dei legami non ottimali e atomi sovrapposti.
 	
-	\par Per ovviare a tali problemi nello step 4 si applica un processo di raffinamento, specialmente per quanto riguarda i loop (\textit{loop modeling}, vedi sez. \ref{sec: loop-modeling}), regioni fodamentali per i siti di legame, e i residui (\textit{side chain modeling}). Vengono applicati algoritmi che confrontano caratteristiche geometriche ed effettuano calcoli energetici che identificano configurazioni atomiche sfavorevoli. 
+	\par Per ovviare a tali problemi nello step 4 si applica un processo di raffinamento, specialmente per quanto riguarda i loop (\textit{loop modeling}, vedi sez. \ref{sec: loop-modeling}) e i residui (\textit{side chain modeling}). Vengono applicati algoritmi che confrontano caratteristiche geometriche ed effettuano calcoli energetici che identificano configurazioni atomiche sfavorevoli. 
 	
-	\par Nel 5° step si valuta l'affidabilità della predizione. Si dice che un modello è affidabile in generale quando è basato su un template corretto e un allineamento approssimativamente corretto. Si può valutare tale affidabilità in vari modi:
+	\par Nel 5° step si valuta l'affidabilità della predizione. Si dice che un modello è affidabile quando è basato su un template corretto e un allineamento approssimativamente corretto. Si può valutare tale affidabilità in vari modi:
 	
 	\begin{itemize}
 		\item alcune qualità della struttura costruita possono essere confrontate con delle tendenze statistiche 
 		\item se ci sono vari modelli predetti si calcola l'energia libera e si sceglie la struttura con minor energia libera (ad es. tramite ProSa)
 		\item stereochimica (relativa alle proprietà spaziali delle molecole), ad esempio con PROCHECK
 		\item la conservazione evoluzionistica a livello amminoacidico può essere correlata con il loro stato "esposto" o "seppellito" (l'idea di partenza è che il nucleo della proteina rimanga inalterato e la superficie sia variabile), ad esempio Profiles3D
-		\item se si hanno a disposizione dati sperimentali della struttura nativa della proteina si può validare il modello con la consistenza a essi.
+		\item se si hanno a disposizione dati sperimentali della struttura nativa della proteina si può validare il modello con la consistenza a essi
 	\end{itemize}
 	
 	\subsubsection{Efficienza e limiti}
@@ -446,7 +577,7 @@ interactions [23,24].
 	\begin{figure}[!htb]
 		\centering
 		\includegraphics[scale=1.2]{images/homology-grafico.jpg}
-		\caption{Risultati dei metodi per omologia alla variazione dell'identità nella sequenza. (A) Dimostrazione schematica dell'uso di confronti di sequenze per identificare omologie strutturali. 'X' indica un qualsiasi amminoacido. (i) identità > 70\%: semplici allineamenti di sequenza sono sufficienti per trovare il corretto ripiegamento. (ii) Tra il 20 e il 30\% non sempre è possibile trovare il corretto ripiegamento; è necessario effettuare ulteriori raffinamenti. (iii) a bassi livelli l'utilità di questo metodo è molto bassa. (B) Somiglianza strutturale (in GDT\_TS score) al variare dell'identità della sequenza. Anche al 30\% il livello di somiglianza è significativo. Fonte\cite{joseph2014local}}
+		\caption{Risultati dei metodi per omologia alla variazione dell'identità nella sequenza. (A) Dimostrazione schematica dell'uso di metodi di allineamento di sequenze per identificare template. 'X' indica un qualsiasi amminoacido. (i) identità > 70\%: semplici allineamenti di sequenza sono sufficienti per trovare il corretto ripiegamento. (ii) Tra il 20 e il 30\% non sempre è possibile trovare il corretto ripiegamento; è necessario effettuare ulteriori raffinamenti. (iii) a bassi livelli l'utilità di questo metodo è molto bassa. (B) Somiglianza strutturale (in GDT\_TS) al variare dell'identità della sequenza. Anche al 30\% il livello di somiglianza è significativo. Fonte\cite{joseph2014local}}
 		\label{fig:omologia-grafico}
 	\end{figure}
 	
@@ -454,43 +585,40 @@ interactions [23,24].
 	
 	\par I problemi maggiori risultano nelle regioni con bassa somiglianza, come ci si può aspettare. Si sta parlando specialmente dei \textit{loop}, soggetti a mutazioni considerevoli durante l'evoluzione.
 	
-	\par Si incorrono in problemi con la modellazione per omologia quando si trattano proteine che non hanno omologhe tra le strutture conosciute, come le proteine di membrana, le quali sono difficili da da cristallizzare. \\
+	\par Si incorrono in problemi con la modellazione per omologia quando si trattano proteine che non hanno omologhe tra le strutture conosciute, come le proteine di membrana, le quali sono difficili da cristallizzare (anche se, come spiegato nella sezione \ref{sec:determinazione-sperimentale}, con la microscopia crioelettronica sta diventando possibile determinare le loro strutture). \\
 	
-	\subsubsection{Conclusioni sulla \textit{modellazione per omologia}}
-	
-	\par Nonostante tutte le osservazioni fatte, \textit{la modellazione per omologia è correntemente il miglior metodo computazionale per predire la struttura delle proteine} e la sua applicabilità è destinata a crescere con l'aggiunta di nuove strutture determinate sperimentalmente da poter essere usate come template.
-	
-	\par La sfida principale che questi metodi hanno affrontato, e che AlphaFold ha "vinto", era raggiungere almeno una RMSD di 3\angstrom. Le sfide ancora da superare riguardano l'accuratezza su grandi proteine, su proteine con un contenuto significativo di strutture $\beta$ e la modellazione di proteine multi-dominio e di membrana.
+	\par Nonostante tutte le osservazioni fatte, \textit{la modellazione per omologia, quando possibile, è correntemente il miglior metodo computazionale per predire la struttura delle proteine} e la sua applicabilità è destinata a crescere con l'aggiunta di nuove strutture determinate sperimentalmente da poter essere usate come template.
 	
 	\par Oltre alla PSP i metodi per omologia sono anche usati nel drug design (per studiare le differenze strutturali fra le proteine bersagliate dallo stesso farmaco) e nello studio dei meccanismi catalitici.
 	
 }
 
-\subsection{\textit{fold recognition via threading}}
+\subsection{\textit{fold recognition}}
 {
 
-Il \textit{threading} consiste nell'allineare la sequenza della proteina target con la struttura di proteine template, che possono essere trovate sulla base di proprietà condivise (vedi sez \ref{sec:predizione-structural-features} sulla predizione di caratteristiche strutturalI a partire dalla sequenza).
+Come si è già detto la struttura delle proteine è maggiormente conservata rispetto alle sequenze. Questo significa che proteine con differenti sequenze possono ancora formare strutture simili grazie a certe proprietà condivise codificate nelle loro sequenze. Identificando queste proprietà è possibile predire la struttura di una nuova proteina basandosi su un template che condivide le stesse proprietà, anche se loro sequenze sono diverse. Questa è l'idea su cui si basano i metodi di \textit{fold recognition}. Le proprietà di cui si parla sono le annotazioni 1D già calcolate precedentemente.
+In altri termini, in questo approccio si cerca una proteina con struttura conosciuta (nel PDB) che abbia alcune proprietà nella sequenza o tendenze condivise con la proteina target: le due probabilmente hanno un ripiegamento o motivi strutturali simili.
 
 \begin{figure}[!htb]
 	\centering
 	\includegraphics[scale=0.53]{images/threading-mappa.png}
-	\caption{. Fonte\cite{joseph2014local}}
+	\caption{Differenti strategie per il fold recognition. A destra, su sfondo blu, c'è l'insieme delle proteine con ripiegamenti conosciuti. La lunghezza delle frecce è correlata alla distanza di relazione fra target e template. Fonte\cite{joseph2014local}}
 	\label{fig:fold-recognition}
 \end{figure}
 
-an align-
-ment between the sequence and the template structure
-(threading).
+È possibile dividere il \textit{fold recognition} in vari livelli a seconda della distanza di omologia che può intercorrere fra la proteina target e il template (come mostrato in fig. \ref{fig:fold-recognition}). Analizzando questa figura si possono descrivere i livelli di ricerca in un tipico algoritmo di \textit{fold recognition}:
 
-Identifying templates, i.e., proteins of known structure whose fold should be similar to
-that of the target protein. This can be done by threading, i.e., by aligning the sequence
-of the target protein with the structure of each fold in the PDB on the basis of shared
-sequence properties, and then choosing the best match. The sequence properties can
-be grouped into two types:
+\begin{itemize}
+	\item (a) \textit{ricerca per sequenza}, ovvero la ricerca iniziale di sequenze omologhe (relazione molto vicina)\footnote{Come accennato nella sezione sulla classificazione dei metodi, il confine tra le varie tecniche è sempre più sfumato. Infatti \textit{homology modeling }e \textit{fold recognition} sono spesso usati insieme come in questo caso, e può essere di aiuto pensare a tale metodo combinato come un \textit{data-based modeling}.}
+	\item (b) \textit{profile-profile matching}, vengono aggiunte informazioni evolutive usando il profilo generato nelle annotazioni 1D
+	\item (c) \textit{sequence-structure matching}, la sequenza target può essere allineata con strutture di proteine conosciute per valutare la compatibilità (\textit{threading})
+	\item (d) \textit{annotation search}, viene effettuata una ricerca confrontando le annotazioni 1D e 2D precedentemente calcolate con le annotazioni di strutture conosciute
+\end{itemize}
 
-Come si è già detto la struttura delle proteine è maggiormente conservata rispetto alle sequenze. Questo significa che proteine con differenti sequenze possono ancora formare strutture simili grazie a certe proprietà condivise codificate nelle loro sequenze. Se queste proprietà o ricorrenze statistiche potessero essere identificare, sarebbe possibile predire la struttura di una nuova proteina basandosi su un template che condivide le stesse proprietà, anche se loro sequenze sono diverse. Questa è l'idea su cui si basano i metodi di \textit{fold recognition}. 
-In altri termini, in questo approccio si cerca una proteina con struttura conosciuta (nel PDB) che abbia alcune proprietà nella sequenza o tendenze condivise con la proteina target: le due probabilmente hanno un ripiegamento simile o motivi strutturali simili.
-}
+Nel \textit{profile-profile matching} le proteine i cui profili sono sufficientemente simili alla proteina target possono essere usate come template globali. Un esempio di procedura profile-matching è HHPred, basata su confronti tra coppie di profili HMM target e template, e JACKHMMER. ALcuni studi riportano che i metodi di confronto fra profili basati su HMM siano più efficienti dei profili basati PSSM\supercite{joseph2014local}.
+
+\par Nel \textit{sequence-structure matching} la compatibilità può essere quantificata in base all'interazione globale o al potenziale di energia. È bene notare che la procedura di \textit{threading} può essere difficile e computazionalmente costosa.
+
 
 \subsection{\textit{ab initio}} \label{sec:ab-initio}
 {
@@ -620,14 +748,42 @@ Nonostante le loro limitazioni i metodi \textit{ab initio} sono di grande intere
 \subsubsection{Valutazione \textit{knowledge-based}}
 È anche possibile rimpiazzare il campo di forza con una funzione di valutazione \textit{knowledge-based}. Spesso queste funzioni sono composte di espressioni relative alla tendenza statistica di gruppi chimici, amminoacidi o atomi di interagire fra di loro. L'affidabilità della funzione di valutazione dipende dal database su cui si basa. 
 
-
-
 \subsection{\textit{fragment-based}}
-%-abbass 
 
-\par Un possibile metodo di azione è la \textit{frammentazione delle proteine}, nel quale i calcoli sono realizzati su piccoli frammenti della proteina e poi integrati. Un esempio è il software QUARK. L'approccio \textit{fragment-based} è usato nei metodi che combinano predizioni \textit{template-based} con assemblaggi \textit{ab initio}.
+Laddove non siano disponibili strutture template adatte (\textit{template-free modeling}), l'uso di metodi \textit{fragment-based} diventa l'unica alternativa pratica poiché le tecniche \textit{ab initio} pure richiedono enormi risorse computazionali anche per proteine ​​molto piccole .
 
-%-- parla dell'assemblaggio dei frammenti. È ab initio?
+\begin{figure}[!htb]
+	\centering
+	\includegraphics[scale=1]{images/fragment-based.jpg}
+	\caption{Step per le tecniche fragment-based nella pipeline generica di un metodo odierno per il PSP. Fonte\cite{pearce2021deep}}
+	\label{fig:fragment-based}
+\end{figure}
+
+Questi metodi, in primo luogo, ricercano nel PDB frammenti di struttura noti (di pochi residui, ad es. 4-16) che corrispondono a sotto-sequenze della proteina di interesse. Una volta selezionati i frammenti candidati, è possibile formare strutture compatte assemblando frammenti casualmente utilizzando tecniche stocastiche come il \textit{simulated annealing}. Quindi, viene valutata l'idoneità di ciascuna conformazione e vengono ottimizzate quelle più promettenti: mentre i metodi \textit{ab initio} si basano sull'ottimizzazione esplicita dell'energia libera, gli approcci basati sui frammenti svolgono un compito simile utilizzando funzioni di punteggio che sono vagamente correlate alle funzioni energetiche\supercite{abbass2020enhancing}. I metodi fragment-based sono perciò in parte \textit{data-based} e in parte \textit{ab initio}.
+
+\par Inoltre, è stato dimostrato che l'inclusione di una misura di somiglianza tra la struttura secondaria di un frammento candidato e quella prevista corrispondente nel target migliora le funzioni di punteggio. Per ragioni di ottimizzazione, anche in questi metodi vengono usate le annotazioni 1D e 2D calcolate precedentemente.
+
+\par In questo approccio l'assemblaggio della proteina è quindi realizzato usando piccoli frammenti di proteine conosciute che verranno poi integrati. Un metodo più efficiente rispetto a cercare frammenti nel PDB risulta essere usare librerie di frammenti. Una recente libreria basata sul DL è DeepFragLib. Un principio chiave alla base del PSP \textit{fragment-based} è che qualsiasi struttura può essere costruita dalla concatenazione di frammenti ottenuti da strutture proteiche disponibili nel PDB, per tale ragione una libreria di frammenti ideale dovrebbe essere in grado di costruire qualsiasi proteina. \\
+
+
+\par Gli approcci basati sui frammenti sono molto meno dispendiosi dal punto di vista computazionale di quelli "classici" ab initio per tre ragioni principali\supercite{abbass2020enhancing}: 
+\begin{itemize}
+	\item sono \textit{coarse grained} (a grana grossa), l'unità di calcolo è un insieme di amminoacidi anziché uno singolo e ciò diminuisce drasticamente lo spazio di ricerca conformazionale
+	\item si utilizzano simulazioni Monte Carlo (MC) al posto della MD
+	\item poiché i frammenti utilizzati sono già a bassa energia, non è necessario calcolare le interazioni locali all'interno del frammenti che vengono introdotti nella struttura
+\end{itemize}
+
+Per far fronte all'ampio spazio di ricerca, la maggior parte dei metodi \textit{fragment-based} si basano sulla generazione di migliaia di strutture candidate, note come \textit{esche}. Ciascuna di esse rappresenta, in linea di principio, una diversa traiettoria di ricerca. Tipicamente, le esche con il punteggio di energia più basso sono considerate come le migliori previsioni. 
+
+\par Il successo di metodi \textit{fragment-based} per il PSP si basa su tre fondamenti: 
+\begin{itemize}
+	\item accuratezza della funzione energetica
+	\item efficienza del metodo di ricerca 
+	\item qualità della libreria di frammenti
+\end{itemize}
+
+Esempi di metodi moderni \textit{fragment-based} sono FRAGFOLD, I-TASSER, QUARK e Rosetta.
+
 
 \subsection{\textit{loop modeling}} \label{sec: loop-modeling}
 {
@@ -712,169 +868,45 @@ Nell'ultimo step sono utilizzate 2 misure per valutare i modelli e vengono ritor
 
 }
 
-\section{Case Study: \textit{TASSER}}
--tasser papers
--kessel
--abbass
--pearce 2021
+\subsection{Case Study: \textit{TASSER}}
 
+Un metodo che combina differenti approcci (\textit{threading}, \textit{fragment-based} e \textit{ab initio}) è TASSER (Threading/ASSEmbly/Refinement) sviluppato dal gruppo Zhang nel 2004 (negli ha subito vari miglioramenti). Il metodo TBM di maggior successo nel CASP è stato probabilmente I-TASSER, l'estensione iterativa di TASSER. Si è infatti costantemente classificato come il miglior metodo automatizzato nel CASP\supercite{pearce2021deep} considerando tutti i target, e anche nel CASP13 e 14, pur non competendo con AlphaFold, ha ottenuto ottimi risultati. È applicabile sia a situazioni TBM che FM in quanto non impone limiti alla lunghezza dei frammenti utilizzati (>5 residui).
 
-\section{Studio sperimentale delle proteine} \label{sec:experimentally-guided-prediction}
-{
+\par I-TASSER genera inizialmente conformazioni a bassa risoluzione che sono poi rifinite; la sua pipeline di può essere riassunta nei seguenti 3 step\supercite{abbass2020enhancing}:
 
-\subsubsection{Come vengono studiate le proteine}
-Comprendere come una particolare proteina funzioni richiede dettagli strutturali e analisi biochimiche: entrambe hanno bisogno di una grande quantità di proteine pure. Isolare però un singolo tipo di proteina dalle migliaia presenti in una cellula non è un compito semplice. Per molti anni le proteine sono state purificate direttamente dai tessuti nei quali esse erano abbondanti. Ciò comporta, oltre alla necessità fisica di procurarsi i tessuti, dover riconoscere le proteine da studiare. Queste procedure richiedono settimane e forniscono solamente pochi milligrammi di proteina pura. Oggi le proteine sono generalmente isolate da cellule coltivate in laboratorio e spesso queste sono modificate geneticamente al fine di produrre grandi quantità di una data proteina. \\
-
-\par Il primo step in una procedura di purificazione consiste nel rompere i tessuti e le cellule in modo da far loro rilasciare il contenuto (\textit{omogenizzazione}), chiamato \textit{estratto} (o omogenato cellulare). Ci sono vari meccanismi, come mostrato in fig. \ref{fig:break-cells}. 
-
-
-\begin{figure}[!htb]
-	\centering
-	\includegraphics[scale=0.5]{images/break-cells.png}
-	\caption{Omogenizzazione attraverso 4 diversi meccanismi, ognuno dei quali finalizzato a rompere le membrane plasmatiche. Fonte\cite{alberts2018essential}}
-	\label{fig:break-cells}
-\end{figure}
-
-Segue poi una procedura di frazionamento iniziale, tipicamente per \textit{centrifugazione}, per separare l'omogenato in differenti parti. Per raggruppare poi le classi di molecole di interesse si possono usare tecniche di \textit{cromatografia} o \textit{elettroforesi}. Una forma efficiente di cromatografia è quella per \textit{affinità} nella quale vengono utilizzati degli anticorpi specifici per la proteina di interesse. Nel secondo metodo un insieme di proteine viene immerso in un gel e soggetto ad un campo elettrico: le proteine migreranno nel gel a differenti velocità, a seconda del loro peso molecolare e della loro carica. Proteine simili migreranno a velocità simili, pertanto potranno essere visualizzate bande o punti di aggregazione di proteine. \\
-
-\par Una volta separate le proteine di interesse è possibile studiarne la struttura. Per quanto riguarda la struttura primaria, la prima proteina sequenziata è stata l'\textit{insulina} nel 1955, attraverso una procedura chimica diretta. La proteina veniva prima scomposta da una determinata proteasi e successivamente ogni amminoacido, in ogni frammento, veniva determinato sperimentalmente. Un metodo molto più veloce è la \textit{spettrometria di massa}, almeno per organismi di cui sia stato completamente sequenziato il genoma. Questa tecnica determina l'esatta massa di ogni frammento in una proteina purificata, consentendo l'identificazione della proteina nei database di sequenze genomiche.
-
-\par Per eseguire la \textit{spettrometria di massa} la proteina viene "digerita" dall'enzima \textit{tripsina} e frammentata in peptidi o singoli amminoacidi. Questi vengono scaldati con un laser, il che li renderà carichi e li farà evaporare. Viene poi usato un potente campo elettrico per far volare gli ioni peptidici verso un misuratore: il tempo che impiegano per arrivare è legato alla loro massa e carica (più massa = più lenti, più carichi = più veloci). L'insieme delle precise masse dei frammenti serve come "impronta digitale" (\textit{peptide mass fingerprinting}, PMF) che verrà usata per identificare la proteina codificata dall'organismo (e i suoi geni corrispondenti) dai database il cui profilo (massa teorica) corrisponde a questa impronta peptidica.
-
-\subsubsection{Determinazione sperimentale delle strutture}
-
-\par La determinazione sperimentale della struttura delle proteine ha vissuto dei progressi significativi col passare degli anni ed è di grande importanza per i metodi computazionali di PSP, consentendo ai metodi \textit{data-based} di affinare le loro predizioni.
-
-\begin{figure}[!htb]
-	\centering
-	\includegraphics[scale=0.42]{images/metodi-sper2.png}
-	\caption{Differenti livelli di informazione ottenuta lungo il percorso della determinazione della struttura di macromolecole. AFM: atomic force microscopy; Cryo-ET: cryo-electron tomography; EM: electron microscopy; FRET: fluorescence resonance energy-transfer; NMR: nuclear magnetic resonance; SAXS: small-angle X-ray scattering; SPR: surface plasmon resonance. Fonte\cite{sharon2011far}}
-	\label{fig:metodi-sper2}
-\end{figure}
-
-I metodi per la determinazione sperimentale della struttura delle proteine possono essere divisi in due gruppi:
 \begin{itemize}
-	\item metodi \textit{indiretti}, ovvero l'osservazione della proteina è possibile solo dopo sofisticate manipolazioni dei dati ottenuti:
+	\item \textit{threading}
 	\begin{itemize}
-		\item metodi per \textit{diffrazione}, che si basano sulla diffrazione o sulla dispersione di particelle subatomiche o onde elettromagnetiche da parte della proteina
-		\item metodi per \textit{spettroscopia}, i quali si affidano all'eccitazione e susseguente rilassamento degli atomi della proteina in risposta alla radiazione elettromagnetica
+		\item vengono identificati i modelli di ripiegamento per la proteina target nella libreria di file utilizzando LOMETS
+		\item il threading utilizza un profilo di sequenza e assegnazioni di struttura secondaria, entrambi calcolati dalla sequenza della proteina target
+		\item ogni modello è classificato in base a una varietà di punteggi basati sulla sequenza e sulla struttura e i template con punteggi migliori vengono selezionati per il prossimo step
 	\end{itemize}
-	\item metodi \textit{diretti}, in cui l'osservazione della proteina è diretta; al momento è possibile con la microscopia crioelettronica (Cryo-EM)
+	
+	\item \textit{assemblaggio strutturale}
+	
+	\begin{itemize}
+		\item viene assemblata la struttura a grana grossa (senza gruppi laterali)
+		\item vengono asportati frammenti dalle regioni maggiormente allineate dei template selezionati
+		\item le regioni non allineate (principalmente loop) sono costruite \textit{ab initio}
+		\item gli assemblaggi sono eseguiti attraverso simulazioni replica-exchange Monte Carlo (REMC) e vincolati da un campo di forza combinato \textit{energy-based} e \textit{knowledge-based} che include vincoli derivati dal PDB e dal threading 
+		\item le conformazioni sono strutturalmente raggruppate per produrre un insieme di rappresentanti: i \textit{cluster centroids}
+	\end{itemize}
+	
+	\item \textit{model selection e raffinamento}, quelle strutture sono raffinate durante un'altra fase di simulazione per produrre tutti gli atomi del modello
+	
 \end{itemize}
 
-Vengono utilizzate principalmente 3 tecniche per generare informazioni strutturali sulle proteine a risoluzione atomica: \textit{X-ray crystallography, nuclear magnetic resonance (NMR) spectroscopy} ed \textit{electron microscopy}\footnote{La traduzione italiana sarebbe: cristallografia a raggi-X, spettroscopia a risonanza magnetica nucleare e microscopia elettronica.}. Una volta ottenute proteine pure, queste devono essere o cristallizzate (cristallografia a raggi X), o piazzate in speciali solventi (spettroscopia NMR) o congelate (microscopia elettronica). \\
-
-\par Il metodo di diffrazione più comune, e più anziano, è la \textit{cristallografia a raggi X}. Produce strutture tridimensionali con la più alta risoluzione ma presenta alcune gravi carenze, la più significativa è la necessità di cristallizzare la proteina studiata. La cristallizzazione è un processo lungo e difficile e produce anche strutture di proteine al di fuori del loro ambiente. Queste strutture sono prive di qualsiasi proprietà dinamica e (raramente) possono risultare deformate. Pertanto non tutte le parti di una proteina (ad es. le parti più mobili) possono essere viste con strutture a raggi-X e di conseguenza queste regioni possono essere ignorate o aperte a interpretazioni.
-
 \begin{figure}[!htb]
 	\centering
-	\includegraphics[scale=0.4]{images/cristallografia.png}
-	\caption{Processo di determinazione della struttura dell'enzima RuBisCO tramite cristallografia a raggi-X. Fonte\cite{alberts2018essential}}
-	\label{fig:cristallografia}
+	\includegraphics[scale=0.38]{images/DITasser.png}
+	\caption{D-I-TASSER pipeline. Fonte\cite{zheng2021protein}}
+	\label{fig:DITasser}
 \end{figure}
 
-\par I piccoli cristalli di proteine misurano meno di 1mm e sono esposti ad un'intensa esposizione ai raggi-X (i quali hanno una lunghezza d'onda pari a quella di un atomo, $1-2\angstrom$). I raggi X sono dispersi o diffratti dagli atomi proteici nel cristallo. Il modello di diffrazione che ne deriva appare tipicamente come decine di migliaia di minuscoli punti disposti in complessi schemi circolari. Questi modelli di diffrazione sono registrati su una fotocamera a raggi X digitale. La posizione dei punti di diffrazione (insieme ad altre informazioni), sono effettivamente sufficienti per compiere una computazione della mappa della densità elettronica di tutti gli atomi pesanti (carbonio, azoto, ossigeno, zolfo) nella proteina di diffrazione. Da questa mappa, i cristallografi determinano le coordinate x,y,z di tutti gli atomi usando la sequenza nota della proteina. Si noti che, nella cristallografia a raggi X, anche se il pattern di diffrazione deriva da milioni di proteine contenute nel cristallo, il risultato è una struttura per una singola proteina "media".
+\par Una delle ragioni principali del successo di I-TASSER, in particolare sul perfezionamento dei modelli, è la sua combinazione efficace di più modelli di \textit{threading }(spesso più di 20–50) sotto la guida di un campo di forza combinato \textit{energy-based} e \textit{knowledge-based} ottimale i cui parametri sono stati ampiamente ottimizzati utilizzando richiami strutturali su larga scala. \\
 
-\par La prima struttura determinata con questa tecnica risale al 1958; risolvere una struttura negli anni '70 richiedeva anche 6-7 anni mentre oggi è a volte possibile in soli 6-7 giorni. Il 90\% delle strutture oggi determinate deriva dalla cristallografia a raggi-X\supercite{baxevanis2020bioinformatics}. \\
+\par Recentemente lo stesso gruppo di ricerca ha sviluppato C-I-TASSER (Contact-Iterative-TASSER), che aggiunge la predizione dei contatti tramite DL, e D-I-TASSER (la cui struttura è riportata in figura \ref{fig:DITasser}), il quale integra la predizione di distanze e legami idrogeno basata su metodi di DL con simulazioni iterative di assemblaggio di frammenti.
 
-\par Altri metodi per diffrazione sono:  \textit{small-angle X-ray scattering }(SAXS), \textit{neutron scattering},  \textit{electron crystallography}. Il metodo SAXS produce strutture a risoluzione inferiore rispetto alla cristallografia a raggi X. Tuttavia, le strutture SAXS sono molto utili nell'impostare vincoli posizionali per complessi proteici di grandi dimensioni, grazie ai quali è possibile "modellare" strutture a raggi X ad alta risoluzione.
-
-\begin{figure}[!htb]
-	\centering
-	\includegraphics[scale=0.5]{images/metodi-sperimentali.png}
-	\caption{Diagramma di flusso dei principali step usati la preparazione e soluzione sperimentale della struttura 3D delle proteine. Fonte\cite{baxevanis2020bioinformatics}}
-	\label{fig:metodi-sper1}
-\end{figure}
-
-\par Il principale metodo spettroscopico utilizzato per la determinazione della struttura proteica è l'NMR. Questo metodo si basa sull'eccitazione dei nuclei atomici sotto un forte campo magnetico e sul loro successivo rilassamento. Viene misurato come i nuclei atomici (ad es. dell'idrogeno o dell'isotopo carbonio o azoto) assorbano la radiazioni; ciò permette di determinare quanto magnetismo nucleare è trasferito da un atomo all'altro. Questo approccio consente agli scienziati di trattare la proteina nel suo ambiente naturale (soluzione, membrana) e fornisce importanti informazioni sulla sua dinamica. L'NMR è un metodo più recente della cristallografia a raggi-X: la prima struttura determinata risale al 1983. Tuttavia questo metodo ha un limite superiore alla dimensioni di molecole studiabili (40kDa) e non può studiare proteine di membrana. L'EPR, un metodo simile, si basa sull'eccitazione e sul rilassamento degli elettroni attorno agli atomi della proteina e richiede la marcatura dei residui proteici con etichette paramagnetiche. \\
-
-\subsubsection{Cryo-EM}
-
-\par La microscopia crioelettronica (cryo-EM) è un metodo diretto: è possibile osservare direttamente macromolecole. È una versione avanzata di microscopio elettronico, il quale fu inventato negli anni '30. Questi microscopi usano raggi di elettroni piuttosto che di luce (la lunghezza d'onda degli elettroni è molto più corta di quella della luce). Durante la metà degli anni '70 è nata la cryo-EM: l'idea è stata quella di congelare i campioni per preservarne la struttura naturale e ridurre i danni causati dai raggi di elettroni.
-
-\begin{figure}[!htb]
-	\minipage{0.5\textwidth}
-	\centering
-	\includegraphics[scale=1.1]{images/cryo-em.jpg}
-	\caption{Funzionamento schematico di un microscopio crio-elettronico. Fonte\cite{cryoEMbasics}}
-	\label{fig:cryo-em-basics}
-	\endminipage\hfill
-	\minipage{0.5\textwidth}
-	\centering
-	\includegraphics[scale=0.136]{images/cryo-em-classi.png}
-	\caption{(A) Micrografia rappresentativa del campione di streptavidina ottenuta tramite cryo-EM. La barra di scala rappresenta 20nm (B) Classi medie 2D rappresentative delle immagini della proteina. La barra di scala rappresenta 5nm. Fonte \cite{fan2019single}}
-	\label{fig:cryo-em-classi}
-	\endminipage\hfill
-\end{figure}
-
-Nella cryo-EM una goccia di acqua contenente pure proteine è inserita in una piccola griglia per EM immersa in una vasca di etano liquido a -180°C. I campioni di proteine vengono congelati velocemente (creando ghiaccio vitreo): questo assicura che le circostanti molecole d'acqua non abbiano tempo per formare cristalli di ghiaccio (che deformerebbero la forma della proteina). I campioni sono esaminati (ancora ghiacciati) da un microscopio a trasmissione elettronica (TEM) e sottoposti quindi a forti raggi di elettroni. Un rilevatore di elettroni cattura le "immagini" proiettate delle molecole e, data l'automazione odierna di simili meccanismi, vengono effettuate migliaia di micrografie per catturare più dettagli possibile delle molecole. Ogni micrografia conterrà centinaia di migliaia di molecole singole, ognuna orientata casualmente. 
-\par Successivamente vi è lo step di image processing: le immagini proiettate vengono categorizzate in gruppi e allineate per poi essere sovrapposte in moda da calcolare un'immagine media per ogni gruppo. \\
-
-\par La preparazione è quindi molto più semplice rispetto alla cristallografia a raggi-X e le strutture somigliano maggiormente a quelle viste nel normale ambiente acquoso della cellula. La cryo-EM è limitata nelle dimensioni: c'è un limite inferiore che di anno in anno si abbassa (ad. es 39kDa nel 2019\supercite{fan2019single}). Non sono un problema invece grandi proteine (anche maggiori di 100kDa). Oggi la cryo-EM può generare immagini 3D a risoluzione quasi atomica di virus e complesse macromolecole, come i ribosomi. È possibile utilizzare la cryo-EM anche per le proteine di membrana. 
-
-\begin{figure}[!htb]
-	\minipage{0.5\textwidth}
-	\centering
-	\includegraphics[scale=1.5]{images/cryo-ribosoma.jpg}
-	\caption{Complesso di controllo qualità dei ribosomi, basato su dati di cryo-EM. Fonte: \cite{cryoRevolutionUCSF}}
-	\label{fig:cryo-ribosoma}
-	\endminipage\hfill
-	\minipage{0.5\textwidth}
-	\centering
-	\includegraphics[scale=1.5]{images/cryo-zika.jpeg}
-	\caption{La struttura del virus Zika ottenuta tramite cryo-EM. La macromolecola ha un peso di 190kDa ed è composta da 11.000 atomi. Risoluzione di 3.8\angstrom. Fonte \cite{cryoZika}}
-	\label{fig:cryo-zika}
-	\endminipage\hfill
-\end{figure}
-
- È solo da pochi anni che il metodo ha fatto un grande passo in avanti, grazie ad avanzamenti nel rivelatore e nei software di \textit{image processing}. Nel 2017 è stato assegnato il premio Nobel per la chimica per aver contribuito a sviluppare tale metodologia\footnote{A Richard Henderson, Jacques Dubochet e Joachim Frank, "for developing cryo-electron microscopy for the high-resolution structure determination of biomolecules in solution".}.
-Si sta considerando l'adozione della microscopia elettronica come di una rivoluzione nel campo della biologia strutturale\supercite{callaway2020revolutionary, bai2015cryo}. La crescita nel numero di strutture determinate è stata lenta inizialmente a causa della scarsa adozione del metodo, ma da quando si è vista la possibilità di produrre mappe dettagliate per macromolecole come i ribosomi la situazione è cambiata (vedi le figure \ref{fig:cryo-em-grafico} e \ref{fig:cryo-em-resolution}). Circa l'1\% delle strutture è stata determinata con questa tecnica ma i rapidi avanzamenti degli strumenti sia hardware che software potrebbero favorire la rivoluzione di cui si parla. 
-
-\begin{figure}[!htb]
-	\minipage{0.6\textwidth}
-	\centering
-	\includegraphics[scale=0.65]{images/cryo-em-grafico.png}
-	\caption{Crescita delle mappe elettroniche rilasciate nell'EMDB. Fonte\cite{pakhrin2021deep}}
-	\label{fig:cryo-em-grafico}
-	\endminipage\hfill
-	\minipage{0.4\textwidth}
-	\centering
-	\includegraphics[scale=0.35]{images/cryo-em-resolution.png}
-	\caption{Grafico della risoluzione di strutture risolte tramite cryo-EM. Fonte \cite{callaway2020revolutionary}}
-	\label{fig:cryo-em-resolution}
-	\endminipage\hfill
-\end{figure}
-}
-
-\section{Storia della comprensione delle proteine}
-- alberts p.160
-- psp-wiki
-- levitt 2001, birth of structural biology \\ \\
-
-
-L'approccio \textit{ab initio} è emerso negli anni '60 a partire dal campo della chimica computazionale. Nel 2013 il premio Nobel per la chimica è stato assegnato proprio a quegli scienziati che hanno contribuito sin da quegli anni al campo della biofisica molecolare computazionale (Warshel, Levitt, Karplus).
-
-\par Le predizioni di strutture basate sui metodi \textit{ab initio} sono emerse nella metà degli anni '80, prima per piccoli peptidi e poi per polipeptidi. Il primo programma per calcolare l'energia potenziale nelle proteine è stato sviluppato nel 1969 da Lifson e Levitt\supercite{levitt1969refinement}.
-
-\par La prima simulazione di MD su una proteina è stata realizzata nel 1977 da McCammon, Gelin e Karplus\supercite{mccammon1977dynamics}, studiando la dinamica di ripiegamento di una proteina di 58 amminoacidi rappresentata esplicitamente ma simulata nel vuoto. Questo studio seguì il lavoro pionieristico di Levitt e Warshel del 1975 (\textit{Computer simulation of protein folding}\supercite{levitt1975computer}) sulla stessa proteina che era però rappresentata in modo più semplicistico: ogni amminoacido era rappresentato da due sfere. 
-
-\subsubsection{anni '90, database, omologia, progetto genoma}
-
-Around the beginning of the 1990s, a new field in biology called ‘bioin-
-formatics’ emerged, in which scientists sought to predict the characteristics of new pro-
-teins on the basis of properties of their sequences
-
-\subsubsection{CASP e AlphaFold}
-
-A test of homology modeling efficiency carried out in 2007 has
-shown that in single-domain proteins comprising 90 residues or fewer, the structures pre-
-dicted by this method differed from their corresponding native structures by 2 to 6 \supercite{dill2008protein}.
-
-
-
-Interestingly, in the first rounds of CASP, secondary structure prediction was a separate category. This
-category was cancelled after the organizers noticed that the winners in this category used a somewhat circular
-approach. They predicted the 3D structure and used their model structure to decipher the secondary structure
-elements.
+Lo stesso gruppo Zhang, nel 2012, ha sviluppato un altro metodo dedicato alla modellazione \textit{ab initio}: QUARK. Questo metodo sfrutta i punti di forza di I-TASSER e Rosetta: oltre al profilo di sequenza e alla struttura secondaria, QUARK utilizza anche l'accessibilità ai solventi e gli angoli di torsione per selezionare piccoli frammenti di dimensioni fino a 20 residui (come Rosetta ma a differenza di I-TASSER), utilizzando un metodo di threading per ciascun frammento di sequenza.
 
 \clearpage

@@ -38,7 +38,7 @@ Vi sono quindi 3 condizioni:
 \end{enumerate}
 
 
-\subsection{Esperimento di Anfinsen}
+\subsubsection{Esperimento di Anfinsen}
 {
 L'esperimento, compiuto nel 1957\supercite{anfinsen1961kinetics}, consisteva nella denaturazione e rinaturazione della ribonucleasi A, dimostrando che il secondo processo era possibile senza agenti ausiliari. L'enzima in questione è formato da 124 amminoacidi, tra cui 8 cisteine che formano 4 ponti disolfuro ($-CH_{2}-\textbf{S-S}-CH_{2}-$, vedi sez. \ref{sec:legami-chimici}). È stato usato un agente riducente per scindere questi ponti e l'urea per denaturare la proteina: questa non mostrava più alcuna attività enzimatica. A questo punto se l'urea era rimossa prima, seguita dall'aggiunta di un agente ossidante per consentire ai ponti disolfuro di riformarsi, la ribonucleasi A riacquistava spontaneamente la sua struttura terziaria e il prodotto ottenuto risultava praticamente indistinguibile dalla proteina nativa di partenza, riottenendo piena attività biologica. 
 
@@ -534,6 +534,133 @@ Se l'accumulo è abbastanza grande, questo innesca un complesso programma chiama
 }
 
 
+\section{Studio sperimentale delle proteine} \label{sec:experimentally-guided-prediction}
+{
+	
+	\subsubsection{Come vengono studiate le proteine}
+	Comprendere come una particolare proteina funzioni richiede dettagli strutturali e analisi biochimiche: entrambe hanno bisogno di una grande quantità di proteine pure. Isolare però un singolo tipo di proteina dalle migliaia presenti in una cellula non è un compito semplice. Per molti anni le proteine sono state purificate direttamente dai tessuti nei quali esse erano abbondanti. Ciò comporta, oltre alla necessità fisica di procurarsi i tessuti, dover riconoscere le proteine da studiare. Queste procedure richiedono settimane e forniscono solamente pochi milligrammi di proteina pura. Oggi le proteine sono generalmente isolate da cellule coltivate in laboratorio e spesso queste sono modificate geneticamente al fine di produrre grandi quantità di una data proteina. \\
+	
+	\par Il primo step in una procedura di purificazione consiste nel rompere i tessuti e le cellule in modo da far loro rilasciare il contenuto (\textit{omogenizzazione}), chiamato \textit{estratto} (o omogenato cellulare). Ci sono vari meccanismi, come mostrato in fig. \ref{fig:break-cells}. 
+	
+	
+	\begin{figure}[!htb]
+		\centering
+		\includegraphics[scale=0.5]{images/break-cells.png}
+		\caption{Omogenizzazione attraverso 4 diversi meccanismi, ognuno dei quali finalizzato a rompere le membrane plasmatiche. Fonte\cite{alberts2018essential}}
+		\label{fig:break-cells}
+	\end{figure}
+	
+	Segue poi una procedura di frazionamento iniziale, tipicamente per \textit{centrifugazione}, per separare l'omogenato in differenti parti. Per raggruppare poi le classi di molecole di interesse si possono usare tecniche di \textit{cromatografia} o \textit{elettroforesi}. Una forma efficiente di cromatografia è quella per \textit{affinità} nella quale vengono utilizzati degli anticorpi specifici per la proteina di interesse. Nel secondo metodo un insieme di proteine viene immerso in un gel e soggetto ad un campo elettrico: le proteine migreranno nel gel a differenti velocità, a seconda del loro peso molecolare e della loro carica. Proteine simili migreranno a velocità simili, pertanto potranno essere visualizzate bande o punti di aggregazione di proteine. \\
+	
+	\par Una volta separate le proteine di interesse è possibile studiarne la struttura. Per quanto riguarda la struttura primaria, la prima proteina sequenziata è stata l'\textit{insulina} nel 1955, attraverso una procedura chimica diretta. La proteina veniva prima scomposta da una determinata proteasi e successivamente ogni amminoacido, in ogni frammento, veniva determinato sperimentalmente. Un metodo molto più veloce è la \textit{spettrometria di massa}, almeno per organismi di cui sia stato completamente sequenziato il genoma. Questa tecnica determina l'esatta massa di ogni frammento in una proteina purificata, consentendo l'identificazione della proteina nei database di sequenze genomiche.
+	
+	\par Per eseguire la \textit{spettrometria di massa} la proteina viene "digerita" dall'enzima \textit{tripsina} e frammentata in peptidi o singoli amminoacidi. Questi vengono scaldati con un laser, il che li renderà carichi e li farà evaporare. Viene poi usato un potente campo elettrico per far volare gli ioni peptidici verso un misuratore: il tempo che impiegano per arrivare è legato alla loro massa e carica (più massa = più lenti, più carichi = più veloci). L'insieme delle precise masse dei frammenti serve come "impronta digitale" (\textit{peptide mass fingerprinting}, PMF) che verrà usata per identificare la proteina codificata dall'organismo (e i suoi geni corrispondenti) dai database il cui profilo (massa teorica) corrisponde a questa impronta peptidica.
+	
+	\subsubsection{Determinazione sperimentale delle strutture} \label{sec:determinazione-sperimentale}
+	
+	\par La determinazione sperimentale della struttura delle proteine ha vissuto dei progressi significativi col passare degli anni ed è di grande importanza per i metodi computazionali di PSP, consentendo ai metodi \textit{data-based} di affinare le loro predizioni.
+	
+	\begin{figure}[!htb]
+		\centering
+		\includegraphics[scale=0.42]{images/metodi-sper2.png}
+		\caption{Differenti livelli di informazione ottenuta lungo il percorso della determinazione della struttura di macromolecole. AFM: atomic force microscopy; Cryo-ET: cryo-electron tomography; EM: electron microscopy; FRET: fluorescence resonance energy-transfer; NMR: nuclear magnetic resonance; SAXS: small-angle X-ray scattering; SPR: surface plasmon resonance. Fonte\cite{sharon2011far}}
+		\label{fig:metodi-sper2}
+	\end{figure}
+	
+	I metodi per la determinazione sperimentale della struttura delle proteine possono essere divisi in due gruppi:
+	\begin{itemize}
+		\item metodi \textit{indiretti}, ovvero l'osservazione della proteina è possibile solo dopo sofisticate manipolazioni dei dati ottenuti:
+		\begin{itemize}
+			\item metodi per \textit{diffrazione}, che si basano sulla diffrazione o sulla dispersione di particelle subatomiche o onde elettromagnetiche da parte della proteina
+			\item metodi per \textit{spettroscopia}, i quali si affidano all'eccitazione e susseguente rilassamento degli atomi della proteina in risposta alla radiazione elettromagnetica
+		\end{itemize}
+		\item metodi \textit{diretti}, in cui l'osservazione della proteina è diretta; al momento è possibile con la microscopia crioelettronica (Cryo-EM)
+	\end{itemize}
+	
+	Vengono utilizzate principalmente 3 tecniche per generare informazioni strutturali sulle proteine a risoluzione atomica: \textit{X-ray crystallography, nuclear magnetic resonance (NMR) spectroscopy} ed \textit{electron microscopy}\footnote{La traduzione italiana sarebbe: cristallografia a raggi-X, spettroscopia a risonanza magnetica nucleare e microscopia elettronica.}. Una volta ottenute proteine pure, queste devono essere o cristallizzate (cristallografia a raggi X), o piazzate in speciali solventi (spettroscopia NMR) o congelate (microscopia elettronica). \\
+	
+	\par Il metodo di diffrazione più comune, e più anziano, è la \textit{cristallografia a raggi X}. Produce strutture tridimensionali con la più alta risoluzione ma presenta alcune gravi carenze, la più significativa è la necessità di cristallizzare la proteina studiata. La cristallizzazione è un processo lungo e difficile e produce anche strutture di proteine al di fuori del loro ambiente. Queste strutture sono prive di qualsiasi proprietà dinamica e (raramente) possono risultare deformate. Pertanto non tutte le parti di una proteina (ad es. le parti più mobili) possono essere viste con strutture a raggi-X e di conseguenza queste regioni possono essere ignorate o aperte a interpretazioni.
+	
+	\begin{figure}[!htb]
+		\centering
+		\includegraphics[scale=0.4]{images/cristallografia.png}
+		\caption{Processo di determinazione della struttura dell'enzima RuBisCO tramite cristallografia a raggi-X. Fonte\cite{alberts2018essential}}
+		\label{fig:cristallografia}
+	\end{figure}
+	
+	\par I piccoli cristalli di proteine misurano meno di 1mm e sono esposti ad un'intensa esposizione ai raggi-X (i quali hanno una lunghezza d'onda pari a quella di un atomo, $1-2\angstrom$). I raggi X sono dispersi o diffratti dagli atomi proteici nel cristallo. Il modello di diffrazione che ne deriva appare tipicamente come decine di migliaia di minuscoli punti disposti in complessi schemi circolari. Questi modelli di diffrazione sono registrati su una fotocamera a raggi X digitale. La posizione dei punti di diffrazione (insieme ad altre informazioni), sono effettivamente sufficienti per compiere una computazione della mappa della densità elettronica di tutti gli atomi pesanti (carbonio, azoto, ossigeno, zolfo) nella proteina di diffrazione. Da questa mappa, i cristallografi determinano le coordinate x,y,z di tutti gli atomi usando la sequenza nota della proteina. Si noti che, nella cristallografia a raggi X, anche se il pattern di diffrazione deriva da milioni di proteine contenute nel cristallo, il risultato è una struttura per una singola proteina "media".
+	
+	\par La prima struttura determinata con questa tecnica risale al 1958; risolvere una struttura negli anni '70 richiedeva anche 6-7 anni mentre oggi è a volte possibile in soli 6-7 giorni. Il 90\% delle strutture oggi determinate deriva dalla cristallografia a raggi-X\supercite{baxevanis2020bioinformatics}. \\
+	
+	\par Altri metodi per diffrazione sono:  \textit{small-angle X-ray scattering }(SAXS), \textit{neutron scattering},  \textit{electron crystallography}. Il metodo SAXS produce strutture a risoluzione inferiore rispetto alla cristallografia a raggi X. Tuttavia, le strutture SAXS sono molto utili nell'impostare vincoli posizionali per complessi proteici di grandi dimensioni, grazie ai quali è possibile "modellare" strutture a raggi X ad alta risoluzione.
+	
+	\begin{figure}[!htb]
+		\centering
+		\includegraphics[scale=0.5]{images/metodi-sperimentali.png}
+		\caption{Diagramma di flusso dei principali step usati la preparazione e soluzione sperimentale della struttura 3D delle proteine. Fonte\cite{baxevanis2020bioinformatics}}
+		\label{fig:metodi-sper1}
+	\end{figure}
+	
+	\par Il principale metodo spettroscopico utilizzato per la determinazione della struttura proteica è l'NMR. Questo metodo si basa sull'eccitazione dei nuclei atomici sotto un forte campo magnetico e sul loro successivo rilassamento. Viene misurato come i nuclei atomici (ad es. dell'idrogeno o dell'isotopo carbonio o azoto) assorbano la radiazioni; ciò permette di determinare quanto magnetismo nucleare è trasferito da un atomo all'altro. Questo approccio consente agli scienziati di trattare la proteina nel suo ambiente naturale (soluzione, membrana) e fornisce importanti informazioni sulla sua dinamica. L'NMR è un metodo più recente della cristallografia a raggi-X: la prima struttura determinata risale al 1983. Tuttavia questo metodo ha un limite superiore alla dimensioni di molecole studiabili (40kDa) e non può studiare proteine di membrana. L'EPR, un metodo simile, si basa sull'eccitazione e sul rilassamento degli elettroni attorno agli atomi della proteina e richiede la marcatura dei residui proteici con etichette paramagnetiche. \\
+	
+	\subsubsection{Cryo-EM}
+	
+	\par La microscopia crioelettronica (cryo-EM) è un metodo diretto: è possibile osservare direttamente macromolecole. È una versione avanzata di microscopio elettronico, il quale fu inventato negli anni '30. Questi microscopi usano raggi di elettroni piuttosto che di luce (la lunghezza d'onda degli elettroni è molto più corta di quella della luce). Durante la metà degli anni '70 è nata la cryo-EM: l'idea è stata quella di congelare i campioni per preservarne la struttura naturale e ridurre i danni causati dai raggi di elettroni.
+	
+	\begin{figure}[!htb]
+		\minipage{0.5\textwidth}
+		\centering
+		\includegraphics[scale=1.1]{images/cryo-em.jpg}
+		\caption{Funzionamento schematico di un microscopio crio-elettronico. Fonte\cite{cryoEMbasics}}
+		\label{fig:cryo-em-basics}
+		\endminipage\hfill
+		\minipage{0.5\textwidth}
+		\centering
+		\includegraphics[scale=0.136]{images/cryo-em-classi.png}
+		\caption{(A) Micrografia rappresentativa del campione di streptavidina ottenuta tramite cryo-EM. La barra di scala rappresenta 20nm (B) Classi medie 2D rappresentative delle immagini della proteina. La barra di scala rappresenta 5nm. Fonte \cite{fan2019single}}
+		\label{fig:cryo-em-classi}
+		\endminipage\hfill
+	\end{figure}
+	
+	Nella cryo-EM una goccia di acqua contenente pure proteine è inserita in una piccola griglia per EM immersa in una vasca di etano liquido a -180°C. I campioni di proteine vengono congelati velocemente (creando ghiaccio vitreo): questo assicura che le circostanti molecole d'acqua non abbiano tempo per formare cristalli di ghiaccio (che deformerebbero la forma della proteina). I campioni sono esaminati (ancora ghiacciati) da un microscopio a trasmissione elettronica (TEM) e sottoposti quindi a forti raggi di elettroni. Un rilevatore di elettroni cattura le "immagini" proiettate delle molecole e, data l'automazione odierna di simili meccanismi, vengono effettuate migliaia di micrografie per catturare più dettagli possibile delle molecole. Ogni micrografia conterrà centinaia di migliaia di molecole singole, ognuna orientata casualmente. 
+	\par Successivamente vi è lo step di image processing: le immagini proiettate vengono categorizzate in gruppi e allineate per poi essere sovrapposte in moda da calcolare un'immagine media per ogni gruppo. \\
+	
+	\par La preparazione è quindi molto più semplice rispetto alla cristallografia a raggi-X e le strutture somigliano maggiormente a quelle viste nel normale ambiente acquoso della cellula. La cryo-EM è limitata nelle dimensioni: c'è un limite inferiore che di anno in anno si abbassa (ad. es 39kDa nel 2019\supercite{fan2019single}). Non sono un problema invece grandi proteine (anche maggiori di 100kDa). Oggi la cryo-EM può generare immagini 3D a risoluzione quasi atomica di virus e complesse macromolecole, come i ribosomi. È possibile utilizzare la cryo-EM anche per le proteine di membrana. 
+	
+	\begin{figure}[!htb]
+		\minipage{0.5\textwidth}
+		\centering
+		\includegraphics[scale=1.5]{images/cryo-ribosoma.jpg}
+		\caption{Complesso di controllo qualità dei ribosomi, basato su dati di cryo-EM. Fonte: \cite{cryoRevolutionUCSF}}
+		\label{fig:cryo-ribosoma}
+		\endminipage\hfill
+		\minipage{0.5\textwidth}
+		\centering
+		\includegraphics[scale=1.5]{images/cryo-zika.jpeg}
+		\caption{La struttura del virus Zika ottenuta tramite cryo-EM. La macromolecola ha un peso di 190kDa ed è composta da 11.000 atomi. Risoluzione di 3.8\angstrom. Fonte \cite{cryoZika}}
+		\label{fig:cryo-zika}
+		\endminipage\hfill
+	\end{figure}
+	
+	È solo da pochi anni che il metodo ha fatto un grande passo in avanti, grazie ad avanzamenti nel rivelatore e nei software di \textit{image processing}. Nel 2017 è stato assegnato il premio Nobel per la chimica per aver contribuito a sviluppare tale metodologia\footnote{A Richard Henderson, Jacques Dubochet e Joachim Frank, "for developing cryo-electron microscopy for the high-resolution structure determination of biomolecules in solution".}.
+	Si sta considerando l'adozione della microscopia crioelettronica come di una rivoluzione nel campo della biologia strutturale\supercite{callaway2020revolutionary, bai2015cryo}. La crescita nel numero di strutture determinate è stata lenta inizialmente a causa della scarsa adozione del metodo, ma da quando si è vista la possibilità di produrre mappe dettagliate per macromolecole come i ribosomi la situazione è cambiata (vedi le figure \ref{fig:cryo-em-grafico} e \ref{fig:cryo-em-resolution}). Circa l'1\% delle strutture è stata determinata con questa tecnica ma i rapidi avanzamenti degli strumenti sia hardware che software potrebbero favorire la rivoluzione di cui si parla. 
+	
+	\begin{figure}[!htb]
+		\minipage{0.58\textwidth}
+		\centering
+		\includegraphics[scale=0.6]{images/cryo-em-grafico.png}
+		\caption{Crescita delle mappe elettroniche rilasciate nell'EMDB. Fonte\cite{pakhrin2021deep}}
+		\label{fig:cryo-em-grafico}
+		\endminipage\hfill
+		\minipage{0.4\textwidth}
+		\centering
+		\includegraphics[scale=0.35]{images/cryo-em-resolution.png}
+		\caption{Grafico della risoluzione di strutture risolte tramite cryo-EM. Fonte \cite{callaway2020revolutionary}}
+		\label{fig:cryo-em-resolution}
+		\endminipage\hfill
+	\end{figure}
+}
+
 \section{Sfide al dogma di Anfinsen: IDP e fold switching} \label{sfide-dogma}
 {
 {
@@ -554,7 +681,7 @@ Nonostante la loro mancanza di struttura stabile le IDP risultano essere una cla
 
 \subsubsection{Fold switching proteins} \label{sec:fold-switching-proteins}
 {
-Alcune proteine hanno multiple strutture native: possono cambiare la loro forma, rimodellando anche le loro strutture secondarie, in base a fattori esterni. Ad esempio il complesso proteico KaiB cambia ripiegamento durante la giornata agendo da orologio per i cianobatteri. Si possono immaginare le proteine \textit{fold switching} come una sorta di transformer\footnote{La metafora è di Lauren Porter\supercite{porterYT}, autrice di \fullcite{porter2018extant}.} dove in un caso la proteina è come un robot che fa una cosa e in un altro caso, in risposta a cambiamenti ambientali, diventa un'automobile e fa qualcos'altro. Il cambio tra strutture alternative è guidato da interazioni della proteina con piccoli ligandi o altre proteine, da modificazioni chimiche (es. fosforilazione) o da cambiamente nelle condizioni ambientali (temperatura, pH, potenziale di membrana). Ogni struttura alternativa può o corrispondere al minimo globale di energia libera della proteina in certe condizioni o essere cineticamente intrappolata in un minimo locale di energia libera\supercite{varela2019kinetic} circondato da alte barriere energetiche.
+Alcune proteine hanno multiple strutture native: possono cambiare la loro forma, rimodellando anche le loro strutture secondarie, in base a fattori esterni. Ad esempio il complesso proteico KaiB cambia ripiegamento durante la giornata agendo da orologio per i cianobatteri. Si possono immaginare le proteine \textit{fold switching} come una sorta di transformer\footnote{La metafora è di Lauren Porter\supercite{porterYT}, autrice di \fullcite{porter2018extant}.} dove in un caso la proteina è come un robot che fa una cosa e in un altro caso, in risposta a cambiamenti ambientali, diventa un'automobile e fa qualcos'altro. Il cambio tra strutture alternative è guidato da interazioni della proteina con piccoli ligandi o altre proteine, da modificazioni chimiche (es. fosforilazione) o da cambiamenti nelle condizioni ambientali (temperatura, pH, potenziale di membrana). Ogni struttura alternativa può o corrispondere al minimo globale di energia libera della proteina in certe condizioni o essere cineticamente intrappolata in un minimo locale di energia libera\supercite{varela2019kinetic} circondato da alte barriere energetiche.
 
 \par Le proteine \textit{fold switching} (FS) differiscono dalle IDP\supercite{porter2018extant}: 
 
@@ -584,7 +711,7 @@ La scoperta delle IDP e delle proteine FS ha creato una spaccatura nel paradigma
 
 Né Mirsky, né Pauling né Hsien Wu (probabilmente il primo a proporre il paradigma struttura unica-funzione) citarono il lavoro di Fischer ma la sua metafora avrebbe supportato pienamente le loro tesi. Perciò ancora prima dell'esperimento di Anfinsen e delle risoluzioni atomiche delle strutture, una specifica e ben ordinata forma tridimensionale era stata accettata come prerequisito essenziale per la funzione di una proteina.\supercite{dunker2001intrinsically}. Le prime strutture proteiche sono state determinate attraverso la cristallografia negli anni '50, dando ancora più credito all'ipotesi che una struttura fissa fosse necessaria per adempiere la funzione biologica. Queste pubblicazioni hanno contribuito a solidificare il dogma centrale della biologia molecolare. Nonostante questo già nel 1950 si parlava di molteplicità di strutture per una proteina, in particolare Karush\supercite{karush1950heterogeneity} sull'albumina del siero bovino, inferendo che le interazioni proteina-ligando stabilizzassero il membro più adatto da un insieme di strutture in equilibrio, chiamando questo fenomeno \textit{adattabilità configurazionale}. Successivamente si può ricordare il paradosso di Levinthal negli anni '60, per arrivare negli anni '70 al dogma di Anfinsen, il cui paradigma (sequenza amminoacidica $\dashrightarrow$ struttura tridimensionale $\dashrightarrow$ funzione) è messo in discussione da evidenze di mancanza di generalità. Tuttavia quel sistema di pensiero ha preso piede ed ha pervaso quasi tutti i lavori e teorie successive. Al tempo dell'esperimento di Anfinsen e delle prime risoluzioni atomiche della mioglobina e del lisozima il prerequisito di una forma tridimensionale fissa necessaria per la funzione della proteina era già accettato. La successiva valanga di migliaia di strutture determinate sperimentalmente ha contribuito ad affossare paradigmi di pensiero alternativi.
 
-\par La scoperta di segmenti intrinsecamente disordinati è stata compiuta nel 1978, quando ancora erano disponibili le strutture di sole 20 proteine. Alcuni segmenti di proteine non fornivano alcuna densità elettronica distinguibile nonostante fossero essenziali per il funzionamento. Una  ragione comune è che gli atomi di quel segmento sono disordinati, ovvero la loro posizione cambia. Con l'avvento del NMR \ref{}, sempre nel 1978, si è arrivati a identificare intere proteine disordinate e dato che questo metodo è più preciso, la riscoperta di disordine nativo ha avuto un impatto significativo.
+\par La scoperta di segmenti intrinsecamente disordinati è stata compiuta nel 1978, quando ancora erano disponibili le strutture di sole 20 proteine. Alcuni segmenti di proteine non fornivano alcuna densità elettronica distinguibile nonostante fossero essenziali per il funzionamento. Una  ragione comune è che gli atomi di quel segmento sono disordinati, ovvero la loro posizione cambia. Con l'avvento della spettroscopia NMR, sempre in quegli anni, si è arrivati a identificare intere proteine disordinate e dato che questo metodo è più preciso, la riscoperta di disordine nativo ha avuto un impatto significativo.
 
 \par Fino al 2000\supercite{bracken2000disorder} queste idee non sono apparse nei libri di biochimica, nonostante in 50 anni fossero state pubblicate centinaia di paper sull'importanza della flessibilità e del disordine nelle strutture proteiche.
 
@@ -633,7 +760,7 @@ Il problema del protein folding, come si può immaginare, è considerato uno dei
 
 \subsubsection{Paradosso di Levinthal}
 
- Un aspetto importante del problema è sottolineato dal \textit{paradosso di Levinthal}. Nel 1968 Cyrus Levinthal\supercite{levinthal1969fold} si rese conto che, a causa dell'elevato numero di gradi di libertà di un polipeptide non ripiegato, tale molecola presenterebbe un numero astronomico di possibili conformazioni finali. Se la proteina raggiungesse la sua conformazione finale passando via via attraverso tutte queste configurazioni, sarebbe necessario un tempo ben superiore all'età attualmente stimata dell'universo per raggiungere la configurazione corretta, anche se ogni passaggio richiedesse pochi \textit{picosecondi}\footnote{Levinthal\supercite{levinthal1969fold} stima $10^{300}$ possibili conformazioni teoriche per una proteina di 2000 atomi.}.
+ Un aspetto importante del problema è sottolineato dal \textit{paradosso di Levinthal}. Nel 1968 Cyrus Levinthal\supercite{levinthal1969fold} si rese conto che, a causa dell'elevato numero di gradi di libertà di un polipeptide non ripiegato, tale molecola presenterebbe un numero astronomico di possibili conformazioni finali. Se la proteina raggiungesse la sua conformazione finale passando via via attraverso tutte queste configurazioni, sarebbe necessario un tempo ben superiore all'età attualmente stimata dell'universo per raggiungere la configurazione corretta, anche se ogni passaggio richiedesse pochi \textit{picosecondi}\footnote{Levinthal stima $10^{300}$ possibili conformazioni teoriche per una proteina di 2000 atomi\supercite{levinthal1969fold}.}.
  
  \par Prendendo ad esempio un polipeptide di 100 residui si avranno 99 legami peptidici e di conseguenza 198 differenti angoli di legame $\phi$ e $\psi$. Assumendo che ognuno di questi angoli possa esistere in ognuna delle 3 configurazioni stabili la proteina potrebbe assumere fino a $3^{198}$ configurazioni (includendo ogni possibile ridondanza di ripiegamento).
  
