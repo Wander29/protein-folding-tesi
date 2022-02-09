@@ -115,7 +115,7 @@ I limiti della computazione evolutiva sono: la difficoltà di trovare un criteri
 
 \par Come limiti della tecnica SVM invece si può parlare del fatto che i modelli del kernel overfittino il criterio di selezione del modello, della difficoltà nella selezione dei parametri ottimali della funzione del kernel e della complessità algoritmica e gli ampi requisiti di memoria nei compiti su larga scala.
 
-\par Le reti neurali invece offrono un elevato grado di flessibilità. Oltre ai vettori di input codificanti di coppie di amminoacidi, è possibile includere neuroni con informazioni aggiuntive, ad es. lunghezza della sequenza, valori di idrofobicità dell'ambiente o informazioni evolutive, nonostante la codifica dei dati di input necessariamente restringa le possibili informazioni codificabili. Le reti neurali presentano comunque delle limitazioni di cui tenere conto, ad esempio l'uso di parametri appropriati e l'overfitting.
+\par Le reti neurali invece offrono un elevato grado di flessibilità, nonostante la codifica dei dati di input necessariamente restringa l'insieme delle possibili informazioni. Oltre ai vettori di input codificanti coppie di amminoacidi è possibile includere neuroni con informazioni aggiuntive, come la lunghezza della sequenza, valori di idrofobicità dell'ambiente o informazioni evolutive. Le reti neurali presentano comunque delle limitazioni di cui tenere conto, ad esempio l'uso di parametri appropriati e il possibile overfitting.
 
 \subsubsection{L'arrivo del Deep Learning}
 {
@@ -241,7 +241,7 @@ EMBL-EBI e SIB insieme mantenevano Swiss-Prot e TrEMBL, mentre PIR produceva il 
 
 \par EMDB (Electron Microscopy Data Bank) è una banca dati di microscopia elettronica (EMDB). È un archivio pubblico per mappe volumetriche di crio-microscopia elettronica e tomografia di complessi macromolecolari e strutture subcellulari. Copre una varietà di tecniche, tra cui l'analisi di singole particelle, la tomografia elettronica e la cristallografia elettronica. È stato fondato nel 2002 dall'EMBL-EBI e nel gennaio 2021 è divenuto un archivio gestito dalla wwPDB. \\
 
-\par La predizione della struttura è importante per un semplice motivo: i biochimici conoscono oggi la sequenza amminoacidica per più di 225 milioni di proteine\supercite{proteienDBentries} (UniProt, con circa 4.5-5 milioni aggiunte ogni mese) ma sono state determinate solamente circa 160.000 strutture tridimensionali di proteine\supercite{proteienDBentries} (PDB\footnote{In particolare è da notare che spesso sono presenti più strutture per una data proteina, sono state determinate strutture distinte di circa 55.000 proteine. Al 3 Febbraio 2022 sono presenti 162.913 strutture di proteine nella versione dell'RCSB. Nel PDB ci sono anche strutture di altre macromolecole (complessi di acidi proteici-nucleici, DNA e RNA) per un totale, incluse le proteine, di 186.670\supercite{pdbStats}. Nel wwPDB (database globale) vi sono in totale 197.961 strutture di macromolecole\supercite{wwpdbStats}.}, con poco più di 10.000 strutture aggiunte ogni anno). 
+\par La predizione della struttura è importante per un semplice motivo: i biochimici conoscono oggi la sequenza amminoacidica per più di 225 milioni di proteine\supercite{proteienDBentries} (UniProt, con circa 4.5-5 milioni aggiunte ogni mese) ma sono state determinate solamente circa 160.000 strutture tridimensionali di proteine\supercite{proteienDBentries} (PDB\footnote{In particolare è da notare che spesso sono presenti più strutture per una data proteina, infatti le strutture proteiche distinte determinate sono circa 55.000. Al 3 Febbraio 2022 sono presenti 162.913 strutture di proteine nella versione dell'RCSB. Nel PDB ci sono anche strutture di altre macromolecole (complessi di acidi proteici-nucleici, DNA e RNA) per un totale, incluse le proteine, di 186.670\supercite{pdbStats}. Nel wwPDB (database globale) vi sono in totale 197.961 strutture di macromolecole\supercite{wwpdbStats}.}, con poco più di 10.000 strutture aggiunte ogni anno). 
 
 \begin{figure}[!htb]
 	\centering
@@ -251,9 +251,9 @@ EMBL-EBI e SIB insieme mantenevano Swiss-Prot e TrEMBL, mentre PIR produceva il 
 \end{figure}
 
 
-\par Sono disponibili anche database di modelli 3D di strutture proteiche, come ModBase. Proprio un database di questo tipo è stato fondato dall'EMBL-EBI in congiunzione con DeepMind grazie al successo di AlphaFold: \textit{AlphaFold DB}.
+\par Sono disponibili anche database di modelli 3D di strutture proteiche, come ModBase. Un database di questo tipo è stato fondato dall'EMBL-EBI in congiunzione con DeepMind grazie al successo di AlphaFold: \textit{AlphaFold DB}.
 
-\par AlphaFold DB è un database apertamente accessibile di previsioni ad alta precisione della struttura proteica. Basato su AlphaFold v2.0, ha consentito un'espansione senza precedenti della copertura strutturale dello spazio noto della sequenza proteica. AlphaFold DB fornisce l'accesso programmatico e la visualizzazione interattiva delle coordinate atomiche previste di una proteina, e le relative misure di confidenza stimate. La versione iniziale di AlphaFold DB contiene oltre 360.000 strutture predette in 21 proteomi di organismi modello. Il database sarà presto ampliato per coprire la maggior parte delle sequenze rappresentative del set di dati UniRef90 (oltre 100 milioni)\supercite{varadi2021alphafold}.
+\par AlphaFold DB è un database apertamente accessibile di previsioni ad alta precisione di strutture proteiche. Basato su AlphaFold v2.0, ha consentito un'espansione senza precedenti della copertura strutturale dello spazio noto della sequenza proteica. AlphaFold DB fornisce l'accesso programmatico e la visualizzazione interattiva delle coordinate atomiche previste di una proteina, e le relative misure di confidenza stimate. La versione iniziale di AlphaFold DB contiene oltre 360.000 strutture predette in 21 proteomi di organismi modello. Il database sarà presto ampliato per coprire la maggior parte delle sequenze rappresentative del set di dati UniRef90 (oltre 100 milioni)\supercite{varadi2021alphafold}.
 
 \par Nella prima versione di AlphaFold DB si è tentato di prevedere la maggior parte delle sequenze nel proteoma di riferimento UniProt nell'intervallo di lunghezza di 16-2700 amminoacidi (oltre a frammenti di 1400 residui per coprire proteine umane più lunghe) per gli organismi attualmente coperti. Sono state escluse le sequenze che contengono amminoacidi non standard. Non vengono fornite isoforme multiple.
 
@@ -441,7 +441,7 @@ Le annotazioni si basano sulla predizione dei contatti fra i residui sulla base,
 \begin{figure}[!htb]
 	\centering
 	\includegraphics[scale=0.6]{images/FM-template.png}
-	\caption{Schema generale di un workflow FM. Il DL è un passo fondamentale nel predizione di vincoli spaziali. Fonte\cite{pakhrin2021deep}}
+	\caption{Schema generali di contact prediction basata su DL. Fonte\cite{pakhrin2021deep}}
 	\label{fig:fm-template-dl}
 \end{figure}
 
@@ -596,7 +596,7 @@ La predizione di contatti tra i residui è stata ampiamente utilizzata per oltre
 \subsection{\textit{fold recognition}}
 {
 
-Come si è già detto la struttura delle proteine è maggiormente conservata rispetto alle sequenze. Questo significa che proteine con differenti sequenze possono ancora formare strutture simili grazie a certe proprietà condivise codificate nelle loro sequenze. Identificando queste proprietà è possibile predire la struttura di una nuova proteina basandosi su un template che condivide le stesse proprietà, anche se loro sequenze sono diverse. Questa è l'idea su cui si basano i metodi di \textit{fold recognition}. Le proprietà di cui si parla sono le annotazioni 1D già calcolate precedentemente.
+Come si è già detto la struttura delle proteine è maggiormente conservata rispetto alle sequenze. Questo significa che proteine con differenti sequenze possono ancora formare strutture simili grazie a certe proprietà condivise codificate nelle loro sequenze. Identificando queste proprietà è possibile predire la struttura di una nuova proteina basandosi su un template che condivide le stesse proprietà, anche se loro sequenze sono diverse. Questa è l'idea su cui si basano i metodi di \textit{fold recognition}. Le proprietà di cui si parla sono principalmente le annotazioni già calcolate precedentemente.
 In altri termini, in questo approccio si cerca una proteina con struttura conosciuta (nel PDB) che abbia alcune proprietà nella sequenza o tendenze condivise con la proteina target: le due probabilmente hanno un ripiegamento o motivi strutturali simili.
 
 \begin{figure}[!htb]
@@ -615,7 +615,7 @@ In altri termini, in questo approccio si cerca una proteina con struttura conosc
 	\item (d) \textit{annotation search}, viene effettuata una ricerca confrontando le annotazioni 1D e 2D precedentemente calcolate con le annotazioni di strutture conosciute
 \end{itemize}
 
-Nel \textit{profile-profile matching} le proteine i cui profili sono sufficientemente simili alla proteina target possono essere usate come template globali. Un esempio di procedura profile-matching è HHPred, basata su confronti tra coppie di profili HMM target e template, e JACKHMMER. ALcuni studi riportano che i metodi di confronto fra profili basati su HMM siano più efficienti dei profili basati PSSM\supercite{joseph2014local}.
+Nel \textit{profile-profile matching} le proteine i cui profili sono sufficientemente simili alla proteina target possono essere usate come template globali. Un esempio di procedura profile-matching è HHPred, basata su confronti tra coppie di profili HMM target e template, e JACKHMMER. Alcuni studi riportano che i metodi di confronto fra profili basati su HMM siano più efficienti dei profili basati PSSM\supercite{joseph2014local}.
 
 \par Nel \textit{sequence-structure matching} la compatibilità può essere quantificata in base all'interazione globale o al potenziale di energia. È bene notare che la procedura di \textit{threading} può essere difficile e computazionalmente costosa.
 
@@ -670,7 +670,7 @@ dove per $U_{tot}$ si intende l'energia potenziale totale, per $U_{cov}$ l'energ
 
 \par La descrizione approssimata fornita dal campo di forza permette di calcolare l'energia potenziale di molti sistemi macromolecolari in meno di un secondo. \\
 
-\par Una variante del MM è la \textit{QM/MM} nella quale i calcoli di QM sono indirizzati solamente su una piccola parte della proteina che contiene residui funzionali importanti. Le altre regioni sono soggette invece a MM, con calcoli molto più veloci \footnote{Questo approccio è stato introdotto da Warshel, Levitt e Karplus.}
+\par Una variante del MM è la \textit{QM/MM} nella quale i calcoli di QM sono indirizzati solamente su una piccola parte della proteina che contiene residui funzionali importanti. Le altre regioni sono soggette invece a MM, con calcoli molto più veloci\footnote{Questo approccio è stato introdotto da Warshel, Levitt e Karplus.}.
 
 \subsubsection{Spazio configurazionale}
 
@@ -682,14 +682,14 @@ dove per $U_{tot}$ si intende l'energia potenziale totale, per $U_{cov}$ l'energ
 
 \begin{enumerate}
 	\item si parte da una configurazione arbitraria
-	\item si calcola l'energia potenziale. Viene derivato questo valore su differenti posizioni nel sistema in modo da calcolare le forze agenti su ogni atomo dalla rimanente parte del sistema
+	\item si calcola l'energia potenziale e viene derivato questo valore su differenti posizioni nel sistema in modo da calcolare le forze agenti su ogni atomo dalla rimanente parte del sistema
 	\item un piccolo cambiamento è introdotto nella posizione di ogni atomo, in risposta alle forze applicate su ognuno di essi dal resto del sistema (in accordo a quanto calcolato nel precedente step)
 	\item se la nuova configurazione ha un'energia minore viene adottata
 	\item altrimenti questa viene scartata e viene creata una nuova configurazione
 	\item si ritorna allo step 3 finché non si trovano più configurazioni con minor energia
 \end{enumerate}
 
-Il metodo passa da una configurazione all'altra scendendo con il gradiente della superficie dell'energia potenziale finché non converge in un \textit{punto di minimo locale}. Tutte le procedure di \textit{energy minimization }tendono a rimanere bloccate in un minimo locale di energia non riuscendo spesso a raggiungere il minimo globale a causa di \textit{barriere energetiche} da scavalcare per raggiungere una configurazione con energia minore (vedi fig. \ref{fig:energy-minimization} e \ref{fig:imbuto}).
+Il metodo passa da una configurazione all'altra scendendo con il gradiente della superficie dell'energia potenziale finché non converge in un \textit{punto di minimo locale}. Tutte le procedure di \textit{energy minimization }tendono spesso a rimanere bloccate in un minimo locale di energia, non riuscendo a raggiungere il minimo globale a causa di \textit{barriere energetiche} da scavalcare per raggiungere una configurazione con energia minore (vedi fig. \ref{fig:energy-minimization} e \ref{fig:imbuto}).
 
 \begin{figure}[!htb]
 	\centering
@@ -741,7 +741,7 @@ Ovviamente, essendo una forte approssimazione, alcuni aspetti del sistema reale 
 I metodi \textit{ab initio} non sono attualmente in grado di predire la struttura della maggior parte delle proteine sulla sola base della loro sequenza. Ma sono molto abili nel farlo quando il punto di partenza della predizione è una struttura vicino a quella nativa. Questi metodi sono infatti ampiamente usati per raffinare le strutture grezze ottenute dalle determinazioni sperimentali (vedi sez. \ref{sec:experimentally-guided-prediction}). 
 
 \par Il loro successo dipende ampiamente dall'accuratezza della funzione di energia, dall'efficienza dell'algoritmo di ricerca nello spazio conformazionale e dall'abilità di discernere strutture native da "esche" energeticamente intrappolate.
-Nonostante le loro limitazioni i metodi \textit{ab initio} sono di grande interesse perché sono gli unici, in principio, derivare la vera struttura nativa delle proteine e possono quindi fornire intuizioni importanti per il protein folding problem. Hanno infatti fornito informazioni importanti sulla dinamica delle proteine e sono utilizzati anche nel \textit{protein engineering} e nel \textit{drug discovery}. 
+Nonostante le loro limitazioni i metodi \textit{ab initio} sono di grande interesse perché sono gli unici, in principio, capaci di derivare la vera struttura nativa delle proteine e possono quindi fornire intuizioni importanti per il protein folding problem. Hanno infatti fornito informazioni importanti sulla dinamica delle proteine e sono utilizzati anche nel \textit{protein engineering} e nel \textit{drug discovery}. 
 
 }
 
@@ -761,7 +761,7 @@ Laddove non siano disponibili strutture template adatte (\textit{template-free m
 
 Questi metodi, in primo luogo, ricercano nel PDB frammenti di struttura noti (di pochi residui, ad es. 4-16) che corrispondono a sotto-sequenze della proteina di interesse. Una volta selezionati i frammenti candidati, è possibile formare strutture compatte assemblando frammenti casualmente utilizzando tecniche stocastiche come il \textit{simulated annealing}. Quindi, viene valutata l'idoneità di ciascuna conformazione e vengono ottimizzate quelle più promettenti: mentre i metodi \textit{ab initio} si basano sull'ottimizzazione esplicita dell'energia libera, gli approcci basati sui frammenti svolgono un compito simile utilizzando funzioni di punteggio che sono vagamente correlate alle funzioni energetiche\supercite{abbass2020enhancing}. I metodi fragment-based sono perciò in parte \textit{data-based} e in parte \textit{ab initio}.
 
-\par Inoltre, è stato dimostrato che l'inclusione di una misura di somiglianza tra la struttura secondaria di un frammento candidato e quella prevista corrispondente nel target migliora le funzioni di punteggio. Per ragioni di ottimizzazione, anche in questi metodi vengono usate le annotazioni 1D e 2D calcolate precedentemente.
+\par Inoltre, è stato dimostrato che l'inclusione di una misura di somiglianza tra la struttura secondaria di un frammento candidato e quella prevista nel target migliora le funzioni di punteggio. Per ragioni di ottimizzazione, anche in questi metodi vengono usate le annotazioni 1D e 2D calcolate precedentemente.
 
 \par In questo approccio l'assemblaggio della proteina è quindi realizzato usando piccoli frammenti di proteine conosciute che verranno poi integrati. Un metodo più efficiente rispetto a cercare frammenti nel PDB risulta essere usare librerie di frammenti. Una recente libreria basata sul DL è DeepFragLib. Un principio chiave alla base del PSP \textit{fragment-based} è che qualsiasi struttura può essere costruita dalla concatenazione di frammenti ottenuti da strutture proteiche disponibili nel PDB, per tale ragione una libreria di frammenti ideale dovrebbe essere in grado di costruire qualsiasi proteina. \\
 
@@ -832,7 +832,7 @@ Il loop modeling non si applica solamente alla fase di raffinamento della modell
 La ricerca su database è efficiente per famiglie specifiche ma i loop più lunghi di 4 residui devono essere comunque ottimizzati. I residui ai fianchi della regione del loop sono chiamati residui di \textit{ancoràggio} e sono utilizzati per effettuare la ricerca nei database. ArchPRED ad esempio considera le strutture secondarie ai fianchi del loop mancante, il loro orientamento relativo e il numero di residui mancanti per identificare conformazioni del loop candidate. È possibile usare una funzione di valutazione basata sull'energia per valutare la modellazione dei loop, ad esempio basata sulla stereochimica (come in CHARMM). 
 
 \par Molti dei metodi raggiungono ottimi risultati per la predizione dei loop su strutture sperimentali in ambienti esatti (ovvero strutture cristallizzate a cui mancano le regioni dei loop). Ma nei modelli per omologia non si è ancora riusciti a raggiungere buoni risultati\supercite{karami2018dareus}. Metodi allo stato dell'arte sono in grade di predire conformazioni stabili di loop relativamente corti (fino a 12 residui)\supercite{barozet2021current}.
-Seppur con le loro limitazioni, gli approcci correnti sono pronti per essere usati in problemi impegnativi come il loop design in enzimi e anticorpi.
+Pur con le loro limitazioni, gli approcci correnti sono pronti per essere usati in problemi impegnativi come il loop design in enzimi e anticorpi.
 
 \par I metodi \textit{ab initio} sono dipendenti dalle tecniche di ottimizzazione dell'energia e per questa ragione risultano essere lenti. Metodi \textit{ab initio} per il completamento della struttura cristallizzata allo stato dell'arte sono Rosetta-NGK e GalaxyLoop-PS2. CODA è un esempio di metodo ibrido che combina i due approcci nel loop modeling, così come Sphinx il quale prima esegue una ricerca data-based per trovare frammenti più corti del loop di interesse in modo da ottenere informazioni strutturali, successivamente applica metodi \textit{ab initio} per generare frammenti della corretta lunghezza. \\
 
@@ -870,7 +870,7 @@ Nell'ultimo step sono utilizzate 2 misure per valutare i modelli e vengono ritor
 
 \subsection{Case Study: \textit{TASSER}}
 
-Un metodo che combina differenti approcci (\textit{threading}, \textit{fragment-based} e \textit{ab initio}) è TASSER (Threading/ASSEmbly/Refinement) sviluppato dal gruppo Zhang nel 2004 (negli ha subito vari miglioramenti). Il metodo TBM di maggior successo nel CASP è stato probabilmente I-TASSER, l'estensione iterativa di TASSER. Si è infatti costantemente classificato come il miglior metodo automatizzato nel CASP\supercite{pearce2021deep} considerando tutti i target, e anche nel CASP13 e 14, pur non competendo con AlphaFold, ha ottenuto ottimi risultati. È applicabile sia a situazioni TBM che FM in quanto non impone limiti alla lunghezza dei frammenti utilizzati (>5 residui).
+Un metodo che combina differenti approcci (\textit{threading}, \textit{fragment-based} e \textit{ab initio}) è TASSER (Threading/ASSEmbly/Refinement) sviluppato dal gruppo Zhang nel 2004 (negli anni ha subito vari miglioramenti). Il metodo TBM di maggior successo nel CASP è stato probabilmente I-TASSER, l'estensione iterativa di TASSER. Si è infatti costantemente classificato come il miglior metodo automatizzato nel CASP\supercite{pearce2021deep} considerando tutti i target, e anche nel CASP13 e 14, pur non competendo con AlphaFold, ha ottenuto ottimi risultati. È applicabile sia a situazioni TBM che FM in quanto non impone limiti alla lunghezza dei frammenti utilizzati (>5 residui).
 
 \par I-TASSER genera inizialmente conformazioni a bassa risoluzione che sono poi rifinite; la sua pipeline di può essere riassunta nei seguenti 3 step\supercite{abbass2020enhancing}:
 
