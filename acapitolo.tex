@@ -12,89 +12,54 @@ Illustrare il mio obiettivo e la suddivisione del lavoro, dopo aver esposto la m
 structures: A survey --
 
 
-- Soft computing
-I paradigmi del soft computing per la predizione della struttura delle proteine sono:
-\begin{itemize}
-\item ANNs: artificial neural networks
-\item EC: evolutionary computation
-\item SVMs: support vector machines
-\end{itemize}
-Inoltre i metodi per la predizione della struttura delle proteine possono essere ulteriormente classificati in base ad un'approssimazione biologica \cite{marquez2015soft}:
-\begin{itemize}
-	\item homology-based methods
-	\item threading methods
-	\item \textit{ab initio } methods
-\end{itemize}
-
-
-\section{Background filosofico}
-Buttaci un po' di filosofia della scienza e di quali cambiamenti potrebbe apportare alla struttura delle rivoluzioni scientifiche. Cita Fleck in qualche modo!
-Trova casi di cambi di paradigma e a "riscoperte" tornate alla ribalta grazie all'informatica. Magari l'informatica è un modo, analizzando tanti dati, di contrastare i bias nella scienza?
-
-
-
-\section{Determinazione sperimentale della struttura delle proteine}
-
-Ci sono 3 tecniche sperimentali che possono essere usate per generare informazioni a risoluzione atomica sulla struttura delle proteine.
-
-\subsection{Valutazione dell'accuratezza delle predizioni}
-
-Le tecniche di valutazione della predizione della struttura delle proteine richiede criteri ogettivi sulla similarità tra un modello computazionale e la struttura di riferimento determinata sperimentalmente.\\
-
-La misura di valutazione dell'accuratezza oggi è utilizzata è il lDDT (\textit{local Distance
-	Difference Test}) \cite{mariani2013lddt}. \\
-
-Le misure precedenti si basavano su una superposizione globale di atomi di carbonio ed erano fortemente influenzate dai movimenti di dominio e non assicurano l'accuratezza di detagli atomici locali nel modello.
-
-
 
 \chapter{AlphaFold}
-AlphaFold è un sistema di \textit{Artificial Intelligence }(AI) sviluppato da DeepMind che realizza predizioni allo stato dell'arte sulla struttura delle proteine basandosi sulle loro sequenze amminoacidiche.
-
-\section{DeepMind}
-
-DeepMind è un'azienda inglese di Intelligenza Artificiale sussidiaria di Alphabet Inc.; in altre parole DeepMind è una società controllata: Alphabet Inc. detiene la maggioranza dei voti nell'assemblea ordinaria o un'influenza dominante sull'amministrazione.
-
-\par DeepMind è stata fondata nel 2010 da Demis Hassabis, Shane Legg e Mustafa Suleyman. La società ha sede a Londra con centri di ricerca in Canada, Francia e Stati Uniti \cite{deepMindWiki}.
-
-Può risultare interessante osservare la correlazione fra i primi lavori di DeepMind e la vita di Demis Hassabis, una vita ricca di sfaccettature: bambino prodigio nel gioco degli scacchi, programmatore di videogiochi (dai 17 anni) passando per una laurea in \textit{Computer Science}, alla fondazione del proprio studio videoludico (Elixir Studios) per poi ritornare nel mondo accademico per ottenere il suo PhD in neuroscienze cognitive nel 2009, campo nel quale ha coautorato numerosi articoli influenti su memoria e amnesia (es. rappresentazione della memoria episodica tramite \textit{scene construction} \cite{Hassabis2007Jul}) \cite{hassabisWiki}. Per arrivare infine a fondare DeepMind e la nuovissima società Isomorphic Labs, sempre sussidiaria di Alphabet Inc.
-
-\par DeepMind iniziò infatti a focalizzarsi sull'insegnare ad un sistema di AI come giocare a vecchi videogiochi anni '70,'80 (es. Pong, Breakout, Space Invaders), per poi passare a Go
-
-DeepMind è stata acquistata da Google nel 2014 per 500 milioni di dollari \cite{Guardian2014}.
-
-\subsection{Etica}
-Dopo l'acquisizione di Google l'azienda ha stabilito un'\textit{AI ethics board}.\\
-DeepMind è uno dei membri fondatori di \textit{Partnership on AI} insieme ad Amazon, Google, Facebook, IBM e Microsoft, un'organizzazione dedicata all'interfaccia società-AI \cite{partnershiponai}.
-
-- inserire roba su partnershipai (articoli e pilastri)
-
-DeepMind ha anche aperto una nuova unità denominata DeepMind Ethics and Society e si è concentrata sulle questioni etiche e sociali sollevate dall'intelligenza artificiale avendo come consulente il famoso filosofo Nick Bostrom. Nell'ottobre 2017, DeepMind ha lanciato un nuovo gruppo di ricerca per studiare l'etica dell'IA.[5]
-
-\subsection{Alphabet}
-Alphabet è un'azienda statunitense fondata nel 2015 dagli stessi fondatori di Google (Larry Page e Sergey Brin) come \textit{holding} a cui fa capo Google LLC e altre società sussidiarie: oltre a DeepMind vi sono Calico, CapitalG, Waymo, Wing, Intrinsic, Nest Labs, Sidewalk Labs, Isomorphic Labs, ...\\ 
-Da dicembre 2019 il CEO di Alphabet è Sundar Pichai \cite{cnbc}.
-La fondazione di Alphabet a partire da Google è stata una scelta finalizzata a rendere più trasparenti le attività inerenti a Google e concedere una maggiore autonomia alle società del gruppo che operano in settori diversi da quello dei servizi internet.
 
 
-\section{Rischi per i metodi omologo}
-Rischi anemia falciforme (1 amminoacido diverso).
-Obiettivo tesi: come svicolare problemi dovuti a somiglianze sequenze ma funzione dverse. Spaventano! 
+
+IPA = This makes sense as IPA’s intended function is to refine the structure coming out of the evoformer. 
+
+DeepMSA 
+DeepMSA is a composite approach to generate high quality multiple sequence alignment with large alignment depth and diverse sequence sources by merging sequences from whole-genome sequence databases (Uniclust30 and UniRef90) and from metagenome database (Metaclust). Large-scale benchmark data show that DeepMSA profiles consistently improves contact prediction, secondary structure prediction, and threading over default HHblits or PSI-BLAST profiles. 
+
+
+
+\par La sfida principale che questi metodi hanno affrontato, e che AlphaFold ha "vinto", era raggiungere almeno una RMSD di 3\angstrom. Le sfide ancora da superare riguardano l'accuratezza su grandi proteine, su proteine con un contenuto significativo di strutture $\beta$ e la modellazione di proteine multi-dominio e di membrana.
+
+
+-pearce 2021 confronto con AF1, ottimo in generale
+
+--- wei2019protein
+AlphaFold1 nel CASP 13 ha raggiunto i massimi punteggi in 25 dei 43 test.
+
+assembles the most probable
+fragments based on the co-evolution
+analysis of a multiple sequence alignment.
+
+it makes
+use of its formidable computing power
+to manage truly deep neural networks
+that identify co-evolutionary patterns in
+protein sequences4 in terms of contact
+distributions and angular restraints.
+Furthermore, AlphaFold uses deep
+learning to generate a protein-specific
+statistical potential using a ‘learned
+reference state’1, instead of a physical-based
+reference state 5.
+
+AF1
+
+AlphaFold  [12] is a protein structure  prediction  method  developed  by  DeepMind, diction  accuracy  of RaptorX  using  the distance  matrix  was quite better than  that using which  had  one  of  the  best  performances  in  CASP13.  AlphaFold  is  the  other  approach contact matrix on a set of CASP targets. Along with AlphaFold, this approach  helped that championed the idea of using distogram for protein structure prediction. Essentially, the distogram prediction component of AlphaFold uses a convolutional neural network (CNN) that is trained on PDB structures to predict the Cβ–Cβ distances between any pair of residues. Using the amino acid representation of the query sequence and features generated from MSA, the CNN network predicts a discrete probability distribution for every pair. This distribution is found to be similar to the true distances. Then, the predicted backbone torsion angles and pair-wise distance between residues are combined to form \supercite{pakhrin2021deep}
+
+\subsection{PAE}
+% - alphafold db varaldi, anche pLDDT
+
+
+
 
 
 \chapter{Protein Engineering e campi applicativi}
-Le proteine vivono in un ambiente acquoso, per questa ragione vengono continuamente a scontrarsi con molecole d'acqua che rendono il processo di ripiegamento molto movimentato, e poco lineare, un po' come andare in bicicletta in una tempesta \cite{}, si vorrebbe andare in una direzione definita ma si viene continuamente spinti da una parte e dall'altra.
-
-Se conosco la sequenza degli amminoacidi, come posso prevedere la struttura finale della proteina?
-
-Abbiamo circa 20.000 tipi di proteine.
-
-Le proteine possono essere considerate realmente come delle macchine: usano energia per ruotare, pompare, spostare, causare movimento..
-
-Le proteine svolgono la loro funzione in base alla loro forma e ai loro cambiamenti di forma.
-
-(es. proteine rotanti, motorie, canali ionici..)
-Non fanno rumore. 
 
 Le proteine sono sì macchine ma non funzionano minimamente come le macchine create dall'uomo. non abbiamo elettromagneti, nessun sistema vivente lo ha, non usiamo batterie. 
 
@@ -109,5 +74,3 @@ Abbiamo più macchine microscopiche nelle nostre dita che macchine grandi in tut
 È uno dei rari casi nella storia in cui la tecnologia da sviluppare si conosce già in gran dettaglio. Si tratta solamente di capire come trasportarla nel mondo macroscopico.
 
 He didn't say how we might macrosize the principles of natural machines. He just said their intricacy and efficiency might guide our future thinking when we finally get the rules (such as protein folding) behind us. A machine that repairs itself and reproduces itself is far different than what we are doing in industry today. But nature's invention is not unblemished either. It comes with pain and death. So we have to pick up where mom left off and leave the world a better place than we found it.
-
-
