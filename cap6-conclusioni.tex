@@ -9,7 +9,7 @@ Il campo della predizione della struttura di proteine è stato rivoluzionato nel
 Il problema del \textit{protein folding} non è risolto. È stato risolto, parzialmente, solo il problema della predizione della struttura di proteine.
 
 \subsubsection{Limiti di AlphaFold}
-Le predizioni di AF2 sono ragionevoli anche per alcuni casi molto complicati, come proteine ideate e anticorpi, dove i MSA non sono sempre informativi. Tuttavia AlphaFold2 non predice sempre in modo accurato (vedi fig. \ref{fig:af-basso}, dove più del 15\% delle predizioni su nuove strutture nel PDB ha un'accuratezza inferiore agli 8\angstrom). Nonostante la predizione di AF2 risulti robusta anche in caso di assenza di template e di MSA poco profondi, non risulta altrettanto robusta su MSA quasi interamente non informativi (ad es. composti di 1 o 2 sequenze). 
+Le predizioni di AF2 sono ragionevoli anche per alcuni casi molto complicati, come proteine ideate e anticorpi, dove i MSA non sono sempre informativi. Tuttavia AlphaFold2 non predice sempre in modo accurato (vedi fig. \ref{fig:af-basso}, dove più del 15\% delle predizioni su nuove strutture nel PDB ha un'accuratezza inferiore agli 8 \angstrom). Nonostante la predizione di AF2 risulti robusta anche in caso di assenza di template e di MSA poco profondi, non risulta altrettanto robusta su MSA quasi interamente non informativi (ad es. composti di 1 o 2 sequenze). 
 
 \begin{figure}[!htb]
 	\centering
@@ -18,7 +18,7 @@ Le predizioni di AF2 sono ragionevoli anche per alcuni casi molto complicati, co
 	\label{fig:af-basso}
 \end{figure}
 
-È importante notare che il PDB, ovvero il training set di AlphaFold, ha un forte bias verso le proteine facilmente cristallizzabili: alcune famiglie di proteine sono sotto rappresentate e ciò di conseguenza influenza il comportamento predittivo di AlphaFold. Sono osservazioni come questa che alzano questioni sull'eccessiva centralità dei dati nella ricerca scientifica (ricerca definita appunto (\textit{data-centric})).
+È importante notare che il PDB, ovvero il training set di AlphaFold, ha un forte bias verso le proteine facilmente cristallizzabili: alcune famiglie di proteine sono sottorappresentate e ciò di conseguenza influenza il comportamento predittivo di AlphaFold. Sono osservazioni come questa che alzano questioni sull'eccessiva centralità dei dati nella ricerca scientifica (ricerca definita appunto (\textit{data-centric})).
 
 \subsubsection{Scenari futuri}
 
@@ -28,7 +28,7 @@ L'applicazione più diretta di AF2 è probabilmente il \textit{drug discovery} b
 
 \par Un'altra applicazione è invece il \textit{protein design}. Il numero di possibili proteine è astronomico e le proteine presenti in natura non sono che una piccolissima frazione di quelle generabili. Per ideare una proteina con una funzione specifica si pensa sia necessario assicurarsi che questa si ripieghi strettamente in una struttura particolare. Finora questo processo è stato rallentato dal tempo necessario per completare un ciclo di design, espressione e determinazione della struttura. Tuttavia, se le previsioni della struttura delle proteine fossero sufficientemente buone da confermare la topologia di una proteina senza una conferma sperimentale, ciò potrebbe accelerare il ciclo di test. \\
 
-\par Per quanto riguarda il mondo della ricerca, in particolare della bioinforamtica strutturale, AF2 lo ha liberato del problema del PSP. In questo campo ci si potrà ora dedicare ad altri problemi ancora più importanti e che finora non hanno ricevuto abbastanza attenzione. Degli ambiti di ricerca ora più accessibili sono:
+\par Per quanto riguarda il mondo della ricerca, in particolare della bioinformatica strutturale, AF2 lo ha liberato del problema del PSP. In questo campo ci si potrà ora dedicare ad altri problemi ancora più importanti e che finora non hanno ricevuto abbastanza attenzione. Degli ambiti di ricerca ora più accessibili sono:
 
 \begin{itemize}
 	\item \textit{protein function prediction} 
@@ -55,7 +55,7 @@ Prima di tutto c'è il gruppo di ricerca in sé organizzato da DeepMind. Oltre a
 
 \par C'è poi anche l'aspetto della (praticamente) illimitata potenza computazionale a disposizione. Nonostante possa forse aver accelerato i tempi di sperimentazione, la potenza a disposizione è solo un elemento di contorno per il raggiungimento dell'alto livello ingegneristico di AlphaFold.
 
-\par DeepMind afferma di aver utilizzato approssimativamente 128 TPUv3 core in funzione per varie settimane, una quantità di risorse non eccessiva nel panorama attuale dello stato dell'arte del ML. Le TPU sono state sviluppate da Google appositamente per il deep learning e nelle giuste mani possono mostrare la loro marcia in più. Una tra le loro caratteristiche più importanti è la quantità di memoria: un chip 8-core TPUv3 ha 128GB di vRAM, dove invece le comuni GPU arrivano a circa 40-80GB. Il costo di noleggio annuale di 128 TPU può aggirarsi intorno al milione di dollari\supercite{blopigAF}.
+\par DeepMind afferma di aver utilizzato approssimativamente 128 TPUv3 core in funzione per varie settimane, una quantità di risorse non eccessiva nel panorama attuale dello stato dell'arte del ML. Le TPU sono state sviluppate da Google appositamente per il deep learning e nelle giuste mani possono mostrare la loro marcia in più. Una tra le loro caratteristiche più importanti è la quantità di memoria: un chip 8-core TPUv3 ha 128 GB di vRAM, dove invece le comuni GPU arrivano a circa 40-80 GB. Il costo di noleggio annuale di 128 TPU può aggirarsi intorno al milione di dollari\supercite{blopigAF}.
 
 \par I gruppi Baker e Zhang, i migliori dopo AlphaFold nel CASP14, per confronto hanno riferito di avere usato 4 GPU per allenare i loro modelli per un paio di settimane. Ciò che per questi due gruppi richiede un mese di sperimentazione potrebbe richiedere solo qualche ora per DeepMind. È quindi giusto considerare questo fattore come un vantaggio, che consente sia un efficace \textit{rapid prototyping} per testare varie idee, che una base solida su cui poggiare un'architettura come quella di AlphaFold.\\
 

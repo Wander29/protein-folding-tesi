@@ -31,7 +31,7 @@ Il paradigma \textit{ab initio} (o \textit{de novo}) si basa su un approccio pur
 
 \par Varie osservazioni evolutive e strutturali supportano questo approccio. Si è visto che la struttura è più conservata della sequenza: un'identità anche solo del 50\% può implicare un'identità di ripiegamento ed è possibile ricavare informazioni da mutazioni coevolute.
 
-\par L'approccio \textit{data-based} è anche supportato dall'osservazione che, sebbene il numero di famiglie di proteine multi-dominio cresca rapidamente, la scoperta di nuovi domini singoli sembra stabilizzarsi. Ciò suggerisce che la maggioranza delle proteine possa ripiegarsi in un numero limitato di domini strutturali, forse non più di 10.000-20.000. Per molte famiglie a singolo dominio la struttura di almeno un membro è conosciuta: si stima che ciò permetta di avere informazioni su più di 3/4 delle sequenze nei database\supercite{alberts2018essential}. \\
+\par L'approccio \textit{data-based} è anche supportato dall'osservazione che, sebbene il numero di famiglie di proteine multi-dominio cresca rapidamente, la scoperta di nuovi domini singoli sembra stabilizzarsi. Ciò suggerisce che la maggioranza delle proteine possa ripiegarsi in un numero limitato di domini strutturali, forse non più di 10 000 o 20 000. Per molte famiglie a singolo dominio la struttura di almeno un membro è conosciuta: si stima che ciò permetta di avere informazioni su più di 3/4 delle sequenze nei database\supercite{alberts2018essential}. \\
 
 \par Una \textit{pipeline} standard per la previsione della struttura delle proteine è basata su fasi di previsione intermedie, nelle quali vengono dedotte delle astrazioni che, risultando più semplici della struttura 3D completa, rivelano delle informazioni importanti per guidare le successive ricerche e modellazioni. Queste informazioni possono essere chiamate "annotazioni della struttura delle proteine" (Protein structure annotations, PSA). Le annotazioni sono divise in 2 categorie a seconda delle informazioni che forniscono:
 \begin{itemize}
@@ -49,7 +49,7 @@ Il paradigma \textit{ab initio} (o \textit{de novo}) si basa su un approccio pur
 Ci sono due possibili situazioni in cui ci si può trovare quando si vuole modellare una proteina: si riesce a trovare almeno una proteina omologa (o con caratteristiche simili) oppure no. Nel primo caso la struttura trovata verrà chiamata \textit{template} e si affronterà una predizione di tipo \textit{template-based modeling} (TBM), più semplice, mentre nell'altro caso si affronterà una predizione \textit{template-free modeling} (FM).\\
 
 
-\par Come già accennato, nel panorama attuale molti degli gli approcci oggi utilizzati per il PSP sono prevalentemente \textit{data-based}: i metodi puri \textit{ab initio} vengono raramente utilizzati per la predizione della struttura di proteine (per ragioni che verranno spiegate in dettaglio nella sezione \ref{sec:ab-initio}). Tuttavia, nella pratica, alcune intuizioni del paradigma \textit{ab initio} vengono usate in metodi prevalentemente \textit{data-based}, ad esempio la funzione euristica di valutazione che simula il campo di forza per calcolare l'energia potenziale. Le varie tecniche vengono utilizzate in combinazione: non vi è una singola tecnica principale e i metodi migliori sono proprio quelli che riescono ad integrare vari approcci. \\
+\par Come già accennato, nel panorama attuale molti degli approcci oggi utilizzati per il PSP sono prevalentemente \textit{data-based}: i metodi puri \textit{ab initio} vengono raramente utilizzati per la predizione della struttura di proteine (per ragioni che verranno spiegate in dettaglio nella sezione \ref{sec:ab-initio}). Tuttavia, nella pratica, alcune intuizioni del paradigma \textit{ab initio} vengono usate in metodi prevalentemente \textit{data-based}, ad esempio la funzione euristica di valutazione che simula il campo di forza per calcolare l'energia potenziale. Le varie tecniche vengono utilizzate in combinazione: non vi è una singola tecnica principale e i metodi migliori sono proprio quelli che riescono ad integrare vari approcci. \\
 
 \par  Quando si ha di fronte una sequenza di una proteina senza struttura nota e si vuole predire la sua forma tridimensionale, un metodo per il PSP attuale agirebbe nel seguente modo (vedi fig. \ref{fig:fm-tbm})\footnote{Ogni argomento o metodo citato verrà spiegato nel dettaglio successivamente, in questa sezione l'obiettivo è di fornire una visione globale degli argomenti.}:
 
@@ -189,7 +189,7 @@ Le misure di qualità valutano l'affidabilità dei modelli 3D rispetto alla stru
 	
 	\par Valutando tutti gli atomi è in grado di catturare l'accuratezza, ad esempio, della geometria locale di un sito di legame o il corretto ripiegamento del nucleo di una proteina. È stato introdotto nel CASP9. Assegna punteggi elevati a regioni ben previste anche se la previsione globale non è ben allineata alla struttura reale. Ciò risulta particolarmente utile nelle strutture multi-dominio, in cui i singoli domini possono essere molto accurati mentre la loro posizione relativa non lo è.
 	
-	\item TM\_score (Template modeling score), misura la somiglianza globale tra la struttura modello e quella conosciuta in base alla distanza tra ogni paio di residui. Il punteggio è compreso tra $(0, 1]$, dove 1 indica una corrispondenza perfetta tra due strutture. Generalmente punteggi inferiori a 0,20 corrispondono a proteine non correlate mentre le strutture con un punteggio superiore a 0,5 si pensa abbiano all'incirca lo stesso ripiegamento.\\
+	\item TM\_score (Template modeling score), misura la somiglianza globale tra la struttura modello e quella conosciuta in base alla distanza tra ogni paio di residui. Il punteggio è compreso tra $(0, 1]$, dove 1 indica una corrispondenza perfetta tra due strutture. Generalmente punteggi inferiori a 0.2 corrispondono a proteine non correlate mentre le strutture con un punteggio superiore a 0.5 si pensa abbiano all'incirca lo stesso ripiegamento.\\
 	
 	\item per la valutazione delle \textit{contact map} vengono usate 3 misure:
 	\begin{itemize}
@@ -241,7 +241,7 @@ EMBL-EBI e SIB insieme mantenevano Swiss-Prot e TrEMBL, mentre PIR produceva il 
 
 \par EMDB (Electron Microscopy Data Bank) è una banca dati di microscopia elettronica (EMDB). È un archivio pubblico per mappe volumetriche di crio-microscopia elettronica e tomografia di complessi macromolecolari e strutture subcellulari. Copre una varietà di tecniche, tra cui l'analisi di singole particelle, la tomografia elettronica e la cristallografia elettronica. È stato fondato nel 2002 dall'EMBL-EBI e nel gennaio 2021 è divenuto un archivio gestito dalla wwPDB. \\
 
-\par La predizione della struttura è importante per un semplice motivo: i biochimici conoscono oggi la sequenza amminoacidica per più di 225 milioni di proteine\supercite{proteienDBentries} (UniProt, con circa 4.5-5 milioni aggiunte ogni mese) ma sono state determinate solamente circa 160.000 strutture tridimensionali di proteine\supercite{proteienDBentries} (PDB\footnote{In particolare è da notare che spesso sono presenti più strutture per una data proteina, infatti le strutture proteiche distinte determinate sono circa 55.000. Al 3 Febbraio 2022 sono presenti 162.913 strutture di proteine nella versione dell'RCSB. Nel PDB ci sono anche strutture di altre macromolecole (complessi di acidi proteici-nucleici, DNA e RNA) per un totale, incluse le proteine, di 186.670\supercite{pdbStats}. Nel wwPDB (database globale) vi sono in totale 197.961 strutture di macromolecole\supercite{wwpdbStats}.}, con poco più di 10.000 strutture aggiunte ogni anno). 
+\par La predizione della struttura è importante per un semplice motivo: i biochimici conoscono oggi la sequenza amminoacidica per più di 225 milioni di proteine\supercite{proteienDBentries} (UniProt, con circa 4.5-5 milioni aggiunte ogni mese) ma sono state determinate solamente circa 160 000 strutture tridimensionali di proteine\supercite{proteienDBentries} (PDB\footnote{In particolare è da notare che spesso sono presenti più strutture per una data proteina, infatti le strutture proteiche distinte determinate sono circa 55 000. Al 3 Febbraio 2022 sono presenti 162 913 strutture di proteine nella versione dell'RCSB. Nel PDB ci sono anche strutture di altre macromolecole (complessi di acidi proteici-nucleici, DNA e RNA) per un totale, incluse le proteine, di 186 670\supercite{pdbStats}. Nel wwPDB (database globale) vi sono in totale 197 961 strutture di macromolecole\supercite{wwpdbStats}.}, con poco più di 10 000 strutture aggiunte ogni anno). 
 
 \begin{figure}[!htb]
 	\centering
@@ -253,9 +253,9 @@ EMBL-EBI e SIB insieme mantenevano Swiss-Prot e TrEMBL, mentre PIR produceva il 
 
 \par Sono disponibili anche database di modelli 3D di strutture proteiche, come ModBase. Un database di questo tipo è stato fondato dall'EMBL-EBI in congiunzione con DeepMind grazie al successo di AlphaFold: \textit{AlphaFold DB}.
 
-\par AlphaFold DB è un database apertamente accessibile di previsioni ad alta precisione di strutture proteiche. Basato su AlphaFold v2.0, ha consentito un'espansione senza precedenti della copertura strutturale dello spazio noto della sequenza proteica. AlphaFold DB fornisce l'accesso programmatico e la visualizzazione interattiva delle coordinate atomiche previste di una proteina, e le relative misure di confidenza stimate. La versione iniziale di AlphaFold DB contiene oltre 360.000 strutture predette in 21 proteomi di organismi modello. Il database sarà presto ampliato per coprire la maggior parte delle sequenze rappresentative del set di dati UniRef90 (oltre 100 milioni)\supercite{varadi2021alphafold}.
+\par AlphaFold DB è un database apertamente accessibile di previsioni ad alta precisione di strutture proteiche. Basato su AlphaFold v2.0, ha consentito un'espansione senza precedenti della copertura strutturale dello spazio noto della sequenza proteica. AlphaFold DB fornisce l'accesso programmatico e la visualizzazione interattiva delle coordinate atomiche previste di una proteina, e le relative misure di confidenza stimate. La versione iniziale di AlphaFold DB contiene oltre 360 000 strutture predette in 21 proteomi di organismi modello. Il database sarà presto ampliato per coprire la maggior parte delle sequenze rappresentative del set di dati UniRef90 (oltre 100 milioni)\supercite{varadi2021alphafold}.
 
-\par Nella prima versione di AlphaFold DB si è tentato di prevedere la maggior parte delle sequenze nel proteoma di riferimento UniProt nell'intervallo di lunghezza di 16-2700 amminoacidi (oltre a frammenti di 1400 residui per coprire proteine umane più lunghe) per gli organismi attualmente coperti. Sono state escluse le sequenze che contengono amminoacidi non standard. Non vengono fornite isoforme multiple.
+\par Nella prima versione di AlphaFold DB si è tentato di prevedere la maggior parte delle sequenze nel proteoma di riferimento UniProt nell'intervallo di lunghezza di (16, 2 700) amminoacidi (oltre a frammenti di 1 400 residui per coprire proteine umane più lunghe) per gli organismi attualmente coperti. Sono state escluse le sequenze che contengono amminoacidi non standard. Non vengono fornite isoforme multiple.
 
 \par AlphaFold DB archivia e fornisce accesso alle coordinate atomiche nei formati PDB e mmCIF, mentre fornisce il PAE (Predicted Aligned Error) in JSON.
 
@@ -325,7 +325,7 @@ Ogni approccio mette in risalto informazioni differenti, e una rappresentazione 
 
 Dal 1994 il campo del PSP è stato stimolato, monitorato e quantitativamente valutato dalla competizione biennale CASP (\textit{Critical Assessment of Structure Predictions}). CASP è una sfida nella quale gruppi di ricerca si sfidano cercando di realizzare predizioni di strutture di proteine. È nota la sequenza amminoacidica di queste proteine target ma non la struttura sperimentale. Queste sequenze di proteine provengono da laboratori  congiunti: è pianificata la determinazione delle loro strutture native in vitro, che verrà infine utilizzata per stabilire l'accuratezza dei metodi in gara.
 
-\par Questi esperimenti a livello di comunità sono cresciuti significativamente nel corso delle edizioni: dai 33 target e i 100 modelli sottomessi nel 1994 (CASP1) agli 82 target e più di 55.000 modelli sottomessi nel 2018 (CASP13)\supercite{abbass2020enhancing}.
+\par Questi esperimenti a livello di comunità sono cresciuti significativamente nel corso delle edizioni: dai 33 target e i 100 modelli sottomessi nel 1994 (CASP1) agli 82 target e più di 55 000 modelli sottomessi nel 2018 (CASP13)\supercite{abbass2020enhancing}.
 
 \par Ogni due anni un insieme di sequenze di proteine sono rilasciate gradualmente nel corso di un paio di mesi, durante i quali gruppi di ricerca da tutto il mondo tentano di predire le loro strutture 3D e inviano i loro modelli (fino a 5 per target).
 
@@ -367,7 +367,7 @@ Dal punto di vista biologico e sperimentale sulle proteine, tra i punti di rifer
 	\item tra il 1975-2013 Henderson e altri rifiniscono i metodi nell'utilizzo della cryo-EM per la determinazione della struttura di larghi complessi proteici a risoluzione atomica
 \end{itemize}
 
-I primi passi della \textit{bioinformatica }risiedono nei primi anni '60, quando ancora i desktop computer erano solo un'ipotesi e il DNA non poteva essere sequenziato. Questi passi andavano in direzione di metodi computazionali per l'analisi della sequenza delle proteine. Margaret Dayhoff è considerata la madre della bioinformatica: ha infatti sviluppato il primo software bioinformatico (COMPROTEIN) e il primo database per le sequenze biologiche (\textit{Atlas of Protein Sequence and Structure}, conteneva 65 sequenze di proteine). Il codice a una lettera per gli amminoacidi si deve sempre alla Dayhoff\supercite{gauthier2019brief}. 
+I primi passi della \textit{bioinformatica }risiedono nei primi anni '60, quando ancora i desktop computer erano solo un'ipotesi e il DNA non poteva essere sequenziato. Questi passi andavano in direzione di metodi computazionali per l'analisi della sequenza delle proteine. Margaret Dayhoff è considerata la madre della bioinformatica: ha infatti sviluppato il primo software bioinformatico (COMPROTEIN) e il primo database per le sequenze biologiche (\textit{Atlas of Protein Sequence and Structure}, contenente 65 sequenze di proteine). Il codice a una lettera per gli amminoacidi si deve sempre alla Dayhoff\supercite{gauthier2019brief}. 
 
 \par È in questi anni che è stato sviluppato il primo modello di sostituzione degli amminoacidi per la filogenetica. Anche l'approccio \textit{ab initio} (non per le proteine) è emerso negli anni '60 a partire dal campo della chimica computazionale, grazie principalmente a Warshel, Levitt, Karplus\footnote{Nel 2013 il premio Nobel per la chimica è stato assegnato proprio a questi scienziati che hanno contribuito sin da quegli anni al campo della biofisica molecolare computazionale.}. Il primo programma per calcolare l'energia potenziale nelle proteine è stato sviluppato nel 1969 da Lifson e Levitt\supercite{levitt1969refinement}.
 
@@ -375,7 +375,7 @@ I primi passi della \textit{bioinformatica }risiedono nei primi anni '60, quando
 
 \par Intorno all'inizio degli anni '90 è emerso dalla biologia il campo della bioinformatica, sulla base dall'analisi delle proteine, come dimostra anche l'instaurazione del CASP.
 
-\par Nel 2007 si è raggiunta un'accuratezza nella predizione della struttura di proteine (a singolo dominio con massimo 90 residui) tra i 2 e i 6 \angstrom (modellazione per omologia)\supercite{dill2008protein}.
+\par Nel 2007 si è raggiunta un'accuratezza nella predizione della struttura di proteine (a singolo dominio con massimo 90 residui) tra i 2 e i 6 \angstrom    $\,$(modellazione per omologia)\supercite{dill2008protein}.
 
 \par Nel 2020 AlphaFold è stato reputato vincitore del CASP riuscendo praticamente a risolvere il problema del PSP (per determinate categorie di proteine). 
 
@@ -418,7 +418,7 @@ Annotazioni del 1° tipo sono collegate a: formazione di determinate strutture s
 		\label{fig:msa}
 	\end{figure}
 	
-	\par Le sequenze di proteine in genere risultano avere un grado di somiglianza maggiore rispetto alle sequenze nucleotidiche. Ciò è dovuto alla degenerazione del codice genetico e al fatto che quasi per ogni amminoacido esistano vari codoni che lo codificano, perciò differenti sequenze nucleotidiche possono codificare esattamente la stessa sequenze di amminoacidi.
+	\par Le sequenze di proteine in genere risultano avere un grado di somiglianza maggiore rispetto alle sequenze nucleotidiche. Ciò è dovuto alla degenerazione del codice genetico e al fatto che quasi per ogni amminoacido esistono vari codoni che lo codificano, perciò differenti sequenze nucleotidiche possono codificare esattamente la stessa sequenze di amminoacidi.
 	
 	\par Un allineamento di sequenze multiple (MSA) può essere utilizzato per tracciare l'entità della divergenza evolutiva tra sequenze correlate. Rispetto a una singola sequenza, l'MSA fornisce informazioni sulle tendenze evolutive degli amminoacidi in ciascuna posizione della sequenza, il che aiuta a caratterizzare un "profilo" della sequenza.
 	
@@ -447,7 +447,7 @@ Le annotazioni si basano sulla predizione dei contatti fra i residui sulla base,
 
 \par I progressi nella previsione dei contatti sono rimasti stagnanti per qualche tempo. Tuttavia, si è verificato un balzo nell'accuratezza della previsione dei contatti quando gli algoritmi hanno iniziato a utilizzare approcci di previsione globale. I primi metodi prevedevano principalmente i contatti tra le coppie di residui uno alla volta utilizzando tecniche come l'informazione reciproca, ignorando così le interazioni con altre coppie di residui e il contesto globale in cui si verificavano le interazioni; questo è in gran parte il motivo per cui era difficile per questi metodi locali distinguere tra interazioni dirette e indirette. L'introduzione di modelli statistici globali determinati attraverso l'uso dell'analisi di accoppiamento diretto (DCA) è stata in grado di distinguere con maggiore successo tra queste interazioni dirette e indirette. Il DL ha successivamente rivoluzionato il campo della predizione dei contatti sin dal suo debutto nel CASP10, facendo progredire negli ultimi questo campo dalla predizione binaria dei contatti alla predizione della distanza a valori reali o probabilistica (distogrammi); spesso vengono utilizzate delle \textit{deep residual neural network} (\textit{ResNet}).  
 
-\par Data la natura "black-box" dei metodi di DL è stata ad esempio proposta InterPretContactMap che fa riferimento al campo della xAI (explainable AI); combina reti neurali profonde con meccanismi di attenzione per aumentare la comprensibilità della predizione dei contatti. \\
+\par Data la natura \textit{black-box} dei metodi di DL è stata ad esempio proposta InterPretContactMap che fa riferimento al campo della xAI (explainable AI); combina reti neurali profonde con meccanismi di attenzione per aumentare la comprensibilità della predizione dei contatti. \\
 
 È dal CASP11 che la predizione di una \textit{contact map} è diventata una chiave fondamentale della pipeline dei metodi per il PSP. La predizione dei contatti può essere classificata in due categorie:
 
@@ -494,7 +494,7 @@ La predizione di contatti tra i residui è stata ampiamente utilizzata per oltre
 
 \par Per una sequenza di lunghezza $L$, un distogramma è una matrice $L \times L$, che mostra l'istogramma delle distanze tra coppie. I distogrammi sono matrici simmetriche rispetto alla diagonale. Ogni "pixel" sulla mappa rappresenta una distanza tra una coppia di residui nella sequenza. Le distanze in un distogramma sono relative, il che significa che le distanze tra i residui sono invarianti rispetto alle rotazioni e alle traslazioni 3D.
 
-\par Le distanze sono "binned"\footnote{Ciò vuol dire che i valori dei dati originali che rientrano in un dato piccolo intervallo, un \textit{bin}, sono sostituiti da un valore rappresentativo di quell'intervallo, spesso il valore centrale.  È una forma di quantizzazione.}, pertanto il distogramma può avere tanti canali quanti sono i \textit{bin}, ovvero $L\times L \times bins$ tensori\footnote{In matematica, la nozione di tensore generalizza tutte le strutture definite usualmente in algebra lineare a partire da un singolo spazio vettoriale.}.  \\
+\par Le distanze sono \textit{binned}\footnote{Ciò vuol dire che i valori dei dati originali che rientrano in un dato piccolo intervallo, un \textit{bin}, sono sostituiti da un valore rappresentativo di quell'intervallo, spesso il valore centrale.  È una forma di quantizzazione.}, pertanto il distogramma può avere tanti canali quanti sono i \textit{bin}, ovvero $L\times L \times bins$ tensori\footnote{In matematica, la nozione di tensore generalizza tutte le strutture definite usualmente in algebra lineare a partire da un singolo spazio vettoriale.}.  \\
 
 \par La previsione della distanza tra i residui proteici è la previsione di una matrice (2D) di distanze tra coppie a partire da una sequenza proteica (1D). Tale problema può essere confrontato con quello della stima della profondità monoculare in \textit{computer vision} (vedi fig. \ref{fig:distogramma-cane}).
 
@@ -511,7 +511,7 @@ La predizione di contatti tra i residui è stata ampiamente utilizzata per oltre
 
 \par Fino al CASP13 i tentativi di predire dei distogrammi erano stati poco efficaci, è solo con il metodo di Xu, trRosetta e AlphaFold1 che tale tecnica è maturata. La tecnica di DL principalmente utilizzata è l'uso di ResNet.
 
-\par Il metodo di Xu, implementato in Raptor X, discretizza le distanze di interazione $C_{\beta}$-$C_{\beta}$ in 25 intervalli (da $< 4.5 \angstrom$ a $< 16 \angstrom$). È possibile ottenere una \textit{contact map} da questa \textit{distance map} sommando tutti valori di probabilità previsti corrispondenti a distanze $\leq 8$ $\angstrom$\supercite{pakhrin2021deep}. \\
+\par Il metodo di Xu, implementato in Raptor X, discretizza le distanze di interazione $C_{\beta}$-$C_{\beta}$ in 25 intervalli (compresi fra $4.5\, \angstrom$ e $16\, \angstrom$). È possibile ottenere una \textit{contact map} da questa \textit{distance map} sommando tutti valori di probabilità previsti corrispondenti a distanze $\leq 8$ $\angstrom$\supercite{pakhrin2021deep}. \\
 
 \par La predizione delle distanze a valori reali è un task ancora più difficile. Consiste nel predire le esatte distanze fisiche sull'intera \textit{distance map} accuratamente. I metodi odierni utilizzano ResNet o GAN o meccanismi di attenzione; degli esempi sono PDNET e RealDist.
 
@@ -735,7 +735,7 @@ Ovviamente, essendo una forte approssimazione, alcuni aspetti del sistema reale 
 
 \par Questi metodi sono chiamati \textit{PBSA} e \textit{GBSA} rispettivamente, e come si è visto permettono un calcolo più preciso dell'energia libera. Questi possono a loro volta essere combinati con la MM per rappresentare anche le interazioni del sistema (\textit{MM-PBSA, MM-GBSA}) e sono oggi largamente utilizzati.
 
-\par Un altro limite computazionale è il lasso temporale che si riesce a coprire. La maggior parte delle proteine si ripiega in microsecondi mentre le simulazioni riescono a coprire tempi che vanno dai pico ai nanosecondi. Grazie ad avanzamenti nelle risorse informatiche sono stati fatti dei passi avanti da questo punto di vista. Un caso interessante è \textit{Anton}, un supercomputer progettato specificatamente per ottimizzare simulazioni di MD capace di coprire 85$\mu s$ al giorno per un sistema molecolare di 23.000 atomi (180 volte più veloce di qualsiasi computer general-purpose). Altri progressi sono dovuti alla computazione parallela e alla computazione accelerata dalla GPU. Il calcolo distribuito (\textit{grid computing}), ovvero una larga rete di computer personali dedicati volontariamente al completamento di processi, ha permesso alla rete \textit{Folding@Home} (170.000 computer) di simulare l'intero processo di ripiegamento della proteina di legame dell'acetil coenzima A, composta da 86 residui e che richiede 10 millisecondi per ripiegarsi. Un'altra rete distribuita di calcolo è \textit{Rosetta@Home}, con 86.000 nodi e finalizzata al PSP. \\
+\par Un altro limite computazionale è il lasso temporale che si riesce a coprire. La maggior parte delle proteine si ripiega in microsecondi mentre le simulazioni riescono a coprire tempi che vanno dai pico ai nanosecondi. Grazie ad avanzamenti nelle risorse informatiche sono stati fatti dei passi avanti da questo punto di vista. Un caso interessante è \textit{Anton}, un supercomputer progettato specificatamente per ottimizzare simulazioni di MD capace di coprire 85 $\mu s$ al giorno per un sistema molecolare di 23 000 atomi (180 volte più veloce di qualsiasi computer general-purpose). Altri progressi sono dovuti alla computazione parallela e alla computazione accelerata dalla GPU. Il calcolo distribuito (\textit{grid computing}), ovvero una larga rete di computer personali dedicati volontariamente al completamento di processi, ha permesso alla rete \textit{Folding@Home} (170 000 computer) di simulare l'intero processo di ripiegamento della proteina di legame dell'acetil coenzima A, composta da 86 residui e che richiede 10 $ms$ per ripiegarsi. Un'altra rete distribuita di calcolo è \textit{Rosetta@Home}, con 86 000 nodi e finalizzata al PSP. \\
 
 \subsubsection{Conclusioni sull'approccio \textit{ab initio}}
 I metodi \textit{ab initio} non sono attualmente in grado di predire la struttura della maggior parte delle proteine sulla sola base della loro sequenza. Ma sono molto abili nel farlo quando il punto di partenza della predizione è una struttura vicino a quella nativa. Questi metodi sono infatti ampiamente usati per raffinare le strutture grezze ottenute dalle determinazioni sperimentali (vedi sez. \ref{sec:experimentally-guided-prediction}). 
@@ -829,24 +829,33 @@ Il loop modeling non si applica solamente alla fase di raffinamento della modell
 	\label{fig:loop-modeling-approaches}
 \end{figure}
 
-La ricerca su database è efficiente per famiglie specifiche ma i loop più lunghi di 4 residui devono essere comunque ottimizzati. I residui ai fianchi della regione del loop sono chiamati residui di \textit{ancoràggio} e sono utilizzati per effettuare la ricerca nei database. ArchPRED ad esempio considera le strutture secondarie ai fianchi del loop mancante, il loro orientamento relativo e il numero di residui mancanti per identificare conformazioni del loop candidate. È possibile usare una funzione di valutazione basata sull'energia per valutare la modellazione dei loop, ad esempio basata sulla stereochimica (come in CHARMM). 
+La ricerca su database è efficiente per famiglie specifiche ma i loop più lunghi di 4 residui devono essere comunque ottimizzati. I residui ai fianchi della regione del loop sono chiamati residui di \textit{ancoraggio} e sono utilizzati per effettuare la ricerca nei database. ArchPRED ad esempio considera le strutture secondarie ai fianchi del loop mancante, il loro orientamento relativo e il numero di residui mancanti per identificare conformazioni del loop candidate. È possibile usare una funzione di valutazione basata sull'energia per valutare la modellazione dei loop, ad esempio basata sulla stereochimica (come in CHARMM). 
 
-\par Molti dei metodi raggiungono ottimi risultati per la predizione dei loop su strutture sperimentali in ambienti esatti (ovvero strutture cristallizzate a cui mancano le regioni dei loop). Ma nei modelli per omologia non si è ancora riusciti a raggiungere buoni risultati\supercite{karami2018dareus}. Metodi allo stato dell'arte sono in grade di predire conformazioni stabili di loop relativamente corti (fino a 12 residui)\supercite{barozet2021current}.
+\par Molti dei metodi raggiungono ottimi risultati per la predizione dei loop su strutture sperimentali in ambienti esatti (ovvero strutture cristallizzate a cui mancano le regioni dei loop). Ma nei modelli per omologia non si è ancora riusciti a raggiungere buoni risultati\supercite{karami2018dareus}. Metodi allo stato dell'arte sono in grado di predire conformazioni stabili di loop relativamente corti (fino a 12 residui)\supercite{barozet2021current}.
 Pur con le loro limitazioni, gli approcci correnti sono pronti per essere usati in problemi impegnativi come il loop design in enzimi e anticorpi.
 
 \par I metodi \textit{ab initio} sono dipendenti dalle tecniche di ottimizzazione dell'energia e per questa ragione risultano essere lenti. Metodi \textit{ab initio} per il completamento della struttura cristallizzata allo stato dell'arte sono Rosetta-NGK e GalaxyLoop-PS2. CODA è un esempio di metodo ibrido che combina i due approcci nel loop modeling, così come Sphinx il quale prima esegue una ricerca data-based per trovare frammenti più corti del loop di interesse in modo da ottenere informazioni strutturali, successivamente applica metodi \textit{ab initio} per generare frammenti della corretta lunghezza. \\
 
-\par Pochi metodi sono disponibili come web servers e quindi utilizzabili anche dai non esperti: GalaxyLoopPS2, LoopIng, Sphnix e DaReUS-Loop. Metodi locali sono invece MODELLER, Loopy, OSCAR-loop, Rosetta-NGK, LEAP e M-DISGro. Sono disponibili anche dei tool per la modellazione di loop specifici per gli anticorpi, come quelli offerti da SAbPred\footnote{Collezione di tool sviluppati da Oxford Protein Informatics Group (OPIG).}: Sphinx e FREAD (knowledge-based) che effettua una ricerca su database tenendo in considerazione i vincoli spaziali dei residui di ancoràggio.
+\par Pochi metodi sono disponibili come web servers e quindi utilizzabili anche dai non esperti: GalaxyLoopPS2, LoopIng, Sphnix e DaReUS-Loop. Metodi locali sono invece MODELLER, Loopy, OSCAR-loop, Rosetta-NGK, LEAP e M-DISGro. Sono disponibili anche dei tool per la modellazione di loop specifici per gli anticorpi, come quelli offerti da SAbPred\footnote{Collezione di tool sviluppati da Oxford Protein Informatics Group (OPIG).}: Sphinx e FREAD (knowledge-based) che effettua una ricerca su database tenendo in considerazione i vincoli spaziali dei residui di ancoraggio.
 
 \par Possono essere utilizzati anche simulazioni Monte Carlo e MD per investigare proprietà termodinamiche e cinetiche dei loop. Per quanto riguarda l'utilizzo di Deep Learning o Machine Learning per la modellazione dei loop, resta da dimostrare la capacità dei metodi ML/DL di generare modelli significativi di loop flessibili, nonostante in altre aree della bioinformatica strutturale si sia rivelato uno scenario con grande potenziale\supercite{barozet2021current}.
 
-\par Uno dei metodi più recenti e con migliori risultati è DaReUS-Loop, un approccio  \textit{data-based} che identifica loop candidati estraendoli dal completo insieme delle strutture conosciute del PDB. Il filtraggio dei candidati si basa su confronti di conformazioni locali profilo-profilo insieme a una valutazione fisico-chimica. Applicato ai dataset del CASP11 e CASP12 mostra significativi progressi nell'accuratezza della predizione dei loop e propone una misura di confidenza che correla bene con l'accuratezza effettiva dei loop. I loro autori mostrano anche che oltre il 50\% dei modelli ben riusciti sono derivati da proteine non correlate: ciò suggerisce che frammenti di proteine, sotto simili vincoli, tendono ad adottare simili strutture (oltre la mera omologia)\supercite{karami2018dareus}. 
+\par Uno dei metodi più recenti e con migliori risultati è DaReUS-Loop, un approccio  \textit{data-based} che identifica loop candidati estraendoli dal completo insieme delle strutture conosciute del PDB. 
 
 \begin{figure}[!htb]
 	\centering
 	\includegraphics[scale=0.45]{images/dareus.png}
 	\caption{DaReUS-Loop workflow. Da notare che dal 2019\supercite{karamiLoop} nel processo di costruzione del modello non è più usato MODELLER (non free) ma GROMACS. Fonte\cite{karami2018dareus}}
 	\label{fig:dareus-workflow}
+\end{figure}
+
+Il filtraggio dei candidati si basa su confronti di conformazioni locali profilo-profilo insieme a una valutazione fisico-chimica. Applicato ai dataset del CASP11 e CASP12 mostra significativi progressi nell'accuratezza della predizione dei loop e propone una misura di confidenza che correla bene con l'accuratezza effettiva dei loop. I loro autori mostrano anche che oltre il 50\% dei modelli ben riusciti sono derivati da proteine non correlate: ciò suggerisce che frammenti di proteine, sotto simili vincoli, tendono ad adottare simili strutture (oltre la mera omologia)\supercite{karami2018dareus}. 
+
+\begin{figure}[!htb]
+	\centering
+	\includegraphics[scale=0.63]{images/dareus-confronto.png}
+	\caption{Esempi di predizione di un loop lungo (15 residui) della proteina target T0807 del CASP11 a confronto. Blu=DaReUS-Loop, verde=Rosetta NGK, arancione=GalaxyLoop-PS2, rosso=struttura cristallizzata. La RMSD di ogni loop predetto rispetto al loop nativo è riportata di seguito. DaReUS-Loop: 1.3 \angstrom, NGK: 3 \angstrom, PS2: 2.9 \angstrom. Nella colonna a destra sono riportate le catene laterali della struttura nativa e di quella predetta da DaReUS-Loop. Fonte\cite{karami2018dareus}}
+	\label{fig:loop-prediction-lungo}
 \end{figure}
 
 I principali step del metodo sono mostrati in figura \ref{fig:dareus-workflow} e sono:
@@ -859,12 +868,7 @@ I principali step del metodo sono mostrati in figura \ref{fig:dareus-workflow} e
 
 Nell'ultimo step sono utilizzate 2 misure per valutare i modelli e vengono ritornati in output come predizioni finali i 5 migliori modelli per ogni metrica.
 
-\begin{figure}[!htb]
-	\centering
-	\includegraphics[scale=0.63]{images/dareus-confronto.png}
-	\caption{Esempi di predizione di un loop lungo (15 residui) della proteina target T0807 del CASP11 a confronto. Blu=DaReUS-Loop, verde=Rosetta NGK, arancione=GalaxyLoop-PS2, rosso=struttura cristallizzata. La RMSD di ogni loop predetto rispetto al loop nativo è riportata di seguito. DaReUS-Loop: 1.3\angstrom, NGK: 3\angstrom, PS2: 2.9\angstrom. Nella colonna a destra sono riportate le catene laterali della struttura nativa e di quella predetta da DaReUS-Loop. Fonte\cite{karami2018dareus}}
-	\label{fig:}
-\end{figure}
+
 
 }
 
